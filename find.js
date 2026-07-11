@@ -85,7 +85,7 @@ document.querySelectorAll('.heart').forEach((button) => {
 
 document.querySelectorAll('.view-button').forEach((button) => {
   button.addEventListener('click', () => {
-    alert('The full listing page is the next marketplace page we will build.');
+    window.location.href = 'pad-listing.html';
   });
 });
 

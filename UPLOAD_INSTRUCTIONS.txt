@@ -1,34 +1,29 @@
-NOMAD PARK PAD PHASE 2 — EASY GITHUB UPLOAD
+NOMAD PARK PAD PHASE 3 — EASY GITHUB UPLOAD
 
-Every file in this package belongs in the MAIN level of your GitHub repository.
-There is no assets folder in this version.
+Every file belongs in the MAIN level of your GitHub repository.
 
-ON IPHONE:
-1. Download and unzip this package in the Files app.
-2. Open your GitHub repository.
-3. Tap Add file / Upload files.
-4. Select every file inside this folder.
-5. Upload them to the main branch.
-6. Replace matching files when GitHub asks.
-7. Commit with:
-   Launch Phase 2 easy upload
+WHAT IS NEW
+- pad-listing.html
+- listing.css
+- listing.js
+- Every View Pad button now opens the listing page
+- Interactive dates and price estimate
+- Save and share controls
+- Amenities, rules, host profile, reviews, map preview, and booking request preview
 
-Important files to confirm are visible in GitHub:
-- index.html
-- find-a-pad.html
-- become-a-host.html
-- styles.css
-- find.css
-- host.css
-- script.js
-- find.js
-- host.js
-- logo.png
-- hero.jpg
-- story-1.jpg
-- story-2.jpg
-- story-3.jpg
+UPLOAD ON IPHONE
+1. Download and unzip Phase3.zip in the Files app.
+2. Open your GitHub repository and tap Add file / Upload files.
+3. Select every file inside the unzipped folder.
+4. Upload them to the main branch.
+5. Replace matching files.
+6. Commit with:
+   Launch Phase 3 listing page
 
-After Vercel deploys, test:
+TEST AFTER VERCEL DEPLOYS
 https://nomadparkpad.com/find-a-pad.html
-https://nomadparkpad.com/become-a-host.html
+https://nomadparkpad.com/pad-listing.html
+
+Important:
+The listing, host, ratings, reviews, prices, and booking flow are examples.
+No payment, account, database, or real booking system is connected yet.
