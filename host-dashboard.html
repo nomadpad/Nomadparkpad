@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Host Dashboard | Nomad Park Pad</title>
+  <meta name="description" content="Manage listings, availability, booking requests, and earnings with the Nomad Park Pad host dashboard preview.">
+  <meta name="theme-color" content="#0f4b38">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+<header class="site-header">
+  <a class="brand" href="index.html" aria-label="Nomad Park Pad home"><img src="logo.png" alt="Nomad Park Pad"></a>
+  <button class="menu-button" aria-label="Open menu" aria-expanded="false">☰</button>
+  <nav class="main-nav" aria-label="Primary navigation">
+    <a href="find-a-pad.html">Find a Pad</a>
+    <a href="become-a-host.html">Become a Host</a>
+    <a class="active-link" href="host-dashboard.html">Host Dashboard</a>
+    <a href="host-profile.html">My Profile</a>
+  </nav>
+  <a class="early-access" href="create-listing.html">Create a Pad</a>
+</header>
+
+<main class="dashboard-shell">
+  <section class="dashboard-welcome">
+    <div>
+      <p class="kicker">HOST CONTROL CENTRE</p>
+      <h1>Good morning, Jamie.</h1>
+      <p>Here is what is happening with your example hosting account.</p>
+    </div>
+    <a class="btn btn-accent" href="create-listing.html">+ Create a New Pad</a>
+  </section>
+
+  <section class="dashboard-stats">
+    <article><span>🏡</span><div><strong>1</strong><p>Active listing</p></div></article>
+    <article><span>📨</span><div><strong>2</strong><p>Booking requests</p></div></article>
+    <article><span>📅</span><div><strong>8</strong><p>Available nights</p></div></article>
+    <article><span>💰</span><div><strong>$176</strong><p>Example monthly gross</p></div></article>
+  </section>
+
+  <section class="dashboard-grid">
+    <div class="dashboard-main">
+      <article class="dashboard-panel">
+        <div class="panel-heading">
+          <div><p class="eyebrow">YOUR LISTING</p><h2>Quiet Garden Driveway</h2></div>
+          <span class="status-pill live">Active</span>
+        </div>
+
+        <div class="listing-management">
+          <div class="listing-thumb"></div>
+          <div class="listing-details">
+            <p>Sherwood Park, Alberta · $22/night · Quiet Overnight</p>
+            <div class="completion-bar"><span style="width:82%"></span></div>
+            <small>Listing quality: 82% complete</small>
+            <div class="management-actions">
+              <a href="listing-preview.html">Preview</a>
+              <a href="create-listing.html">Edit</a>
+              <button type="button" id="pause-listing">Pause</button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="dashboard-panel">
+        <div class="panel-heading">
+          <div><p class="eyebrow">BOOKING REQUESTS</p><h2>Needs your attention</h2></div>
+          <span class="count-badge">2</span>
+        </div>
+
+        <div class="request-list">
+          <article class="request-card" data-request>
+            <div class="request-avatar">A</div>
+            <div class="request-copy">
+              <strong>Alex · Camper Van</strong>
+              <p>July 18 to July 19 · 1 night · 2 travelers</p>
+              <small>Identity review planned · 4 example stays</small>
+            </div>
+            <div class="request-actions">
+              <button class="accept-request" type="button">Accept</button>
+              <button class="decline-request" type="button">Decline</button>
+            </div>
+          </article>
+
+          <article class="request-card" data-request>
+            <div class="request-avatar">M</div>
+            <div class="request-copy">
+              <strong>Morgan · Small RV</strong>
+              <p>July 26 to July 28 · 2 nights · 1 traveler</p>
+              <small>Email verified · New traveler</small>
+            </div>
+            <div class="request-actions">
+              <button class="accept-request" type="button">Accept</button>
+              <button class="decline-request" type="button">Decline</button>
+            </div>
+          </article>
+        </div>
+      </article>
+
+      <article class="dashboard-panel">
+        <div class="panel-heading">
+          <div><p class="eyebrow">AVAILABILITY</p><h2>July 2026</h2></div>
+          <a href="create-listing.html#availability">Edit calendar</a>
+        </div>
+
+        <div class="mini-calendar">
+          <span class="weekday">S</span><span class="weekday">M</span><span class="weekday">T</span><span class="weekday">W</span><span class="weekday">T</span><span class="weekday">F</span><span class="weekday">S</span>
+          <span class="muted-day">28</span><span class="muted-day">29</span><span class="muted-day">30</span>
+          <span>1</span><span>2</span><span>3</span><span>4</span>
+          <span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span><span>11</span>
+          <span>12</span><span>13</span><span>14</span><span class="available">15</span><span class="available">16</span><span class="available">17</span><span class="requested">18</span>
+          <span>19</span><span>20</span><span>21</span><span class="available">22</span><span class="available">23</span><span class="available">24</span><span>25</span>
+          <span class="requested">26</span><span class="requested">27</span><span>28</span><span>29</span><span class="available">30</span><span class="available">31</span><span class="muted-day">1</span>
+        </div>
+
+        <div class="calendar-legend">
+          <span><i class="legend-dot open"></i> Available</span>
+          <span><i class="legend-dot pending"></i> Requested</span>
+          <span><i class="legend-dot closed"></i> Unavailable</span>
+        </div>
+      </article>
+    </div>
+
+    <aside class="dashboard-sidebar">
+      <article class="dashboard-panel progress-panel">
+        <h2>Host readiness</h2>
+        <div class="progress-circle"><strong>75%</strong><span>complete</span></div>
+        <ul class="clean-list">
+          <li>✓ Profile created</li>
+          <li>✓ Example listing added</li>
+          <li>✓ Host Style selected</li>
+          <li>○ Add driveway measurements</li>
+          <li>○ Complete identity check</li>
+          <li>○ Connect payout method</li>
+        </ul>
+      </article>
+
+      <article class="dashboard-panel">
+        <h2>Messages</h2>
+        <div class="message-preview">
+          <div class="message-avatar">A</div>
+          <div><strong>Alex</strong><p>Is the power outlet close to the parking space?</p></div>
+        </div>
+        <button class="secondary-button full-button" type="button">Open messages</button>
+      </article>
+
+      <article class="dashboard-panel">
+        <h2>Example earnings</h2>
+        <div class="earnings-total">$176</div>
+        <p>Projected gross income from eight available nights at $22 per night.</p>
+        <div class="earnings-bars">
+          <span style="height:32%"></span><span style="height:55%"></span><span style="height:42%"></span><span style="height:80%"></span><span style="height:64%"></span><span style="height:92%"></span>
+        </div>
+        <small>Illustrative only. No real payouts are connected.</small>
+      </article>
+    </aside>
+  </section>
+</main>
+
+<footer>
+  <div class="footer-brand"><img src="logo.png" alt="Nomad Park Pad"><span>Built for travelers. Powered by community.</span></div>
+  <nav class="footer-links"><a href="index.html">Home</a><a href="find-a-pad.html">Find a Pad</a><a href="host-profile.html">Host Profile</a></nav>
+  <p>© 2026 Nomad Park Pad. All rights reserved.</p>
+</footer>
+
+<script src="script.js"></script>
+<script src="dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Listing Preview | Nomad Park Pad</title>
+  <meta name="description" content="Preview and publish a Nomad Park Pad driveway listing.">
+  <meta name="theme-color" content="#0f4b38">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="listing.css">
+  <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+<header class="site-header">
+  <a class="brand" href="index.html"><img src="logo.png" alt="Nomad Park Pad"></a>
+  <button class="menu-button" aria-label="Open menu" aria-expanded="false">☰</button>
+  <nav class="main-nav">
+    <a href="host-dashboard.html">Dashboard</a>
+    <a href="create-listing.html">Edit Listing</a>
+    <a class="active-link" href="listing-preview.html">Preview</a>
+  </nav>
+  <button class="early-access publish-top" type="button" data-publish>Publish Pad</button>
+</header>
+
+<main>
+  <section class="preview-banner">
+    <div><strong>Host preview</strong><span>This is how travelers will see your listing.</span></div>
+    <div><a href="create-listing.html">Edit listing</a><button class="btn btn-accent" type="button" data-publish>Publish Pad</button></div>
+  </section>
+
+  <section class="listing-heading">
+    <div>
+      <p class="kicker">DRAFT LISTING PREVIEW</p>
+      <h1 id="preview-title">Quiet Garden Driveway</h1>
+      <p class="location-line"><span id="preview-city">Sherwood Park</span>, Alberta · New listing · Hosted by Jamie</p>
+    </div>
+    <div class="listing-actions"><span class="status-pill draft">Draft</span></div>
+  </section>
+
+  <section class="photo-gallery">
+    <button class="gallery-main photo-main" aria-label="Main listing photo"></button>
+    <button class="gallery-small photo-two" aria-label="Second listing photo"></button>
+    <button class="gallery-small photo-three" aria-label="Third listing photo"></button>
+    <button class="gallery-small photo-four" aria-label="Fourth listing photo"></button>
+    <button class="gallery-small photo-five" aria-label="Fifth listing photo"></button>
+    <button class="show-photos" type="button">▦ Photos preview</button>
+  </section>
+
+  <section class="listing-layout">
+    <div class="listing-content">
+      <div class="summary-row">
+        <div>
+          <h2>Private driveway for vans and small RVs</h2>
+          <p>Up to <span id="preview-guests">4</span> travelers · Maximum vehicle length <span id="preview-length">24 ft</span> · One overnight space</p>
+        </div>
+        <div class="host-avatar">J</div>
+      </div>
+
+      <div class="host-style-banner">
+        <span class="style-symbol">🌙</span>
+        <div><strong>Host Style: <span id="preview-style">Quiet Overnight</span></strong><p>Travelers see the hosting experience before they request a stay.</p></div>
+      </div>
+
+      <section class="content-section">
+        <h2>About this Pad</h2>
+        <p id="preview-description">Level private driveway near fuel, groceries, restaurants, and major routes through the Edmonton area.</p>
+      </section>
+
+      <section class="content-section">
+        <h2>What this Pad offers</h2>
+        <div class="amenity-grid" id="preview-amenities">
+          <span>⚡ 15-amp power</span><span>🐾 Pet friendly</span><span>📶 Guest Wi-Fi</span><span>🗑 Garbage bin</span><span>💡 Well-lit driveway</span>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <h2>Host controls</h2>
+        <div class="rules-list">
+          <div><strong>Booking method</strong><span>Host approval required</span></div>
+          <div><strong>Maximum stay</strong><span>2 nights</span></div>
+          <div><strong>Generators</strong><span>Not permitted</span></div>
+          <div><strong>Quiet hours</strong><span>After 10:00 PM</span></div>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <h2>Approximate location</h2>
+        <div class="location-map">
+          <div class="map-road road-a"></div><div class="map-road road-b"></div><div class="map-road road-c"></div>
+          <div class="location-circle"><span>🏡</span></div>
+          <strong><span id="preview-map-city">Sherwood Park</span> area</strong>
+          <p>The exact address stays hidden until a booking is confirmed.</p>
+        </div>
+      </section>
+    </div>
+
+    <aside class="booking-card">
+      <div class="booking-price"><strong>$<span id="preview-price">22</span></strong> <span>/ night</span></div>
+      <p class="example-note">Host preview</p>
+      <div class="preview-checklist">
+        <div><span>✓</span><p><strong>Title and description</strong><small>Complete</small></p></div>
+        <div><span>✓</span><p><strong>Vehicle limits</strong><small>Complete</small></p></div>
+        <div><span>✓</span><p><strong>Amenities and rules</strong><small>Complete</small></p></div>
+        <div><span>○</span><p><strong>Identity verification</strong><small>Still required before live bookings</small></p></div>
+        <div><span>○</span><p><strong>Payout method</strong><small>Still required before live bookings</small></p></div>
+      </div>
+      <button class="btn btn-accent request-button" type="button" data-publish>Publish Pad</button>
+      <a class="secondary-button full-button centered-link" href="create-listing.html">Return to editing</a>
+      <p class="publish-message" aria-live="polite"></p>
+    </aside>
+  </section>
+</main>
+
+<footer>
+  <div class="footer-brand"><img src="logo.png" alt="Nomad Park Pad"><span>Built for travelers. Powered by community.</span></div>
+  <nav class="footer-links"><a href="host-dashboard.html">Dashboard</a><a href="create-listing.html">Edit Listing</a><a href="host-profile.html">Profile</a></nav>
+  <p>© 2026 Nomad Park Pad. All rights reserved.</p>
+</footer>
+
+<script src="script.js"></script>
+<script src="dashboard.js"></script>
+</body>
+</html>

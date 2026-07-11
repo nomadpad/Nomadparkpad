@@ -1,20 +1,40 @@
-NOMAD PARK PAD PHASE 4 — EASY GITHUB UPLOAD
+NOMAD PARK PAD PHASE 5 — EASY GITHUB UPLOAD
 
-Upload every file in this folder to the MAIN level of your GitHub repository and replace matching files.
+Every file belongs in the MAIN level of your GitHub repository.
 
-New files:
-- sign-up.html
-- traveler-profile.html
-- host-profile.html
-- accounts.css
-- accounts.js
+NEW FILES
+- host-dashboard.html
+- create-listing.html
+- listing-preview.html
+- dashboard.css
+- dashboard.js
 
-Commit message:
-Launch Phase 4 accounts and profiles
+PHASE 5 FEATURES
+- Host dashboard with listing status, booking requests, availability, messages, and example earnings
+- Seven-step Create a Pad flow
+- Vehicle size controls
+- Amenities and Host Style choices
+- House rules and availability calendar
+- Nightly pricing
+- Local browser draft saving
+- Listing preview and preview publishing
+- Existing host pages wired into the dashboard
 
-Test after Vercel deploys:
-https://nomadparkpad.com/sign-up.html
-https://nomadparkpad.com/traveler-profile.html
-https://nomadparkpad.com/host-profile.html
+UPLOAD ON IPHONE
+1. Download and unzip Phase5.zip in the Files app.
+2. Open the main level of the GitHub repository.
+3. Tap Add file, then Upload files.
+4. Select every file inside the unzipped folder.
+5. Replace matching files.
+6. Commit with:
+   Launch Phase 5 host dashboard
 
-Important: This is a browser-only preview. No secure login, database, identity verification, or live account storage is connected yet.
+TEST AFTER VERCEL DEPLOYS
+https://nomadparkpad.com/host-dashboard.html
+https://nomadparkpad.com/create-listing.html
+https://nomadparkpad.com/listing-preview.html
+
+IMPORTANT
+This remains a front-end prototype.
+Draft data is stored only in the visitor's browser.
+Booking requests, earnings, verification, publishing, payments, messages, and payouts are examples and are not connected to a secure backend.

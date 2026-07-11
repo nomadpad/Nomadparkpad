@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Create a Pad | Nomad Park Pad</title>
+  <meta name="description" content="Create and preview a driveway listing with the Nomad Park Pad host listing builder.">
+  <meta name="theme-color" content="#0f4b38">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+<header class="site-header">
+  <a class="brand" href="index.html" aria-label="Nomad Park Pad home"><img src="logo.png" alt="Nomad Park Pad"></a>
+  <button class="menu-button" aria-label="Open menu" aria-expanded="false">☰</button>
+  <nav class="main-nav">
+    <a href="host-dashboard.html">Dashboard</a>
+    <a class="active-link" href="create-listing.html">Create a Pad</a>
+    <a href="host-profile.html">My Profile</a>
+  </nav>
+  <a class="early-access" href="listing-preview.html">Preview Listing</a>
+</header>
+
+<main class="builder-shell">
+  <section class="builder-heading">
+    <div>
+      <p class="kicker">LISTING BUILDER</p>
+      <h1>Create your Pad.</h1>
+      <p>Tell travelers exactly what your driveway offers and what you expect in return.</p>
+    </div>
+    <div class="save-status" id="save-status">Draft saved locally</div>
+  </section>
+
+  <section class="builder-layout">
+    <aside class="builder-nav">
+      <button class="builder-nav-item active" data-step-target="1"><span>1</span>Basics</button>
+      <button class="builder-nav-item" data-step-target="2"><span>2</span>Vehicle fit</button>
+      <button class="builder-nav-item" data-step-target="3"><span>3</span>Amenities</button>
+      <button class="builder-nav-item" data-step-target="4"><span>4</span>Host Style</button>
+      <button class="builder-nav-item" data-step-target="5"><span>5</span>Rules</button>
+      <button class="builder-nav-item" data-step-target="6"><span>6</span>Availability</button>
+      <button class="builder-nav-item" data-step-target="7"><span>7</span>Price</button>
+    </aside>
+
+    <form class="builder-card" id="listing-builder">
+      <section class="builder-step active" data-step="1">
+        <p class="step-label">STEP 1 OF 7</p>
+        <h2>Start with the basics</h2>
+        <div class="form-grid">
+          <label class="full-field">Listing title
+            <input id="listing-title" type="text" value="Quiet Garden Driveway" required>
+          </label>
+          <label>City or town
+            <input id="listing-city" type="text" value="Sherwood Park" required>
+          </label>
+          <label>Province
+            <select id="listing-province"><option>Alberta</option><option>British Columbia</option><option>Saskatchewan</option></select>
+          </label>
+          <label class="full-field">Short description
+            <textarea id="listing-description" rows="5">Level private driveway near fuel, groceries, restaurants, and major routes through the Edmonton area.</textarea>
+          </label>
+          <label class="full-field">Driveway photos
+            <div class="upload-box"><span>📷</span><strong>Add driveway photos</strong><p>Photo upload is a visual preview in this build.</p><button type="button" id="photo-button">Choose photos</button></div>
+          </label>
+        </div>
+      </section>
+
+      <section class="builder-step" data-step="2">
+        <p class="step-label">STEP 2 OF 7</p>
+        <h2>What vehicles can fit?</h2>
+        <div class="option-grid">
+          <label class="select-card"><input type="checkbox" name="vehicle-fit" value="Camper van" checked><span>🚐</span><strong>Camper van</strong></label>
+          <label class="select-card"><input type="checkbox" name="vehicle-fit" value="Car / SUV" checked><span>🚙</span><strong>Car / SUV</strong></label>
+          <label class="select-card"><input type="checkbox" name="vehicle-fit" value="Small RV" checked><span>🏕</span><strong>Small RV</strong></label>
+          <label class="select-card"><input type="checkbox" name="vehicle-fit" value="Large RV"><span>🚌</span><strong>Large RV</strong></label>
+        </div>
+        <div class="form-grid spacing-top">
+          <label>Maximum vehicle length
+            <select id="max-length"><option>18 ft</option><option selected>24 ft</option><option>30 ft</option><option>40 ft</option></select>
+          </label>
+          <label>Maximum vehicle height
+            <select id="max-height"><option>9 ft</option><option selected>11 ft</option><option>13 ft</option></select>
+          </label>
+          <label>Maximum travelers
+            <select id="max-guests"><option>1</option><option>2</option><option selected>4</option><option>6</option></select>
+          </label>
+          <label>Number of parking spaces
+            <select id="spaces"><option selected>1</option><option>2</option><option>3</option></select>
+          </label>
+        </div>
+      </section>
+
+      <section class="builder-step" data-step="3">
+        <p class="step-label">STEP 3 OF 7</p>
+        <h2>Select your amenities</h2>
+        <div class="option-grid amenity-options">
+          <label class="select-card"><input type="checkbox" name="amenity" value="15-amp power" checked><span>⚡</span><strong>Power</strong></label>
+          <label class="select-card"><input type="checkbox" name="amenity" value="Pet friendly" checked><span>🐾</span><strong>Pet friendly</strong></label>
+          <label class="select-card"><input type="checkbox" name="amenity" value="Guest Wi-Fi" checked><span>📶</span><strong>Wi-Fi</strong></label>
+          <label class="select-card"><input type="checkbox" name="amenity" value="Washroom access"><span>🚿</span><strong>Washroom</strong></label>
+          <label class="select-card"><input type="checkbox" name="amenity" value="Water fill"><span>💧</span><strong>Water</strong></label>
+          <label class="select-card"><input type="checkbox" name="amenity" value="Garbage bin" checked><span>🗑</span><strong>Garbage</strong></label>
+          <label class="select-card"><input type="checkbox" name="amenity" value="Fire pit"><span>🔥</span><strong>Fire pit</strong></label>
+          <label class="select-card"><input type="checkbox" name="amenity" value="Well-lit driveway" checked><span>💡</span><strong>Lighting</strong></label>
+        </div>
+      </section>
+
+      <section class="builder-step" data-step="4">
+        <p class="step-label">STEP 4 OF 7</p>
+        <h2>Choose your Host Style</h2>
+        <div class="host-style-options">
+          <label class="style-choice"><input type="radio" name="host-style" value="Quiet Overnight" checked><span>🌙</span><div><strong>Quiet Overnight</strong><p>A brief hello, clear instructions, and privacy.</p></div></label>
+          <label class="style-choice"><input type="radio" name="host-style" value="Friendly Welcome"><span>👋</span><div><strong>Friendly Welcome</strong><p>A warm greeting and practical local tips.</p></div></label>
+          <label class="style-choice"><input type="radio" name="host-style" value="Coffee & Conversation"><span>☕</span><div><strong>Coffee & Conversation</strong><p>Optional conversation and a more social stay.</p></div></label>
+          <label class="style-choice"><input type="radio" name="host-style" value="Local Guide"><span>🧭</span><div><strong>Local Guide</strong><p>Recommendations for food, fuel, routes, and attractions.</p></div></label>
+        </div>
+      </section>
+
+      <section class="builder-step" data-step="5">
+        <p class="step-label">STEP 5 OF 7</p>
+        <h2>Set clear house rules</h2>
+        <div class="form-grid">
+          <label>Check-in begins
+            <input id="checkin-time" type="time" value="17:00">
+          </label>
+          <label>Latest arrival
+            <input id="latest-arrival" type="time" value="22:00">
+          </label>
+          <label>Check-out time
+            <input id="checkout-time" type="time" value="09:00">
+          </label>
+          <label>Maximum stay
+            <select id="maximum-stay"><option>1 night</option><option selected>2 nights</option><option>3 nights</option><option>7 nights</option></select>
+          </label>
+        </div>
+        <div class="rule-toggles">
+          <label><input type="checkbox" checked> Pets must remain leashed</label>
+          <label><input type="checkbox" checked> No generators</label>
+          <label><input type="checkbox" checked> Quiet hours after 10 PM</label>
+          <label><input type="checkbox"> Campfires permitted</label>
+          <label><input type="checkbox" checked> No parties or additional vehicles</label>
+        </div>
+      </section>
+
+      <section class="builder-step" data-step="6" id="availability">
+        <p class="step-label">STEP 6 OF 7</p>
+        <h2>Choose your availability</h2>
+        <p class="muted-copy">Tap dates to mark them available or unavailable in this preview.</p>
+        <div class="availability-calendar" id="availability-calendar"></div>
+        <div class="form-grid spacing-top">
+          <label>Minimum notice
+            <select><option>Same day</option><option selected>1 day</option><option>2 days</option><option>1 week</option></select>
+          </label>
+          <label>Booking method
+            <select><option selected>Host approval required</option><option>Instant booking</option></select>
+          </label>
+        </div>
+      </section>
+
+      <section class="builder-step" data-step="7">
+        <p class="step-label">STEP 7 OF 7</p>
+        <h2>Set your price</h2>
+        <div class="price-builder">
+          <label>Nightly price
+            <div class="money-input"><span>$</span><input id="nightly-price" type="number" min="10" max="150" value="22"></div>
+          </label>
+          <div class="price-example">
+            <span>Example traveler total</span>
+            <strong id="traveler-total">$26</strong>
+            <small>One night plus an illustrative $4 service fee.</small>
+          </div>
+        </div>
+        <div class="publish-summary">
+          <h3>Ready to preview?</h3>
+          <p>Your draft stays in this browser. The next screen shows how the listing will appear to travelers.</p>
+        </div>
+      </section>
+
+      <div class="builder-controls">
+        <button class="secondary-button" id="previous-step" type="button" disabled>Back</button>
+        <button class="btn btn-primary" id="next-step" type="button">Continue</button>
+        <a class="btn btn-accent hidden-control" id="preview-listing" href="listing-preview.html">Preview Listing</a>
+      </div>
+    </form>
+  </section>
+</main>
+
+<footer>
+  <div class="footer-brand"><img src="logo.png" alt="Nomad Park Pad"><span>Built for travelers. Powered by community.</span></div>
+  <nav class="footer-links"><a href="host-dashboard.html">Dashboard</a><a href="host-profile.html">Profile</a><a href="listing-preview.html">Preview</a></nav>
+  <p>© 2026 Nomad Park Pad. All rights reserved.</p>
+</footer>
+
+<script src="script.js"></script>
+<script src="dashboard.js"></script>
+</body>
+</html>
