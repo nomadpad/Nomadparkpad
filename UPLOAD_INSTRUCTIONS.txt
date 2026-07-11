@@ -1,40 +1,44 @@
-NOMAD PARK PAD PHASE 5 — EASY GITHUB UPLOAD
+NOMAD PARK PAD PHASE 6 — EASY GITHUB UPLOAD
 
 Every file belongs in the MAIN level of your GitHub repository.
 
 NEW FILES
-- host-dashboard.html
-- create-listing.html
-- listing-preview.html
-- dashboard.css
-- dashboard.js
+- traveler-dashboard.html
+- booking-request.html
+- trip-details.html
+- messages.html
+- phase6.css
+- phase6.js
 
-PHASE 5 FEATURES
-- Host dashboard with listing status, booking requests, availability, messages, and example earnings
-- Seven-step Create a Pad flow
-- Vehicle size controls
-- Amenities and Host Style choices
-- House rules and availability calendar
-- Nightly pricing
-- Local browser draft saving
-- Listing preview and preview publishing
-- Existing host pages wired into the dashboard
+PHASE 6 FEATURES
+- Traveler dashboard
+- Pending and confirmed trip previews
+- Saved Pads
+- Booking request form
+- Date and price calculation
+- Trip details page
+- Confirmed address preview
+- Host contact and cancellation preview
+- Messaging interface with quick replies
+- Local browser booking request storage
+- Existing listing request button wired into booking-request.html
+- Traveler and host pages linked to dashboards and messages
 
 UPLOAD ON IPHONE
-1. Download and unzip Phase5.zip in the Files app.
-2. Open the main level of the GitHub repository.
+1. Download and unzip Phase6.zip in the Files app.
+2. Open the main level of your GitHub repository.
 3. Tap Add file, then Upload files.
 4. Select every file inside the unzipped folder.
 5. Replace matching files.
 6. Commit with:
-   Launch Phase 5 host dashboard
+   Launch Phase 6 booking and messaging
 
 TEST AFTER VERCEL DEPLOYS
-https://nomadparkpad.com/host-dashboard.html
-https://nomadparkpad.com/create-listing.html
-https://nomadparkpad.com/listing-preview.html
+https://nomadparkpad.com/traveler-dashboard.html
+https://nomadparkpad.com/booking-request.html
+https://nomadparkpad.com/trip-details.html
+https://nomadparkpad.com/messages.html
 
 IMPORTANT
 This remains a front-end prototype.
-Draft data is stored only in the visitor's browser.
-Booking requests, earnings, verification, publishing, payments, messages, and payouts are examples and are not connected to a secure backend.
+No real account authentication, database, live messaging, payments, booking confirmation, address sharing, cancellation, or safety reporting is connected yet.

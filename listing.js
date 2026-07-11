@@ -59,12 +59,7 @@ updatePrice();
 
 document.querySelector('#booking-form')?.addEventListener('submit', (event) => {
   event.preventDefault();
-  const message = event.currentTarget.querySelector('.booking-message');
-  const button = event.currentTarget.querySelector('button[type="submit"]');
-  if (message) {
-    message.textContent = 'This is an example booking flow. Live requests will be connected when accounts and payments are built.';
-  }
-  if (button) button.textContent = 'Preview Request Complete';
+  window.location.href = 'booking-request.html';
 });
 
 document.querySelector('.show-photos')?.addEventListener('click', () => {

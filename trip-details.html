@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Trip Details | Nomad Park Pad</title>
+  <meta name="description" content="View booking status, host details, check-in instructions, and trip information.">
+  <meta name="theme-color" content="#0f4b38">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="phase6.css">
+</head>
+<body>
+<header class="site-header">
+  <a class="brand" href="index.html"><img src="logo.png" alt="Nomad Park Pad"></a>
+  <button class="menu-button" aria-label="Open menu" aria-expanded="false">☰</button>
+  <nav class="main-nav"><a href="find-a-pad.html">Find a Pad</a><a href="traveler-dashboard.html">Traveler Dashboard</a><a href="messages.html">Messages</a></nav>
+  <a class="early-access" href="traveler-dashboard.html">Back to Trips</a>
+</header>
+
+<main class="trip-shell">
+  <section class="trip-hero">
+    <div>
+      <p class="kicker">CONFIRMED TRIP</p>
+      <h1>Quiet Garden Driveway</h1>
+      <p>July 18 to July 19, 2026 · Sherwood Park, Alberta</p>
+    </div>
+    <span class="status-pill confirmed">Confirmed</span>
+  </section>
+
+  <section class="trip-layout">
+    <div class="trip-main">
+      <article class="p6-panel">
+        <h2>Check-in details</h2>
+        <div class="detail-grid">
+          <div><strong>Arrival window</strong><span>5:00 PM to 10:00 PM</span></div>
+          <div><strong>Departure</strong><span>Before 9:00 AM</span></div>
+          <div><strong>Parking space</strong><span>Right side of driveway</span></div>
+          <div><strong>Power</strong><span>Outlet beside garage door</span></div>
+        </div>
+      </article>
+
+      <article class="p6-panel">
+        <h2>Confirmed address</h2>
+        <div class="confirmed-address">
+          <span>📍</span>
+          <div><strong>123 Example Crescent</strong><p>Sherwood Park, Alberta</p><small>Example address only</small></div>
+        </div>
+      </article>
+
+      <article class="p6-panel">
+        <h2>House rules</h2>
+        <div class="rules-list">
+          <div><strong>Quiet hours</strong><span>10:00 PM to 7:00 AM</span></div>
+          <div><strong>Generators</strong><span>Not permitted</span></div>
+          <div><strong>Pets</strong><span>Leashed and cleaned up after</span></div>
+          <div><strong>Maximum stay</strong><span>Two nights</span></div>
+        </div>
+      </article>
+
+      <article class="p6-panel">
+        <h2>Your host</h2>
+        <div class="host-trip-card">
+          <div class="host-avatar">J</div>
+          <div><strong>Jamie</strong><p>Identity and property verification planned</p><span>★ 4.9 example rating</span></div>
+          <a class="secondary-button" href="messages.html">Message Jamie</a>
+        </div>
+      </article>
+    </div>
+
+    <aside class="trip-sidebar">
+      <article class="p6-panel">
+        <h2>Trip summary</h2>
+        <div class="request-summary-lines">
+          <div><span>Stay</span><span>$22</span></div>
+          <div><span>Service fee</span><span>$4</span></div>
+          <div class="price-total"><strong>Total</strong><strong>$26</strong></div>
+        </div>
+      </article>
+
+      <article class="p6-panel">
+        <h2>Need help?</h2>
+        <a class="secondary-button full-button centered-link" href="messages.html">Contact host</a>
+        <button class="danger-button full-button" type="button" id="cancel-trip">Cancel request</button>
+        <p class="trip-status-message" aria-live="polite"></p>
+      </article>
+    </aside>
+  </section>
+</main>
+
+<footer>
+  <div class="footer-brand"><img src="logo.png" alt="Nomad Park Pad"><span>Built for travelers. Powered by community.</span></div>
+  <nav class="footer-links"><a href="traveler-dashboard.html">Dashboard</a><a href="messages.html">Messages</a><a href="pad-listing.html">Listing</a></nav>
+  <p>© 2026 Nomad Park Pad. All rights reserved.</p>
+</footer>
+<script src="script.js"></script>
+<script src="phase6.js"></script>
+</body>
+</html>

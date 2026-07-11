@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Booking Request | Nomad Park Pad</title>
+  <meta name="description" content="Send a booking request for a Nomad Park Pad stay.">
+  <meta name="theme-color" content="#0f4b38">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="phase6.css">
+</head>
+<body>
+<header class="site-header">
+  <a class="brand" href="index.html"><img src="logo.png" alt="Nomad Park Pad"></a>
+  <button class="menu-button" aria-label="Open menu" aria-expanded="false">☰</button>
+  <nav class="main-nav"><a href="find-a-pad.html">Find a Pad</a><a href="traveler-dashboard.html">Traveler Dashboard</a><a href="messages.html">Messages</a></nav>
+  <a class="early-access" href="pad-listing.html">Back to Listing</a>
+</header>
+
+<main class="request-shell">
+  <section class="request-heading">
+    <p class="kicker">BOOKING REQUEST</p>
+    <h1>Request Quiet Garden Driveway.</h1>
+    <p>The host reviews your dates, vehicle, traveler profile, and message before accepting.</p>
+  </section>
+
+  <section class="request-layout">
+    <form class="request-form p6-panel" id="booking-request-form">
+      <div class="progress-row">
+        <span class="progress-step active">1. Trip</span>
+        <span class="progress-step active">2. Vehicle</span>
+        <span class="progress-step active">3. Message</span>
+      </div>
+
+      <h2>Trip details</h2>
+      <div class="form-grid">
+        <label>Arrival<input id="request-arrival" type="date" required></label>
+        <label>Departure<input id="request-departure" type="date" required></label>
+        <label>Travelers<select id="request-travelers"><option>1 traveler</option><option selected>2 travelers</option><option>3 travelers</option><option>4 travelers</option></select></label>
+        <label>Vehicle<select id="request-vehicle"><option selected>Camper van</option><option>Car / SUV</option><option>Small RV</option></select></label>
+        <label>Vehicle length<select id="request-length"><option>18 ft</option><option selected>22 ft</option><option>24 ft</option></select></label>
+        <label>Pets<select id="request-pets"><option selected>No pets</option><option>1 dog</option><option>1 cat</option><option>Other</option></select></label>
+        <label class="full-field">Message to Jamie
+          <textarea id="request-message" rows="6">Hi Jamie, we are passing through Sherwood Park and are looking for a quiet overnight stop. We expect to arrive around 7 PM and leave early the next morning.</textarea>
+        </label>
+      </div>
+
+      <label class="check-field"><input type="checkbox" required><span>I have read the listing details and agree to the house rules.</span></label>
+      <button class="btn btn-accent full-button" type="submit">Send Booking Request</button>
+      <p class="request-message" aria-live="polite"></p>
+    </form>
+
+    <aside class="request-summary-card">
+      <div class="request-listing-photo"></div>
+      <h2>Quiet Garden Driveway</h2>
+      <p>Sherwood Park, Alberta</p>
+      <div class="request-summary-lines">
+        <div><span>$22 × <span id="request-nights">1</span> night</span><span id="request-stay-cost">$22</span></div>
+        <div><span>Service fee</span><span>$4</span></div>
+        <div class="price-total"><strong>Estimated total</strong><strong id="request-total">$26</strong></div>
+      </div>
+      <div class="summary-badges"><span>🌙 Quiet Overnight</span><span>⚡ Power</span><span>🐾 Pet friendly</span></div>
+      <small>This request is a front-end preview and does not create a real booking.</small>
+    </aside>
+  </section>
+</main>
+
+<footer>
+  <div class="footer-brand"><img src="logo.png" alt="Nomad Park Pad"><span>Built for travelers. Powered by community.</span></div>
+  <nav class="footer-links"><a href="traveler-dashboard.html">Dashboard</a><a href="pad-listing.html">Listing</a><a href="messages.html">Messages</a></nav>
+  <p>© 2026 Nomad Park Pad. All rights reserved.</p>
+</footer>
+<script src="script.js"></script>
+<script src="phase6.js"></script>
+</body>
+</html>
