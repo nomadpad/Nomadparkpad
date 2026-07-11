@@ -1,9 +1,65 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Create Account | Nomad Park Pad</title><link rel="icon" href="favicon-32.png"><link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="accounts.css"></head><body>
-<header class="site-header"><a class="brand" href="index.html"><img src="logo.png" alt="Nomad Park Pad"></a><button class="menu-button" aria-label="Open menu" aria-expanded="false">☰</button><nav class="main-nav"><a href="find-a-pad.html">Find a Pad</a><a href="become-a-host.html">Become a Host</a><a href="index.html#trust">Trust & Safety</a></nav><a class="early-access" href="sign-up.html">Create Account</a></header>
-<main class="account-shell"><section class="account-intro"><p class="kicker">JOIN THE ROAD AHEAD</p><h1>Create your account.</h1><p>Choose how you plan to use Nomad Park Pad. You can add another role later.</p></section>
-<section class="account-card"><div class="progress-row"><span class="active">1. Role</span><span>2. Details</span><span>3. Profile</span></div><form id="signup-form"><fieldset class="role-choice"><legend>How will you use Nomad Park Pad?</legend>
-<label class="role-card"><input type="radio" name="role" value="traveler" checked><span>🚐</span><strong>Traveler</strong><p>Find safe overnight driveway stays and build your traveler reputation.</p></label>
-<label class="role-card"><input type="radio" name="role" value="host"><span>🏡</span><strong>Host</strong><p>List your driveway, set availability, and host on your terms.</p></label>
-<label class="role-card"><input type="radio" name="role" value="both"><span>🔄</span><strong>Both</strong><p>Travel when you choose and host when your driveway is open.</p></label></fieldset>
-<div class="account-fields"><label>First name<input id="first-name" required></label><label>Last name<input id="last-name" required></label><label>Email<input id="email" type="email" required></label><label>City or town<input id="city" placeholder="Sherwood Park"></label><label class="full">Password<input id="password" type="password" minlength="8" required placeholder="At least 8 characters"></label><label class="full check"><input id="terms" type="checkbox" required><span>I agree to the future Terms, Privacy Policy, and community standards.</span></label></div><button class="btn btn-accent account-submit">Continue to My Profile</button><p class="account-message" aria-live="polite"></p></form><p class="preview-note">Preview only. Details are stored in this browser, not a live database.</p></section></main>
-<footer><div class="footer-brand"><img src="logo.png" alt="Nomad Park Pad"><span>Built for travelers. Powered by community.</span></div><nav class="footer-links"><a href="index.html">Home</a><a href="find-a-pad.html">Find a Pad</a><a href="become-a-host.html">Become a Host</a></nav><p>© 2026 Nomad Park Pad.</p></footer><script src="script.js"></script><script src="accounts.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Create Account | Nomad Park Pad</title>
+  <meta name="description" content="Create a real Nomad Park Pad traveler or host account.">
+  <meta name="theme-color" content="#0f4b38">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="phase8.css">
+</head>
+<body>
+<header class="site-header">
+  <a class="brand" href="index.html"><img src="logo.png" alt="Nomad Park Pad"></a>
+  <nav class="main-nav">
+    <a href="find-a-pad.html">Find a Pad</a>
+    <a href="become-a-host.html">Become a Host</a>
+    <a href="login.html">Log In</a>
+  </nav>
+</header>
+
+<main class="auth-shell wide">
+  <section class="auth-card">
+    <p class="kicker">REAL ACCOUNT SETUP</p>
+    <h1>Join Nomad Park Pad.</h1>
+    <p class="auth-lead">Create a traveler account, host account, or both.</p>
+
+    <div class="setup-warning" data-setup-warning hidden>
+      Supabase is not configured yet. Add your project URL and anon public key to <strong>supabase-config.js</strong>.
+    </div>
+
+    <form id="real-signup-form">
+      <fieldset class="role-choice">
+        <legend>Choose your role</legend>
+        <label class="role-card"><input type="radio" name="role" value="traveler" checked><span>🚐</span><strong>Traveler</strong><p>Book safe driveway stays.</p></label>
+        <label class="role-card"><input type="radio" name="role" value="host"><span>🏡</span><strong>Host</strong><p>List and manage a driveway.</p></label>
+        <label class="role-card"><input type="radio" name="role" value="both"><span>🔄</span><strong>Both</strong><p>Travel and host.</p></label>
+      </fieldset>
+
+      <div class="form-grid">
+        <label>First name<input id="signup-first-name" type="text" required></label>
+        <label>Last name<input id="signup-last-name" type="text" required></label>
+        <label>Email address<input id="signup-email" type="email" autocomplete="email" required></label>
+        <label>City or town<input id="signup-city" type="text"></label>
+        <label class="full-field">Password<input id="signup-password" type="password" minlength="8" autocomplete="new-password" required></label>
+      </div>
+
+      <label class="check-field">
+        <input type="checkbox" required>
+        <span>I agree to the future Terms of Service, Privacy Policy, and community standards.</span>
+      </label>
+
+      <button class="btn btn-accent full-button" type="submit">Create Account</button>
+      <p class="form-message" aria-live="polite"></p>
+    </form>
+
+    <div class="auth-links"><a href="login.html">Already have an account? Log in</a></div>
+  </section>
+</main>
+
+<script src="supabase-config.js"></script>
+<script type="module" src="phase8-auth.js"></script>
+</body>
+</html>

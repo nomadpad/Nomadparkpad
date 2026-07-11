@@ -1,0 +1,85 @@
+NOMAD PARK PAD PHASE 8 — REAL ACCOUNTS AND DATABASE
+
+This package contains the first real backend integration.
+
+WHAT BECOMES REAL AFTER SETUP
+- Email/password account creation
+- Email confirmation
+- Login and logout
+- Password-reset emails
+- Database-backed profiles
+- Database-backed host listings
+- Database-backed booking requests
+- Database-backed messages
+- Protected host and traveler pages
+- Row Level Security policies
+- Storage buckets for avatars and listing photos
+
+WHAT IS STILL NOT LIVE
+- Real payment processing
+- Stripe Connect payouts
+- Government identity verification
+- Production moderation and safety tools
+- Production legal documents
+- Insurance coverage
+- Admin dashboard
+- Automated taxes and refunds
+
+SETUP STEP 1 — CREATE SUPABASE PROJECT
+1. Open supabase.com and create a project.
+2. Save the database password somewhere secure.
+3. Wait for the project to finish creating.
+
+SETUP STEP 2 — CREATE THE DATABASE
+1. In Supabase, open SQL Editor.
+2. Open supabase-schema.sql from this package.
+3. Copy all of it into the SQL Editor.
+4. Tap Run.
+5. Confirm these tables appear:
+   profiles
+   listings
+   listing_photos
+   booking_requests
+   messages
+   saved_pads
+   reviews
+
+SETUP STEP 3 — GET THE PUBLIC PROJECT VALUES
+1. In Supabase, open Project Settings.
+2. Open API.
+3. Copy:
+   Project URL
+   anon public key
+4. Open supabase-config.js.
+5. Replace the two placeholder values.
+6. Never use the service_role key in website files.
+
+SETUP STEP 4 — AUTH URL SETTINGS
+In Supabase Auth URL Configuration:
+Site URL:
+https://nomadparkpad.com
+
+Redirect URLs:
+https://nomadparkpad.com/auth-callback.html
+https://www.nomadparkpad.com/auth-callback.html
+http://localhost:3000/auth-callback.html
+
+SETUP STEP 5 — UPLOAD TO GITHUB
+1. Unzip Phase8.zip.
+2. Upload every file to the MAIN level of the repository.
+3. Replace matching files.
+4. Commit with:
+   Launch Phase 8 real accounts and database
+
+TEST THESE PAGES
+https://nomadparkpad.com/sign-up.html
+https://nomadparkpad.com/login.html
+https://nomadparkpad.com/account.html
+https://nomadparkpad.com/listing-preview.html
+https://nomadparkpad.com/booking-request.html
+
+IMPORTANT SECURITY NOTES
+- The anon public key is intended for browser use when RLS is correctly enabled.
+- Never place a Supabase service_role key in GitHub or browser JavaScript.
+- Do not disable Row Level Security.
+- Test with separate host and traveler accounts before allowing public use.

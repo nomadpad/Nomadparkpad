@@ -1,46 +1,9 @@
-NOMAD PARK PAD PHASE 7 — EASY GITHUB UPLOAD
+NOMAD PARK PAD PHASE 8
 
-Every file belongs in the MAIN level of your GitHub repository.
+Read SETUP_PHASE8.txt before uploading.
 
-NEW FILES
-- checkout.html
-- payment-success.html
-- host-payouts.html
-- leave-review.html
-- reviews.html
-- phase7.css
-- phase7.js
+Every website file belongs in the MAIN level of GitHub.
+The database SQL file is run inside Supabase SQL Editor and does not affect the website if it remains in GitHub.
 
-PHASE 7 FEATURES
-- Simulated traveler checkout
-- Example service fees and taxes
-- Demo payment confirmation and receipt
-- Host payout dashboard
-- Example earnings history
-- Fee explanations
-- Two-way review form
-- Review overview and rating breakdowns
-- Trip details linked to checkout
-- Traveler dashboard linked to reviews
-- Host dashboard linked to payouts and reviews
-
-UPLOAD ON IPHONE
-1. Download and unzip Phase7.zip in the Files app.
-2. Open the main level of your GitHub repository.
-3. Tap Add file, then Upload files.
-4. Select every file inside the unzipped folder.
-5. Replace matching files.
-6. Commit with:
-   Launch Phase 7 payments and reviews
-
-TEST AFTER VERCEL DEPLOYS
-https://nomadparkpad.com/checkout.html
-https://nomadparkpad.com/payment-success.html
-https://nomadparkpad.com/host-payouts.html
-https://nomadparkpad.com/leave-review.html
-https://nomadparkpad.com/reviews.html
-
-IMPORTANT
-This is still a front-end prototype.
-No real cards are collected.
-No payments, refunds, taxes, payouts, receipts, or reviews are stored on a secure backend.
+Commit message:
+Launch Phase 8 real accounts and database

@@ -106,7 +106,7 @@
         <div><span>○</span><p><strong>Identity verification</strong><small>Still required before live bookings</small></p></div>
         <div><span>○</span><p><strong>Payout method</strong><small>Still required before live bookings</small></p></div>
       </div>
-      <button class="btn btn-accent request-button" type="button" data-publish>Publish Pad</button>
+      <button class="btn btn-accent request-button" id="save-real-listing" type="button">Publish to Database</button>
       <a class="secondary-button full-button centered-link" href="create-listing.html">Return to editing</a>
       <p class="publish-message" aria-live="polite"></p>
     </aside>
@@ -121,5 +121,9 @@
 
 <script src="script.js"></script>
 <script src="dashboard.js"></script>
+<script src="supabase-config.js"></script>
+<script type="module" src="phase8-data.js"></script>
+<script src="supabase-config.js"></script>
+<script type="module" src="auth-guard.js"></script>
 </body>
 </html>

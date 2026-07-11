@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>My Account | Nomad Park Pad</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="phase8.css">
+</head>
+<body>
+<header class="site-header">
+  <a class="brand" href="index.html"><img src="logo.png" alt="Nomad Park Pad"></a>
+  <nav class="main-nav">
+    <a href="traveler-dashboard.html">Traveler Dashboard</a>
+    <a href="host-dashboard.html">Host Dashboard</a>
+    <a class="active-link" href="account.html">My Account</a>
+  </nav>
+  <button class="early-access" id="logout-button" type="button">Log Out</button>
+</header>
+
+<main class="phase8-shell">
+  <section class="account-live-card">
+    <div class="profile-live-header">
+      <div class="profile-live-avatar" id="profile-initial">N</div>
+      <div>
+        <p class="kicker">LIVE DATABASE PROFILE</p>
+        <h1 id="profile-name">Loading profile...</h1>
+        <p id="profile-email"></p>
+      </div>
+    </div>
+
+    <form id="profile-form">
+      <div class="form-grid">
+        <label>First name<input id="profile-first-name" type="text"></label>
+        <label>Last name<input id="profile-last-name" type="text"></label>
+        <label>City or town<input id="profile-city" type="text"></label>
+        <label>Role
+          <select id="profile-role">
+            <option value="traveler">Traveler</option>
+            <option value="host">Host</option>
+            <option value="both">Both</option>
+          </select>
+        </label>
+      </div>
+      <button class="btn btn-accent" type="submit">Save Profile</button>
+      <p class="form-message" aria-live="polite"></p>
+    </form>
+
+    <section class="live-status-grid">
+      <article><span>🔐</span><strong>Authenticated</strong><p>Your account session is handled by Supabase Auth.</p></article>
+      <article><span>🗄</span><strong>Database connected</strong><p>Your profile is stored in Postgres and protected by RLS.</p></article>
+      <article><span>🧭</span><strong>Role-aware</strong><p>Traveler, host, and combined roles are supported.</p></article>
+    </section>
+  </section>
+</main>
+
+<script src="supabase-config.js"></script>
+<script type="module" src="phase8-account.js"></script>
+</body>
+</html>
