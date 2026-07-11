@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Find a Pad | Nomad Park Pad</title>
+  <meta name="description" content="Search example overnight driveway stays by destination, vehicle type, price, and Host Style.">
+  <meta name="theme-color" content="#0f4b38">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="find.css">
+</head>
+<body>
+<header class="site-header">
+  <a class="brand" href="index.html" aria-label="Nomad Park Pad home">
+    <img src="logo.png" alt="Nomad Park Pad">
+  </a>
+
+  <button class="menu-button" aria-label="Open menu" aria-expanded="false">☰</button>
+
+  <nav class="main-nav" aria-label="Primary navigation">
+    <a class="active-link" href="find-a-pad.html">Find a Pad</a>
+    <a href="become-a-host.html">Become a Host</a>
+    <a href="index.html#how">How It Works</a>
+    <a href="index.html#trust">Trust & Safety</a>
+  </nav>
+
+  <a class="early-access" href="index.html#early">Join Early Access</a>
+</header>
+
+<main>
+  <section class="search-hero">
+    <div class="search-hero-copy">
+      <p class="kicker">YOUR ROUTE. YOUR VEHICLE. YOUR KIND OF WELCOME.</p>
+      <h1>Find Your<br><span>Perfect Stop.</span></h1>
+      <p>Search example driveway stays by destination, vehicle, budget, amenities, and Host Style.</p>
+    </div>
+
+    <form class="search-panel" id="pad-search">
+      <label>
+        Destination
+        <input id="destination" type="search" placeholder="Edmonton, Banff, Kelowna...">
+      </label>
+
+      <label>
+        Arrival
+        <input id="arrival" type="date">
+      </label>
+
+      <label>
+        Vehicle
+        <select id="vehicle">
+          <option value="all">Any vehicle</option>
+          <option value="van">Camper van</option>
+          <option value="small-rv">Small RV</option>
+          <option value="large-rv">Large RV</option>
+          <option value="car">Car / SUV</option>
+        </select>
+      </label>
+
+      <label>
+        Maximum price
+        <select id="price">
+          <option value="100">Any price</option>
+          <option value="20">Up to $20</option>
+          <option value="30">Up to $30</option>
+          <option value="40">Up to $40</option>
+        </select>
+      </label>
+
+      <button class="btn btn-accent" type="submit">Search Pads</button>
+    </form>
+  </section>
+
+  <section class="filter-section">
+    <div class="filter-heading">
+      <div>
+        <p class="kicker">HOST STYLE</p>
+        <h2>How do you want to stay?</h2>
+      </div>
+      <button id="clear-filters" class="text-button" type="button">Clear filters</button>
+    </div>
+
+    <div class="filter-chips" aria-label="Host Style filters">
+      <button class="filter-chip" data-filter="quiet" type="button">🌙 Quiet Overnight</button>
+      <button class="filter-chip" data-filter="coffee" type="button">☕ Coffee & Conversation</button>
+      <button class="filter-chip" data-filter="guide" type="button">🧭 Local Guide</button>
+      <button class="filter-chip" data-filter="pet" type="button">🐾 Pet Friendly</button>
+      <button class="filter-chip" data-filter="power" type="button">⚡ Power Available</button>
+      <button class="filter-chip" data-filter="washroom" type="button">🚿 Washroom Access</button>
+      <button class="filter-chip" data-filter="wifi" type="button">📶 Wi-Fi</button>
+      <button class="filter-chip" data-filter="firepit" type="button">🔥 Fire Pit</button>
+    </div>
+  </section>
+
+  <section class="results-section">
+    <div class="results-toolbar">
+      <div>
+        <p class="eyebrow">EXAMPLE LISTINGS</p>
+        <h2><span id="result-count">6</span> Pads to explore</h2>
+      </div>
+
+      <label class="sort-control">
+        Sort by
+        <select id="sort">
+          <option value="recommended">Recommended</option>
+          <option value="price-low">Price: low to high</option>
+          <option value="price-high">Price: high to low</option>
+          <option value="rating">Highest rated</option>
+        </select>
+      </label>
+    </div>
+
+    <div class="market-layout">
+      <div class="listing-grid" id="listing-grid">
+        <article class="listing-card" data-city="sherwood park" data-price="22" data-rating="4.9" data-vehicle="van small-rv car" data-tags="quiet power pet">
+          <div class="listing-photo photo-one">
+            <span class="founding-badge">Example Listing</span>
+            <button class="heart" aria-label="Save listing" type="button">♡</button>
+          </div>
+          <div class="listing-body">
+            <div class="listing-topline"><span>Sherwood Park, Alberta</span><strong>$22 <small>/ night</small></strong></div>
+            <h3>Quiet Garden Driveway</h3>
+            <p>Level private driveway near fuel, groceries, and east Edmonton routes.</p>
+            <div class="tag-row"><span>🌙 Quiet</span><span>⚡ Power</span><span>🐾 Pets</span></div>
+            <div class="listing-footer"><span>★ 4.9 example rating</span><button class="view-button" type="button">View Pad</button></div>
+          </div>
+        </article>
+
+        <article class="listing-card" data-city="calgary" data-price="28" data-rating="4.8" data-vehicle="van small-rv car" data-tags="coffee guide wifi washroom">
+          <div class="listing-photo photo-two">
+            <span class="founding-badge">Example Listing</span>
+            <button class="heart" aria-label="Save listing" type="button">♡</button>
+          </div>
+          <div class="listing-body">
+            <div class="listing-topline"><span>Calgary, Alberta</span><strong>$28 <small>/ night</small></strong></div>
+            <h3>Coffee & City Tips</h3>
+            <p>Friendly suburban host with morning coffee and local route advice.</p>
+            <div class="tag-row"><span>☕ Coffee</span><span>🧭 Guide</span><span>📶 Wi-Fi</span></div>
+            <div class="listing-footer"><span>★ 4.8 example rating</span><button class="view-button" type="button">View Pad</button></div>
+          </div>
+        </article>
+
+        <article class="listing-card" data-city="canmore" data-price="35" data-rating="5.0" data-vehicle="van small-rv" data-tags="quiet guide pet firepit">
+          <div class="listing-photo photo-three">
+            <span class="founding-badge">Example Listing</span>
+            <button class="heart" aria-label="Save listing" type="button">♡</button>
+          </div>
+          <div class="listing-body">
+            <div class="listing-topline"><span>Canmore, Alberta</span><strong>$35 <small>/ night</small></strong></div>
+            <h3>Mountain View Pad</h3>
+            <p>Scenic overnight stop with trail knowledge and a relaxed outdoor welcome.</p>
+            <div class="tag-row"><span>🌙 Quiet</span><span>🧭 Guide</span><span>🔥 Fire Pit</span></div>
+            <div class="listing-footer"><span>★ 5.0 example rating</span><button class="view-button" type="button">View Pad</button></div>
+          </div>
+        </article>
+
+        <article class="listing-card" data-city="red deer" data-price="18" data-rating="4.7" data-vehicle="van small-rv large-rv car" data-tags="quiet power">
+          <div class="listing-photo photo-four">
+            <span class="founding-badge">Example Listing</span>
+            <button class="heart" aria-label="Save listing" type="button">♡</button>
+          </div>
+          <div class="listing-body">
+            <div class="listing-topline"><span>Red Deer, Alberta</span><strong>$18 <small>/ night</small></strong></div>
+            <h3>Easy Highway Stop</h3>
+            <p>Wide pull-in space designed for a simple late arrival and early departure.</p>
+            <div class="tag-row"><span>🌙 Quiet</span><span>⚡ Power</span><span>🚐 Large RV</span></div>
+            <div class="listing-footer"><span>★ 4.7 example rating</span><button class="view-button" type="button">View Pad</button></div>
+          </div>
+        </article>
+
+        <article class="listing-card" data-city="kelowna" data-price="32" data-rating="4.9" data-vehicle="van small-rv car" data-tags="coffee pet washroom wifi">
+          <div class="listing-photo photo-five">
+            <span class="founding-badge">Example Listing</span>
+            <button class="heart" aria-label="Save listing" type="button">♡</button>
+          </div>
+          <div class="listing-body">
+            <div class="listing-topline"><span>Kelowna, British Columbia</span><strong>$32 <small>/ night</small></strong></div>
+            <h3>Okanagan Welcome</h3>
+            <p>Dog-friendly stop with washroom access and nearby lake recommendations.</p>
+            <div class="tag-row"><span>🐾 Pets</span><span>🚿 Washroom</span><span>☕ Coffee</span></div>
+            <div class="listing-footer"><span>★ 4.9 example rating</span><button class="view-button" type="button">View Pad</button></div>
+          </div>
+        </article>
+
+        <article class="listing-card" data-city="edmonton" data-price="24" data-rating="4.8" data-vehicle="van small-rv car" data-tags="coffee power wifi">
+          <div class="listing-photo photo-six">
+            <span class="founding-badge">Example Listing</span>
+            <button class="heart" aria-label="Save listing" type="button">♡</button>
+          </div>
+          <div class="listing-body">
+            <div class="listing-topline"><span>Edmonton, Alberta</span><strong>$24 <small>/ night</small></strong></div>
+            <h3>Southside Traveler Pad</h3>
+            <p>Convenient city stop with power, Wi-Fi, and optional conversation.</p>
+            <div class="tag-row"><span>⚡ Power</span><span>📶 Wi-Fi</span><span>☕ Coffee</span></div>
+            <div class="listing-footer"><span>★ 4.8 example rating</span><button class="view-button" type="button">View Pad</button></div>
+          </div>
+        </article>
+      </div>
+
+      <aside class="map-preview">
+        <div class="map-header">
+          <strong>Map Preview</strong>
+          <span>Example locations</span>
+        </div>
+        <div class="map-canvas">
+          <div class="map-road road-one"></div>
+          <div class="map-road road-two"></div>
+          <div class="map-road road-three"></div>
+          <button class="map-pin pin-one" data-city-jump="sherwood park">$22</button>
+          <button class="map-pin pin-two" data-city-jump="calgary">$28</button>
+          <button class="map-pin pin-three" data-city-jump="canmore">$35</button>
+          <button class="map-pin pin-four" data-city-jump="red deer">$18</button>
+          <button class="map-pin pin-five" data-city-jump="kelowna">$32</button>
+          <button class="map-pin pin-six" data-city-jump="edmonton">$24</button>
+          <div class="map-label label-edmonton">Edmonton</div>
+          <div class="map-label label-calgary">Calgary</div>
+          <div class="map-label label-mountains">Rockies</div>
+        </div>
+        <p>This is a visual map preview. A live map will be connected during marketplace development.</p>
+      </aside>
+    </div>
+
+    <div class="empty-state" id="empty-state" hidden>
+      <span>🧭</span>
+      <h3>No example pads match those filters.</h3>
+      <p>Clear a filter or try a nearby destination.</p>
+      <button class="btn btn-primary" id="empty-clear" type="button">Clear Filters</button>
+    </div>
+  </section>
+
+  <section class="traveler-benefits">
+    <article><span>🛡</span><h3>Private Property</h3><p>A clearer alternative to guessing where overnight parking is permitted.</p></article>
+    <article><span>💵</span><h3>Simple Pricing</h3><p>See the nightly rate, amenities, rules, and vehicle limits before requesting.</p></article>
+    <article><span>🌙</span><h3>Your Preferred Experience</h3><p>Choose a quiet stop, a friendly welcome, or local knowledge before you arrive.</p></article>
+  </section>
+
+  <section class="search-cta">
+    <div>
+      <p class="kicker">EARLY ACCESS</p>
+      <h2>Want to know when real pads become available?</h2>
+      <p>Join the first group of travelers helping shape Nomad Park Pad.</p>
+    </div>
+    <a class="btn btn-accent" href="index.html#early">Join as a Founding Traveler</a>
+  </section>
+</main>
+
+<footer>
+  <div class="footer-brand">
+    <img src="logo.png" alt="Nomad Park Pad">
+    <span>Built for travelers. Powered by community.</span>
+  </div>
+  <nav class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="become-a-host.html">Become a Host</a>
+    <a href="index.html#trust">Trust & Safety</a>
+    <a href="index.html#early">Early Access</a>
+  </nav>
+  <p>© 2026 Nomad Park Pad. All rights reserved.</p>
+</footer>
+
+<script src="script.js"></script>
+<script src="find.js"></script>
+</body>
+</html>

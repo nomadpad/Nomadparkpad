@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Become a Host | Nomad Park Pad</title>
+  <meta name="description" content="Turn your unused driveway into income while choosing your availability, rules, amenities, and hosting style.">
+  <meta name="theme-color" content="#0f4b38">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="host.css">
+</head>
+<body>
+<header class="site-header">
+  <a class="brand" href="index.html" aria-label="Nomad Park Pad home">
+    <img src="logo.png" alt="Nomad Park Pad">
+  </a>
+
+  <button class="menu-button" aria-label="Open menu" aria-expanded="false">☰</button>
+
+  <nav class="main-nav" aria-label="Primary navigation">
+    <a href="find-a-pad.html">Find a Pad</a>
+    <a class="active-link" href="become-a-host.html">Become a Host</a>
+    <a href="index.html#how">How It Works</a>
+    <a href="index.html#trust">Trust & Safety</a>
+  </nav>
+
+  <a class="early-access" href="#host-form">Start Hosting</a>
+</header>
+
+<main>
+  <section class="host-hero">
+    <div class="host-hero-copy reveal visible">
+      <p class="kicker">YOUR DRIVEWAY. YOUR RULES. EXTRA INCOME.</p>
+      <h1>Make room for travelers.<br><span>Earn on your terms.</span></h1>
+      <p class="host-lead">List your unused driveway, choose when it is available, and decide exactly what kind of welcome you want to offer.</p>
+      <div class="hero-buttons">
+        <a class="btn btn-accent" href="#host-form">Become a Founding Host</a>
+        <a class="btn host-outline" href="#how-hosting-works">See How Hosting Works</a>
+      </div>
+      <p class="host-note">No pressure to socialize. A quiet place to park is already valuable.</p>
+    </div>
+
+    <div class="host-hero-image" role="img" aria-label="Camper van parked safely in a welcoming private driveway"></div>
+  </section>
+
+  <section class="host-benefits">
+    <article class="benefit-card">
+      <span>💰</span>
+      <h3>Earn Extra Income</h3>
+      <p>Set your own nightly price and make better use of space you already have.</p>
+    </article>
+    <article class="benefit-card">
+      <span>📅</span>
+      <h3>Host When You Choose</h3>
+      <p>Open only the dates that work for you. Pause your listing whenever you like.</p>
+    </article>
+    <article class="benefit-card">
+      <span>🛡</span>
+      <h3>Stay in Control</h3>
+      <p>Approve requests, set arrival windows, create house rules, and choose vehicle limits.</p>
+    </article>
+    <article class="benefit-card">
+      <span>☕</span>
+      <h3>Choose Your Host Style</h3>
+      <p>Offer a quiet stay, local tips, coffee, power, or simply a safe place to stop.</p>
+    </article>
+  </section>
+
+  <section class="section soft" id="how-hosting-works">
+    <div class="section-heading">
+      <h2>Hosting Should Feel Simple</h2>
+      <p>You decide what you offer. Travelers decide whether it fits their journey.</p>
+    </div>
+
+    <div class="host-steps">
+      <article class="host-step">
+        <span>1</span>
+        <h3>Create Your Listing</h3>
+        <p>Add driveway photos, vehicle limits, access details, price, rules, and amenities.</p>
+      </article>
+      <article class="host-step">
+        <span>2</span>
+        <h3>Set Your Availability</h3>
+        <p>Choose the nights you are open and when travelers may arrive or leave.</p>
+      </article>
+      <article class="host-step">
+        <span>3</span>
+        <h3>Review Requests</h3>
+        <p>See traveler details and decide which bookings you are comfortable accepting.</p>
+      </article>
+      <article class="host-step">
+        <span>4</span>
+        <h3>Welcome and Earn</h3>
+        <p>Provide the stay you promised, receive payment, and build your host reputation.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-heading">
+      <h2>Your Place, Your Hosting Style</h2>
+      <p>A host is not an entertainer unless they choose to be.</p>
+    </div>
+
+    <div class="hosting-style-grid">
+      <article><span>🌙</span><h3>Quiet & Private</h3><p>Travelers park, rest, and head out in the morning with minimal interaction.</p></article>
+      <article><span>👋</span><h3>Friendly Welcome</h3><p>A quick hello, simple instructions, and a comfortable place to stop.</p></article>
+      <article><span>☕</span><h3>Coffee & Conversation</h3><p>Share a drink, hear travel stories, and offer a few local recommendations.</p></article>
+      <article><span>🧭</span><h3>Local Guide</h3><p>Help travelers discover nearby food, fuel, trails, services, or hidden gems.</p></article>
+    </div>
+  </section>
+
+  <section class="section host-control">
+    <div class="control-copy">
+      <p class="kicker">YOU REMAIN IN CONTROL</p>
+      <h2>Set clear boundaries before anyone arrives.</h2>
+      <p>Every listing can define exactly what is and is not offered. Clear expectations create better stays for both sides.</p>
+    </div>
+
+    <div class="control-list">
+      <span>✓ Vehicle length and height limits</span>
+      <span>✓ Arrival and departure times</span>
+      <span>✓ Maximum number of travelers</span>
+      <span>✓ Pet, generator, and noise rules</span>
+      <span>✓ Quiet stay or social welcome</span>
+      <span>✓ Optional power, water, Wi-Fi, or washroom access</span>
+    </div>
+  </section>
+
+  <section class="section soft">
+    <div class="section-heading">
+      <h2>Estimate Your Hosting Income</h2>
+      <p>This simple estimate is illustrative only. You choose your price and availability.</p>
+    </div>
+
+    <div class="income-card">
+      <label>
+        Nightly price
+        <input id="nightly-rate" type="range" min="10" max="75" value="30">
+        <strong>$<span id="rate-output">30</span> per night</strong>
+      </label>
+
+      <label>
+        Available nights per month
+        <input id="available-nights" type="range" min="1" max="30" value="10">
+        <strong><span id="nights-output">10</span> nights</strong>
+      </label>
+
+      <div class="income-result">
+        <span>Estimated monthly gross income</span>
+        <strong>$<span id="income-output">300</span></strong>
+        <small>Before platform fees, taxes, or hosting expenses.</small>
+      </div>
+    </div>
+  </section>
+
+  <section class="section trust-host">
+    <div class="section-heading">
+      <h2>Trust Must Work Both Ways</h2>
+      <p>Nomad Park Pad is being designed so homeowners can make informed hosting decisions.</p>
+    </div>
+
+    <div class="host-trust-grid">
+      <article><span>🪪</span><h3>Traveler Profiles</h3><p>View identity status, vehicle details, completed stays, and host feedback.</p></article>
+      <article><span>⭐</span><h3>Two-Way Reviews</h3><p>Hosts review travelers, and travelers review hosts after completed stays.</p></article>
+      <article><span>💬</span><h3>Clear Communication</h3><p>Discuss arrival details and questions before accepting a request.</p></article>
+      <article><span>🚫</span><h3>Your Right to Decline</h3><p>You choose which requests to accept based on your availability and comfort.</p></article>
+    </div>
+  </section>
+
+  <section class="host-join" id="host-form">
+    <div>
+      <p class="kicker">FOUNDING HOSTS</p>
+      <h2>Help build the first network of trusted driveways.</h2>
+      <p>Join the early-access list and tell us where you would consider hosting.</p>
+    </div>
+
+    <form class="host-form" onsubmit="return false;">
+      <input type="text" placeholder="First name" aria-label="First name" required>
+      <input type="email" placeholder="Email address" aria-label="Email address" required>
+      <input type="text" placeholder="City or town" aria-label="City or town">
+      <select aria-label="Driveway type">
+        <option value="">Driveway type</option>
+        <option>Single vehicle driveway</option>
+        <option>Double driveway</option>
+        <option>Large rural property</option>
+        <option>Commercial or other property</option>
+      </select>
+      <button class="btn btn-accent" type="submit">Join as a Founding Host</button>
+      <p class="host-form-message" aria-live="polite"></p>
+    </form>
+  </section>
+
+  <section class="host-faq section">
+    <div class="section-heading">
+      <h2>Common Host Questions</h2>
+    </div>
+
+    <details>
+      <summary>Do I have to socialize with travelers?</summary>
+      <p>No. You choose your Host Style. A safe, quiet driveway with clear instructions is a complete and valuable stay.</p>
+    </details>
+    <details>
+      <summary>Can I control who books?</summary>
+      <p>The planned marketplace lets hosts review requests and traveler information before accepting.</p>
+    </details>
+    <details>
+      <summary>Can I choose my own price and availability?</summary>
+      <p>Yes. Hosts set their price, available dates, arrival times, vehicle limits, rules, and amenities.</p>
+    </details>
+    <details>
+      <summary>Is Nomad Park Pad already accepting bookings?</summary>
+      <p>Not yet. The platform is in early development and is currently recruiting founding hosts and travelers.</p>
+    </details>
+  </section>
+</main>
+
+<footer>
+  <div class="footer-brand">
+    <img src="logo.png" alt="Nomad Park Pad">
+    <span>Built for travelers. Powered by community.</span>
+  </div>
+  <nav class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="#how-hosting-works">How Hosting Works</a>
+    <a href="index.html#trust">Trust & Safety</a>
+    <a href="#host-form">Join Early Access</a>
+  </nav>
+  <p>© 2026 Nomad Park Pad. All rights reserved.</p>
+</footer>
+
+<script src="script.js"></script>
+<script src="host.js"></script>
+</body>
+</html>
