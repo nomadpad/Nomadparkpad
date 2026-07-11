@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Checkout | Nomad Park Pad</title>
+  <meta name="description" content="Review an example Nomad Park Pad booking and simulated payment breakdown.">
+  <meta name="theme-color" content="#0f4b38">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="phase7.css">
+</head>
+<body>
+<header class="site-header">
+  <a class="brand" href="index.html"><img src="logo.png" alt="Nomad Park Pad"></a>
+  <button class="menu-button" aria-label="Open menu" aria-expanded="false">☰</button>
+  <nav class="main-nav">
+    <a href="traveler-dashboard.html">Traveler Dashboard</a>
+    <a href="trip-details.html">Trip Details</a>
+    <a class="active-link" href="checkout.html">Checkout</a>
+  </nav>
+  <a class="early-access" href="trip-details.html">Back to Trip</a>
+</header>
+
+<main class="phase7-shell">
+  <section class="phase7-heading">
+    <p class="kicker">SIMULATED CHECKOUT</p>
+    <h1>Confirm and pay for your stay.</h1>
+    <p>No real payment is processed in this prototype.</p>
+  </section>
+
+  <section class="checkout-layout">
+    <form class="phase7-card" id="checkout-form">
+      <h2>Traveler details</h2>
+      <div class="form-grid">
+        <label>Full name<input type="text" value="Daniel Senetza" required></label>
+        <label>Email<input type="email" value="jestdive@hotmail.com" required></label>
+      </div>
+
+      <h2>Payment method</h2>
+      <div class="payment-warning">For safety, this prototype does not collect or store real card numbers.</div>
+
+      <div class="fake-payment-box">
+        <div class="fake-card-row">
+          <span>💳</span>
+          <div><strong>Demo Visa</strong><p>•••• 4242</p></div>
+          <span class="demo-pill">Demo only</span>
+        </div>
+      </div>
+
+      <label class="check-field">
+        <input type="checkbox" required>
+        <span>I understand this is a simulated checkout and no real money will move.</span>
+      </label>
+
+      <label class="check-field">
+        <input type="checkbox" required>
+        <span>I agree to the example cancellation policy and house rules.</span>
+      </label>
+
+      <button class="btn btn-accent full-button" type="submit">Complete Demo Payment</button>
+      <p class="checkout-message" aria-live="polite"></p>
+    </form>
+
+    <aside class="phase7-card sticky-card">
+      <div class="checkout-photo"></div>
+      <h2>Quiet Garden Driveway</h2>
+      <p>Sherwood Park, Alberta</p>
+
+      <div class="summary-lines">
+        <div><span>1 night</span><span>$22</span></div>
+        <div><span>Traveler service fee</span><span>$4</span></div>
+        <div><span>Taxes</span><span>$1.30</span></div>
+        <div class="summary-total"><strong>Total</strong><strong>$27.30</strong></div>
+      </div>
+
+      <div class="policy-box">
+        <strong>Example cancellation policy</strong>
+        <p>Full refund up to 24 hours before check-in. Service fees may be non-refundable after processing in a real system.</p>
+      </div>
+    </aside>
+  </section>
+</main>
+
+<footer>
+  <div class="footer-brand"><img src="logo.png" alt="Nomad Park Pad"><span>Built for travelers. Powered by community.</span></div>
+  <nav class="footer-links"><a href="traveler-dashboard.html">Dashboard</a><a href="trip-details.html">Trip</a><a href="messages.html">Messages</a></nav>
+  <p>© 2026 Nomad Park Pad. All rights reserved.</p>
+</footer>
+<script src="script.js"></script>
+<script src="phase7.js"></script>
+</body>
+</html>

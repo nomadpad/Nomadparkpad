@@ -1,44 +1,46 @@
-NOMAD PARK PAD PHASE 6 — EASY GITHUB UPLOAD
+NOMAD PARK PAD PHASE 7 — EASY GITHUB UPLOAD
 
 Every file belongs in the MAIN level of your GitHub repository.
 
 NEW FILES
-- traveler-dashboard.html
-- booking-request.html
-- trip-details.html
-- messages.html
-- phase6.css
-- phase6.js
+- checkout.html
+- payment-success.html
+- host-payouts.html
+- leave-review.html
+- reviews.html
+- phase7.css
+- phase7.js
 
-PHASE 6 FEATURES
-- Traveler dashboard
-- Pending and confirmed trip previews
-- Saved Pads
-- Booking request form
-- Date and price calculation
-- Trip details page
-- Confirmed address preview
-- Host contact and cancellation preview
-- Messaging interface with quick replies
-- Local browser booking request storage
-- Existing listing request button wired into booking-request.html
-- Traveler and host pages linked to dashboards and messages
+PHASE 7 FEATURES
+- Simulated traveler checkout
+- Example service fees and taxes
+- Demo payment confirmation and receipt
+- Host payout dashboard
+- Example earnings history
+- Fee explanations
+- Two-way review form
+- Review overview and rating breakdowns
+- Trip details linked to checkout
+- Traveler dashboard linked to reviews
+- Host dashboard linked to payouts and reviews
 
 UPLOAD ON IPHONE
-1. Download and unzip Phase6.zip in the Files app.
+1. Download and unzip Phase7.zip in the Files app.
 2. Open the main level of your GitHub repository.
 3. Tap Add file, then Upload files.
 4. Select every file inside the unzipped folder.
 5. Replace matching files.
 6. Commit with:
-   Launch Phase 6 booking and messaging
+   Launch Phase 7 payments and reviews
 
 TEST AFTER VERCEL DEPLOYS
-https://nomadparkpad.com/traveler-dashboard.html
-https://nomadparkpad.com/booking-request.html
-https://nomadparkpad.com/trip-details.html
-https://nomadparkpad.com/messages.html
+https://nomadparkpad.com/checkout.html
+https://nomadparkpad.com/payment-success.html
+https://nomadparkpad.com/host-payouts.html
+https://nomadparkpad.com/leave-review.html
+https://nomadparkpad.com/reviews.html
 
 IMPORTANT
-This remains a front-end prototype.
-No real account authentication, database, live messaging, payments, booking confirmation, address sharing, cancellation, or safety reporting is connected yet.
+This is still a front-end prototype.
+No real cards are collected.
+No payments, refunds, taxes, payouts, receipts, or reviews are stored on a secure backend.

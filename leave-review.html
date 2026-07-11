@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Leave a Review | Nomad Park Pad</title>
+  <meta name="description" content="Leave an example two-way Nomad Park Pad review.">
+  <meta name="theme-color" content="#0f4b38">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="phase7.css">
+</head>
+<body>
+<header class="site-header">
+  <a class="brand" href="index.html"><img src="logo.png" alt="Nomad Park Pad"></a>
+  <nav class="main-nav"><a href="traveler-dashboard.html">Traveler Dashboard</a><a class="active-link" href="leave-review.html">Leave Review</a><a href="reviews.html">Reviews</a></nav>
+</header>
+
+<main class="review-shell">
+  <section class="phase7-card review-card">
+    <p class="kicker">TWO-WAY REVIEW</p>
+    <h1>How was your stay?</h1>
+    <p>Reviews help both travelers and hosts build trust.</p>
+
+    <form id="review-form">
+      <label>Overall rating
+        <div class="star-picker" role="radiogroup" aria-label="Overall rating">
+          <button type="button" data-star="1">★</button>
+          <button type="button" data-star="2">★</button>
+          <button type="button" data-star="3">★</button>
+          <button type="button" data-star="4">★</button>
+          <button type="button" data-star="5">★</button>
+        </div>
+      </label>
+
+      <div class="review-metrics">
+        <label>Accuracy<select><option>5 - Excellent</option><option>4 - Good</option><option>3 - Fair</option></select></label>
+        <label>Communication<select><option>5 - Excellent</option><option>4 - Good</option><option>3 - Fair</option></select></label>
+        <label>Safety<select><option>5 - Excellent</option><option>4 - Good</option><option>3 - Fair</option></select></label>
+        <label>Welcome<select><option>5 - Excellent</option><option>4 - Good</option><option>3 - Fair</option></select></label>
+      </div>
+
+      <label>Public review
+        <textarea id="public-review" rows="6" placeholder="Share what future travelers should know..." required></textarea>
+      </label>
+
+      <label>Private note to the host
+        <textarea rows="4" placeholder="Optional private feedback..."></textarea>
+      </label>
+
+      <button class="btn btn-accent full-button" type="submit">Submit Demo Review</button>
+      <p class="review-message" aria-live="polite"></p>
+    </form>
+  </section>
+</main>
+
+<script src="script.js"></script>
+<script src="phase7.js"></script>
+</body>
+</html>

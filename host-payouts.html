@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Host Payouts | Nomad Park Pad</title>
+  <meta name="description" content="Example host payout settings and earnings breakdown.">
+  <meta name="theme-color" content="#0f4b38">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="phase7.css">
+</head>
+<body>
+<header class="site-header">
+  <a class="brand" href="index.html"><img src="logo.png" alt="Nomad Park Pad"></a>
+  <button class="menu-button" aria-label="Open menu" aria-expanded="false">☰</button>
+  <nav class="main-nav"><a href="host-dashboard.html">Host Dashboard</a><a class="active-link" href="host-payouts.html">Payouts</a><a href="reviews.html">Reviews</a></nav>
+  <a class="early-access" href="create-listing.html">Create a Pad</a>
+</header>
+
+<main class="phase7-shell">
+  <section class="phase7-heading">
+    <p class="kicker">HOST PAYOUTS</p>
+    <h1>Your earnings, clearly explained.</h1>
+    <p>All amounts below are examples.</p>
+  </section>
+
+  <section class="payout-grid">
+    <article class="phase7-card payout-summary">
+      <span>Available balance</span>
+      <strong>$176.00</strong>
+      <p>Example funds from completed stays.</p>
+      <button class="btn btn-accent" type="button" id="demo-payout">Send Demo Payout</button>
+      <p class="payout-message" aria-live="polite"></p>
+    </article>
+
+    <article class="phase7-card">
+      <h2>Payout method</h2>
+      <div class="fake-payment-box">
+        <div class="fake-card-row">
+          <span>🏦</span>
+          <div><strong>Demo bank account</strong><p>•••• 8821</p></div>
+          <span class="demo-pill">Not connected</span>
+        </div>
+      </div>
+      <button class="secondary-button full-button" type="button">Update payout method</button>
+    </article>
+  </section>
+
+  <section class="phase7-card">
+    <div class="table-heading"><h2>Example earnings history</h2><span>July 2026</span></div>
+    <div class="earnings-table">
+      <div class="table-row table-head"><span>Stay</span><span>Guest paid</span><span>Platform fee</span><span>Host payout</span></div>
+      <div class="table-row"><span>July 18</span><span>$27.30</span><span>$2.20</span><span>$19.80</span></div>
+      <div class="table-row"><span>July 22</span><span>$27.30</span><span>$2.20</span><span>$19.80</span></div>
+      <div class="table-row"><span>July 24</span><span>$49.30</span><span>$4.40</span><span>$39.60</span></div>
+    </div>
+  </section>
+
+  <section class="phase7-card">
+    <h2>How fees work in this prototype</h2>
+    <div class="fee-grid">
+      <article><strong>Traveler service fee</strong><p>Added to the booking total.</p></article>
+      <article><strong>Host platform fee</strong><p>Deducted from the nightly earnings.</p></article>
+      <article><strong>Taxes</strong><p>Would be calculated based on legal and tax requirements.</p></article>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="footer-brand"><img src="logo.png" alt="Nomad Park Pad"><span>Built for travelers. Powered by community.</span></div>
+  <nav class="footer-links"><a href="host-dashboard.html">Dashboard</a><a href="create-listing.html">Create Listing</a><a href="reviews.html">Reviews</a></nav>
+  <p>© 2026 Nomad Park Pad. All rights reserved.</p>
+</footer>
+<script src="script.js"></script>
+<script src="phase7.js"></script>
+</body>
+</html>
