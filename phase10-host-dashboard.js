@@ -15,19 +15,49 @@ async function currentUser() {
 }
 
 async function changeStatus(bookingId, status, button) {
+
   button.disabled = true;
+
   const { error } = await supabase
+
     .from("booking_requests")
-    .update({ status, updated_at: new Date().toISOString() })
+
+    .update({
+
+      status,
+
+      updated_at: new Date().toISOString()
+
+    })
+
     .eq("id", bookingId);
 
   if (error) {
+
     button.disabled = false;
-    alert(error.message);
+
+    const isOverlap =
+
+      error.message.includes("booking_requests_no_overlapping_accepted") ||
+
+      error.code === "23P01";
+
+    alert(
+
+      isOverlap
+
+        ? "This parking pad is already booked for some or all of those dates. Decline this request or choose another booking."
+
+        : error.message
+
+    );
+
     return;
+
   }
 
   await loadDashboard();
+
 }
 
 function requestCard(request) {
