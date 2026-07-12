@@ -21,6 +21,7 @@ function collectDraft() {
     title: document.querySelector("#listing-title")?.value.trim() || "",
     city: document.querySelector("#listing-city")?.value.trim() || "",
     province: document.querySelector("#listing-province")?.value || "Alberta",
+    exact_address: document.querySelector("#listing-exact-address")?.value.trim() || "",
     description: document.querySelector("#listing-description")?.value.trim() || "",
     length: document.querySelector("#max-length")?.value || "24 ft",
     guests: Number(document.querySelector("#max-guests")?.value || 1),
