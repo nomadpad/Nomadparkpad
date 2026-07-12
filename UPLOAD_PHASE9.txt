@@ -1,0 +1,41 @@
+NOMAD PARK PAD PHASE 9 — REAL LISTINGS
+
+THIS PHASE CONNECTS:
+Create a Pad → Supabase listings table → photo storage → Find a Pad → live listing page
+
+FIRST: RUN THE SMALL DATABASE UPDATE
+1. Open Supabase.
+2. Open SQL Editor.
+3. Open PHASE9_DATABASE_UPDATE.sql from this package.
+4. Copy all text into a new SQL query.
+5. Tap Run.
+6. A successful result says: Success. No rows returned.
+
+THEN UPLOAD TO GITHUB
+1. Unzip Phase9.zip.
+2. Upload every file to the MAIN level of the GitHub repository.
+3. Replace matching files.
+4. Commit directly to main with:
+   Launch Phase 9 real listings
+
+TEST
+1. Log in at:
+   https://nomadparkpad.com/login.html
+
+2. Change your account Role to Host or Both:
+   https://nomadparkpad.com/account.html
+
+3. Create a listing:
+   https://nomadparkpad.com/create-listing.html
+
+4. Add real driveway details and optional photos.
+5. Publish.
+6. Confirm it appears at:
+   https://nomadparkpad.com/find-a-pad.html
+
+IMPORTANT
+- City and province are public.
+- Exact street address is not collected yet.
+- Photos upload to the public listing-photos bucket.
+- This does not connect real payments or insurance.
+- Remove test listings from Supabase Table Editor if you do not want them public.
