@@ -1,0 +1,55 @@
+NOMAD PARK PAD PHASE 10 — REAL BOOKINGS
+
+WHAT IT CONNECTS
+Traveler opens live Pad
+→ sends real booking request
+→ host sees request
+→ host accepts or declines
+→ both dashboards update
+→ both sides can message inside the booking
+
+FIRST: DATABASE UPDATE
+1. Open Supabase.
+2. Open SQL Editor.
+3. Copy all text from PHASE10_DATABASE_UPDATE.txt.
+4. Paste it into a new query.
+5. Tap Run.
+6. Expected result:
+   Success. No rows returned.
+
+THEN: GITHUB
+1. Unzip Phase10.zip.
+2. Upload every file to the MAIN level of GitHub.
+3. Replace matching files.
+4. Commit directly to main:
+   Launch Phase 10 real bookings
+
+TEST WITH TWO ACCOUNTS
+HOST
+1. Log in with the host account.
+2. Make sure it owns a published Pad.
+3. Open host-dashboard.html.
+
+TRAVELER
+1. Use a second email account.
+2. Sign up as Traveler.
+3. Open find-a-pad.html.
+4. Open the live Pad.
+5. Tap Request to Book.
+6. Send a request.
+
+HOST AGAIN
+1. Refresh host-dashboard.html.
+2. Accept or decline the request.
+3. Open Messages and send a reply.
+
+TRAVELER AGAIN
+1. Refresh traveler-dashboard.html.
+2. Confirm the new status.
+3. Open Messages and reply.
+
+IMPORTANT
+- Real payments are still not connected.
+- Exact street address release is not connected.
+- Use separate test host and traveler accounts.
+- A host should not request their own listing.

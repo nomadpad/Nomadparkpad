@@ -3,78 +3,117 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Booking Request | Nomad Park Pad</title>
-  <meta name="description" content="Send a booking request for a Nomad Park Pad stay.">
+  <title>Request to Book | Nomad Park Pad</title>
+  <meta name="description" content="Send a real booking request to a Nomad Park Pad host.">
   <meta name="theme-color" content="#0f4b38">
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
-  <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="phase6.css">
+  <link rel="stylesheet" href="phase10.css">
 </head>
 <body>
 <header class="site-header">
   <a class="brand" href="index.html"><img src="logo.png" alt="Nomad Park Pad"></a>
   <button class="menu-button" aria-label="Open menu" aria-expanded="false">☰</button>
-  <nav class="main-nav"><a href="find-a-pad.html">Find a Pad</a><a href="traveler-dashboard.html">Traveler Dashboard</a><a href="messages.html">Messages</a></nav>
-  <a class="early-access" href="pad-listing.html">Back to Listing</a>
+  <nav class="main-nav">
+    <a href="find-a-pad.html">Find a Pad</a>
+    <a href="traveler-dashboard.html">My Trips</a>
+    <a href="account.html">Account</a>
+  </nav>
+  <a class="early-access" id="back-to-listing" href="find-a-pad.html">Back to Pad</a>
 </header>
 
-<main class="request-shell">
-  <section class="request-heading">
-    <p class="kicker">BOOKING REQUEST</p>
-    <h1>Request Quiet Garden Driveway.</h1>
-    <p>The host reviews your dates, vehicle, traveler profile, and message before accepting.</p>
+<main class="p10-shell">
+  <section class="p10-heading">
+    <p class="kicker">REAL BOOKING REQUEST</p>
+    <h1 id="request-heading">Loading Pad...</h1>
+    <p>The host will review your dates, vehicle, travelers, pets, and message before accepting.</p>
   </section>
 
-  <section class="request-layout">
-    <form class="request-form p6-panel" id="booking-request-form">
-      <div class="progress-row">
-        <span class="progress-step active">1. Trip</span>
-        <span class="progress-step active">2. Vehicle</span>
-        <span class="progress-step active">3. Message</span>
-      </div>
-
-      <h2>Trip details</h2>
+  <section class="booking-request-layout">
+    <form class="p10-card" id="real-booking-form">
       <div class="form-grid">
-        <label>Arrival<input id="request-arrival" type="date" required></label>
-        <label>Departure<input id="request-departure" type="date" required></label>
-        <label>Travelers<select id="request-travelers"><option>1 traveler</option><option selected>2 travelers</option><option>3 travelers</option><option>4 travelers</option></select></label>
-        <label>Vehicle<select id="request-vehicle"><option selected>Camper van</option><option>Car / SUV</option><option>Small RV</option></select></label>
-        <label>Vehicle length<select id="request-length"><option>18 ft</option><option selected>22 ft</option><option>24 ft</option></select></label>
-        <label>Pets<select id="request-pets"><option selected>No pets</option><option>1 dog</option><option>1 cat</option><option>Other</option></select></label>
-        <label class="full-field">Message to Jamie
-          <textarea id="request-message" rows="6">Hi Jamie, we are passing through Sherwood Park and are looking for a quiet overnight stop. We expect to arrive around 7 PM and leave early the next morning.</textarea>
+        <label>Arrival
+          <input id="request-arrival" type="date" required>
+        </label>
+        <label>Departure
+          <input id="request-departure" type="date" required>
+        </label>
+        <label>Travelers
+          <select id="request-travelers" required>
+            <option value="1">1 traveler</option>
+            <option value="2">2 travelers</option>
+            <option value="3">3 travelers</option>
+            <option value="4">4 travelers</option>
+            <option value="5">5 travelers</option>
+            <option value="6">6 travelers</option>
+          </select>
+        </label>
+        <label>Vehicle type
+          <select id="request-vehicle" required>
+            <option value="Camper van">Camper van</option>
+            <option value="Car / SUV">Car / SUV</option>
+            <option value="Small RV">Small RV</option>
+            <option value="Large RV">Large RV</option>
+          </select>
+        </label>
+        <label>Vehicle length
+          <input id="request-length" type="text" placeholder="Example: 22 ft" required maxlength="30">
+        </label>
+        <label>Pets
+          <select id="request-pets">
+            <option value="No pets">No pets</option>
+            <option value="1 dog">1 dog</option>
+            <option value="2 dogs">2 dogs</option>
+            <option value="1 cat">1 cat</option>
+            <option value="Other pet">Other pet</option>
+          </select>
+        </label>
+        <label class="full-field">Message to the host
+          <textarea id="request-message" rows="6" required maxlength="1500" placeholder="Introduce yourself, explain your vehicle, approximate arrival time, and anything the host should know."></textarea>
         </label>
       </div>
 
-      <label class="check-field"><input type="checkbox" required><span>I have read the listing details and agree to the house rules.</span></label>
-      <button class="btn btn-accent full-button" type="submit">Send Booking Request</button>
-      <p class="request-message" aria-live="polite"></p>
+      <label class="check-field">
+        <input id="request-confirm" type="checkbox" required>
+        <span>I confirm the information is accurate and understand the host must approve this request.</span>
+      </label>
+
+      <button class="btn btn-accent full-button" id="send-booking-request" type="submit">Send Booking Request</button>
+      <div class="request-progress" id="request-progress" hidden>
+        <span class="mini-spinner"></span>
+        <strong>Sending your request...</strong>
+      </div>
+      <p class="form-message" id="booking-form-message" aria-live="polite"></p>
     </form>
 
-    <aside class="request-summary-card">
-      <div class="request-listing-photo"></div>
-      <h2>Quiet Garden Driveway</h2>
-      <p>Sherwood Park, Alberta</p>
-      <div class="request-summary-lines">
-        <div><span>$22 × <span id="request-nights">1</span> night</span><span id="request-stay-cost">$22</span></div>
-        <div><span>Service fee</span><span>$4</span></div>
-        <div class="price-total"><strong>Estimated total</strong><strong id="request-total">$26</strong></div>
+    <aside class="p10-card booking-summary-card">
+      <div class="booking-cover" id="booking-cover"></div>
+      <h2 id="summary-title">Loading listing...</h2>
+      <p id="summary-location"></p>
+      <div class="summary-rows">
+        <div><span>Nightly price</span><strong id="summary-nightly">$--</strong></div>
+        <div><span>Nights</span><strong id="summary-nights">1</strong></div>
+        <div><span>Stay subtotal</span><strong id="summary-subtotal">$--</strong></div>
+        <div><span>Example service fee</span><strong>$4</strong></div>
+        <div class="summary-total"><span>Estimated total</span><strong id="summary-total">$--</strong></div>
       </div>
-      <div class="summary-badges"><span>🌙 Quiet Overnight</span><span>⚡ Power</span><span>🐾 Pet friendly</span></div>
-      <small>This request is a front-end preview and does not create a real booking.</small>
+      <div class="privacy-note">
+        <strong>🔒 Address privacy</strong>
+        <p>The exact driveway address is not shown in this prototype. Address release will be added to the confirmed-booking flow.</p>
+      </div>
     </aside>
   </section>
 </main>
 
 <footer>
   <div class="footer-brand"><img src="logo.png" alt="Nomad Park Pad"><span>Built for travelers. Powered by community.</span></div>
-  <nav class="footer-links"><a href="traveler-dashboard.html">Dashboard</a><a href="pad-listing.html">Listing</a><a href="messages.html">Messages</a></nav>
+  <nav class="footer-links"><a href="find-a-pad.html">Find a Pad</a><a href="traveler-dashboard.html">Trips</a><a href="account.html">Account</a></nav>
   <p>© 2026 Nomad Park Pad. All rights reserved.</p>
 </footer>
+
 <script src="script.js"></script>
-<script src="phase6.js"></script>
 <script src="supabase-config.js"></script>
-<script type="module" src="phase8-data.js"></script>
+<script type="module" src="auth-guard.js"></script>
+<script type="module" src="phase10-booking-request.js"></script>
 </body>
 </html>

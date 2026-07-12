@@ -4,12 +4,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Traveler Dashboard | Nomad Park Pad</title>
-  <meta name="description" content="Manage trips, requests, saved Pads, and traveler verification.">
+  <meta name="description" content="Track real Nomad Park Pad booking requests and accepted stays.">
   <meta name="theme-color" content="#0f4b38">
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
-  <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="phase6.css">
+  <link rel="stylesheet" href="phase10.css">
 </head>
 <body>
 <header class="site-header">
@@ -17,111 +16,50 @@
   <button class="menu-button" aria-label="Open menu" aria-expanded="false">☰</button>
   <nav class="main-nav">
     <a href="find-a-pad.html">Find a Pad</a>
-    <a class="active-link" href="traveler-dashboard.html">Traveler Dashboard</a>
-    <a href="messages.html">Messages</a>
-    <a href="traveler-profile.html">My Profile</a>
+    <a class="active-link" href="traveler-dashboard.html">My Trips</a>
+    <a href="account.html">Account</a>
   </nav>
   <a class="early-access" href="find-a-pad.html">Find a Pad</a>
 </header>
 
-<main class="p6-shell">
-  <section class="p6-welcome">
+<main class="p10-shell">
+  <section class="dashboard-hero">
     <div>
-      <p class="kicker">TRAVELER CONTROL CENTRE</p>
-      <h1>Your road ahead.</h1>
-      <p>Track requests, upcoming stays, saved Pads, and profile readiness.</p>
+      <p class="kicker">LIVE TRAVELER DASHBOARD</p>
+      <h1>Your requests and stays.</h1>
+      <p>Every status below is loaded from the booking database.</p>
     </div>
-    <a class="btn btn-accent" href="find-a-pad.html">Search New Pads</a>
+    <a class="btn btn-accent" href="find-a-pad.html">Find Another Pad</a>
   </section>
 
-  <section class="p6-stats">
-    <article><span>📨</span><div><strong>1</strong><p>Pending request</p></div></article>
-    <article><span>📅</span><div><strong>1</strong><p>Upcoming trip</p></div></article>
-    <article><span>♡</span><div><strong>3</strong><p>Saved Pads</p></div></article>
-    <article><span>⭐</span><div><strong>5.0</strong><p>Example rating</p></div></article>
+  <section class="dashboard-stat-grid">
+    <article><span>Pending</span><strong id="traveler-pending-count">0</strong></article>
+    <article><span>Accepted</span><strong id="traveler-accepted-count">0</strong></article>
+    <article><span>Completed</span><strong id="traveler-completed-count">0</strong></article>
   </section>
 
-  <section class="p6-grid">
-    <div class="p6-main">
-      <article class="p6-panel">
-        <div class="panel-heading">
-          <div><p class="eyebrow">UPCOMING TRIP</p><h2>Quiet Garden Driveway</h2></div>
-          <span class="status-pill confirmed">Confirmed</span>
-        </div>
-        <div class="trip-summary">
-          <div class="trip-thumb"></div>
-          <div>
-            <p>Sherwood Park, Alberta</p>
-            <strong>July 18 to July 19, 2026</strong>
-            <span>1 night · 2 travelers · Camper van</span>
-            <div class="trip-actions">
-              <a href="trip-details.html">View trip</a>
-              <a href="messages.html">Message host</a>
-            </div>
-          </div>
-        </div>
-      </article>
-
-      <article class="p6-panel">
-        <div class="panel-heading">
-          <div><p class="eyebrow">PENDING REQUEST</p><h2>Mountain View Pad</h2></div>
-          <span class="status-pill pending">Awaiting host</span>
-        </div>
-        <div class="request-summary">
-          <div><strong>Canmore, Alberta</strong><p>July 25 to July 26 · 1 night · $39 estimated total</p></div>
-          <a class="secondary-button" href="booking-request.html">Review request</a>
-        </div>
-      </article>
-
-      <article class="p6-panel">
-        <div class="panel-heading">
-          <div><p class="eyebrow">SAVED PADS</p><h2>Ready for another route</h2></div>
-          <a href="find-a-pad.html">View all</a>
-        </div>
-        <div class="saved-grid">
-          <a href="pad-listing.html"><div class="saved-photo saved-one"></div><strong>Quiet Garden Driveway</strong><span>Sherwood Park · $22</span></a>
-          <a href="pad-listing.html"><div class="saved-photo saved-two"></div><strong>Mountain View Pad</strong><span>Canmore · $35</span></a>
-          <a href="pad-listing.html"><div class="saved-photo saved-three"></div><strong>Okanagan Welcome</strong><span>Kelowna · $32</span></a>
-        </div>
-      </article>
+  <section class="p10-card section-card">
+    <div class="section-heading">
+      <div><p class="kicker">BOOKING HISTORY</p><h2>Your booking requests</h2></div>
+      <button class="secondary-button" id="refresh-traveler-dashboard" type="button">Refresh</button>
     </div>
-
-    <aside class="p6-sidebar">
-      <article class="p6-panel">
-        <h2>Traveler readiness</h2>
-        <div class="readiness-meter"><strong>80%</strong></div>
-        <ul class="clean-list">
-          <li>✓ Email confirmed</li>
-          <li>✓ Vehicle added</li>
-          <li>✓ Profile introduction</li>
-          <li>○ Government ID pending</li>
-          <li>○ Emergency contact pending</li>
-        </ul>
-        <a class="secondary-button full-button centered-link" href="traveler-profile.html">Complete profile</a>
-      </article>
-
-      <article class="p6-panel">
-        <h2>Review needed</h2>
-        <p>You have one completed example stay waiting for feedback.</p>
-        <a class="secondary-button full-button centered-link" href="leave-review.html">Leave review</a>
-      </article>
-
-      <article class="p6-panel">
-        <h2>Safety reminder</h2>
-        <p>Keep booking details and communication inside Nomad Park Pad once live.</p>
-      </article>
-    </aside>
+    <div class="dashboard-loading" id="traveler-request-loading"><span class="mini-spinner"></span>Loading your trips...</div>
+    <div class="traveler-request-list" id="traveler-request-list"></div>
+    <div class="dashboard-empty" id="traveler-request-empty" hidden>
+      <span>🧭</span><h3>No booking requests yet</h3><p>Find a Pad and send your first request.</p><a class="btn btn-primary" href="find-a-pad.html">Explore Live Pads</a>
+    </div>
   </section>
 </main>
 
 <footer>
   <div class="footer-brand"><img src="logo.png" alt="Nomad Park Pad"><span>Built for travelers. Powered by community.</span></div>
-  <nav class="footer-links"><a href="index.html">Home</a><a href="find-a-pad.html">Find a Pad</a><a href="traveler-profile.html">Profile</a></nav>
+  <nav class="footer-links"><a href="find-a-pad.html">Find a Pad</a><a href="account.html">Account</a></nav>
   <p>© 2026 Nomad Park Pad. All rights reserved.</p>
 </footer>
+
 <script src="script.js"></script>
-<script src="phase6.js"></script>
 <script src="supabase-config.js"></script>
 <script type="module" src="auth-guard.js"></script>
+<script type="module" src="phase10-traveler-dashboard.js"></script>
 </body>
 </html>

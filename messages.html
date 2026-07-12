@@ -3,85 +3,54 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Messages | Nomad Park Pad</title>
-  <meta name="description" content="Message hosts and travelers about a Nomad Park Pad stay.">
+  <title>Booking Conversation | Nomad Park Pad</title>
+  <meta name="description" content="Message a Nomad Park Pad host or traveler about a booking request.">
   <meta name="theme-color" content="#0f4b38">
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
-  <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="phase6.css">
+  <link rel="stylesheet" href="phase10.css">
 </head>
 <body>
 <header class="site-header">
   <a class="brand" href="index.html"><img src="logo.png" alt="Nomad Park Pad"></a>
   <button class="menu-button" aria-label="Open menu" aria-expanded="false">☰</button>
-  <nav class="main-nav"><a href="find-a-pad.html">Find a Pad</a><a href="traveler-dashboard.html">Traveler Dashboard</a><a class="active-link" href="messages.html">Messages</a></nav>
-  <a class="early-access" href="trip-details.html">View Trip</a>
+  <nav class="main-nav"><a href="find-a-pad.html">Find a Pad</a><a href="traveler-dashboard.html">My Trips</a><a href="host-dashboard.html">Host Dashboard</a></nav>
+  <a class="early-access" id="conversation-trip-link" href="trip-details.html">Booking Details</a>
 </header>
 
-<main class="messages-shell">
-  <aside class="conversation-list">
-    <div class="conversation-heading"><h2>Messages</h2><button type="button">＋</button></div>
-    <button class="conversation active" type="button">
-      <div class="message-avatar">J</div>
-      <div><strong>Jamie</strong><p>Power outlet is beside the garage...</p><small>2 min ago</small></div>
-    </button>
-    <button class="conversation" type="button">
-      <div class="message-avatar alt">C</div>
-      <div><strong>Chris</strong><p>Thanks for staying with us.</p><small>June 28</small></div>
-    </button>
-  </aside>
+<main class="conversation-shell">
+  <section class="conversation-header">
+    <div>
+      <span class="status-pill" id="conversation-status">Loading</span>
+      <p class="kicker">BOOKING CONVERSATION</p>
+      <h1 id="conversation-title">Loading conversation...</h1>
+      <p id="conversation-subtitle"></p>
+    </div>
+  </section>
 
-  <section class="chat-panel">
-    <div class="chat-header">
-      <div class="host-trip-card compact">
-        <div class="host-avatar">J</div>
-        <div><strong>Jamie</strong><p>Quiet Garden Driveway</p></div>
-      </div>
-      <a class="secondary-button" href="trip-details.html">Trip details</a>
+  <section class="conversation-card">
+    <div class="conversation-loading" id="conversation-loading"><span class="mini-spinner"></span>Loading messages...</div>
+    <div class="message-stream" id="message-stream"></div>
+    <div class="conversation-empty" id="conversation-empty" hidden>
+      <span>💬</span><h3>Start the conversation</h3><p>Ask about arrival, driveway access, pets, or anything needed for the stay.</p>
     </div>
 
-    <div class="booking-pin">
-      <span>📅 July 18 to July 19</span>
-      <span>🚐 Camper van</span>
-      <span>✓ Confirmed</span>
-    </div>
-
-    <div class="chat-safety">
-      Keep payment and booking communication inside Nomad Park Pad once live.
-    </div>
-
-    <div class="message-stream" id="message-stream">
-      <div class="message-bubble host-message"><p>Hi Daniel, your booking request looks good. What time do you expect to arrive?</p><small>10:14 AM</small></div>
-      <div class="message-bubble traveler-message"><p>We should arrive around 7 PM. Is the power outlet close to the parking space?</p><small>10:18 AM</small></div>
-      <div class="message-bubble host-message"><p>Yes, it is beside the garage door and the cord only needs to reach about 15 feet.</p><small>10:21 AM</small></div>
-    </div>
-
-    <div class="quick-replies">
-      <button type="button">We are on our way</button>
-      <button type="button">We may arrive late</button>
-      <button type="button">Thanks for the details</button>
-    </div>
-
-    <form class="message-composer" id="message-form">
-      <textarea id="message-input" rows="2" placeholder="Write a message..." required></textarea>
-      <button class="btn btn-accent" type="submit">Send</button>
+    <form class="message-composer" id="real-message-form">
+      <textarea id="real-message-input" rows="3" required maxlength="4000" placeholder="Write a message..."></textarea>
+      <button class="btn btn-accent" id="send-real-message" type="submit">Send</button>
     </form>
-
-    <button class="report-link" type="button" id="report-conversation">Report conversation</button>
+    <p class="form-message" id="message-form-message" aria-live="polite"></p>
   </section>
 </main>
 
 <footer>
   <div class="footer-brand"><img src="logo.png" alt="Nomad Park Pad"><span>Built for travelers. Powered by community.</span></div>
-  <nav class="footer-links"><a href="traveler-dashboard.html">Dashboard</a><a href="trip-details.html">Trip</a><a href="find-a-pad.html">Find a Pad</a></nav>
   <p>© 2026 Nomad Park Pad. All rights reserved.</p>
 </footer>
+
 <script src="script.js"></script>
-<script src="phase6.js"></script>
-<script src="supabase-config.js"></script>
-<script type="module" src="phase8-data.js"></script>
 <script src="supabase-config.js"></script>
 <script type="module" src="auth-guard.js"></script>
+<script type="module" src="phase10-messages.js"></script>
 </body>
 </html>
