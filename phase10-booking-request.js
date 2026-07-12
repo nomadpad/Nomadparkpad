@@ -143,15 +143,26 @@ document.querySelector("#real-booking-form")?.addEventListener("submit", async e
     .single();
 
   if (error) {
-    button.disabled = false;
-    progress.hidden = true;
-    message.textContent = error.message.includes("booking_requests_no_duplicate_pending_idx")
 
-  ? "You already have a pending request for this listing. Open My Trips to message the host."
+  button.disabled = false;
 
-  : error.message;
-    return;
+  progress.hidden = true;
+
+  if (error.message.includes("booking_requests_no_duplicate_pending_idx")) {
+
+    message.innerHTML =
+
+      'You already have a pending request for this listing. <a href="traveler-dashboard.html">Open My Trips</a> to message the host.';
+
+  } else {
+
+    message.textContent = error.message;
+
   }
+
+  return;
+
+}
 
   message.textContent = "Booking request sent.";
   setTimeout(() => {
