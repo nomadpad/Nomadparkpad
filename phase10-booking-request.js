@@ -145,7 +145,11 @@ document.querySelector("#real-booking-form")?.addEventListener("submit", async e
   if (error) {
     button.disabled = false;
     progress.hidden = true;
-    message.textContent = error.message;
+    message.textContent = error.message.includes("booking_requests_no_duplicate_pending_idx")
+
+  ? "You already have a pending request for this listing. Open My Trips to message the host."
+
+  : error.message;
     return;
   }
 
