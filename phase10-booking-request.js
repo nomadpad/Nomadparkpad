@@ -118,7 +118,9 @@ document.querySelector("#real-booking-form")?.addEventListener("submit", async e
   }
 
   const nights = nightsBetween(arrival, departure);
-  const total = nights * Number(listing.nightly_price) + 4;
+  const total =
+
+  Math.round((nights * Number(listing.nightly_price) + 4) * 1.05 * 100) / 100;
 
   button.disabled = true;
   progress.hidden = false;
