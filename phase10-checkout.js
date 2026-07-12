@@ -1,4 +1,4 @@
-import { supabase } from "./phase8-data.js";
+import { supabase } from "./phase8-auth.js";
 
 const checkoutForm = document.querySelector("#checkout-form");
 
