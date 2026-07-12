@@ -144,11 +144,20 @@ if (bookingForm) {
       button.textContent = "Request Sent";
       if (message) message.textContent = `Real booking request created. Request ID: ${booking.id}`;
     } catch (error) {
-      button.disabled = false;
-      button.textContent = "Send Booking Request";
-      if (message) message.textContent = error.message;
-    }
-  }, true);
+
+  button.disabled = false;
+
+  button.textContent = "Send Booking Request";
+
+  message.textContent = error.message.includes("booking_requests_no_duplicate_pending_idx")
+
+    ? "You already have a pending request for this listing. Open My Trips to message the host."
+
+    : error.message;
+
+}
+
+}, true);
 }
 
 const messageForm = document.querySelector("#message-form");
