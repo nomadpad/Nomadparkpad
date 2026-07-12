@@ -19,6 +19,7 @@ async function publishListing() {
     description: draft.description || "",
     city: draft.city || "",
     province: draft.province || "Alberta",
+    exact_address: draft.exact_address || "",
     nightly_price: Number(draft.price || 22),
     host_style: draft.style || "Quiet Overnight",
     max_guests: Number(draft.guests || 4),
