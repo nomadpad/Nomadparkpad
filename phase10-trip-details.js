@@ -36,7 +36,7 @@ async function loadBooking() {
 
   const { data, error } = await supabase
     .from("booking_requests")
-    .select("id,traveler_id,arrival,departure,travelers,vehicle_type,vehicle_length,pets,message,status,total_amount,listing_id,listings(id,title,city,province,hexact_address,host_id,profiles!listings_host_id_fkey(first_name))")
+    .select("id,traveler_id,arrival,departure,travelers,vehicle_type,vehicle_length,pets,message,status,total_amount,listing_id,listings(id,title,city,province,exact_address,host_id,profiles!listings_host_id_fkey(first_name))")
     .eq("id", bookingId)
     .single();
 
