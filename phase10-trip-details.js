@@ -35,7 +35,7 @@ async function loadBooking() {
 
   const { data, error } = await supabase
     .from("booking_requests")
-    .select("id,traveler_id,arrival,departure,travelers,vehicle_type,vehicle_length,pets,message,status,total_amount,listing_id,listings(id,title,city,province,exact_address,host_id,profiles!listings_host_id_fkey(first_name))")
+    .select("id,traveler_id,arrival,departure,travelers,vehicle_type,vehicle_length,pets,message,status,total_amount,listing_id,listings(id,title,city,province,host_id,profiles!listings_host_id_fkey(first_name))")
     .eq("id", bookingId)
     .single();
 
@@ -45,6 +45,22 @@ async function loadBooking() {
   }
 
   booking = data;
+  const { data: privateDetails, error: privateError } = await supabase
+
+  .from("listing_private_details")
+
+  .select("exact_address")
+
+  .eq("listing_id", data.listing_id)
+
+  .maybeSingle();
+
+if (privateError) {
+
+  console.error("Private address lookup failed:", privateError);
+
+}
+const exactAddress = privateDetails?.exact_address || null;
   setText("#trip-title", data.listings?.title || "Pad booking");
   setText("#trip-location", `${data.listings?.city || ""}, ${data.listings?.province || ""}`);
   setText("#trip-arrival", formatDate(data.arrival));
@@ -56,13 +72,13 @@ async function loadBooking() {
   setText("#trip-pets", data.pets || "Not listed");
   setText("#trip-host", data.listings?.profiles?.first_name || "Nomad host");
   setText("#trip-original-message", data.message || "No message provided.");
-  if (["accepted", "paid", "completed"].includes(data.status)) {
+  if (exactAddress) {
 
   setText(
 
     "#address-message",
 
-    data.listings?.exact_address || "Exact address is not available."
+    exactAddress || "Exact address is not available."
 
   );
 
