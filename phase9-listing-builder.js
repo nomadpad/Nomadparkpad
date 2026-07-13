@@ -213,6 +213,7 @@ document.querySelector("#listing-builder")?.addEventListener("submit", async (ev
         description: draft.description,
         city: draft.city,
         province: draft.province,
+        exact_address: draft.exact_address,
         nightly_price: draft.price,
         host_style: draft.style,
         max_guests: draft.guests,
