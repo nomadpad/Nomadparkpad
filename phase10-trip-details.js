@@ -21,7 +21,6 @@ function applyStatus(status) {
   if (["accepted","paid","completed"].includes(status)) {
     document.querySelector("#approval-step").classList.add("done");
     document.querySelector("#conversation-step").classList.add("done");
-    setText("#address-message", "The request is accepted. Exact address release is the next safety feature to be built; continue coordinating with the host in messages.");
   }
 }
 
@@ -57,6 +56,27 @@ async function loadBooking() {
   setText("#trip-pets", data.pets || "Not listed");
   setText("#trip-host", data.listings?.profiles?.first_name || "Nomad host");
   setText("#trip-original-message", data.message || "No message provided.");
+  if (["accepted", "paid", "completed"].includes(data.status)) {
+
+  setText(
+
+    "#address-message",
+
+    data.listings?.exact_address || "Exact address is not available."
+
+  );
+
+} else {
+
+  setText(
+
+    "#address-message",
+
+    "The exact address will be shown after the booking is accepted and paid."
+
+  );
+
+}
   document.querySelector("#trip-message-link").href = `messages.html?booking=${encodeURIComponent(data.id)}`;
   applyStatus(data.status);
 
