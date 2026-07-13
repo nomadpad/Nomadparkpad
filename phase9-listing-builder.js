@@ -213,7 +213,7 @@ document.querySelector("#listing-builder")?.addEventListener("submit", async (ev
         description: draft.description,
         city: draft.city,
         province: draft.province,
-        exact_address: draft.exact_address,
+        
         nightly_price: draft.price,
         host_style: draft.style,
         max_guests: draft.guests,
@@ -225,6 +225,19 @@ document.querySelector("#listing-builder")?.addEventListener("submit", async (ev
       .single();
 
     if (error) throw error;
+    const { error: addressError } = await supabase
+
+  .from("listing_private_details")
+
+  .insert({
+
+    listing_id: listing.id,
+
+    exact_address: draft.exact_address
+
+  });
+
+if (addressError) throw addressError;
 
     if (selectedPhotos.length) {
       await uploadPhotos(user.id, listing.id);
