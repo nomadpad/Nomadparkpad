@@ -220,6 +220,7 @@ document.querySelector("#listing-builder")?.addEventListener("submit", async (ev
         host_style: draft.style,
         max_guests: draft.guests,
         max_vehicle_length: draft.length,
+        max_vehicle_height: draft.height ? Number(draft.height) : null,
         amenities: [...draft.amenities, ...draft.vehicles.map(item => `Vehicle: ${item}`)],
         status: "published"
       })
