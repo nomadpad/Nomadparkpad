@@ -19,7 +19,7 @@ async function loadListing() {
     .from("listings")
     .select(`
       id,title,description,city,province,nightly_price,host_style,max_guests,
-      max_vehicle_length,max_vehicle_height,amenities,host_id,
+      max_vehicle_length,max_vehicle_height,max_vehicle_width,driveway_surface,amenities,host_id,
       listing_photos(storage_path,sort_order),
       profiles!listings_host_id_fkey(first_name,city)
     `)
@@ -43,6 +43,17 @@ async function loadListing() {
   setText("#listing-length", listing.max_vehicle_length);
   setText("#listing-height", listing.max_vehicle_height ? `${listing.max_vehicle_height} m` : "Not specified");
   setText("#listing-width", listing.max_vehicle_width ? `${listing.max_vehicle_width} m` : "Not specified");
+  setText(
+
+  "#listing-surface",
+
+  listing.driveway_surface
+
+    ? listing.driveway_surface.replace("-", " ").replace(/\b\w/g, c => c.toUpperCase())
+
+    : "Not specified"
+
+);
   setText("#host-name", listing.profiles?.first_name || "Nomad host");
   setText("#booking-price", `$${Number(listing.nightly_price).toFixed(0)}`);
 
