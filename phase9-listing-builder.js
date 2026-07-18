@@ -27,6 +27,7 @@ function collectDraft() {
     height: document.querySelector("#max-height")?.value,
     width: document.querySelector("#max-width")?.value,
     surface: document.querySelector("#driveway-surface")?.value,
+    slope: document.querySelector("#driveway-slope")?.value,
     guests: Number(document.querySelector("#max-guests")?.value || 1),
     amenities: checkedValues('input[name="amenity"]'),
     vehicles: checkedValues('input[name="vehicle-fit"]'),
@@ -58,6 +59,7 @@ function restoreDraft() {
     setValue("#max-height", draft.height);
     setValue("#max-width", draft.width);
     setValue("#driveway-surface", draft.surface);etValue("#max-width", draft.width);
+    setValue("#driveway-slope", draft.slope);
 
     setValue("#max-guests", draft.guests);
     setValue("#nightly-price", draft.price);
@@ -228,6 +230,7 @@ document.querySelector("#listing-builder")?.addEventListener("submit", async (ev
         max_vehicle_height: draft.height ? Number(draft.height) : null,
         max_vehicle_width: draft.width ? Number(draft.width) : null,
         driveway_surface: draft.surface || null,
+        driveway_slope: draft.slope || null,
         amenities: [...draft.amenities, ...draft.vehicles.map(item => `Vehicle: ${item}`)],
         status: "published"
       })
