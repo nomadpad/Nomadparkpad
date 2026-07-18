@@ -19,14 +19,14 @@ async function loadListing() {
     .from("listings")
     .select(`
       id,title,description,city,province,nightly_price,host_style,max_guests,
-      max_vehicle_length,max_vehicle_height,menities,host_id,
+      max_vehicle_length,max_vehicle_height,amenities,host_id,
       listing_photos(storage_path,sort_order),
       profiles!listings_host_id_fkey(first_name,city)
     `)
     .eq("id", listingId)
     .eq("status", "published")
     .single();
-if (error) alert(error.message);
+
   if (error || !listing) {
     document.querySelector("main").innerHTML =
       '<section class="listing-not-found"><span>🧭</span><h1>Pad not found</h1><p>This listing may have been paused or removed.</p><a class="btn btn-primary" href="find-a-pad.html">Find another Pad</a></section>';
