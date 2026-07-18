@@ -42,6 +42,7 @@ async function loadListing() {
   setText("#listing-guests", listing.max_guests);
   setText("#listing-length", listing.max_vehicle_length);
   setText("#listing-height", listing.max_vehicle_height ? `${listing.max_vehicle_height} m` : "Not specified");
+  setText("#listing-width", listing.max_vehicle_width ? `${listing.max_vehicle_width} m` : "Not specified");
   setText("#host-name", listing.profiles?.first_name || "Nomad host");
   setText("#booking-price", `$${Number(listing.nightly_price).toFixed(0)}`);
 
