@@ -24,6 +24,7 @@ function collectDraft() {
     exact_address: document.querySelector("#listing-exact-address")?.value.trim() || "",
     description: document.querySelector("#listing-description")?.value.trim() || "",
     length: document.querySelector("#max-length")?.value || "24 ft",
+    height: document.querySelector("#max-height")?.value,
     guests: Number(document.querySelector("#max-guests")?.value || 1),
     amenities: checkedValues('input[name="amenity"]'),
     vehicles: checkedValues('input[name="vehicle-fit"]'),
@@ -52,6 +53,7 @@ function restoreDraft() {
     setValue("#listing-province", draft.province);
     setValue("#listing-description", draft.description);
     setValue("#max-length", draft.length);
+    setValue("#max-height", draft.height);
     setValue("#max-guests", draft.guests);
     setValue("#nightly-price", draft.price);
     document.querySelectorAll('input[name="amenity"]').forEach(el => el.checked = (draft.amenities || []).includes(el.value));
