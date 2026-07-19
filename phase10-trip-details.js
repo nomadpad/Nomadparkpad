@@ -49,7 +49,7 @@ async function loadBooking() {
 
   .from("listing_private_details")
 
-  .select("exact_address")
+  .select("exact_address,arrival_note")
 
   .eq("listing_id", data.listing_id)
 
@@ -61,6 +61,7 @@ if (privateError) {
 
 }
 const exactAddress = privateDetails?.exact_address || null;
+const arrivalNote = privateDetails?.arrival_note;
   setText("#trip-title", data.listings?.title || "Pad booking");
   setText("#trip-location", `${data.listings?.city || ""}, ${data.listings?.province || ""}`);
   setText("#trip-arrival", formatDate(data.arrival));
@@ -73,6 +74,13 @@ const exactAddress = privateDetails?.exact_address || null;
   setText("#trip-host", data.listings?.profiles?.first_name || "Nomad host");
   setText("#trip-original-message", data.message || "No message provided.");
   if (exactAddress) {
+    setText(
+
+  "#arrival-note-message",
+
+  arrivalNote || "No special arrival instructions."
+
+);
 
   setText(
 
@@ -88,7 +96,15 @@ const exactAddress = privateDetails?.exact_address || null;
 
     "#address-message",
 
-    "The exact address will be shown after the booking is accepted and paid."
+    "The exact address will be shown after payment is confirmed."
+
+  );
+
+  setText(
+
+    "#arrival-note-message",
+
+    "Arrival instructions will be shown after payment is confirmed."
 
   );
 
