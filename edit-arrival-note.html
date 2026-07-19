@@ -1,0 +1,83 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Edit Arrival Note | Nomad Park Pad</title>
+
+  <link rel="stylesheet" href="styles.css">
+
+  <link rel="stylesheet" href="phase10.css">
+
+</head>
+
+<body>
+
+  <main class="p10-shell">
+
+    <section class="p10-card">
+
+      <p class="kicker">HOST LISTING</p>
+
+      <h1>Edit arrival note</h1>
+
+      <p>
+
+        This note is shown to the confirmed traveller with the exact address.
+
+      </p>
+
+      <form id="arrival-note-form">
+
+        <label for="arrival-note">
+
+          Arrival note
+
+        </label>
+
+        <textarea
+
+          id="arrival-note"
+
+          rows="6"
+
+          placeholder="Example: Use the right side of the driveway and keep the gate clear."
+
+        ></textarea>
+
+        <p id="arrival-note-status" class="form-message"></p>
+
+        <button type="submit" class="btn btn-accent">
+
+          Save arrival note
+
+        </button>
+
+        <a href="host-dashboard.html" class="secondary-button">
+
+          Back to host dashboard
+
+        </a>
+
+      </form>
+
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
+
+  <script src="supabase-config.js"></script>
+
+  <script type="module" src="auth-guard.js"></script>
+
+  <script type="module" src="edit-arrival-note.js"></script>
+
+</body>
+
+</html>

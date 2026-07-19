@@ -123,7 +123,8 @@ function listingCard(listing) {
   card.className = "host-listing-row";
   card.innerHTML = `
     <div><span class="status-pill status-${listing.status}">${listing.status}</span><h3>${listing.title}</h3><p>${listing.city}, ${listing.province}</p></div>
-    <div class="host-listing-row-actions"><strong>$${Number(listing.nightly_price).toFixed(0)} / night</strong><a class="secondary-button" href="pad-listing.html?listing=${encodeURIComponent(listing.id)}">View</a></div>
+    <div class="host-listing-row-actions"><strong>$${Number(listing.nightly_price).toFixed(0)} / night</strong><a class="secondary-button" href="pad-listing.html?listing=${encodeURIComponent(listing.id)}">View</a>
+    <a class="secondary-button" href="edit-arrival-note.html?listing=${encodeURIComponent(listing.id)}">Edit arrival note</a></div>
   `;
   return card;
 }
