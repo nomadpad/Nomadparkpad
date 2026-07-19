@@ -111,6 +111,49 @@
   </section>
 <section class="settings-section">
 
+  <h2>Notifications</h2>
+
+  <label class="settings-toggle">
+
+    <input type="checkbox" id="notify-bookings" checked>
+
+    Booking requests and updates
+
+  </label>
+
+  <label class="settings-toggle">
+
+    <input type="checkbox" id="notify-messages" checked>
+
+    New messages
+
+  </label>
+
+  <label class="settings-toggle">
+
+    <input type="checkbox" id="notify-payments" checked>
+
+    Payment and payout updates
+
+  </label>
+
+  <label class="settings-toggle">
+
+    <input type="checkbox" id="notify-reviews" checked>
+
+    Review reminders
+
+  </label>
+
+  <button class="btn btn-accent" id="save-notifications" type="button">
+
+    Save Notifications
+
+  </button>
+
+  <p class="form-message" id="notifications-message"></p>
+</section>
+<section class="settings-section"></section>
   <h2>Account</h2>
 
   <button class="btn btn-accent" id="settings-logout" type="button"></button>
@@ -127,5 +170,6 @@
 <script src="supabase-config.js"></script>
 <script type="module" src="phase8-account.js"></script>
 <script type="module" src="settings-password.js"></script>
+<script type="module" src="settings-notifications.js"></script>
 </body>
 </html>
