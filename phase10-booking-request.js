@@ -121,7 +121,37 @@ document.querySelector("#real-booking-form")?.addEventListener("submit", async e
   const total =
 
   Math.round((nights * Number(listing.nightly_price) + 4) * 1.05 * 100) / 100;
+const { data: conflicts, error: conflictError } = await supabase
 
+  .from("booking_requests")
+
+  .select("id")
+
+  .eq("listing_id", listing.id)
+
+  .in("status", ["accepted", "paid"])
+
+  .lt("arrival", departure)
+
+  .gt("departure", arrival)
+
+  .limit(1);
+
+if (conflictError) {
+
+  message.textContent = "Could not check availability. Please try again.";
+
+  return;
+
+}
+
+if (conflicts?.length) {
+
+  message.textContent = "Those dates are no longer available. Please choose different dates.";
+
+  return;
+
+}
   button.disabled = true;
   progress.hidden = false;
   message.textContent = "";
