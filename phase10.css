@@ -88,6 +88,25 @@
   cursor: pointer;
 
 }
+.calendar-day.selected {
+
+  background: #173f2f;
+
+  color: #fff;
+
+  font-weight: 700;
+
+}
+
+.calendar-day.selected-range {
+
+  background: #dfe9e2;
+
+  color: #173f2f;
+
+  font-weight: 700;
+
+}
 
 .calendar-day.unavailable,
 

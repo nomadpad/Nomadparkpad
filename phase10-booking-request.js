@@ -69,6 +69,63 @@ function renderCalendar() {
     button.className = "calendar-day";
 
     button.textContent = String(day);
+    button.dataset.date = key;
+    const arrivalValue = document.querySelector("#request-arrival")?.value;
+
+const departureValue = document.querySelector("#request-departure")?.value;
+
+if (key === arrivalValue || key === departureValue) {
+
+  button.classList.add("selected");
+
+} else if (
+
+  arrivalValue &&
+
+  departureValue &&
+
+  key > arrivalValue &&
+
+  key < departureValue
+
+) {
+
+  button.classList.add("selected-range");
+
+}
+
+button.addEventListener("click", () => {
+
+  const arrivalInput = document.querySelector("#request-arrival");
+
+  const departureInput = document.querySelector("#request-departure");
+
+  if (!arrivalInput.value || departureInput.value) {
+
+    arrivalInput.value = key;
+
+    departureInput.value = "";
+
+  } else {
+
+    if (key <= arrivalInput.value) {
+
+      arrivalInput.value = key;
+
+      departureInput.value = "";
+
+    } else {
+
+      departureInput.value = key;
+
+    }
+
+  }
+
+  updateEstimate();
+  renderCalendar();
+
+});
 
     if (unavailableDates.has(key)) {
 
