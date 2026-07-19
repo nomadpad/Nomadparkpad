@@ -23,6 +23,7 @@ function collectDraft() {
     province: document.querySelector("#listing-province")?.value || "Alberta",
     exact_address: document.querySelector("#listing-exact-address")?.value.trim() || "",
     description: document.querySelector("#listing-description")?.value.trim() || "",
+    arrivalNote: document.querySelector("#arrival-note")?.value,
     length: document.querySelector("#max-length")?.value || "24 ft",
     height: document.querySelector("#max-height")?.value,
     width: document.querySelector("#max-width")?.value,
@@ -56,10 +57,11 @@ function restoreDraft() {
     setValue("#listing-city", draft.city);
     setValue("#listing-province", draft.province);
     setValue("#listing-description", draft.description);
+    setValue("#arrival-note", draft.arrivalNote);
     setValue("#max-length", draft.length);
     setValue("#max-height", draft.height);
     setValue("#max-width", draft.width);
-    setValue("#driveway-surface", draft.surface);etValue("#max-width", draft.width);
+    setValue("#driveway-surface", draft.surface);
     setValue("#driveway-slope", draft.slope);
     setValue("#parking-orientation", draft.orientation);
 
@@ -247,11 +249,13 @@ document.querySelector("#listing-builder")?.addEventListener("submit", async (ev
 
   .insert({
 
-    listing_id: listing.id,
+  listing_id: listing.id,
 
-    exact_address: draft.exact_address
+  exact_address: draft.exact_address,
 
-  });
+  arrival_note: draft.arrivalNote || null
+
+});
 
 if (addressError) throw addressError;
 
