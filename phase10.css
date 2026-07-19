@@ -89,11 +89,19 @@
 
 }
 
-.calendar-day.unavailable {
+.calendar-day.unavailable,
 
-  background: #d96f24;
+.calendar-day.unavailable:disabled {
 
-  color: #fff;
+  appearance: none;
+
+  -webkit-appearance: none;
+
+  background: #d96f24 !important;
+
+  color: #fff !important;
+
+  -webkit-text-fill-color: #fff;
 
   opacity: 0.75;
 
