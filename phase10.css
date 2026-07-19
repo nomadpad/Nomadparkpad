@@ -91,11 +91,11 @@
 
 .calendar-day.unavailable {
 
-  background: #2f3532;
+  background: #d96f24;
 
   color: #fff;
 
-  opacity: 0.65;
+  opacity: 0.75;
 
   cursor: not-allowed;
 
