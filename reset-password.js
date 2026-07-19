@@ -16,11 +16,27 @@ function showMessage(text, isError = false) {
 
 }
 
+function timeoutAfter(milliseconds) {
+
+  return new Promise((_, reject) => {
+
+    setTimeout(() => {
+
+      reject(new Error("The request timed out."));
+
+    }, milliseconds);
+
+  });
+
+}
+
 form?.addEventListener("submit", async event => {
 
   event.preventDefault();
 
-  const password = document.querySelector("#new-password")?.value || "";
+  const password =
+
+    document.querySelector("#new-password")?.value || "";
 
   const confirmation =
 
@@ -44,34 +60,70 @@ form?.addEventListener("submit", async event => {
 
   saveButton.disabled = true;
 
-  showMessage("Saving your new password...");
+  showMessage("Checking your reset link...");
 
-  const { error } = await supabase.auth.updateUser({
+  try {
 
-    password
+    const {
 
-  });
+      data: { session },
 
-  if (error) {
+      error: sessionError
 
-    console.error("Password update failed:", error);
+    } = await Promise.race([
 
-    showMessage("Could not update your password. Please request a new reset link.", true);
+      supabase.auth.getSession(),
+
+      timeoutAfter(10000)
+
+    ]);
+
+    if (sessionError || !session) {
+
+      throw new Error(
+
+        "This reset link is no longer valid. Please request a new one."
+
+      );
+
+    }
+
+    showMessage("Saving your new password...");
+
+    const { error } = await Promise.race([
+
+      supabase.auth.updateUser({ password }),
+
+      timeoutAfter(15000)
+
+    ]);
+
+    if (error) throw error;
+
+    showMessage("Password updated successfully. Returning to login...");
+
+    setTimeout(() => {
+
+      window.location.href = "login.html";
+
+    }, 1200);
+
+  } catch (error) {
+
+    console.error("Password reset failed:", error);
+
+    showMessage(
+
+      error?.message ||
+
+        "Could not update your password. Please request a new reset link.",
+
+      true
+
+    );
 
     saveButton.disabled = false;
 
-    return;
-
   }
-
-  showMessage("Password updated successfully. Returning to login...");
-
-  await supabase.auth.signOut();
-
-  setTimeout(() => {
-
-    window.location.href = "login.html";
-
-  }, 1200);
 
 });
