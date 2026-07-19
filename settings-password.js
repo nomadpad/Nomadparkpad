@@ -73,3 +73,42 @@ form?.addEventListener("submit", async event => {
   showMessage("Password changed successfully.");
 
 });
+const logoutButton = document.querySelector("#settings-logout");
+
+const logoutMessage = document.querySelector("#logout-message");
+
+logoutButton?.addEventListener("click", async () => {
+
+  logoutButton.disabled = true;
+
+  if (logoutMessage) {
+
+    logoutMessage.textContent = "Logging out...";
+
+    logoutMessage.classList.remove("error");
+
+  }
+
+  const { error } = await supabase.auth.signOut();
+
+  if (error) {
+
+    console.error("Logout failed:", error);
+
+    if (logoutMessage) {
+
+      logoutMessage.textContent = "Could not log out. Please try again.";
+
+      logoutMessage.classList.add("error");
+
+    }
+
+    logoutButton.disabled = false;
+
+    return;
+
+  }
+
+  window.location.href = "index.html";
+
+});
