@@ -87,11 +87,18 @@ document.querySelector("#forgot-form")?.addEventListener("submit", async (event)
     return;
   }
 
-  const { error } = await supabase.auth.resetPasswordForEmail(
-    document.querySelector("#forgot-email").value.trim(),
-    { redirectTo: `${window.location.origin}/auth-callback.html` }
-  );
+  
+const { error } = await supabase.auth.resetPasswordForEmail(
 
+  document.querySelector("#forgot-email").value,
+
+  {
+
+    redirectTo: `${window.location.origin}/reset-password.html`
+
+  }
+
+);
   setMessage(form, error ? error.message : "Password reset email sent.", Boolean(error));
 });
 
