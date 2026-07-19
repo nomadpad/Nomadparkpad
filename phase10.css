@@ -147,8 +147,8 @@
   color: #66706b;
 
 }
-.date-field-hidden {
+.form-grid .date-field-hidden {
 
-  display: none;
+  display: none !important;
 
 }
