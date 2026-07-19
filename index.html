@@ -25,15 +25,29 @@
 
   <button class="menu-button" aria-label="Open menu" aria-expanded="false">☰</button>
 
-  <nav class="main-nav" aria-label="Primary navigation">
-    <a href="find-a-pad.html">Find a Pad</a>
-    <a href="become-a-host.html">Become a Host</a>
-    <a href="#how">How It Works</a>
-    <a href="#trust">Trust & Safety</a>
-    <a href="#stories">Stories</a>
-      <a href="sign-up.html">Create Account</a>
-      <a href="login.html">Log In</a>
-  </nav>
+  <nav class="main-nav" aria-label="Main navigation">
+
+  <a class="guest-menu-link" href="find-a-pad.html">Find a Pad</a>
+
+  <a class="guest-menu-link" href="become-a-host.html">Become a Host</a>
+
+  <a class="guest-menu-link" href="#how">How It Works</a>
+
+  <a class="guest-menu-link" href="#trust">Trust & Safety</a>
+
+  <a class="guest-menu-link" href="#stories">Stories</a>
+
+  <a class="guest-menu-link" href="sign-up.html">Create Account</a>
+
+  <a class="guest-menu-link" href="login.html">Log In</a>
+
+  <a class="member-menu-link" href="#about" hidden>About Us</a>
+
+  <a class="member-menu-link" href="account.html" hidden>Settings</a>
+
+  <a class="member-menu-link" href="#contact" hidden>Contact Us</a>
+
+</nav>
 
   <a class="early-access" href="#early">Join Early Access</a>
 </header>
@@ -48,7 +62,7 @@
 
       <div class="hero-buttons">
         <a class="btn btn-primary" href="find-a-pad.html">Find a Pad</a>
-        <a class="btn btn-accent" href="become-a-host.html">Become a Host</a>
+        <a class="btn btn-accent" href="host-dashboard.html">Host</a>
       </div>
 
       <p class="launch-note">Launching first in Alberta. Join as a founding traveler or host.</p>
@@ -191,7 +205,9 @@
 
   <p>© 2026 Nomad Park Pad. All rights reserved.</p>
 </footer>
+<script src="supabase-config.js"></script>
 
+<script type="module" src="homepage-auth.js"></script>
 <script src="script.js"></script>
 </body>
 </html>
