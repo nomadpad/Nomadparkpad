@@ -75,7 +75,7 @@ document.querySelector("#login-form")?.addEventListener("submit", async (event) 
     return;
   }
 
-  window.location.href = "account.html";
+  window.location.href = "index.html";
 });
 
 document.querySelector("#forgot-form")?.addEventListener("submit", async (event) => {
