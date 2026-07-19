@@ -38,6 +38,45 @@
         <label>Departure
           <input id="request-departure" type="date" required>
         </label>
+        <div class="booking-calendar">
+
+  <div class="booking-calendar-header">
+
+    <button type="button" id="calendar-prev">‹</button>
+
+    <strong id="calendar-month">Loading calendar...</strong>
+
+    <button type="button" id="calendar-next">›</button>
+
+  </div>
+
+  <div class="calendar-weekdays">
+
+    <span>Sun</span>
+
+    <span>Mon</span>
+
+    <span>Tue</span>
+
+    <span>Wed</span>
+
+    <span>Thu</span>
+
+    <span>Fri</span>
+
+    <span>Sat</span>
+
+  </div>
+
+  <div id="booking-calendar-grid" class="booking-calendar-grid"></div>
+
+  <p class="calendar-note">
+
+    Shaded dates are unavailable.
+
+  </p>
+
+</div>
         <label>Travelers
           <select id="request-travelers" required>
             <option value="1">1 traveler</option>

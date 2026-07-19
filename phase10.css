@@ -7,3 +7,116 @@
 [hidden] {
   display: none !important;
 }
+.booking-calendar {
+
+  grid-column: 1 / -1;
+
+  margin: 8px 0 18px;
+
+  padding: 18px;
+
+  border: 1px solid #ded8ca;
+
+  border-radius: 18px;
+
+  background: #fff;
+
+}
+
+.booking-calendar-header {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  margin-bottom: 14px;
+
+}
+
+.booking-calendar-header button {
+
+  width: 42px;
+
+  height: 42px;
+
+  border: 0;
+
+  border-radius: 50%;
+
+  font-size: 24px;
+
+  cursor: pointer;
+
+}
+
+.calendar-weekdays,
+
+.booking-calendar-grid {
+
+  display: grid;
+
+  grid-template-columns: repeat(7, 1fr);
+
+  gap: 6px;
+
+  text-align: center;
+
+}
+
+.calendar-weekdays {
+
+  margin-bottom: 8px;
+
+  font-size: 12px;
+
+  font-weight: 700;
+
+}
+
+.calendar-day {
+
+  min-height: 42px;
+
+  border: 0;
+
+  border-radius: 10px;
+
+  background: #f5f2eb;
+
+  cursor: pointer;
+
+}
+
+.calendar-day.unavailable {
+
+  background: #2f3532;
+
+  color: #fff;
+
+  opacity: 0.65;
+
+  cursor: not-allowed;
+
+  text-decoration: line-through;
+
+}
+
+.calendar-day.empty {
+
+  background: transparent;
+
+  cursor: default;
+
+}
+
+.calendar-note {
+
+  margin: 12px 0 0;
+
+  font-size: 14px;
+
+  color: #66706b;
+
+}

@@ -2,7 +2,147 @@ import { supabase, supabaseConfigured } from "./supabase-client.js";
 
 const listingId = new URLSearchParams(window.location.search).get("listing");
 let listing = null;
+ let calendarMonth = new Date();
 
+let unavailableDates = new Set();
+
+const calendarGrid = document.querySelector("#booking-calendar-grid");
+
+const calendarTitle = document.querySelector("#calendar-month");
+
+const calendarPrev = document.querySelector("#calendar-prev");
+
+const calendarNext = document.querySelector("#calendar-next");
+function dateKey(date) {
+
+  const year = date.getFullYear();
+
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+
+  const day = String(date.getDate()).padStart(2, "0");
+
+  return `${year}-${month}-${day}`;
+
+}
+function renderCalendar() {
+
+  if (!calendarGrid || !calendarTitle) return;
+
+  calendarGrid.innerHTML = "";
+
+  const year = calendarMonth.getFullYear();
+
+  const month = calendarMonth.getMonth();
+
+  calendarTitle.textContent = calendarMonth.toLocaleDateString("en-CA", {
+
+    month: "long",
+
+    year: "numeric"
+
+  });
+
+  const firstDay = new Date(year, month, 1);
+
+  const lastDay = new Date(year, month + 1, 0);
+
+  for (let i = 0; i < firstDay.getDay(); i += 1) {
+
+    const empty = document.createElement("div");
+
+    empty.className = "calendar-day empty";
+
+    calendarGrid.appendChild(empty);
+
+  }
+
+  for (let day = 1; day <= lastDay.getDate(); day += 1) {
+
+    const date = new Date(year, month, day);
+
+    const key = dateKey(date);
+
+    const button = document.createElement("button");
+
+    button.type = "button";
+
+    button.className = "calendar-day";
+
+    button.textContent = String(day);
+
+    if (unavailableDates.has(key)) {
+
+      button.classList.add("unavailable");
+
+      button.disabled = true;
+
+    }
+
+    calendarGrid.appendChild(button);
+
+  }
+
+}
+async function loadUnavailableDates() {
+
+  if (!listingId) return;
+
+  const { data: bookings, error } = await supabase
+
+    .from("booking_requests")
+
+    .select("arrival,departure")
+
+    .eq("listing_id", listingId)
+
+    .in("status", ["accepted", "paid"]);
+
+  if (error) {
+
+    console.error("Could not load unavailable dates:", error);
+
+    renderCalendar();
+
+    return;
+
+  }
+
+  unavailableDates = new Set();
+
+  (bookings || []).forEach(booking => {
+
+    const current = new Date(`${booking.arrival}T12:00:00`);
+
+    const departure = new Date(`${booking.departure}T12:00:00`);
+
+    while (current < departure) {
+
+      unavailableDates.add(dateKey(current));
+
+      current.setDate(current.getDate() + 1);
+
+    }
+
+  });
+
+  renderCalendar();
+
+}
+calendarPrev?.addEventListener("click", () => {
+
+  calendarMonth.setMonth(calendarMonth.getMonth() - 1);
+
+  renderCalendar();
+
+});
+
+calendarNext?.addEventListener("click", () => {
+
+  calendarMonth.setMonth(calendarMonth.getMonth() + 1);
+
+  renderCalendar();
+
+});
 function money(value) {
   return `$${Number(value || 0).toFixed(0)}`;
 }
@@ -204,3 +344,4 @@ if (conflicts?.length) {
 
 setMinimumDates();
 loadListing();
+loadUnavailableDates();
