@@ -27,7 +27,7 @@ async function loadStripeAccountStatus() {
 
       error: sessionError,
 
-    } = await supabaseClient.auth.getSession();
+    } = await supabase.auth.getSession();
 
     if (sessionError || !session) {
 
@@ -43,7 +43,7 @@ async function loadStripeAccountStatus() {
 
     }
 
-    const { data, error } = await supabaseClient.functions.invoke(
+    const { data, error } = await supabase.functions.invoke(
 
       "get-stripe-account-status"
 
