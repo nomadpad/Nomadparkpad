@@ -26,36 +26,78 @@
   </section>
 
   <section class="payout-grid">
-    <article class="phase7-card payout-summary">
-      <span>Available balance</span>
-      <strong>$176.00</strong>
-      <p>Example funds from completed stays.</p>
-      <button class="btn btn-accent" type="button" id="demo-payout">Send Demo Payout</button>
-      <p class="payout-message" aria-live="polite"></p>
-    </article>
+    
+<article class="phase7-card payout-summary" id="stripe-payout-status">
 
-    <article class="phase7-card">
-      <h2>Payout method</h2>
-      <div class="fake-payment-box">
-        <div class="fake-card-row">
-          <span>🏦</span>
-          <div><strong>Demo bank account</strong><p>•••• 8821</p></div>
-          <span class="demo-pill">Not connected</span>
-        </div>
-      </div>
-      <button class="secondary-button full-button" type="button">Update payout method</button>
-    </article>
-  </section>
+  <span>Payout status</span>
+
+  <strong id="payout-status-title">
+
+    Checking Stripe connection...
+
+  </strong>
+
+  <p id="payout-status-message">
+
+    Please wait while we check your host payout account.
+
+  </p>
+
+  <a
+
+    class="btn btn-accent"
+
+    id="payout-action-button"
+
+    href="#"
+
+    hidden
+
+  >
+
+    Set Up Payouts
+
+  </a>
+
+<article class="phase7-card">
+
+  <h2>Payout method</h2>
+
+  <p id="payout-method-message">
+
+    Your payout method will appear here after Stripe onboarding is complete.
+
+  </p>
+
+  <a
+
+    class="btn btn-accent"
+
+    id="manage-payout-method"
+
+    href="#"
+
+    hidden
+
+  >
+
+    Manage Payout Method
+
+  </a>
+
+</article>
 
   <section class="phase7-card">
-    <div class="table-heading"><h2>Example earnings history</h2><span>July 2026</span></div>
-    <div class="earnings-table">
-      <div class="table-row table-head"><span>Stay</span><span>Guest paid</span><span>Platform fee</span><span>Host payout</span></div>
-      <div class="table-row"><span>July 18</span><span>$27.30</span><span>$2.20</span><span>$19.80</span></div>
-      <div class="table-row"><span>July 22</span><span>$27.30</span><span>$2.20</span><span>$19.80</span></div>
-      <div class="table-row"><span>July 24</span><span>$49.30</span><span>$4.40</span><span>$39.60</span></div>
-    </div>
-  </section>
+
+  <h2>Payout activity</h2>
+
+  <p id="payout-activity-message">
+
+    Completed host payouts will appear here once your Stripe account is connected and live bookings begin.
+
+  </p>
+
+</section>
 
   <section class="phase7-card">
     <h2>How fees work in this prototype</h2>
@@ -73,8 +115,10 @@
   <p>© 2026 Nomad Park Pad. All rights reserved.</p>
 </footer>
 <script src="script.js"></script>
-<script src="phase7.js"></script>
+
 <script src="supabase-config.js"></script>
+
+<script type="module" src="host-payouts.js"></script>
 <script type="module" src="auth-guard.js"></script>
 </body>
 </html>
