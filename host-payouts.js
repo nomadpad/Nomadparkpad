@@ -1,9 +1,4 @@
-const supabaseClient = window.supabaseClient;
-if (!supabaseClient?.auth) {
-
-  throw new Error("Supabase client is not configured.");
-
-}
+import { supabase } from "./supabase-client.js";
 const statusTitle = document.querySelector("#payout-status-title");
 
 const statusMessage = document.querySelector("#payout-status-message");
