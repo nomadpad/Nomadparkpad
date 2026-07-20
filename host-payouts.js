@@ -140,18 +140,25 @@ async function loadStripeAccountStatus() {
 
   } catch (error) {
 
-    console.error("Unexpected payout page error:", error);
+  console.error("Unexpected payout page error:", error);
 
-    showStatus(
+  const errorMessage =
 
-      "Could not check payouts",
+    error?.message ||
 
-      "Something went wrong while loading your Stripe status."
+    String(error) ||
 
-    );
+    "Unknown payout error";
 
-  }
+  showStatus(
 
+    "Could not check payouts",
+
+    errorMessage
+
+  );
+
+}
 }
 
 actionButton?.setAttribute("hidden", "");
