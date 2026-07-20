@@ -71,4 +71,67 @@ body{background:var(--cream)}.active-link{color:var(--orange)}.account-shell,.pr
 
   white-space: nowrap;
 
+} 
+main .settings-section {
+
+  display: block !important;
+
+  width: 100% !important;
+
+  margin: 28px 0 0 !important;
+
+  padding: 24px !important;
+
+  background: #ffffff !important;
+
+  border: 1px solid #ded8ca !important;
+
+  border-radius: 18px !important;
+
+  box-sizing: border-box !important;
+
+}
+
+main .settings-section .settings-toggle {
+
+  display: flex !important;
+
+  align-items: center !important;
+
+  width: 100% !important;
+
+  margin: 14px 0 !important;
+
+  gap: 12px !important;
+
+  white-space: normal !important;
+
+}
+
+main .settings-section .settings-toggle input {
+
+  flex: 0 0 22px !important;
+
+  width: 22px !important;
+
+  height: 22px !important;
+
+  margin: 0 !important;
+
+}
+
+#settings-logout {
+
+  display: inline-flex !important;
+
+  align-items: center !important;
+
+  justify-content: center !important;
+
+  width: auto !important;
+
+  min-width: 180px !important;
+
+  padding: 14px 28px !important;
+
 }
