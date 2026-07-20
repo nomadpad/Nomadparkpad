@@ -1,3 +1,9 @@
+const supabaseClient = window.supabaseClient;
+if (!supabaseClient?.auth) {
+
+  throw new Error("Supabase client is not configured.");
+
+}
 const statusTitle = document.querySelector("#payout-status-title");
 
 const statusMessage = document.querySelector("#payout-status-message");
@@ -26,7 +32,7 @@ async function loadStripeAccountStatus() {
 
       error: sessionError,
 
-    } = await supabase.auth.getSession();
+    } = await supabaseClient.auth.getSession();
 
     if (sessionError || !session) {
 
@@ -42,7 +48,7 @@ async function loadStripeAccountStatus() {
 
     }
 
-    const { data, error } = await supabase.functions.invoke(
+    const { data, error } = await supabaseClient.functions.invoke(
 
       "get-stripe-account-status"
 
