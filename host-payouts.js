@@ -96,7 +96,9 @@ async function loadStripeAccountStatus() {
         "Your Stripe account is connected and ready to receive host earnings."
 
       );
+actionButton?.setAttribute("hidden", "");
 
+manageMethodButton?.removeAttribute("hidden");
       if (methodMessage) {
 
         methodMessage.textContent =
