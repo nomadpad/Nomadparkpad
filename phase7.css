@@ -38,3 +38,10 @@
 .review-list{display:grid;gap:14px}.review-list article{display:grid;grid-template-columns:auto 1fr;gap:14px;padding:18px;border:1px solid var(--line);border-radius:12px}.review-avatar{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;background:var(--forest);color:#fff;font-weight:900}.review-list span{color:var(--orange);margin-left:8px}.review-list p{color:var(--muted)}.review-list small{color:var(--orange);font-weight:800}
 @media(max-width:950px){.checkout-layout,.payout-grid,.review-overview{grid-template-columns:1fr}.sticky-card{position:relative;top:auto}}
 @media(max-width:680px){.phase7-shell,.receipt-shell,.review-shell{padding:32px 5%}.form-grid,.review-metrics{grid-template-columns:1fr}.earnings-table{overflow-x:auto}.table-row{min-width:640px}.fee-grid{grid-template-columns:1fr}.success-card,.review-card{padding:24px}.success-card h1{font-size:40px}.rating-bars span{grid-template-columns:1fr}}
+#payout-action-button[hidden],
+
+#manage-payout-method[hidden] {
+
+  display: none !important;
+
+}
