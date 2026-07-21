@@ -165,5 +165,59 @@ async function loadStripeAccountStatus() {
 actionButton?.setAttribute("hidden", "");
 
 manageMethodButton?.setAttribute("hidden", "");
+actionButton?.addEventListener("click", async (event) => {
 
+  event.preventDefault();
+
+  const originalText = actionButton.textContent;
+
+  try {
+
+    actionButton.textContent = "Opening Stripe...";
+
+    actionButton.setAttribute("aria-disabled", "true");
+
+    actionButton.style.pointerEvents = "none";
+
+    const { data, error } = await supabase.functions.invoke(
+
+      "create-stripe-onboarding-link"
+
+    );
+
+    if (error) {
+
+      throw error;
+
+    }
+
+    if (!data?.url) {
+
+      throw new Error("Stripe onboarding link was not returned.");
+
+    }
+
+    window.location.href = data.url;
+
+  } catch (error) {
+
+    console.error("Stripe onboarding error:", error);
+
+    showStatus(
+
+      "Could not start payout setup",
+
+      error?.message || "Please try again."
+
+    );
+
+    actionButton.textContent = originalText || "Set Up Payouts";
+
+    actionButton.removeAttribute("aria-disabled");
+
+    actionButton.style.pointerEvents = "";
+
+  }
+
+});
 loadStripeAccountStatus();
