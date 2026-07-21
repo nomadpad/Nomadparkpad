@@ -222,4 +222,61 @@ actionButton?.addEventListener("click", async (event) => {
   }
 
 });
+manageMethodButton?.addEventListener("click", async (event) => {
+
+  event.preventDefault();
+
+  const originalText = manageMethodButton.textContent;
+
+  try {
+
+    manageMethodButton.textContent = "Opening Stripe...";
+
+    manageMethodButton.setAttribute("aria-disabled", "true");
+
+    manageMethodButton.style.pointerEvents = "none";
+
+    const { data, error } = await supabase.functions.invoke(
+
+      "create-stripe-login-link"
+
+    );
+
+    if (error) {
+
+      throw error;
+
+    }
+
+    if (!data?.url) {
+
+      throw new Error("Stripe management link was not returned.");
+
+    }
+
+    window.location.href = data.url;
+
+  } catch (error) {
+
+    console.error("Stripe login-link error:", error);
+
+    showStatus(
+
+      "Could not open payout management",
+
+      error?.message || "Please try again."
+
+    );
+
+    manageMethodButton.textContent =
+
+      originalText || "Manage Payout Method";
+
+    manageMethodButton.removeAttribute("aria-disabled");
+
+    manageMethodButton.style.pointerEvents = "";
+
+  }
+
+});
 loadStripeAccountStatus();
