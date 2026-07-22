@@ -59,7 +59,71 @@ async function changeStatus(bookingId, status, button) {
   await loadDashboard();
 
 }
+async function refundBooking(bookingId, button) {
 
+  const confirmed = window.confirm(
+
+    "Refund this booking in full? This will return the traveler’s payment and reverse the host payout."
+
+  );
+
+  if (!confirmed) return;
+
+  const originalText = button.textContent;
+
+  try {
+
+    button.disabled = true;
+
+    button.textContent = "Refunding...";
+
+    const { data, error } = await supabase.functions.invoke(
+
+      "refund-booking",
+
+      {
+
+        body: {
+
+          bookingId,
+
+        },
+
+      }
+
+    );
+
+    if (error) throw error;
+
+    if (!data?.success) {
+
+      throw new Error(data?.error || "The refund could not be completed.");
+
+    }
+
+    alert("Refund completed successfully.");
+
+    await loadDashboard();
+
+  } catch (error) {
+
+    console.error("Refund error:", error);
+
+    alert(
+
+      error?.message ||
+
+        "The refund could not be completed. Please try again."
+
+    );
+
+    button.disabled = false;
+
+    button.textContent = originalText;
+
+  }
+
+}
 function requestCard(request) {
   const card = document.createElement("article");
   card.className = "host-request-card";
@@ -99,7 +163,25 @@ function requestCard(request) {
   messages.href = `messages.html?booking=${encodeURIComponent(request.id)}`;
   messages.textContent = "Message";
   actions.appendChild(messages);
+if (status === "paid") {
 
+  const refund = document.createElement("button");
+
+  refund.className = "danger-button";
+
+  refund.type = "button";
+
+  refund.textContent = "Refund Booking";
+
+  refund.addEventListener("click", () =>
+
+    refundBooking(request.id, refund)
+
+  );
+
+  actions.appendChild(refund);
+
+}
   if (status === "pending") {
     const accept = document.createElement("button");
     accept.className = "btn btn-primary";
