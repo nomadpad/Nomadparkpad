@@ -35,7 +35,7 @@ async function loadBooking() {
 
   const { data, error } = await supabase
     .from("booking_requests")
-    .select("id,traveler_id,arrival,departure,travelers,vehicle_type,vehicle_length,pets,message,status,total_amount,listing_id,listings(id,title,city,province,host_id,profiles!listings_host_id_fkey(first_name))")
+    .select("id,traveler_id,arrival,departure,travelers,vehicle_type,vehicle_length,pets,message,status,total_amount,refunded_at,refund_status,listing_id,listings(id,title,city,province,host_id,profiles!listings_host_id_fkey(first_name))")
     .eq("id", bookingId)
     .single();
 
@@ -111,6 +111,33 @@ const arrivalNote = privateDetails?.arrival_note;
 }
   document.querySelector("#trip-message-link").href = `messages.html?booking=${encodeURIComponent(data.id)}`;
   applyStatus(data.status);
+  const actionMessage = document.querySelector("#trip-action-message");
+
+if (data.status === "refunded" && actionMessage) {
+
+  const refundDate = data.refunded_at
+
+    ? new Intl.DateTimeFormat("en-CA", {
+
+        year: "numeric",
+
+        month: "long",
+
+        day: "numeric",
+
+      }).format(new Date(data.refunded_at))
+
+    : null;
+
+  actionMessage.textContent = refundDate
+
+    ? `Your refund was issued on ${refundDate}. Bank processing times may vary.`
+
+    : "Your refund has been issued. Bank processing times may vary.";
+
+  actionMessage.hidden = false;
+
+}
 
   const cancel = document.querySelector("#cancel-request");
   const travelerOwns = currentUserId === data.traveler_id;
