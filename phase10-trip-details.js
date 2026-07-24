@@ -71,10 +71,15 @@ const arrivalNote = privateDetails?.arrival_note;
   setText("#trip-total", `$${Number(data.total_amount || 0).toFixed(0)}`);
   const refundReferenceRow = document.querySelector("#refund-reference-row");
 
-const refundReference = document.querySelector("#trip-refund-reference");
+const refundReference = document.querySelector("#trip-refund-reference")
 
-const hostOwnsBooking = currentUserId === data.listings?.host_id;
+const listing = Array.isArray(data.listings)
 
+  ? data.listings[0]
+
+  : data.listings;
+
+const hostOwnsBooking = currentUserId === listing?.host_id;
 if (
 
   hostOwnsBooking &&
