@@ -18,7 +18,7 @@ function applyStatus(status) {
   const pill = document.querySelector("#trip-status");
   pill.textContent = status;
   pill.className = `status-pill status-${status}`;
-  if (["accepted","paid","completed"].includes(status)) {
+  if (["accepted","paid","refunded","completed"].includes(status)) {
     document.querySelector("#approval-step").classList.add("done");
     document.querySelector("#conversation-step").classList.add("done");
   }
@@ -35,6 +35,7 @@ async function loadBooking() {
 
   const { data, error } = await supabase
     .from("booking_requests")
+
     .select("id,traveler_id,arrival,departure,travelers,vehicle_type,vehicle_length,pets,message,status,total_amount,refunded_at,refund_status,listing_id,listings(id,title,city,province,host_id,profiles!listings_host_id_fkey(first_name))")
     .eq("id", bookingId)
     .single();
@@ -68,6 +69,35 @@ const arrivalNote = privateDetails?.arrival_note;
   setText("#trip-departure", formatDate(data.departure));
   setText("#trip-travelers", String(data.travelers));
   setText("#trip-total", `$${Number(data.total_amount || 0).toFixed(0)}`);
+  const refundReferenceRow = document.querySelector("#refund-reference-row");
+
+const refundReference = document.querySelector("#trip-refund-reference");
+
+const hostOwnsBooking = currentUserId === data.listings?.host_id;
+
+if (
+
+  hostOwnsBooking &&
+
+  data.status === "refunded" &&
+
+  data.stripe_refund_id &&
+
+  refundReferenceRow &&
+
+  refundReference
+
+) {
+
+  refundReference.textContent = data.stripe_refund_id;
+
+  refundReferenceRow.hidden = false;
+
+} else if (refundReferenceRow) {
+
+  refundReferenceRow.hidden = true;
+
+}
   setText("#trip-vehicle", data.vehicle_type || "Not listed");
   setText("#trip-length", data.vehicle_length || "Not listed");
   setText("#trip-pets", data.pets || "Not listed");
