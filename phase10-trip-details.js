@@ -79,7 +79,9 @@ const listing = Array.isArray(data.listings)
 
   : data.listings;
 
-const hostOwnsBooking = currentUserId === listing?.host_id;
+const travelerOwnsBooking = currentUserId === data.traveler_id;
+
+const hostOwnsBooking = !travelerOwnsBooking;
 if (
 
   hostOwnsBooking &&
