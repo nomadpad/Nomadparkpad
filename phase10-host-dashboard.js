@@ -93,7 +93,37 @@ async function refundBooking(bookingId, button) {
 
     );
 
-    if (error) throw error;
+    if (error) {
+
+  let message = error.message || "The refund could not be completed.";
+
+  if (error.context) {
+
+    try {
+
+      const errorBody = await error.context.json();
+
+      message =
+
+        errorBody?.error ||
+
+        errorBody?.message ||
+
+        errorBody?.details ||
+
+        message;
+
+    } catch (parseError) {
+
+      console.error("Could not read refund error response:", parseError);
+
+    }
+
+  }
+
+  throw new Error(message);
+
+}
 
     if (!data?.success) {
 
