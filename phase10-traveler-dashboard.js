@@ -94,6 +94,9 @@ async function loadDashboard() {
   document.querySelector("#traveler-pending-count").textContent = (data || []).filter(x => x.status === "pending").length;
   document.querySelector("#traveler-accepted-count").textContent = (data || []).filter(x => ["accepted","paid"].includes(x.status)).length;
   document.querySelector("#traveler-completed-count").textContent = (data || []).filter(x => x.status === "completed").length;
+  document.querySelector("#traveler-refunded-count").textContent =
+
+  (data || []).filter((x) => x.status === "refunded").length;
 }
 
 document.querySelector("#refresh-traveler-dashboard")?.addEventListener("click", loadDashboard);
