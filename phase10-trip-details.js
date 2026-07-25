@@ -69,7 +69,15 @@ const listing = Array.isArray(data.listings)
 
   : data.listings;
   
-  setText("#trip-title", listing?.title || "Pad booking");tText("#trip-location", `${listings?.city || ""}, ${data.listings?.province || ""}`);
+  setText("#trip-title", listing?.title || "Pad booking");
+
+setText(
+
+  "#trip-location",
+
+  `${listing?.city || ""}, ${listing?.province || ""}`
+
+);
   setText("#trip-arrival", formatDate(data.arrival));
   setText("#trip-departure", formatDate(data.departure));
   setText("#trip-travelers", String(data.travelers));
