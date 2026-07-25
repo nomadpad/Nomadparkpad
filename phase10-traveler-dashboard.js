@@ -28,8 +28,7 @@ function requestCard(request) {
   const article = document.createElement("article");
   article.className = "traveler-request-card";
   
-  arconst refundedNotice =
-
+const refundedNotice =
   request.status === "refunded"
 
     ? `<p class="refund-notice">
