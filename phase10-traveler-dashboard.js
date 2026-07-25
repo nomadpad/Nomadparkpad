@@ -1,8 +1,27 @@
 import { supabase } from "./supabase-client.js";
 
 function formatDate(value) {
-  return new Intl.DateTimeFormat("en-CA", { month: "short", day: "numeric", year: "numeric" })
-    .format(new Date(`${value}T12:00:00`));
+
+  if (!value) return "";
+
+  const dateOnly = /^\d{4}-\d{2}-\d{2}$/.test(value);
+
+  const date = dateOnly
+
+    ? new Date(`${value}T12:00:00`)
+
+    : new Date(value);
+
+  return new Intl.DateTimeFormat("en-CA", {
+
+    month: "short",
+
+    day: "numeric",
+
+    year: "numeric",
+
+  }).format(date);
+
 }
 
 function requestCard(request) {
