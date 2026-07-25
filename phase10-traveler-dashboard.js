@@ -8,7 +8,23 @@ function formatDate(value) {
 function requestCard(request) {
   const article = document.createElement("article");
   article.className = "traveler-request-card";
-  article.innerHTML = `
+  
+  arconst refundedNotice =
+
+  request.status === "refunded"
+
+    ? `<p class="refund-notice">
+
+         Your payment has been refunded${request.refunded_at
+
+           ? ` on ${formatDate(request.refunded_at)}`
+
+           : ""}.
+
+       </p>`
+
+    : "";
+    article.innerHTML = `
     <div class="traveler-request-main">
       <span class="status-pill status-${request.status}">${request.status}</span>
       <h3>${request.listings?.title || "Pad"}</h3>
@@ -19,8 +35,12 @@ function requestCard(request) {
         <span>👥 ${request.travelers}</span>
         <span>💰 $${Number(request.total_amount || 0).toFixed(0)}</span>
       </div>
-    </div>
-    <div class="traveler-request-actions">
+
+${refundedNotice}
+
+</div>
+
+<div class="traveler-request-actions">
       <a class="btn btn-primary" href="trip-details.html?booking=${encodeURIComponent(request.id)}">View Details</a>
       <a class="secondary-button" href="messages.html?booking=${encodeURIComponent(request.id)}">Message Host</a>
     </div>
@@ -37,7 +57,7 @@ async function loadDashboard() {
 
   const { data, error } = await supabase
     .from("booking_requests")
-    .select("id,arrival,departure,travelers,vehicle_type,status,total_amount,created_at,listings(id,title,city,province)")
+  .select("id,arrival,departure,travelers,vehicle_type,status,total_amount,created_at,refunded_at,listings(id,title,city,province)")
     .eq("traveler_id", user.id)
     .order("created_at", { ascending: false });
 
