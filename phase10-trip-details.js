@@ -63,8 +63,13 @@ if (privateError) {
 }
 const exactAddress = privateDetails?.exact_address || null;
 const arrivalNote = privateDetails?.arrival_note;
-  setText("#trip-title", data.listings?.title || "Pad booking");
-  setText("#trip-location", `${data.listings?.city || ""}, ${data.listings?.province || ""}`);
+const listing = Array.isArray(data.listings)
+
+  ? data.listings[0]
+
+  : data.listings;
+  
+  setText("#trip-title", listing?.title || "Pad booking");tText("#trip-location", `${listings?.city || ""}, ${data.listings?.province || ""}`);
   setText("#trip-arrival", formatDate(data.arrival));
   setText("#trip-departure", formatDate(data.departure));
   setText("#trip-travelers", String(data.travelers));
@@ -73,15 +78,27 @@ const arrivalNote = privateDetails?.arrival_note;
 
 const refundReference = document.querySelector("#trip-refund-reference")
 
-const listing = Array.isArray(data.listings)
+const { data: listingOwner, error: listingOwnerError } = await supabase
 
-  ? data.listings[0]
+  .from("listings")
 
-  : data.listings;
+  .select("host_id")
 
-const travelerOwnsBooking = currentUserId === data.traveler_id;
+  .eq("id", data.listing_id)
 
-const hostOwnsBooking = !travelerOwnsBooking;
+  .single();
+
+if (listingOwnerError) {
+
+  console.error("Listing owner lookup failed:", listingOwnerError);
+
+}
+
+const hostOwnsBooking =
+
+  currentUserId &&
+
+  currentUserId === listingOwner?.host_id;
 if (
 
   hostOwnsBooking &&
@@ -108,8 +125,21 @@ if (
   setText("#trip-vehicle", data.vehicle_type || "Not listed");
   setText("#trip-length", data.vehicle_length || "Not listed");
   setText("#trip-pets", data.pets || "Not listed");
-  setText("#trip-host", data.listings?.profiles?.first_name || "Nomad host");
-  setText("#trip-original-message", data.message || "No message provided.");
+setText(
+
+  "#trip-host",
+
+  listing?.profiles?.first_name || "Nomad host"
+
+);
+
+setText(
+
+  "#trip-original-message",
+
+  data.message || "No message provided"
+
+);
   if (exactAddress) {
     setText(
 
