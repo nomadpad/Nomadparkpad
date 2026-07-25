@@ -95,7 +95,7 @@ const hostOwnsBooking =
 
   "#trip-original-message",
 
-  `Booking ID: ${bookingId}; refund ID: ${data.stripe_refund_id ?? "NULL"}; status: ${data.status}`
+  data.message || "No message provided"
 
 );
 if (
