@@ -36,7 +36,7 @@ async function loadBooking() {
   const { data, error } = await supabase
     .from("booking_requests")
 
-    .select("id,traveler_id,arrival,departure,travelers,vehicle_type,vehicle_length,pets,message,status,total_amount,refunded_at,refund_status,listing_id,listings(id,title,city,province,host_id,profiles!listings_host_id_fkey(first_name))")
+    .select("id,traveler_id,arrival,departure,travelers,vehicle_type,vehicle_length,pets,message,status,total_amount,refunded_at,refund_status,stripe_refund_id,listing_id,listings(id,title,city,province,host_id,profiles!listings_host_id_fkey(first_name))")
     .eq("id", bookingId)
     .single();
 
@@ -95,7 +95,7 @@ const hostOwnsBooking =
 
   "#trip-original-message",
 
-  `Debug — host match: ${hostOwnsBooking}; refund ID loaded: ${Boolean(data.stripe_refund_id)}; status: ${data.status}`
+  `Booking ID: ${bookingId}; refund ID: ${data.stripe_refund_id ?? "NULL"}; status: ${data.status}`
 
 );
 if (
@@ -132,13 +132,6 @@ setText(
 
 );
 
-setText(
-
-  "#trip-original-message",
-
-  `Debug — host match: ${hostOwnsBooking}; refund ID loaded: ${Boolean(data.stripe_refund_id)}; status: ${data.status}`
-
-);
   if (exactAddress) {
     setText(
 
