@@ -86,27 +86,11 @@ setText(
 
 const refundReference = document.querySelector("#trip-refund-reference")
 
-const { data: listingOwner, error: listingOwnerError } = await supabase
-
-  .from("listings")
-
-  .select("host_id")
-
-  .eq("id", data.listing_id)
-
-  .single();
-
-if (listingOwnerError) {
-
-  console.error("Listing owner lookup failed:", listingOwnerError);
-
-}
-
 const hostOwnsBooking =
 
-  currentUserId &&
+  Boolean(currentUserId) &&
 
-  currentUserId === listingOwner?.host_id;
+  currentUserId === listing?.host_id;
 if (
 
   hostOwnsBooking &&
