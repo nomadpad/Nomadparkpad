@@ -91,6 +91,13 @@ const hostOwnsBooking =
   Boolean(currentUserId) &&
 
   currentUserId === listing?.host_id;
+  setText(
+
+  "#trip-original-message",
+
+  `Debug — host match: ${hostOwnsBooking}; refund ID loaded: ${Boolean(data.stripe_refund_id)}; status: ${data.status}`
+
+);
 if (
 
   hostOwnsBooking &&
@@ -129,7 +136,7 @@ setText(
 
   "#trip-original-message",
 
-  data.message || "No message provided"
+  `Debug — host match: ${hostOwnsBooking}; refund ID loaded: ${Boolean(data.stripe_refund_id)}; status: ${data.status}`
 
 );
   if (exactAddress) {
