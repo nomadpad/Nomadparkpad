@@ -163,7 +163,7 @@ function requestCard(request) {
   messages.href = `messages.html?booking=${encodeURIComponent(request.id)}`;
   messages.textContent = "Message";
   actions.appendChild(messages);
-if (status === "paid") {
+if (status === "paid" && request.refund_status !== "refunded") {
 
   const refund = document.createElement("button");
 
@@ -173,11 +173,23 @@ if (status === "paid") {
 
   refund.textContent = "Refund Booking";
 
-  refund.addEventListener("click", () =>
+  refund.addEventListener("click", async () => {
 
-    refundBooking(request.id, refund)
+  const confirmed = window.confirm(
+
+    "Refund this booking?\n\nThis will return the payment to the traveler and cannot be undone."
 
   );
+
+  if (!confirmed) return;
+
+  refund.disabled = true;
+
+  refund.textContent = "Refunding...";
+
+  await refundBooking(request.id, refund);
+
+});
 
   actions.appendChild(refund);
 
