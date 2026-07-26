@@ -357,8 +357,37 @@
 
 <script src="supabase-config.js"></script>
 
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyARloTGny6kPM-fcJ3chPejqPJz33pzh48></script>
-<script src="find-map.js?v=3"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyARloTGny6kPM-fcJ3chPejqPJz33pzh48"></script>
+
+<script>
+
+  window.addEventListener("error", function (event) {
+
+    alert(
+
+      "JavaScript error: " +
+
+      event.message +
+
+      "\nLine: " +
+
+      event.lineno
+
+    );
+
+  });
+
+</script>
+
+<script
+
+  src="find-map.js?v=4"
+
+  onload="alert('find-map file loaded')"
+
+  onerror="alert('find-map file failed to load')">
+
+</script>
 
 <script type="module" src="homepage-auth.js"></script>
 
