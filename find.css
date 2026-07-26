@@ -298,3 +298,106 @@
   .search-cta{flex-direction:column;align-items:flex-start;padding:28px}
   .search-cta .btn{width:100%}
 }
+/* Traveller list and map controls */
+
+.map-view-section {
+
+  width: min(100% - 2rem, 1180px);
+
+  margin: 1.5rem auto;
+
+}
+
+.results-view-toggle {
+
+  display: flex;
+
+  justify-content: center;
+
+  gap: 0.75rem;
+
+  margin-bottom: 1rem;
+
+}
+
+.view-toggle-button {
+
+  border: 1px solid rgba(15, 75, 56, 0.25);
+
+  border-radius: 999px;
+
+  background: #ffffff;
+
+  color: #0f4b38;
+
+  padding: 0.75rem 1.25rem;
+
+  font: inherit;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+}
+
+.view-toggle-button.active {
+
+  background: #0f4b38;
+
+  color: #ffffff;
+
+}
+
+.traveller-map {
+
+  width: 100%;
+
+  height: 520px;
+
+  border-radius: 1.25rem;
+
+  overflow: hidden;
+
+  border: 1px solid rgba(15, 75, 56, 0.18);
+
+  box-shadow: 0 12px 30px rgba(27, 54, 44, 0.1);
+
+  background: #e9eee9;
+
+}
+
+.map-message {
+
+  margin: 1rem 0 0;
+
+  text-align: center;
+
+  color: #627068;
+
+  font-weight: 600;
+
+}
+
+@media (max-width: 680px) {
+
+  .map-view-section {
+
+    width: min(100% - 1rem, 1180px);
+
+  }
+
+  .traveller-map {
+
+    height: 430px;
+
+    border-radius: 1rem;
+
+  }
+
+  .view-toggle-button {
+
+    flex: 1;
+
+  }
+
+}

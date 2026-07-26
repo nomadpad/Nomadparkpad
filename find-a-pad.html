@@ -88,6 +88,59 @@
 
       <button class="btn btn-accent" type="submit">Search Pads</button>
     </form>
+    <section
+
+  class="map-view-section"
+
+  aria-label="Choose between list view and map view">
+
+  <div class="results-view-toggle">
+
+    <button
+
+      class="view-toggle-button active"
+
+      id="list-view-button"
+
+      type="button"
+
+      aria-pressed="true">
+
+      List View
+
+    </button>
+
+    <button
+
+      class="view-toggle-button"
+
+      id="map-view-button"
+
+      type="button"
+
+      aria-pressed="false">
+
+      Map View
+
+    </button>
+
+  </div>
+
+  <div
+
+    id="traveller-map"
+
+    class="traveller-map"
+
+    aria-label="Map showing approximate Nomad Park Pad host areas"
+
+    hidden>
+
+  </div>
+
+  <p id="map-message" class="map-message" hidden></p>
+
+</section>
   </section>
 
   <section class="filter-section">
@@ -300,6 +353,13 @@
 <script src="script.js"></script>
 <script src="find.js"></script>
 <script src="supabase-config.js"></script>
+<script
+
+  src="https://maps.googleapis.com/maps/api/js?key="AIzaSyC_bNcTCXsRwu6sD-JOvktmnzkEQTUUWts>
+
+</script>
+
+<script type="module" src="find-map.js"></script>
 <script type="module" src="homepage-auth.js"></script>
 <script type="module" src="phase9-marketplace.js"></script>
 </body>
