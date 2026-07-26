@@ -364,6 +364,7 @@
 
   background: #e9eee9;
 
+position: relative;
 }
 
 .map-message {
@@ -403,19 +404,35 @@
 }
 .map-explorer-bar {
 
+  position: absolute;
+
+  left: 12px;
+
+  right: 12px;
+
+  bottom: 12px;
+
   display: flex;
 
   gap: 10px;
 
   overflow-x: auto;
 
-  padding: 10px 4px;
-
-  margin-top: 10px;
-
   scrollbar-width: none;
 
   -webkit-overflow-scrolling: touch;
+
+  padding: 8px;
+
+  border-radius: 999px;
+
+  background: rgba(255, 255, 255, 0.95);
+
+  backdrop-filter: blur(8px);
+
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+
+  z-index: 20;
 
 }
 
