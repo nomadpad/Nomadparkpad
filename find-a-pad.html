@@ -20,13 +20,28 @@
   <button class="menu-button" aria-label="Open menu" aria-expanded="false">☰</button>
 
   <nav class="main-nav" aria-label="Primary navigation">
-    <a class="active-link" href="find-a-pad.html">Find a Pad</a>
-    <a href="become-a-host.html">Become a Host</a>
-    <a href="index.html#how">How It Works</a>
-    <a href="index.html#trust">Trust & Safety</a>
-      <a href="sign-up.html">Create Account</a>
-      <a href="login.html">Log In</a>
-  </nav>
+
+  <a class="guest-menu-link active-link" href="find-a-pad.html">Find a Pad</a>
+
+  <a class="guest-menu-link" href="become-a-host.html">Become a Host</a>
+
+  <a class="guest-menu-link" href="index.html#how">How It Works</a>
+
+  <a class="guest-menu-link" href="index.html#trust">Trust & Safety</a>
+
+  <a class="guest-menu-link" href="sign-up.html">Create Account</a>
+
+  <a class="guest-menu-link" href="login.html">Log In</a>
+
+  <a class="member-menu-link" href="traveler-dashboard.html" hidden>My Trips</a>
+
+  <a class="member-menu-link" href="messages.html" hidden>Messages</a>
+
+  <a class="member-menu-link" href="account.html" hidden>Settings</a>
+
+  <a class="member-menu-link" href="become-a-host.html" hidden>Become a Host</a>
+
+</nav>
 
   <a class="early-access" href="index.html#early">Join Early Access</a>
 </header>
@@ -285,6 +300,7 @@
 <script src="script.js"></script>
 <script src="find.js"></script>
 <script src="supabase-config.js"></script>
+<script type="module" src="homepage-auth.js"></script>
 <script type="module" src="phase9-marketplace.js"></script>
 </body>
 </html>
