@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>My Listings | Nomad Park Pad</title>
+
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+  <link rel="stylesheet" href="styles.css">
+
+  <link rel="stylesheet" href="dashboard.css">
+
+</head>
+
+<body>
+
+<header class="site-header">
+
+  <a class="brand" href="index.html" aria-label="Nomad Park Pad home">
+
+    <img src="logo.png" alt="Nomad Park Pad">
+
+  </a>
+
+  <button
+
+    class="menu-button"
+
+    aria-label="Open menu"
+
+    aria-expanded="false">
+
+    ☰
+
+  </button>
+
+  <nav class="main-nav" aria-label="Primary navigation">
+
+    <a href="find-a-pad.html">Find a Pad</a>
+
+    <a href="host-dashboard.html">Host Dashboard</a>
+
+    <a class="active-link" href="my-listings.html">My Listings</a>
+
+    <a href="create-listing.html">Create a Pad</a>
+
+    <a href="account.html">Account</a>
+
+  </nav>
+
+</header>
+
+<main class="dashboard-page">
+
+  <section class="dashboard-heading">
+
+    <p class="kicker">YOUR PADS</p>
+
+    <h1>My Listings</h1>
+
+    <p>
+
+      View and control the availability of your Nomad Park Pad listings.
+
+    </p>
+
+    <a class="btn btn-accent" href="create-listing.html">
+
+      Create Another Pad
+
+    </a>
+
+  </section>
+
+  <section
+
+    id="listings-loading"
+
+    class="dashboard-card">
+
+    <p>Loading your listings...</p>
+
+  </section>
+
+  <section
+
+    id="listings-empty"
+
+    class="dashboard-card"
+
+    hidden>
+
+    <h2>No listings yet</h2>
+
+    <p>
+
+      Create your first pad and begin welcoming travellers.
+
+    </p>
+
+    <a class="btn btn-accent" href="create-listing.html">
+
+      Create a Pad
+
+    </a>
+
+  </section>
+
+  <section
+
+    id="my-listings-grid"
+
+    class="listing-management-grid"
+
+    aria-live="polite">
+
+  </section>
+
+  <p
+
+    id="listings-message"
+
+    class="form-message"
+
+    role="status">
+
+  </p>
+
+</main>
+
+<footer>
+
+  <div class="footer-brand">
+
+    <img src="logo.png" alt="Nomad Park Pad">
+
+    <span>Built for travellers. Powered by community.</span>
+
+  </div>
+
+  <p>© 2026 Nomad Park Pad. All rights reserved.</p>
+
+</footer>
+
+<script src="script.js"></script>
+
+<script src="supabase-config.js"></script>
+
+<script type="module" src="my-listings.js"></script>
+
+</body>
+
+</html>
