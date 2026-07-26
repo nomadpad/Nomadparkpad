@@ -1,4 +1,10 @@
-alert("find-map.js loaded");
+import {
+
+  supabase,
+
+  supabaseConfigured
+
+} from "./supabase-client.js";
 
 const listButton =
 
