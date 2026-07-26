@@ -353,49 +353,8 @@
 <script src="script.js"></script>
 <script src="find.js"></script>
 <script src="supabase-config.js"></script>
-<script>
 
-  const originalConsoleError = console.error;
 
-  console.error = function (...args) {
-
-    originalConsoleError.apply(console, args);
-
-    const message = args
-
-      .map(value =>
-
-        typeof value === "string"
-
-          ? value
-
-          : JSON.stringify(value)
-
-      )
-
-      .join(" ");
-
-    if (
-
-      message.includes("Google Maps JavaScript API error") ||
-
-      message.includes("MapError")
-
-    ) {
-
-      alert(message);
-
-    }
-
-  };
-
-  window.gm_authFailure = function () {
-
-    alert("Google Maps authentication failed.");
-
-  };
-
-</script>
 <script src="https://maps.googleapis.com/maps/api/js?key=">AIzaSyARloTGny6kPM-fcJ3chPejqPJz33pzh48</script>
 
 <script type="module" src="find-map.js"></script>
