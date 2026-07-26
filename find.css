@@ -401,3 +401,60 @@
   }
 
 }
+.map-explorer-bar {
+
+  display: flex;
+
+  gap: 10px;
+
+  overflow-x: auto;
+
+  padding: 10px 4px;
+
+  margin-top: 10px;
+
+  scrollbar-width: none;
+
+  -webkit-overflow-scrolling: touch;
+
+}
+
+.map-explorer-bar::-webkit-scrollbar {
+
+  display: none;
+
+}
+
+.explorer-chip {
+
+  flex: 0 0 auto;
+
+  border: 1px solid #d8ddd9;
+
+  background: #ffffff;
+
+  color: #173f32;
+
+  border-radius: 999px;
+
+  padding: 10px 14px;
+
+  font: inherit;
+
+  font-weight: 600;
+
+  white-space: nowrap;
+
+  cursor: pointer;
+
+}
+
+.explorer-chip.active {
+
+  background: #173f32;
+
+  color: #ffffff;
+
+  border-color: #173f32;
+
+}
