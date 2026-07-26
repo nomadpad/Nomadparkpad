@@ -1,3 +1,4 @@
+alert("find-map.js loaded");
 import {
 
   supabase,
