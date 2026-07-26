@@ -336,6 +336,12 @@ mapButton?.addEventListener("click", async () => {
 
   await buildMap();
 
+  if (window.google?.maps && googleMap) {
+
+    window.google.maps.event.trigger(googleMap, "resize");
+
+  }
+
 });
 
 setActiveView("list");
