@@ -121,6 +121,15 @@ function renderListing(listing) {
           View
 
         </a>
+        <a
+
+  class="btn btn-secondary"
+
+  href="edit-listing.html?listing=${encodeURIComponent(listing.id)}">
+
+  Edit
+
+</a>
 
         <button
 

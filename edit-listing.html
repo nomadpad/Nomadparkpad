@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+
+    name="viewport"
+
+    content="width=device-width, initial-scale=1">
+
+  <title>Edit Listing | Nomad Park Pad</title>
+
+  <link
+
+    rel="icon"
+
+    type="image/png"
+
+    sizes="32x32"
+
+    href="favicon-32.png">
+
+  <link
+
+    rel="apple-touch-icon"
+
+    href="apple-touch-icon.png">
+
+  <link rel="stylesheet" href="styles.css">
+
+  <link rel="stylesheet" href="listing.css">
+
+</head>
+
+<body>
+
+<header class="site-header">
+
+  <a
+
+    class="brand"
+
+    href="index.html"
+
+    aria-label="Nomad Park Pad home">
+
+    <img src="logo.png" alt="Nomad Park Pad">
+
+  </a>
+
+  <button
+
+    class="menu-button"
+
+    aria-label="Open menu"
+
+    aria-expanded="false">
+
+    ☰
+
+  </button>
+
+  <nav class="main-nav" aria-label="Primary navigation">
+
+    <a href="find-a-pad.html">Find a Pad</a>
+
+    <a href="host-dashboard.html">Host Dashboard</a>
+
+    <a href="my-listings.html">My Listings</a>
+
+    <a href="create-listing.html">Create a Pad</a>
+
+    <a href="account.html">Account</a>
+
+  </nav>
+
+</header>
+
+<main class="listing-page">
+
+  <section class="listing-heading">
+
+    <p class="kicker">MANAGE YOUR PAD</p>
+
+    <h1>Edit Listing</h1>
+
+    <p>
+
+      Update the details travellers see when viewing your pad.
+
+    </p>
+
+  </section>
+
+  <section
+
+    id="edit-loading"
+
+    class="listing-card">
+
+    <p>Loading your listing...</p>
+
+  </section>
+
+  <form
+
+    id="edit-listing-form"
+
+    class="listing-form"
+
+    hidden>
+
+    <label>
+
+      Listing title
+
+      <input
+
+        id="edit-title"
+
+        type="text"
+
+        required>
+
+    </label>
+
+    <label>
+
+      Description
+
+      <textarea
+
+        id="edit-description"
+
+        rows="6"
+
+        required>
+
+      </textarea>
+
+    </label>
+
+    <label>
+
+      City
+
+      <input
+
+        id="edit-city"
+
+        type="text"
+
+        required>
+
+    </label>
+
+    <label>
+
+      Province or state
+
+      <input
+
+        id="edit-province"
+
+        type="text"
+
+        required>
+
+    </label>
+
+    <label>
+
+      Nightly price
+
+      <input
+
+        id="edit-price"
+
+        type="number"
+
+        min="0"
+
+        step="1"
+
+        required>
+
+    </label>
+
+    <label>
+
+      Maximum guests
+
+      <input
+
+        id="edit-guests"
+
+        type="number"
+
+        min="1"
+
+        step="1"
+
+        required>
+
+    </label>
+
+    <label>
+
+      Arrival note
+
+      <textarea
+
+        id="edit-arrival-note"
+
+        rows="4"
+
+        placeholder="Instructions shown after a confirmed booking">
+
+      </textarea>
+
+    </label>
+
+    <div class="listing-management-actions">
+
+      <button
+
+        id="save-listing"
+
+        class="btn btn-accent"
+
+        type="submit">
+
+        Save Changes
+
+      </button>
+
+      <a
+
+        class="btn btn-secondary"
+
+        href="my-listings.html">
+
+        Cancel
+
+      </a>
+
+    </div>
+
+    <p
+
+      id="edit-message"
+
+      class="form-message"
+
+      role="status">
+
+    </p>
+
+  </form>
+
+</main>
+
+<script src="script.js"></script>
+
+<script src="supabase-config.js"></script>
+
+<script type="module" src="edit-listing.js"></script>
+
+</body>
+
+</html>
