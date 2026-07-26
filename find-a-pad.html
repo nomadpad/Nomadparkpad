@@ -353,30 +353,33 @@
 <script src="script.js"></script>
 <script src="find.js"></script>
 <script src="supabase-config.js"></script>
-<script
 <script>
 
-  window.gm_authFailure = function () {
+  const originalConsoleError = console.error;
 
-    alert("Google Maps authentication failed. Check the API key, billing, and project settings.");
+  console.error = function (...args) {
 
-  };
+    originalConsoleError.apply(console, args);
 
-  window.addEventListener("error", function (event) {
+    const message = args
 
-    const message = event.message || "";
+      .map(value =>
+
+        typeof value === "string"
+
+          ? value
+
+          : JSON.stringify(value)
+
+      )
+
+      .join(" ");
 
     if (
 
-      message.includes("Google Maps") ||
+      message.includes("Google Maps JavaScript API error") ||
 
-      message.includes("RefererNotAllowed") ||
-
-      message.includes("BillingNotEnabled") ||
-
-      message.includes("ApiNotActivated") ||
-
-      message.includes("InvalidKey")
+      message.includes("MapError")
 
     ) {
 
@@ -384,7 +387,13 @@
 
     }
 
-  });
+  };
+
+  window.gm_authFailure = function () {
+
+    alert("Google Maps authentication failed.");
+
+  };
 
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key="AIzaSyC_bNcTCXsRwu6sD-JOvktmnzkEQTUUWts></script>
