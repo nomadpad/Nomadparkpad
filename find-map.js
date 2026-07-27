@@ -377,3 +377,12 @@ mapButton?.addEventListener("click", async () => {
 setActiveView("map");
 
 buildMap();
+document.querySelectorAll(".explorer-chip").forEach((chip) => {
+
+  chip.addEventListener("click", () => {
+
+    chip.classList.toggle("active");
+
+  });
+
+});
