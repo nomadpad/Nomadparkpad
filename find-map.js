@@ -177,7 +177,7 @@ async function buildMap() {
       fullscreenControl: true
 
     });
-
+window.NPP_GOOGLE_MAP = googleMap;
     const bounds = new google.maps.LatLngBounds();
 const markers = [];
     listings.forEach(listing => {
