@@ -233,7 +233,7 @@ region: "ca",
 
 });
 
-window.addEventListener("load", () => {
+function handleRoutePlannerHash() {
 
   if (window.location.hash === "#route-planner") {
 
@@ -241,14 +241,28 @@ window.addEventListener("load", () => {
 
   }
 
-});
+}
 
-window.addEventListener("hashchange", () => {
+if (document.readyState === "loading") {
 
-  if (window.location.hash === "#route-planner") {
+  document.addEventListener(
 
-    openRoutePlanner();
+    "DOMContentLoaded",
 
-  }
+    handleRoutePlannerHash
 
-});
+  );
+
+} else {
+
+  handleRoutePlannerHash();
+
+}
+
+window.addEventListener(
+
+  "hashchange",
+
+  handleRoutePlannerHash
+
+);
