@@ -5,6 +5,11 @@ const routeClose = document.querySelector("#route-close");
 const routeSearch = document.querySelector("#route-search");
 
 const routeMessage = document.querySelector("#route-message");
+const routeOrigin = document.querySelector("#route-origin");
+
+const routeDestination = document.querySelector("#route-destination");
+
+let routePolylines = [];
 
 function openRoutePlanner() {
 
@@ -36,31 +41,143 @@ function closeRoutePlanner() {
 
 routeClose?.addEventListener("click", closeRoutePlanner);
 
-routeSearch?.addEventListener("click", () => {
+routeSearch?.addEventListener("click", async () => {
 
-  if (routeMessage) {
+  const origin = routeOrigin?.value.trim();
+
+  const destination = routeDestination?.value.trim();
+
+  const map = window.NPP_GOOGLE_MAP;
+
+  if (!origin || !destination) {
 
     routeMessage.textContent =
 
-      "Route search is ready for the Google routing connection.";
+      "Please enter both a starting point and destination.";
 
     routeMessage.hidden = false;
 
+    return;
+
   }
 
-  const map = document.querySelector("#traveller-map");
+  if (!map || !window.google?.maps) {
 
-  setTimeout(() => {
+    routeMessage.textContent =
 
-    map?.scrollIntoView({
+      "The map is still loading. Please try again.";
 
-      behavior: "smooth",
+    routeMessage.hidden = false;
 
-      block: "start"
+    return;
+
+  }
+
+  routeSearch.disabled = true;
+
+  routeSearch.textContent = "Finding Route…";
+
+  routeMessage.textContent = "Calculating your driving route…";
+
+  routeMessage.hidden = false;
+
+  try {
+
+    const { Route } =
+
+      await google.maps.importLibrary("routes");
+
+    const result = await Route.computeRoutes({
+
+      origin,
+
+      destination,
+region: "ca",
+      travelMode: "DRIVING",
+
+      routingPreference: "TRAFFIC_UNAWARE",
+
+      fields: [
+
+        "path",
+
+        "viewport",
+
+        "localizedValues"
+
+      ]
 
     });
 
-  }, 300);
+    const route = result.routes?.[0];
+
+    if (!route) {
+
+      throw new Error("No driving route was found.");
+
+    }
+
+    routePolylines.forEach(polyline => {
+
+      polyline.setMap(null);
+
+    });
+
+    routePolylines = route.createPolylines();
+
+    routePolylines.forEach(polyline => {
+
+      polyline.setMap(map);
+
+    });
+
+    if (route.viewport) {
+
+      map.fitBounds(route.viewport);
+
+    }
+
+    const distance =
+
+      route.localizedValues?.distance || "";
+
+    const duration =
+
+      route.localizedValues?.duration || "";
+
+    routeMessage.textContent =
+
+      `Route found${distance ? ` • ${distance}` : ""}` +
+
+      `${duration ? ` • ${duration}` : ""}`;
+
+    document.querySelector("#traveller-map")
+
+      ?.scrollIntoView({
+
+        behavior: "smooth",
+
+        block: "start"
+
+      });
+
+  } catch (error) {
+
+    console.error("Route search failed:", error);
+
+    routeMessage.textContent =
+
+      error.message || "The route could not be calculated.";
+
+  } finally {
+
+    routeSearch.disabled = false;
+
+    routeSearch.textContent =
+
+      "Find Pads Along My Route";
+
+  }
 
 });
 
