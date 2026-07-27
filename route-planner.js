@@ -1,4 +1,3 @@
-alert("Route planner file loaded");
 const routePlanner = document.querySelector("#route-planner");
 
 const routeClose = document.querySelector("#route-close");
@@ -93,7 +92,7 @@ routeClose?.addEventListener("click", closeRoutePlanner);
 
 routeSearch?.addEventListener("click", async () => {
 
-alert("Route button is working");
+
   const origin = routeOrigin?.value.trim();
 
   const destination = routeDestination?.value.trim();
@@ -206,7 +205,7 @@ region: "ca",
   `${duration ? ` • ${duration}` : ""}` +
 
   ` • ${nearbyHostCount} pad${nearbyHostCount === 1 ? "" : "s"} near route`;
-
+document.querySelector("#traveller-map")
       ?.scrollIntoView({
 
         behavior: "smooth",
