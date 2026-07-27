@@ -233,11 +233,15 @@ region: "ca",
 
 });
 
-if (window.location.hash === "#route-planner") {
+window.addEventListener("load", () => {
 
-  openRoutePlanner();
+  if (window.location.hash === "#route-planner") {
 
-}
+    openRoutePlanner();
+
+  }
+
+});
 
 window.addEventListener("hashchange", () => {
 
