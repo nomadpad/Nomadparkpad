@@ -402,11 +402,20 @@ position: relative;
   }
 
 }
+
 .map-explorer-bar {
 
   display: flex;
 
-  gap: 10px;
+  gap: 8px;
+
+  width: calc(100% - 24px);
+
+  max-width: 100%;
+
+  margin: 12px auto 0;
+
+  padding: 8px;
 
   overflow-x: auto;
 
@@ -414,9 +423,7 @@ position: relative;
 
   -webkit-overflow-scrolling: touch;
 
-  margin-top: 12px;
-
-  padding: 8px;
+  scroll-snap-type: x proximity;
 
   border-radius: 999px;
 
@@ -424,8 +431,9 @@ position: relative;
 
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
 
-}
+  box-sizing: border-box;
 
+}
 .map-explorer-bar::-webkit-scrollbar {
 
   display: none;
@@ -436,6 +444,9 @@ position: relative;
 
   flex: 0 0 auto;
 
+min-width: calc((100vw - 76px) / 4);
+
+scroll-snap-align: start;
   border: 1px solid #d8ddd9;
 
   background: #ffffff;
