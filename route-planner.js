@@ -92,6 +92,7 @@ routeClose?.addEventListener("click", closeRoutePlanner);
 
 routeSearch?.addEventListener("click", async () => {
 
+alert("Route button is working");
   const origin = routeOrigin?.value.trim();
 
   const destination = routeDestination?.value.trim();
