@@ -179,7 +179,7 @@ async function buildMap() {
     });
 
     const bounds = new google.maps.LatLngBounds();
-
+const markers = [];
     listings.forEach(listing => {
 
       const position = {
@@ -192,13 +192,14 @@ async function buildMap() {
 
       const marker = new google.maps.Marker({
 
-        map: googleMap,
+      map: null,
 
         position,
 
         title: listing.title || "Nomad Park Pad"
 
       });
+      markers.push(marker);
 
       const location = [
 
@@ -279,6 +280,17 @@ async function buildMap() {
       bounds.extend(position);
 
     });
+    if (markers.length && window.markerClusterer?.MarkerClusterer) {
+
+  new window.markerClusterer.MarkerClusterer({
+
+    map: googleMap,
+
+    markers
+
+  });
+
+}
 
     if (listings.length === 1) {
 
