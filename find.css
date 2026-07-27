@@ -647,3 +647,30 @@ body {
   box-sizing: border-box;
 
 }
+.map-only-page .map-view-section {
+
+  height: 100vh;
+
+}
+
+.map-only-page .traveller-map {
+
+  height: calc(100vh - 64px);
+
+  border-radius: 0;
+
+}
+
+.map-only-page .map-explorer-bar {
+
+  position: fixed;
+
+  left: 0;
+
+  right: 0;
+
+  bottom: 0;
+
+  z-index: 20;
+
+}
