@@ -620,3 +620,30 @@ body {
   font-weight: 600;
 
 }
+.route-planner {
+
+  width: calc(100% - 24px);
+
+  max-width: 1180px;
+
+  margin-left: auto;
+
+  margin-right: auto;
+
+  overflow: hidden;
+
+}
+
+.route-fields,
+
+.route-fields label,
+
+.route-fields input,
+
+#route-search {
+
+  max-width: 100%;
+
+  box-sizing: border-box;
+
+}
