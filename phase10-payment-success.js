@@ -114,13 +114,11 @@ async function loadReceipt() {
 
       )
 
-      .ilike(
+      .or(
 
-        "province_name",
+  `province_code.ilike.${String(listing.province || "").trim()},province_name.ilike.${String(listing.province || "").trim()}`
 
-        String(listing.province || "").trim()
-
-      )
+)
 
       .single();
 
