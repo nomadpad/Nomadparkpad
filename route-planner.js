@@ -38,13 +38,29 @@ routeClose?.addEventListener("click", closeRoutePlanner);
 
 routeSearch?.addEventListener("click", () => {
 
-  if (!routeMessage) return;
+  if (routeMessage) {
 
-  routeMessage.textContent =
+    routeMessage.textContent =
 
-    "Route search is ready for the Google routing connection.";
+      "Route search is ready for the Google routing connection.";
 
-  routeMessage.hidden = false;
+    routeMessage.hidden = false;
+
+  }
+
+  const map = document.querySelector("#traveller-map");
+
+  setTimeout(() => {
+
+    map?.scrollIntoView({
+
+      behavior: "smooth",
+
+      block: "start"
+
+    });
+
+  }, 300);
 
 });
 
