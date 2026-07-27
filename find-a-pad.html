@@ -463,6 +463,33 @@
 
 <script type="module" src="phase9-marketplace.js"></script>
 <script src="route-planner.js?v=3"></script>
+<script>
+
+  if (window.location.hash === "#route-planner") {
+
+    const planner = document.getElementById("route-planner");
+
+    if (planner) {
+
+      planner.hidden = false;
+
+      setTimeout(() => {
+
+        planner.scrollIntoView({
+
+          behavior: "smooth",
+
+          block: "start"
+
+        });
+
+      }, 100);
+
+    }
+
+  }
+
+</script>
 </body>
 
 </html>
