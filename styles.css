@@ -503,3 +503,54 @@ footer p{
   }
 
 }
+.btn-map,
+
+.btn-route {
+
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  min-width: 110px;
+
+  padding: 0.9rem 1.25rem;
+
+  border-radius: 0.7rem;
+
+  font-weight: 700;
+
+  text-decoration: none;
+
+}
+
+.btn-map {
+
+  background: #ffffff;
+
+  color: #0f4b38;
+
+  border: 2px solid #0f4b38;
+
+}
+
+.btn-route {
+
+  background: #f3eadb;
+
+  color: #0f4b38;
+
+  border: 2px solid #d9c8ad;
+
+}
+
+.hero-buttons {
+
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 12px;
+
+}
