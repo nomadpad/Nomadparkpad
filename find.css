@@ -683,10 +683,30 @@ body {
   font-weight: 600;
 
 }
-padding: 16px 24px;
+.map-action-bar {
 
-font-size: 1.15rem;
+  position: fixed;
 
-font-weight: 600;
+  top: 18px;
+
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  z-index: 25;
+
+  display: flex;
+
+  justify-content: center;
+
+  gap: 12px;
+
+}
+
+.map-action-bar .btn {
+
+  min-width: 120px;
+
+  text-align: center;
 
 }
