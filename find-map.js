@@ -294,13 +294,19 @@ const markers = [];
     window.NPP_HOST_MARKERS = hostMarkerRecords;
     if (markers.length && window.markerClusterer?.MarkerClusterer) {
 
-  new window.markerClusterer.MarkerClusterer({
+  const hostMarkerClusterer =
 
-    map: googleMap,
+    new window.markerClusterer.MarkerClusterer({
 
-    markers
+      map: googleMap,
 
-  });
+      markers
+
+    });
+
+  window.NPP_HOST_MARKER_CLUSTERER =
+
+    hostMarkerClusterer;
 
 }
 
