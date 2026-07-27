@@ -180,7 +180,9 @@ async function buildMap() {
 window.NPP_GOOGLE_MAP = googleMap;
     const bounds = new google.maps.LatLngBounds();
 const markers = [];
-    listings.forEach(listing => {
+
+  const hostMarkerRecords = []; 
+   listings.forEach(listing => {
 
       const position = {
 
@@ -200,6 +202,15 @@ const markers = [];
 
       });
       markers.push(marker);
+      hostMarkerRecords.push({
+
+  marker,
+
+  listing,
+
+  position
+
+});
 
       const location = [
 
@@ -280,6 +291,7 @@ const markers = [];
       bounds.extend(position);
 
     });
+    window.NPP_HOST_MARKERS = hostMarkerRecords;
     if (markers.length && window.markerClusterer?.MarkerClusterer) {
 
   new window.markerClusterer.MarkerClusterer({
