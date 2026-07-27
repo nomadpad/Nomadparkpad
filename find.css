@@ -509,3 +509,114 @@ body {
   overflow: hidden;
 
 }
+.route-planner {
+
+  width: 100%;
+
+  max-width: 1180px;
+
+  margin: 0 auto 20px;
+
+  padding: 24px;
+
+  background: #ffffff;
+
+  border: 1px solid rgba(15, 75, 56, 0.15);
+
+  border-radius: 1.25rem;
+
+  box-shadow: 0 12px 30px rgba(15, 75, 56, 0.12);
+
+  box-sizing: border-box;
+
+}
+
+.route-planner[hidden] {
+
+  display: none;
+
+}
+
+.route-planner-heading {
+
+  display: flex;
+
+  align-items: flex-start;
+
+  justify-content: space-between;
+
+  gap: 16px;
+
+  margin-bottom: 20px;
+
+}
+
+.route-planner-heading h2 {
+
+  margin: 4px 0 0;
+
+  color: #173f32;
+
+}
+
+.route-close {
+
+  border: 0;
+
+  background: transparent;
+
+  color: #173f32;
+
+  font-size: 2rem;
+
+  line-height: 1;
+
+  cursor: pointer;
+
+}
+
+.route-fields {
+
+  display: grid;
+
+  gap: 16px;
+
+}
+
+.route-fields label {
+
+  display: grid;
+
+  gap: 7px;
+
+  color: #173f32;
+
+  font-weight: 700;
+
+}
+
+.route-fields input {
+
+  width: 100%;
+
+  padding: 14px;
+
+  border: 1px solid #d8ddd9;
+
+  border-radius: 0.75rem;
+
+  font: inherit;
+
+  box-sizing: border-box;
+
+}
+
+.route-message {
+
+  margin: 16px 0 0;
+
+  color: #173f32;
+
+  font-weight: 600;
+
+}

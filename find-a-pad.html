@@ -88,13 +88,87 @@
 
       <button class="btn btn-accent" type="submit">Search Pads</button>
     </form>
-    <section
+
+<section class="route-planner" id="route-planner" hidden>
+
+  <div class="route-planner-heading">
+
+    <div>
+
+      <p class="kicker">PLAN YOUR ROUTE</p>
+
+      <h2>Find Pads Along Your Drive</h2>
+
+    </div>
+
+    <button
+
+      class="route-close"
+
+      id="route-close"
+
+      type="button"
+
+      aria-label="Close route planner">
+
+      ×
+
+    </button>
+
+  </div>
+
+  <div class="route-fields">
+
+    <label>
+
+      Starting point
+
+      <input
+
+        id="route-origin"
+
+        type="text"
+
+        placeholder="Edmonton, Alberta"
+
+        autocomplete="street-address">
+
+    </label>
+
+    <label>
+
+      Destination
+
+      <input
+
+        id="route-destination"
+
+        type="text"
+
+        placeholder="Jasper, Alberta"
+
+        autocomplete="street-address">
+
+    </label>
+
+    <button class="btn btn-accent" id="route-search" type="button">
+
+      Find Pads Along My Route
+
+    </button>
+
+  </div>
+
+  <p class="route-message" id="route-message" hidden></p>
+
+</section>
+
+<section
 
   class="map-view-section"
-
-  aria-label="Choose between list view and map view">
-
   
+
+  aria-label="Map showing available Nomad Park Pad hosts"
 
   <div
 
@@ -388,7 +462,7 @@
 <script type="module" src="homepage-auth.js"></script>
 
 <script type="module" src="phase9-marketplace.js"></script>
-
+<script src="route-planner.js"></script>
 </body>
 
 </html>
