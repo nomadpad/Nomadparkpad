@@ -81,7 +81,44 @@ setText(
   setText("#trip-arrival", formatDate(data.arrival));
   setText("#trip-departure", formatDate(data.departure));
   setText("#trip-travelers", String(data.travelers));
-  setText("#trip-total", `$${Number(data.total_amount || 0).toFixed(0)}`);
+  const subtotal = Number(data.total_amount || 0);
+
+const { data: taxRule } = await supabase
+
+  .from("canada_tax_rules")
+
+  .select(
+
+    "federal_tax_rate, provincial_tax_rate, local_tax_rate"
+
+  )
+
+  .or(
+
+    `province_code.ilike.${String(listing?.province || "").trim()},province_name.ilike.${String(listing?.province || "").trim()}`
+
+  )
+
+  .single();
+
+const taxRate =
+
+  Number(taxRule?.federal_tax_rate || 0) +
+
+  Number(taxRule?.provincial_tax_rate || 0) +
+
+  Number(taxRule?.local_tax_rate || 0);
+
+const tax = Math.round(subtotal * taxRate * 100) / 100;
+
+const total = subtotal + tax;
+
+setText("#trip-subtotal", `$${subtotal.toFixed(2)}`);
+
+setText("#trip-tax", `$${tax.toFixed(2)}`);
+
+
+  setText("#trip-total", `$${total.toFixed(2)}`);
   const refundReferenceRow = document.querySelector("#refund-reference-row");
 
 const refundReference = document.querySelector("#trip-refund-reference")
