@@ -386,3 +386,16 @@ document.querySelectorAll(".explorer-chip").forEach((chip) => {
   });
 
 });
+const mapOnly =
+
+  new URLSearchParams(window.location.search).get("mapOnly") === "true";
+
+if (mapOnly) {
+
+  document.querySelectorAll(".hide-on-map-only").forEach((element) => {
+
+    element.hidden = true;
+
+  });
+
+}
