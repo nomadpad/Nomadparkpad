@@ -11,6 +11,55 @@ const routeDestination = document.querySelector("#route-destination");
 
 let routePolylines = [];
 
+function filterHostsNearRoute(routePath, maxDistanceMetres = 10000) {
+
+  const hostRecords = window.NPP_HOST_MARKERS || [];
+
+  const clusterer = window.NPP_HOST_MARKER_CLUSTERER;
+
+  const nearbyMarkers = hostRecords
+
+    .filter(record => {
+
+      const hostPosition = new google.maps.LatLng(
+
+        record.position.lat,
+
+        record.position.lng
+
+      );
+
+      return routePath.some(routePoint => {
+
+        const distance =
+
+          google.maps.geometry.spherical.computeDistanceBetween(
+
+            hostPosition,
+
+            routePoint
+
+          );
+
+        return distance <= maxDistanceMetres;
+
+      });
+
+    })
+
+    .map(record => record.marker);
+
+  if (clusterer) {
+
+    clusterer.clearMarkers();
+
+    clusterer.addMarkers(nearbyMarkers);
+
+  }
+
+  return nearbyMarkers.length;
+
+}
 function openRoutePlanner() {
 
   if (!routePlanner) return;
@@ -130,6 +179,9 @@ region: "ca",
       polyline.setMap(map);
 
     });
+    const nearbyHostCount =
+
+  filterHostsNearRoute(route.path, 10000);
 
     if (route.viewport) {
 
@@ -147,11 +199,11 @@ region: "ca",
 
     routeMessage.textContent =
 
-      `Route found${distance ? ` • ${distance}` : ""}` +
+  `Route found${distance ? ` • ${distance}` : ""}` +
 
-      `${duration ? ` • ${duration}` : ""}`;
+  `${duration ? ` • ${duration}` : ""}` +
 
-    document.querySelector("#traveller-map")
+  ` • ${nearbyHostCount} pad${nearbyHostCount === 1 ? "" : "s"} near route`;
 
       ?.scrollIntoView({
 
