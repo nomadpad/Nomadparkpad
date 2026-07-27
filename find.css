@@ -390,9 +390,7 @@ position: relative;
   .traveller-map {
 
     height: 430px;
-
-    border-radius: 1rem;
-
+    border-radius: 1.25rem 1.25rem 0 0;
   }
 
   .view-toggle-button {
@@ -413,7 +411,7 @@ position: relative;
 
   max-width: 100%;
 
-  margin: 12px auto 0;
+  margin: 0 auto 12px;
 
   padding: 8px;
 
@@ -425,7 +423,7 @@ position: relative;
 
   scroll-snap-type: x proximity;
 
-  border-radius: 999px;
+  border-radius: 0 0 1.25rem 1.25rem;
 
   background: rgba(255, 255, 255, 0.96);
 
