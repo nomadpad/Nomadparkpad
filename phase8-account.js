@@ -32,6 +32,13 @@ if (!supabaseConfigured) {
       document.querySelector("#profile-city").value = profile.city || "";
       document.querySelector("#profile-role").value = profile.role || "traveler";
 
+const hostLink = document.querySelector(".host-only-link");
+
+if (hostLink) {
+
+  hostLink.hidden = !["host", "both"].includes(profile.role);
+
+}
       const fullName = `${profile.first_name || ""} ${profile.last_name || ""}`.trim() || "Nomad Member";
       document.querySelector("#profile-name").textContent = fullName;
       document.querySelector("#profile-initial").textContent = fullName.charAt(0).toUpperCase();
@@ -57,6 +64,13 @@ document.querySelector("#profile-form")?.addEventListener("submit", async (event
   show(error ? error.message : "Profile saved.", Boolean(error));
 
   if (!error) {
+    const hostLink = document.querySelector(".host-only-link");
+
+if (hostLink) {
+
+  hostLink.hidden = !["host", "both"].includes(payload.role);
+
+}
     const fullName = `${payload.first_name} ${payload.last_name}`.trim();
     document.querySelector("#profile-name").textContent = fullName || "Nomad Member";
     document.querySelector("#profile-initial").textContent = (fullName || "N").charAt(0).toUpperCase();
