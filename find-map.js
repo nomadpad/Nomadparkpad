@@ -326,7 +326,8 @@ async function buildMap() {
 
 listButton?.addEventListener("click", () => {
 
-  setActiveView("list");
+setActiveView("list");
+
 
 });
 
@@ -343,5 +344,6 @@ mapButton?.addEventListener("click", async () => {
   }
 
 });
+setActiveView("map");
 
-setActiveView("list");
+buildMap();
