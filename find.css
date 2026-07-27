@@ -444,7 +444,7 @@ position: relative;
 
   flex: 0 0 auto;
 
-min-width: calc((100vw - 76px) / 4);
+min-width: calc((100% - 24px) / 4);
 
 scroll-snap-align: start;
   border: 1px solid #d8ddd9;
@@ -474,5 +474,40 @@ scroll-snap-align: start;
   color: #ffffff;
 
   border-color: #173f32;
+
+}
+html,
+
+body {
+
+  max-width: 100%;
+
+  overflow-x: hidden;
+
+}
+
+.search-hero,
+
+.map-view-section,
+
+.traveller-map,
+
+.map-explorer-bar,
+
+.filter-section,
+
+.results-section {
+
+  width: 100%;
+
+  max-width: 100%;
+
+  box-sizing: border-box;
+
+}
+
+.map-view-section {
+
+  overflow: hidden;
 
 }
