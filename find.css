@@ -769,7 +769,11 @@ max-height: calc(100vh - 40px);
 
   border-radius: 28px;
 
-  box-shadow: 0 24px 60px rgba(15, 45, 35, 0.28);
+  box-shadow:
+
+  0 0 0 100vmax rgba(8, 30, 24, 0.38),
+
+  0 24px 60px rgba(15, 45, 35, 0.28);
 
   overflow-y: auto;
 
