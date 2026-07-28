@@ -889,7 +889,7 @@ background-repeat: no-repeat;
 
   object-fit: contain;
 
-mix-blend-mode: normal;
+mix-blend-mode: multiply;
 
 filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.28));
 }
