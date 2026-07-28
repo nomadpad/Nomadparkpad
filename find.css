@@ -1067,4 +1067,15 @@ filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.28));
   }
 
 }
+.trip-use-location {
+
+  display: none;
+
+}
+
+#tripStartInput:focus + .trip-use-location {
+
+  display: inline-flex;
+
+}
 
