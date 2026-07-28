@@ -407,10 +407,26 @@ const mapSearchButton =
 const mapSearchPanel =
 
   document.querySelector("#mapSearchPanel");
+  const tripPlannerButton =
+
+  document.querySelector("#trip-planner-button");
 
 mapSearchButton?.addEventListener("click", () => {
 
-  mapSearchPanel.hidden = !mapSearchPanel.hidden;
+  mapSearchPanel.hidden = false;
+
+  mapSearchButton.hidden = true;
+
+  tripPlannerButton.hidden = false;
+
+});
+tripPlannerButton?.addEventListener("click", () => {
+
+  mapSearchPanel.hidden = true;
+
+  tripPlannerButton.hidden = true;
+
+  mapSearchButton.hidden = false;
 
 });
 const mapSearchInput =
