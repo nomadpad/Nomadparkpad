@@ -741,7 +741,13 @@ body {
 
   position: fixed;
 
-  inset: 20px;
+  top: 60px;
+
+left: 20px;
+
+right: 20px;
+
+bottom: auto;
 
   z-index: 40;
 
