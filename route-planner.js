@@ -332,7 +332,7 @@ tripDestinationField?.addEventListener("focus", () => {
 
   event.preventDefault();
 
-  const startInput = document.getElementById("tripStartInput");const startInput = document.getElementById("tripStartInput");
+  const startInput = document.getElementById("tripStartInput");
 
   if (!navigator.geolocation) {
 
