@@ -74,33 +74,81 @@
 </div>
 <div class="trip-planner-panel" id="tripPlannerPanel" hidden>
 
-  <input
+  <button
 
-    id="tripStartInput"
+    class="trip-planner-close"
 
-    type="search"
+    id="tripPlannerClose"
 
-    placeholder="Starting city or address"
+    type="button"
 
-    autocomplete="off"
-
-  >
-
-  <input
-
-    id="tripDestinationInput"
-
-    type="search"
-
-    placeholder="Destination city or address"
-
-    autocomplete="off"
+    aria-label="Close trip planner"
 
   >
+
+    ×
+
+  </button>
+
+  <p class="trip-planner-kicker">PLAN YOUR ROUTE</p>
+
+  <h2>Find Pads Along Your Drive</h2>
+
+  <div class="trip-planner-layout">
+
+    <div class="trip-planner-brand">
+
+      <img
+
+        src="logo.png"
+
+        alt="Nomad Park Pad"
+
+        class="trip-planner-logo"
+
+      >
+
+    </div>
+
+    <div class="trip-planner-card">
+
+      <h3>TRIP PLANNER</h3>
+
+      <label for="tripStartInput">Start</label>
+
+      <input
+
+        id="tripStartInput"
+
+        type="search"
+
+        placeholder="Starting city or address"
+
+        autocomplete="off"
+
+      >
+
+      <label for="tripDestinationInput">Destination</label>
+
+      <input
+
+        id="tripDestinationInput"
+
+        type="search"
+
+        placeholder="Destination city or address"
+
+        autocomplete="off"
+
+      >
+
+    </div>
+
+  </div>
 
   <button
 
-    class="btn btn-primary"
+    class="trip-planner-submit"
 
     id="tripPlannerSubmit"
 
@@ -108,11 +156,12 @@
 
   >
 
-    Plan My Route
+    Find Pads Along My Route
 
   </button>
 
 </div>
+
   
 </div>
       <div class="map-explorer-bar" id="mapExplorerBar">
