@@ -399,3 +399,51 @@ if (mapOnly) {
   });
 
 }
+const mapSearchButton =
+
+  document.querySelector("#map-search-button");
+
+const mapSearchPanel =
+
+  document.querySelector("#mapSearchPanel");
+
+mapSearchButton?.addEventListener("click", () => {
+
+  mapSearchPanel.hidden = !mapSearchPanel.hidden;
+
+});
+const mapSearchInput =
+
+  document.querySelector("#mapSearchInput");
+
+const mapSearchSubmit =
+
+  document.querySelector("#mapSearchSubmit");
+
+mapSearchSubmit?.addEventListener("click", () => {
+
+  const query = mapSearchInput?.value.trim();
+
+  if (!query || !googleMap || !window.google?.maps) return;
+
+  const geocoder = new window.google.maps.Geocoder();
+
+  geocoder.geocode({ address: query }, (results, status) => {
+
+    if (status !== "OK" || !results?.[0]) {
+
+      showMessage("Location not found.");
+
+      return;
+
+    }
+
+    googleMap.setCenter(results[0].geometry.location);
+
+    googleMap.setZoom(14);
+
+    showMessage("");
+
+  });
+
+});

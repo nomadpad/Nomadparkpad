@@ -30,11 +30,35 @@
 <div id="traveller-map" class="traveller-map"></div>
 <div class="map-action-bar">
 
-  <button class="btn btn-primary" id="map-search-button">
+  <button class="btn btn-primary" id="map-search-button" type="button">
 
-    Search
+  Search
+
+</button>
+
+<div class="map-search-panel" id="mapSearchPanel" hidden>
+
+  <input
+
+    id="mapSearchInput"
+
+    type="search"
+
+    placeholder="Search a city, address, or place"
+
+    autocomplete="off"
+
+  >
+
+  <button class="btn btn-primary" id="mapSearchSubmit" type="button">
+
+    Go
 
   </button>
+
+</div>
+
+  
 
   <a class="btn btn-route" href="find-a-pad.html#route-planner">
 
