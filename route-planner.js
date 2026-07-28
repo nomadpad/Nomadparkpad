@@ -428,7 +428,7 @@ tripPlannerSubmit?.addEventListener("click", () => {
   routeOrigin.value = start;
 
   routeDestination.value = destination;
-
+closeRoutePlanner();
   routeSearch.click();
 
 });
