@@ -28,6 +28,7 @@
 
       
 <div id="traveller-map" class="traveller-map"></div>
+
 <div class="map-action-bar">
 
   <button class="btn btn-primary" id="map-search-button" type="button">
@@ -71,7 +72,47 @@
   </button>
 
 </div>
+<div class="trip-planner-panel" id="tripPlannerPanel" hidden>
 
+  <input
+
+    id="tripStartInput"
+
+    type="search"
+
+    placeholder="Starting city or address"
+
+    autocomplete="off"
+
+  >
+
+  <input
+
+    id="tripDestinationInput"
+
+    type="search"
+
+    placeholder="Destination city or address"
+
+    autocomplete="off"
+
+  >
+
+  <button
+
+    class="btn btn-primary"
+
+    id="tripPlannerSubmit"
+
+    type="button"
+
+  >
+
+    Plan My Route
+
+  </button>
+
+</div>
   
 </div>
       <div class="map-explorer-bar" id="mapExplorerBar">

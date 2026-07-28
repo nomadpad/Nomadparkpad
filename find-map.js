@@ -410,19 +410,25 @@ const mapSearchPanel =
   const tripPlannerButton =
 
   document.querySelector("#trip-planner-button");
+  const tripPlannerPanel =
+
+  document.querySelector("#tripPlannerPanel");
 
 mapSearchButton?.addEventListener("click", () => {
 
-  mapSearchPanel.hidden = false;
-
+  mapSearchPanel.hidden = false
+tripPlannerPanel.hidden = true;
   mapSearchButton.hidden = true;
 
   tripPlannerButton.hidden = false;
 
 });
+
 tripPlannerButton?.addEventListener("click", () => {
 
   mapSearchPanel.hidden = true;
+
+  tripPlannerPanel.hidden = false;
 
   tripPlannerButton.hidden = true;
 
