@@ -267,3 +267,44 @@ window.addEventListener(
   handleRoutePlannerHash
 
 );
+async function initializeTripAutocomplete() {
+
+  if (!window.google?.maps?.places) return;
+
+  const startInput = document.getElementById("tripStartInput");
+
+  const destinationInput = document.getElementById("tripDestinationInput");
+
+  if (!startInput || !destinationInput) return;
+
+  const options = {
+
+    fields: ["formatted_address", "geometry", "name"],
+
+    types: ["geocode"],
+
+    componentRestrictions: { country: ["ca", "us"] }
+
+  };
+
+  new google.maps.places.Autocomplete(startInput, options);
+
+  new google.maps.places.Autocomplete(destinationInput, options);
+
+}
+
+function waitForTripAutocomplete() {
+
+  if (window.google?.maps?.places) {
+
+    initializeTripAutocomplete();
+
+    return;
+
+  }
+
+  setTimeout(waitForTripAutocomplete, 300);
+
+}
+
+waitForTripAutocomplete();
