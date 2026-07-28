@@ -309,8 +309,13 @@ function waitForTripAutocomplete() {
 
 waitForTripAutocomplete();
 const tripUseLocation = document.getElementById("tripUseLocation");
+tripUseLocation?.addEventListener("pointerdown", (event) => {
 
+  event.preventDefault();
+
+});
 tripUseLocation?.addEventListener("click", () => {
+
 
   const startInput = document.getElementById("tripStartInput");
 
