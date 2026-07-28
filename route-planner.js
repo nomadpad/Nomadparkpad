@@ -310,6 +310,23 @@ function waitForTripAutocomplete() {
 waitForTripAutocomplete();
 const tripUseLocation = document.getElementById("tripUseLocation");
 
+const tripStartGroup = document.querySelector(".trip-start-group");
+
+const tripStartField = document.getElementById("tripStartInput");
+
+const tripDestinationField = document.getElementById("tripDestinationInput");
+
+tripStartField?.addEventListener("focus", () => {
+
+  tripStartGroup?.classList.add("location-open");
+
+});
+
+tripDestinationField?.addEventListener("focus", () => {
+
+  tripStartGroup?.classList.remove("location-open");
+
+});
 
   tripUseLocation?.addEventListener("pointerdown", (event) => {
 

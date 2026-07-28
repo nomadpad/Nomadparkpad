@@ -1108,9 +1108,10 @@ filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.28));
 
 }
 
-.trip-start-group:focus-within .trip-use-location {
+.trip-start-group.location-open .trip-use-location {
 
   display: inline-flex;
 
 }
+
 
