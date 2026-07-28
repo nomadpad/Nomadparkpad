@@ -308,3 +308,80 @@ function waitForTripAutocomplete() {
 }
 
 waitForTripAutocomplete();
+const tripUseLocation = document.getElementById("tripUseLocation");
+
+tripUseLocation?.addEventListener("click", () => {
+
+  const startInput = document.getElementById("tripStartInput");
+
+  if (!navigator.geolocation) {
+
+    alert("Location is not supported on this device.");
+
+    return;
+
+  }
+
+  tripUseLocation.disabled = true;
+
+  tripUseLocation.textContent = "Finding location...";
+
+  navigator.geolocation.getCurrentPosition(
+
+    async ({ coords }) => {
+
+      try {
+
+        const geocoder = new google.maps.Geocoder();
+
+        const result = await geocoder.geocode({
+
+          location: {
+
+            lat: coords.latitude,
+
+            lng: coords.longitude
+
+          }
+
+        });
+
+        startInput.value =
+
+          result.results?.[0]?.formatted_address || "Current location";
+
+      } catch (error) {
+
+        startInput.value = "Current location";
+
+      } finally {
+
+        tripUseLocation.disabled = false;
+
+        tripUseLocation.textContent = "📍 Use My Location";
+
+      }
+
+    },
+
+    () => {
+
+      alert("Please allow location access and try again.");
+
+      tripUseLocation.disabled = false;
+
+      tripUseLocation.textContent = "📍 Use My Location";
+
+    },
+
+    {
+
+      enableHighAccuracy: true,
+
+      timeout: 10000
+
+    }
+
+  );
+
+});
