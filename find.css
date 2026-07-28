@@ -889,6 +889,7 @@ background-repeat: no-repeat;
 
   object-fit: contain;
 
+mix-blend-mode: multiply;
 }
 
 .trip-planner-card {
