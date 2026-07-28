@@ -441,7 +441,13 @@ mapSearchSubmit?.addEventListener("click", () => {
     googleMap.setCenter(results[0].geometry.location);
 
     googleMap.setZoom(14);
+sessionStorage.setItem(
 
+  "routeDestination",
+
+  results[0].formatted_address
+
+);
     showMessage("");
 
   });
