@@ -405,3 +405,30 @@ tripDestinationField?.addEventListener("focus", () => {
   );
 
 });
+const tripPlannerSubmit = document.getElementById("tripPlannerSubmit");
+
+const tripStartInput = document.getElementById("tripStartInput");
+
+const tripDestinationInput = document.getElementById("tripDestinationInput");
+
+tripPlannerSubmit?.addEventListener("click", () => {
+
+  const start = tripStartInput?.value.trim();
+
+  const destination = tripDestinationInput?.value.trim();
+
+  if (!start || !destination) {
+
+    alert("Please enter both a starting point and destination.");
+
+    return;
+
+  }
+
+  routeOrigin.value = start;
+
+  routeDestination.value = destination;
+
+  routeSearch.click();
+
+});
