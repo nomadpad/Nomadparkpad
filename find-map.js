@@ -29,6 +29,7 @@ const resultsSection =
 let mapLoaded = false;
 
 let googleMap = null;
+let directionsRenderer = null;
 
 function showMessage(text = "") {
 
@@ -441,6 +442,63 @@ mapSearchSubmit?.addEventListener("click", () => {
     googleMap.setCenter(results[0].geometry.location);
 
     googleMap.setZoom(14);
+    if (navigator.geolocation) {
+
+  navigator.geolocation.getCurrentPosition((position) => {
+
+    const origin = {
+
+      lat: position.coords.latitude,
+
+      lng: position.coords.longitude
+
+    };
+
+    const destination =
+
+      results[0].geometry.location;
+
+    const directionsService =
+
+      new google.maps.DirectionsService();
+
+    directionsRenderer?.setMap(null);
+
+directionsRenderer =
+
+      new google.maps.DirectionsRenderer({
+
+        map: googleMap
+
+      });
+
+    directionsService.route(
+
+      {
+
+        origin,
+
+        destination,
+
+        travelMode: google.maps.TravelMode.DRIVING
+
+      },
+
+      (routeResult, routeStatus) => {
+
+        if (routeStatus === "OK") {
+
+          directionsRenderer.setDirections(routeResult);
+
+        }
+
+      }
+
+    );
+
+  });
+
+}
 sessionStorage.setItem(
 
   "routeDestination",
