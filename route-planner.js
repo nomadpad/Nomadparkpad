@@ -318,13 +318,13 @@ const tripDestinationField = document.getElementById("tripDestinationInput");
 
 tripStartField?.addEventListener("focus", () => {
 
-  tripStartGroup?.classList.add("location-open");
+  tripUseLocation.style.display = "inline-flex";
 
 });
 
 tripDestinationField?.addEventListener("focus", () => {
 
-  tripStartGroup?.classList.remove("location-open");
+  tripUseLocation.style.display = "none";
 
 });
 
