@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+
+    name="viewport"
+
+    content="width=device-width, initial-scale=1, viewport-fit=cover"
+
+  >
+
+  <title>Trip Planner | Nomad Park Pad</title>
+
+  <style>
+
+    :root {
+
+      --forest: #123f33;
+
+      --orange: #f47700;
+
+      --orange-dark: #df6500;
+
+      --cream: #f8f5ed;
+
+      --white: #ffffff;
+
+      --border: #d8ddd9;
+
+      --text-soft: #7e8581;
+
+      --shadow: 0 24px 60px rgba(25, 57, 47, 0.14);
+
+    }
+
+    * {
+
+      box-sizing: border-box;
+
+    }
+
+    html {
+
+      min-height: 100%;
+
+      background: var(--cream);
+
+    }
+
+    body {
+
+      min-height: 100vh;
+
+      margin: 0;
+
+      color: var(--forest);
+
+      background:
+
+        radial-gradient(
+
+          circle at top right,
+
+          rgba(244, 119, 0, 0.09),
+
+          transparent 35%
+
+        ),
+
+        linear-gradient(
+
+          180deg,
+
+          #fbfaf6 0%,
+
+          #f4f0e6 100%
+
+        );
+
+      font-family:
+
+        -apple-system,
+
+        BlinkMacSystemFont,
+
+        "Segoe UI",
+
+        sans-serif;
+
+    }
+
+    button,
+
+    input {
+
+      font: inherit;
+
+    }
+
+    .trip-page {
+
+      min-height: 100vh;
+
+      display: flex;
+
+      flex-direction: column;
+
+      padding:
+
+        max(20px, env(safe-area-inset-top))
+
+        18px
+
+        calc(28px + env(safe-area-inset-bottom));
+
+    }
+
+    .trip-header {
+
+      width: min(720px, 100%);
+
+      margin: 0 auto 22px;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+      gap: 16px;
+
+    }
+
+    .trip-logo {
+
+      display: inline-flex;
+
+      align-items: center;
+
+      text-decoration: none;
+
+    }
+
+    .trip-logo img {
+
+      width: min(220px, 58vw);
+
+      height: auto;
+
+      display: block;
+
+    }
+
+    .back-link {
+
+      border: 0;
+
+      background: transparent;
+
+      color: var(--forest);
+
+      font-weight: 750;
+
+      text-decoration: none;
+
+      white-space: nowrap;
+
+    }
+
+    .planner-shell {
+
+      width: min(720px, 100%);
+
+      margin: auto;
+
+    }
+
+    .planner-card {
+
+      position: relative;
+
+      padding: clamp(28px, 6vw, 58px);
+
+      overflow: hidden;
+
+      background: rgba(255, 255, 255, 0.96);
+
+      border: 1px solid rgba(18, 63, 51, 0.12);
+
+      border-radius: 34px;
+
+      box-shadow: var(--shadow);
+
+    }
+
+    .planner-card::before {
+
+      content: "";
+
+      position: absolute;
+
+      width: 240px;
+
+      height: 240px;
+
+      top: -140px;
+
+      right: -110px;
+
+      border-radius: 50%;
+
+      background: rgba(244, 119, 0, 0.08);
+
+      pointer-events: none;
+
+    }
+
+    .planner-kicker {
+
+      position: relative;
+
+      margin: 0 0 12px;
+
+      font-size: 0.86rem;
+
+      font-weight: 900;
+
+      letter-spacing: 0.28em;
+
+      text-transform: uppercase;
+
+    }
+
+    .planner-title {
+
+      position: relative;
+
+      margin: 0;
+
+      max-width: 540px;
+
+      font-family: Georgia, "Times New Roman", serif;
+
+      font-size: clamp(2.35rem, 8vw, 4.4rem);
+
+      line-height: 0.98;
+
+      letter-spacing: -0.04em;
+
+    }
+
+    .planner-intro {
+
+      position: relative;
+
+      margin: 18px 0 34px;
+
+      max-width: 520px;
+
+      color: #53645e;
+
+      font-size: 1rem;
+
+      line-height: 1.6;
+
+    }
+
+    .planner-form {
+
+      position: relative;
+
+    }
+
+    .field-group {
+
+      margin-bottom: 24px;
+
+    }
+
+    .field-heading {
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+      gap: 12px;
+
+      margin-bottom: 9px;
+
+    }
+
+    label {
+
+      display: block;
+
+      font-size: 1.05rem;
+
+      font-weight: 850;
+
+    }
+
+    .location-button {
+
+      min-height: 42px;
+
+      padding: 8px 16px;
+
+      border: 0;
+
+      border-radius: 999px;
+
+      color: #1678d3;
+
+      background: #eeeeee;
+
+      font-size: 0.93rem;
+
+      font-weight: 700;
+
+      cursor: pointer;
+
+    }
+
+    .location-button:disabled {
+
+      cursor: wait;
+
+      opacity: 0.65;
+
+    }
+
+    .planner-input {
+
+      width: 100%;
+
+      min-height: 76px;
+
+      padding: 18px 22px;
+
+      border: 1.5px solid var(--border);
+
+      border-radius: 22px;
+
+      outline: none;
+
+      color: var(--forest);
+
+      background: #fffefa;
+
+      font-size: 16px;
+
+      transition:
+
+        border-color 160ms ease,
+
+        box-shadow 160ms ease,
+
+        transform 160ms ease;
+
+    }
+
+    .planner-input::placeholder {
+
+      color: #9a9f9c;
+
+    }
+
+    .planner-input:focus {
+
+      border-color: var(--orange);
+
+      box-shadow: 0 0 0 5px rgba(244, 119, 0, 0.13);
+
+    }
+
+    .form-message {
+
+      display: none;
+
+      margin: 6px 0 18px;
+
+      padding: 12px 14px;
+
+      border-radius: 14px;
+
+      color: #8f2f14;
+
+      background: #fff0e9;
+
+      font-weight: 700;
+
+    }
+
+    .form-message.show {
+
+      display: block;
+
+    }
+
+    .adventure-button {
+
+      width: 100%;
+
+      min-height: 66px;
+
+      margin-top: 10px;
+
+      border: 0;
+
+      border-radius: 20px;
+
+      color: #ffffff;
+
+      background:
+
+        linear-gradient(
+
+          135deg,
+
+          var(--orange-dark),
+
+          var(--orange)
+
+        );
+
+      box-shadow: 0 16px 30px rgba(244, 119, 0, 0.27);
+
+      font-size: 1.08rem;
+
+      font-weight: 900;
+
+      cursor: pointer;
+
+      transition:
+
+        transform 160ms ease,
+
+        box-shadow 160ms ease;
+
+    }
+
+    .adventure-button:active {
+
+      transform: translateY(2px);
+
+      box-shadow: 0 9px 18px rgba(244, 119, 0, 0.24);
+
+    }
+
+    .map-link {
+
+      display: block;
+
+      width: fit-content;
+
+      margin: 22px auto 0;
+
+      color: var(--forest);
+
+      font-weight: 800;
+
+      text-decoration: none;
+
+    }
+
+    .trip-footer {
+
+      width: min(720px, 100%);
+
+      margin: 24px auto 0;
+
+      color: #75817c;
+
+      text-align: center;
+
+      font-size: 0.82rem;
+
+    }
+
+    @media (max-width: 560px) {
+
+      .trip-page {
+
+        padding-left: 12px;
+
+        padding-right: 12px;
+
+      }
+
+      .trip-header {
+
+        padding: 0 5px;
+
+      }
+
+      .trip-logo img {
+
+        width: 170px;
+
+      }
+
+      .back-link {
+
+        font-size: 0.88rem;
+
+      }
+
+      .planner-card {
+
+        padding: 30px 22px;
+
+        border-radius: 28px;
+
+      }
+
+      .planner-title {
+
+        font-size: clamp(2.5rem, 13vw, 3.8rem);
+
+      }
+
+      .field-heading {
+
+        align-items: flex-end;
+
+      }
+
+      .location-button {
+
+        padding: 8px 12px;
+
+        font-size: 0.83rem;
+
+      }
+
+      .planner-input {
+
+        min-height: 72px;
+
+        padding: 17px 18px;
+
+        border-radius: 19px;
+
+      }
+
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+      * {
+
+        scroll-behavior: auto !important;
+
+        transition: none !important;
+
+      }
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <main class="trip-page">
+
+    <header class="trip-header">
+
+      <a
+
+        class="trip-logo"
+
+        href="index.html"
+
+        aria-label="Nomad Park Pad home"
+
+      >
+
+        <img
+
+          src="logo.png"
+
+          alt="Nomad Park Pad"
+
+        >
+
+      </a>
+
+      <a
+
+        class="back-link"
+
+        href="find-a-pad.html"
+
+      >
+
+        ← Back to Map
+
+      </a>
+
+    </header>
+
+    <section class="planner-shell">
+
+      <div class="planner-card">
+
+        <p class="planner-kicker">
+
+          Trip Planner
+
+        </p>
+
+        <h1 class="planner-title">
+
+          Freedom starts here.
+
+        </h1>
+
+        <p class="planner-intro">
+
+          Tell us where the road begins and where you are heading.
+
+          We’ll open the map and help you find Nomad Park Pads along
+
+          your journey.
+
+        </p>
+
+        <form
+
+          class="planner-form"
+
+          id="tripPlannerForm"
+
+          novalidate
+
+        >
+
+          <div class="field-group">
+
+            <div class="field-heading">
+
+              <label for="tripStartInput">
+
+                Start
+
+              </label>
+
+              <button
+
+                class="location-button"
+
+                id="tripUseLocation"
+
+                type="button"
+
+              >
+
+                📍 Use My Location
+
+              </button>
+
+            </div>
+
+            <input
+
+              class="planner-input"
+
+              id="tripStartInput"
+
+              name="start"
+
+              type="search"
+
+              placeholder="Starting city or address"
+
+              autocomplete="street-address"
+
+              enterkeyhint="next"
+
+              required
+
+            >
+
+          </div>
+
+          <div class="field-group">
+
+            <label for="tripDestinationInput">
+
+              Destination
+
+            </label>
+
+            <input
+
+              class="planner-input"
+
+              id="tripDestinationInput"
+
+              name="destination"
+
+              type="search"
+
+              placeholder="Destination city or address"
+
+              autocomplete="off"
+
+              enterkeyhint="go"
+
+              required
+
+            >
+
+          </div>
+
+          <div
+
+            class="form-message"
+
+            id="tripFormMessage"
+
+            role="alert"
+
+          ></div>
+
+          <button
+
+            class="adventure-button"
+
+            type="submit"
+
+          >
+
+            Plan My Adventure
+
+          </button>
+
+          <a
+
+            class="map-link"
+
+            href="find-a-pad.html"
+
+          >
+
+            Explore the map without a route
+
+          </a>
+
+        </form>
+
+      </div>
+
+    </section>
+
+    <footer class="trip-footer">
+
+      Stress less. Explore more.
+
+    </footer>
+
+  </main>
+
+  <script>
+
+    const plannerForm =
+
+      document.getElementById("tripPlannerForm");
+
+    const startInput =
+
+      document.getElementById("tripStartInput");
+
+    const destinationInput =
+
+      document.getElementById("tripDestinationInput");
+
+    const locationButton =
+
+      document.getElementById("tripUseLocation");
+
+    const formMessage =
+
+      document.getElementById("tripFormMessage");
+
+    function showMessage(message) {
+
+      formMessage.textContent = message;
+
+      formMessage.classList.add("show");
+
+    }
+
+    function clearMessage() {
+
+      formMessage.textContent = "";
+
+      formMessage.classList.remove("show");
+
+    }
+
+    plannerForm.addEventListener("submit", (event) => {
+
+      event.preventDefault();
+
+      clearMessage();
+
+      const start = startInput.value.trim();
+
+      const destination =
+
+        destinationInput.value.trim();
+
+      if (!start || !destination) {
+
+        showMessage(
+
+          "Please enter both a starting point and destination."
+
+        );
+
+        if (!start) {
+
+          startInput.focus();
+
+        } else {
+
+          destinationInput.focus();
+
+        }
+
+        return;
+
+      }
+
+      const routeParameters = new URLSearchParams({
+
+        start,
+
+        destination
+
+      });
+
+      window.location.href =
+
+        `find-a-pad.html?${routeParameters.toString()}`;
+
+    });
+
+    locationButton.addEventListener("click", () => {
+
+      clearMessage();
+
+      if (!navigator.geolocation) {
+
+        showMessage(
+
+          "Location services are not supported by this browser."
+
+        );
+
+        return;
+
+      }
+
+      locationButton.disabled = true;
+
+      locationButton.textContent = "Finding you…";
+
+      navigator.geolocation.getCurrentPosition(
+
+        (position) => {
+
+          const latitude =
+
+            position.coords.latitude;
+
+          const longitude =
+
+            position.coords.longitude;
+
+          startInput.value =
+
+            `${latitude.toFixed(6)}, ${longitude.toFixed(6)}`;
+
+          locationButton.disabled = false;
+
+          locationButton.textContent =
+
+            "📍 Location Added";
+
+          destinationInput.focus();
+
+        },
+
+        () => {
+
+          locationButton.disabled = false;
+
+          locationButton.textContent =
+
+            "📍 Use My Location";
+
+          showMessage(
+
+            "We could not access your location. You can type your starting address instead."
+
+          );
+
+        },
+
+        {
+
+          enableHighAccuracy: true,
+
+          timeout: 10000,
+
+          maximumAge: 60000
+
+        }
+
+      );
+
+    });
+
+  </script>
+
+</body>
+
+</html>

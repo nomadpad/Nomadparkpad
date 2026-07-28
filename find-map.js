@@ -437,13 +437,7 @@ tripPlannerPanel.hidden = true;
 
 tripPlannerButton?.addEventListener("click", () => {
 
-  mapSearchPanel.hidden = true;
-
-  tripPlannerPanel.hidden = false;
-
-  tripPlannerButton.hidden = true;
-
-  mapSearchButton.hidden = false;
+  window.location.href = "trip-planner.html";
 
 });
 const mapSearchInput =
