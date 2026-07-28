@@ -587,7 +587,7 @@ tripPlannerSubmit?.addEventListener("click", () => {
 
       if (routeStatus !== "OK") {
 
-        showMessage("Route could not be found.");
+        showMessage(`Route error: ${routeStatus}`);
 
         return;
 
