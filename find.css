@@ -1113,5 +1113,15 @@ filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.28));
   display: inline-flex;
 
 }
+/* Prevent iPhone Safari from zooming when Trip Planner inputs are tapped */
 
+.trip-planner-card input,
+
+#tripStartInput,
+
+#tripDestinationInput {
+
+  font-size: 16px !important;
+
+}
 
