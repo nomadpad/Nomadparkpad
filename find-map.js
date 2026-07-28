@@ -413,6 +413,17 @@ const mapSearchPanel =
   const tripPlannerPanel =
 
   document.querySelector("#tripPlannerPanel");
+  const tripStartInput =
+
+  document.querySelector("#tripStartInput");
+
+const tripDestinationInput =
+
+  document.querySelector("#tripDestinationInput");
+
+const tripPlannerSubmit =
+
+  document.querySelector("#tripPlannerSubmit");
 
 mapSearchButton?.addEventListener("click", () => {
 
@@ -531,4 +542,63 @@ sessionStorage.setItem(
     showMessage("");
 
 });
+});
+tripPlannerSubmit?.addEventListener("click", () => {
+
+  const origin = tripStartInput?.value.trim();
+
+  const destination = tripDestinationInput?.value.trim();
+
+  if (!origin || !destination || !googleMap || !window.google?.maps) {
+
+    showMessage("Enter a starting point and destination.");
+
+    return;
+
+  }
+
+  const directionsService =
+
+    new google.maps.DirectionsService();
+
+  directionsRenderer?.setMap(null);
+
+  directionsRenderer =
+
+    new google.maps.DirectionsRenderer({
+
+      map: googleMap
+
+    });
+
+  directionsService.route(
+
+    {
+
+      origin,
+
+      destination,
+
+      travelMode: google.maps.TravelMode.DRIVING
+
+    },
+
+    (routeResult, routeStatus) => {
+
+      if (routeStatus !== "OK") {
+
+        showMessage("Route could not be found.");
+
+        return;
+
+      }
+
+      directionsRenderer.setDirections(routeResult);
+
+      showMessage("");
+
+    }
+
+  );
+
 });
