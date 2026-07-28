@@ -508,29 +508,4 @@ sessionStorage.setItem(
 );
     showMessage("");
 
-  });
-
-});
-const mapRouteButton =
-
-  document.querySelector("#map-route-button");
-
-mapRouteButton?.addEventListener("click", () => {
-
-  const destination =
-
-    sessionStorage.getItem("routeDestination");
-
-  if (!destination) {
-
-    showMessage("Search for a destination first.");
-
-    return;
-
-  }
-
-  mapSearchInput.value = destination;
-
-  mapSearchSubmit?.click();
-
 });
