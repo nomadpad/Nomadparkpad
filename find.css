@@ -1067,15 +1067,49 @@ filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.28));
   }
 
 }
+
+.trip-start-header {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 16px;
+
+}
+
+.trip-start-header label {
+
+  margin: 0;
+
+}
+
 .trip-use-location {
 
   display: none;
 
+  align-items: center;
+
+  justify-content: center;
+
+  border: 0;
+
+  border-radius: 999px;
+
+  padding: 6px 18px;
+
+  background: #eeeeee;
+
+  font-size: 0.95rem;
+
+  cursor: pointer;
+
 }
 
-#tripStartInput:focus + .trip-use-location {
+.trip-planner-card:has(#tripStartInput:focus) .trip-use-location {
 
   display: inline-flex;
 
 }
-

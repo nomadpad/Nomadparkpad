@@ -112,9 +112,23 @@
 
       <h3>TRIP PLANNER</h3>
 
-      <label for="tripStartInput">Start</label>
+    
 
-      <input
+   <div class="trip-start-header">
+
+  <label for="tripStartInput">Start</label>
+
+  <button
+
+    id="tripUseLocation"
+
+    class="trip-use-location">
+
+    📍 Use My Location
+
+  </button>
+
+</div>   <input
 
         id="tripStartInput"
 
@@ -125,20 +139,6 @@
         autocomplete="off"
 
       >
-      <button
-
-  type="button"
-
-  id="tripUseLocation"
-
-  class="trip-use-location"
-
->
-
-  📍 Use My Location
-
-</button>
-
       <label for="tripDestinationInput">Destination</label>
 
       <input
