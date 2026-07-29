@@ -51,7 +51,43 @@ async function loadTravelerProfile() {
     return;
 
   }
+const { data: profile, error: profileError } = await supabase
 
+  .from("traveler_profiles")
+
+  .select(
+
+    "about, vehicle_type, vehicle_model, vehicle_length, plate_region, vehicle_leaks"
+
+  )
+
+  .eq("user_id", user.id)
+
+  .maybeSingle();
+
+if (profileError) {
+
+  showMessage(profileError.message, true);
+
+  return;
+
+}
+
+if (profile) {
+
+  aboutInput.value = profile.about || "";
+
+  vehicleTypeInput.value = profile.vehicle_type || "";
+
+  vehicleModelInput.value = profile.vehicle_model || "";
+
+  vehicleLengthInput.value = profile.vehicle_length || "";
+
+  plateRegionInput.value = profile.plate_region || "";
+
+  vehicleLeaksInput.value = profile.vehicle_leaks || "";
+
+}
   showMessage("Traveller account loaded.");
 
 }
