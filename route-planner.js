@@ -1,7 +1,9 @@
 alert("Route planner v3 loaded");
-const routePlanner = document.querySelector("#route-planner");
+const routePlanner = document.querySelector("#tripPlannerPanel");
 
-const routeClose = document.querySelector("#route-close");
+const routeButton = document.querySelector("#trip-planner-button");
+
+const routeClose = document.querySelector("#tripPlannerClose");
 
 const routeSearch = document.querySelector("#route-search");
 
@@ -88,6 +90,8 @@ function closeRoutePlanner() {
   routePlanner.hidden = true;
 
 }
+
+routeButton?.addEventListener("click", openRoutePlanner);
 
 routeClose?.addEventListener("click", closeRoutePlanner);
 
