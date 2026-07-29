@@ -48,8 +48,17 @@ document.querySelector("#real-signup-form")?.addEventListener("submit", async (e
   }
 
   if (data.session) {
-    window.location.href = "account.html";
-  } else {
+
+  window.location.href =
+
+    role === "traveler"
+
+      ? "traveler-profile.html"
+
+      : "account.html";
+
+}
+  else {
     setMessage(form, "Account created. Check your email to confirm your address, then log in.");
   }
 });
