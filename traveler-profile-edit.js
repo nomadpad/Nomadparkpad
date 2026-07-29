@@ -15,7 +15,40 @@ const vehicleLengthInput = document.querySelector("#travelerVehicleLength");
 const plateRegionInput = document.querySelector("#travelerPlateRegion");
 const cityInput = document.querySelector("#travelerCity");
 const provinceInput = document.querySelector("#travelerProvince");
+const cityProvinceMap = {
 
+  edmonton: "Alberta",
+
+  calgary: "Alberta",
+
+  reddeer: "Alberta",
+
+  lethbridge: "Alberta",
+
+  medicinehat: "Alberta",
+
+  sherwoodpark: "Alberta",
+
+  stalbert: "Alberta"
+
+};
+cityInput?.addEventListener("input", () => {
+
+  const cityKey = cityInput.value
+
+    .toLowerCase()
+
+    .replace(/[^a-z]/g, "");
+
+  const matchedProvince = cityProvinceMap[cityKey];
+
+  if (matchedProvince) {
+
+    provinceInput.value = matchedProvince;
+
+  }
+
+});
 const vehicleLeaksInput = document.querySelector("#travelerVehicleLeaks");
 
 function showMessage(text, isError = false) {
