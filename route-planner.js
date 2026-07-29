@@ -1,4 +1,3 @@
-alert("Route planner v3 loaded");
 const routePlanner = document.querySelector("#tripPlannerPanel");
 
 const routeButton = document.querySelector("#trip-planner-button");
