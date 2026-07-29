@@ -1,3 +1,4 @@
+alert("Route planner v3 loaded");
 const routePlanner = document.querySelector("#route-planner");
 
 const routeClose = document.querySelector("#route-close");
