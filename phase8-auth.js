@@ -117,7 +117,7 @@ if (window.location.pathname.endsWith("auth-callback.html") && supabaseConfigure
 
   if (data.session) {
     if (message) message.textContent = "Account confirmed. Redirecting...";
-    setTimeout(() => window.location.href = "account.html", 800);
+    setTimeout(() => window.location.href ="traveler-profile.html", 800);
   } else {
     if (message) message.textContent = "Confirmation received. You may now log in.";
     setTimeout(() => window.location.href = "login.html", 1200);
