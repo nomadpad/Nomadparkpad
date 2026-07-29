@@ -1,3 +1,4 @@
+import "./supabase-config.js";
 import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
 
 const url = window.NPP_SUPABASE_URL;
