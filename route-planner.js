@@ -537,3 +537,24 @@ closeRoutePlanner();
   routeSearch.click();
 
 });
+startNavigationButton?.addEventListener("click", () => {
+
+  const origin = routeOrigin?.value.trim();
+
+  const destination = routeDestination?.value.trim();
+
+  if (!origin || !destination) return;
+
+  const navigationUrl =
+
+    "https://www.google.com/maps/dir/?api=1" +
+
+    `&origin=${encodeURIComponent(origin)}` +
+
+    `&destination=${encodeURIComponent(destination)}` +
+
+    "&travelmode=driving";
+
+  window.open(navigationUrl, "_blank");
+
+});
