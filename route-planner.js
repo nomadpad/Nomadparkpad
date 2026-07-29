@@ -11,6 +11,9 @@ const routeOrigin = document.querySelector("#route-origin");
 
 const routeDestination = document.querySelector("#route-destination");
 
+const startNavigationButton =
+
+  document.querySelector("#startNavigationButton");
 let routePolylines = [];
 
 function filterHostsNearRoute(routePath, maxDistanceMetres = 10000) {

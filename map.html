@@ -51,6 +51,21 @@
   Trip Planner
 
 </button>
+<button
+
+  class="btn btn-route"
+
+  id="startNavigationButton"
+
+  type="button"
+
+  hidden
+
+>
+
+  🚐 Go
+
+</button>
 <div class="map-search-panel" id="mapSearchPanel" hidden>
 
   <input
@@ -302,6 +317,7 @@ const routeParams = new URLSearchParams(window.location.search);
         if (status === "OK") {
 
           directionsRenderer.setDirections(result);
+          startNavigationButton.hidden = false;
 
         } else {
 
