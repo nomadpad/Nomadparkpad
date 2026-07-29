@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+
+    name="viewport"
+
+    content="width=device-width, initial-scale=1"
+
+  >
+
+  <title>Edit Traveller Profile | Nomad Park Pad</title>
+
+  <link rel="stylesheet" href="styles.css">
+
+  <link rel="stylesheet" href="accounts.css">
+
+</head>
+
+<body>
+
+  <header class="site-header">
+
+    <a class="brand" href="index.html">
+
+      <img src="logo.png" alt="Nomad Park Pad">
+
+    </a>
+
+  </header>
+
+  <main class="profile-shell">
+
+    <section class="profile-panel">
+
+      <p class="kicker">TRAVELLER SETUP</p>
+
+      <h1>Build Your Traveller Profile</h1>
+
+      <p>
+
+        Help hosts understand who you are, what you drive,
+
+        and what you need for a comfortable stay.
+
+      </p>
+
+      <form id="travelerProfileForm">
+
+        <label>
+
+          About me
+
+          <textarea
+
+            id="travelerAbout"
+
+            rows="5"
+
+            placeholder="Tell hosts a little about yourself and how you travel."
+
+          ></textarea>
+
+        </label>
+
+        <label>
+
+          Vehicle type
+
+          <select id="travelerVehicleType" required>
+
+            <option value="">Choose your vehicle</option>
+
+            <option value="camper-van">Camper van</option>
+
+            <option value="cargo-van">Cargo van</option>
+
+            <option value="rv">RV or motorhome</option>
+
+            <option value="truck-camper">Truck camper</option>
+
+            <option value="car">Car</option>
+
+            <option value="other">Other</option>
+
+          </select>
+
+        </label>
+
+        <label>
+
+          Vehicle make and model
+
+          <input
+
+            id="travelerVehicleModel"
+
+            type="text"
+
+            placeholder="Example: Ford Transit"
+
+            required
+
+          >
+
+        </label>
+
+        <label>
+
+          Vehicle length
+
+          <input
+
+            id="travelerVehicleLength"
+
+            type="text"
+
+            placeholder="Example: 22 ft"
+
+            required
+
+          >
+
+        </label>
+
+        <label>
+
+          Licence plate region
+
+          <input
+
+            id="travelerPlateRegion"
+
+            type="text"
+
+            placeholder="Example: Alberta"
+
+          >
+
+        </label>
+
+        <label>
+
+          Does your vehicle leak fluids?
+
+          <select id="travelerVehicleLeaks" required>
+
+            <option value="">Choose an answer</option>
+
+            <option value="no">No</option>
+
+            <option value="yes">Yes</option>
+
+            <option value="unsure">Not sure</option>
+
+          </select>
+
+        </label>
+
+        <button class="btn btn-accent full-button" type="submit">
+
+          Save Traveller Profile
+
+        </button>
+
+        <p class="form-message" id="travelerProfileMessage"></p>
+
+      </form>
+
+    </section>
+
+  </main>
+
+</body>
+
+</html>
