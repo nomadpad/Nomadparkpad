@@ -411,6 +411,39 @@ const tripStartInput = document.getElementById("tripStartInput");
 
 const tripDestinationInput = document.getElementById("tripDestinationInput");
 
+const routeParams = new URLSearchParams(window.location.search);
+
+const routeStart = routeParams.get("start");
+
+const routeDestinationParam =
+
+  routeParams.get("destination");
+
+if (routeStart && tripStartInput) {
+
+  tripStartInput.value = routeStart;
+
+}
+
+if (routeDestinationParam && tripDestinationInput) {
+
+  tripDestinationInput.value = routeDestinationParam;
+
+}
+
+if (routeStart && routeDestinationParam) {
+
+  routeOrigin.value = routeStart;
+
+  routeDestination.value = routeDestinationParam;
+
+  setTimeout(() => {
+
+    routeSearch.click();
+
+  }, 500);
+
+}
 tripPlannerSubmit?.addEventListener("click", () => {
 
   const start = tripStartInput?.value.trim();
