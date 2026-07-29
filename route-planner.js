@@ -539,11 +539,25 @@ closeRoutePlanner();
 });
 startNavigationButton?.addEventListener("click", () => {
 
-  const origin = routeOrigin?.value.trim();
+  const origin = document
 
-  const destination = routeDestination?.value.trim();
+    .querySelector("#tripStartInput")
 
-  if (!origin || !destination) return;
+    ?.value.trim();
+
+  const destination = document
+
+    .querySelector("#tripDestinationInput")
+
+    ?.value.trim();
+
+  if (!origin || !destination) {
+
+    alert("Please plan a route first.");
+
+    return;
+
+  }
 
   const navigationUrl =
 
@@ -553,8 +567,8 @@ startNavigationButton?.addEventListener("click", () => {
 
     `&destination=${encodeURIComponent(destination)}` +
 
-    "&travelmode=driving";
+    "&travelmode=driving&dir_action=navigate";
 
-  window.location.href = navigationUrl;
+  window.location.assign(navigationUrl);
 
 });
