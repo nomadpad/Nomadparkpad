@@ -437,13 +437,35 @@ if (routeStart && routeDestinationParam) {
 
   routeDestination.value = routeDestinationParam;
 
-  setTimeout(() => {
+  function runRouteWhenMapIsReady(attempt = 0) {
+
+  const mapIsReady =
+
+    window.NPP_GOOGLE_MAP &&
+
+    window.google?.maps;
+
+  if (mapIsReady) {
 
     routeSearch.click();
 
-  }, 2000);
+    return;
+
+  }
+
+  if (attempt < 40) {
+
+    setTimeout(() => {
+
+      runRouteWhenMapIsReady(attempt + 1);
+
+    }, 250);
+
+  }
 
 }
+
+runRouteWhenMapIsReady();
 tripPlannerSubmit?.addEventListener("click", () => {
 
   const start = tripStartInput?.value.trim();
