@@ -538,7 +538,7 @@ closeRoutePlanner();
 
 });
 startNavigationButton?.addEventListener("click", () => {
-
+alert("Go button pressed");
   const origin = document
 
     .querySelector("#tripStartInput")
@@ -553,7 +553,7 @@ startNavigationButton?.addEventListener("click", () => {
 
   if (!origin || !destination) {
 
-    alert("Please plan a route first.");
+    
 
     return;
 
