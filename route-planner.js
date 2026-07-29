@@ -91,6 +91,49 @@ function closeRoutePlanner() {
 routeClose?.addEventListener("click", closeRoutePlanner);
 
 async function runRouteSearch() {
+  console.log("Route debug:", {
+
+  routeOrigin,
+
+  routeDestination,
+
+  routeSearch,
+
+  routeMessage,
+
+  googleMaps: Boolean(window.google?.maps),
+
+  mapReady: Boolean(window.NPP_GOOGLE_MAP),
+
+  originValue: routeOrigin?.value,
+
+  destinationValue: routeDestination?.value
+
+});
+
+alert(
+
+  [
+
+    `routeOrigin: ${Boolean(routeOrigin)}`,
+
+    `routeDestination: ${Boolean(routeDestination)}`,
+
+    `routeSearch: ${Boolean(routeSearch)}`,
+
+    `routeMessage: ${Boolean(routeMessage)}`,
+
+    `googleMaps: ${Boolean(window.google?.maps)}`,
+
+    `mapReady: ${Boolean(window.NPP_GOOGLE_MAP)}`,
+
+    `origin: ${routeOrigin?.value || "EMPTY"}`,
+
+    `destination: ${routeDestination?.value || "EMPTY"}`
+
+  ].join("\n")
+
+);
 
 
   const origin = routeOrigin?.value.trim();
