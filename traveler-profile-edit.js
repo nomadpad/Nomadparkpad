@@ -13,7 +13,7 @@ const vehicleModelInput = document.querySelector("#travelerVehicleModel");
 const vehicleLengthInput = document.querySelector("#travelerVehicleLength");
 
 const plateRegionInput = document.querySelector("#travelerPlateRegion");
-
+const provinceInput = document.querySelector("#travelerProvince");
 const vehicleLeaksInput = document.querySelector("#travelerVehicleLeaks");
 
 function showMessage(text, isError = false) {
@@ -57,7 +57,7 @@ const { data: profile, error: profileError } = await supabase
 
   .select(
 
-    "about, vehicle_type, vehicle_model, vehicle_length, plate_region, vehicle_leaks"
+  "about, vehicle_type, vehicle_model, vehicle_length, plate_region, province, vehicle_leaks"
 
   )
 
@@ -85,7 +85,7 @@ if (profile) {
 
   plateRegionInput.value = profile.plate_region || "";
 
-  vehicleLeaksInput.value = profile.vehicle_leaks || "";
+  provinceInput.value = profile.province || "";vehicleLeaksInput.value = profile.vehicle_leaks || "";
 
 }
   showMessage("Traveller account loaded.");
@@ -134,7 +134,7 @@ form?.addEventListener("submit", async (event) => {
         vehicle_length: vehicleLengthInput.value.trim(),
 
         plate_region: plateRegionInput.value.trim(),
-
+province: provinceInput.value.trim(),
         vehicle_leaks: vehicleLeaksInput.value
 
       },
