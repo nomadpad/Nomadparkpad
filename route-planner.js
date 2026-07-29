@@ -572,3 +572,8 @@ alert("Go button pressed");
   window.location.assign(navigationUrl);
 
 });
+window.startNomadNavigation = function () {
+
+  alert("Go button pressed");
+
+};
