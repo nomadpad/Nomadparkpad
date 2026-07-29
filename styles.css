@@ -16,25 +16,52 @@ body{margin:0;font-family:Arial,Helvetica,sans-serif;color:var(--text);backgroun
 a{text-decoration:none;color:inherit}
 button,input,select{font:inherit}
 
-.site-header{
-  min-height:92px;
-  padding:12px 5%;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:24px;
-  background:rgba(255,255,255,.97);
-  border-bottom:1px solid #eee;
-  position:sticky;
-  top:0;
-  z-index:50;
-  box-shadow:0 3px 18px rgba(14,62,45,.06)
+.site-header {
+
+  min-height: 170px;
+
+  padding: 18px 5% 22px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 24px;
+
+  background: linear-gradient(
+
+    180deg,
+
+    #fffdf8 0%,
+
+    #fbf3e5 100%
+
+  );
+
+  border-bottom: none;
+
+  position: sticky;
+
+  top: 0;
+
+  z-index: 50;
+
+  box-shadow: none;
+
 }
 
-.brand img{
-  width:205px;
-  max-height:70px;
-  object-fit:contain
+.brand img {
+
+  width: min(430px, 78vw);
+
+  max-height: 135px;
+
+  object-fit: contain;
+
+  display: block;
+
 }
 
 .main-nav{
