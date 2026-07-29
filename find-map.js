@@ -426,6 +426,17 @@ const tripDestinationInput =
 
   document.querySelector("#tripDestinationInput");
 
+if (routeStart && tripStartInput) {
+
+  tripStartInput.value = routeStart;
+
+}
+
+if (routeDestination && tripDestinationInput) {
+
+  tripDestinationInput.value = routeDestination;
+
+}
 const tripPlannerSubmit =
 
   document.querySelector("#tripPlannerSubmit");
