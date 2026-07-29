@@ -57,3 +57,68 @@ async function loadTravelerProfile() {
 }
 
 loadTravelerProfile();
+form?.addEventListener("submit", async (event) => {
+
+  event.preventDefault();
+
+  showMessage("Saving your traveller profile...");
+
+  const {
+
+    data: { user },
+
+    error: userError
+
+  } = await supabase.auth.getUser();
+
+  if (userError || !user) {
+
+    showMessage("Please log in again.", true);
+
+    return;
+
+  }
+
+  const { error } = await supabase
+
+    .from("traveler_profiles")
+
+    .upsert(
+
+      {
+
+        user_id: user.id,
+
+        about: aboutInput.value.trim(),
+
+        vehicle_type: vehicleTypeInput.value,
+
+        vehicle_model: vehicleModelInput.value.trim(),
+
+        vehicle_length: vehicleLengthInput.value.trim(),
+
+        plate_region: plateRegionInput.value.trim(),
+
+        vehicle_leaks: vehicleLeaksInput.value
+
+      },
+
+      {
+
+        onConflict: "user_id"
+
+      }
+
+    );
+
+  if (error) {
+
+    showMessage(error.message, true);
+
+    return;
+
+  }
+
+  showMessage("Traveller profile saved successfully.");
+
+});
