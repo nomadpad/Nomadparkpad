@@ -90,7 +90,7 @@ function closeRoutePlanner() {
 
 routeClose?.addEventListener("click", closeRoutePlanner);
 
-routeSearch?.addEventListener("click", async () => {
+async function runRouteSearch() {
 
 
   const origin = routeOrigin?.value.trim();
@@ -232,8 +232,8 @@ document.querySelector("#traveller-map")
 
   }
 
-});
-
+}
+routeSearch?.addEventListener("click", runRouteSearch);
 function handleRoutePlannerHash() {
 
   if (window.location.hash === "#route-planner") {
@@ -447,7 +447,7 @@ if (routeStart && routeDestinationParam) {
 
   if (mapIsReady) {
 
-    routeSearch.click();
+    runRouteSearch();
 
     return;
 
