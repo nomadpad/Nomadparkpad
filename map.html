@@ -61,7 +61,31 @@
 
   hidden
 
-  onclick="alert('Go button works')"
+  onclick="
+
+  const start = document.getElementById('tripStartInput')?.value.trim();
+
+  const destination = document.getElementById('tripDestinationInput')?.value.trim();
+
+  if (!start || !destination) {
+
+    alert('Please plan a route first.');
+
+    return;
+
+  }
+
+  window.location.href =
+
+    'https://www.google.com/maps/dir/?api=1' +
+
+    '&origin=' + encodeURIComponent(start) +
+
+    '&destination=' + encodeURIComponent(destination) +
+
+    '&travelmode=driving&dir_action=navigate';
+
+"
 
 >
 
