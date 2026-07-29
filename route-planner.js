@@ -555,6 +555,6 @@ startNavigationButton?.addEventListener("click", () => {
 
     "&travelmode=driving";
 
-  window.open(navigationUrl, "_blank");
+  window.location.href = navigationUrl;
 
 });
