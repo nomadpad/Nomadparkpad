@@ -174,7 +174,7 @@
 
     .planner-shell {
 
-      width: min(720px, 100%);
+      width: min(820px, calc(100% - 20px));
 
       margin: auto;
 
@@ -190,7 +190,7 @@
 
       background: rgba(255, 255, 255, 0.96);
 
-      border: 1px solid rgba(18, 63, 51, 0.12);
+      border: 1.5px solid rgba(244, 119, 0, 0.9);
 
       border-radius: 34px;
 
@@ -572,11 +572,9 @@ backdrop-filter: none;
 
       .trip-page {
 
-        padding-left: 12px;
+  padding: 8px 8px 24px;
 
-        padding-right: 12px;
-
-      }
+}
 
       .trip-header {
 
@@ -596,13 +594,51 @@ backdrop-filter: none;
 
       }
 
-      .planner-card {
+      .planner-hero {
 
-        padding: 30px 22px;
+  min-height: 160px;
 
-        border-radius: 28px;
+  margin: -2px -2px 18px;
 
-      }
+  border-radius: 22px;
+
+}
+
+.planner-hero-image {
+
+  min-height: 160px;
+
+}
+
+.planner-kicker {
+
+  margin-bottom: 8px;
+
+}
+
+.planner-intro {
+
+  margin-bottom: 18px;
+
+}
+
+.planner-form {
+
+  gap: 14px;
+
+}
+
+.planner-input {
+
+  min-height: 58px;
+
+}
+
+.trip-footer {
+
+  display: none;
+
+}
 
       .planner-title {
 
@@ -611,17 +647,17 @@ backdrop-filter: none;
       }
       .planner-hero {
 
-  margin: -4px -4px 22px;
+  margin: -2px -2px 18px;
 
   border-radius: 22px;
 
-  min-height: 190px;
+  min-height: 160px;
 
 }
 
 .planner-hero-image {
 
-  height: 210px;
+  height: 160px;
 
 }
 
@@ -656,13 +692,13 @@ mix-blend-mode: multiply;
 
       .planner-input {
 
-        min-height: 72px;
+  min-height: 58px;
 
-        padding: 17px 18px;
+  padding: 13px 16px;
 
-        border-radius: 19px;
+  border-radius: 18px;
 
-      }
+}
 
     }
 
@@ -884,17 +920,7 @@ mix-blend-mode: multiply;
 
           </button>
 
-          <a
-
-            class="map-link"
-
-            href="find-a-pad.html"
-
-          >
-
-            Explore the map without a route
-
-          </a>
+          
 
         </form>
 
