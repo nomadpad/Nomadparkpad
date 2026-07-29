@@ -206,8 +206,88 @@
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyARloTGny6kPM-fcJ3chPejqPJz33pzh48&libraries=routes,places,geometry"></script>
 
 <script src="https://unpkg.com/@googlemaps/markerclusterer/dist/index.min.js"></script>
-<script src="route-planner.js?v=4"></script>
-  <script type="module" src="find-map.js?v=5"></script>
+
+<script type="module" src="find-map.js?v=5"></script>
+</script>
+const routeParams = new URLSearchParams(window.location.search);
+
+  const routeStart = routeParams.get("start");
+
+  const routeDestination = routeParams.get("destination");
+
+  async function drawIncomingRoute() {
+
+    if (!routeStart || !routeDestination) return;
+
+    let attempts = 0;
+
+    while (
+
+      (!window.NPP_GOOGLE_MAP || !window.google?.maps) &&
+
+      attempts < 40
+
+    ) {
+
+      await new Promise(resolve => setTimeout(resolve, 250));
+
+      attempts += 1;
+
+    }
+
+    if (!window.NPP_GOOGLE_MAP || !window.google?.maps) {
+
+      alert("The map loaded, but the route system did not connect.");
+
+      return;
+
+    }
+        const directionsService =
+
+      new google.maps.DirectionsService();
+
+    const directionsRenderer =
+
+      new google.maps.DirectionsRenderer({
+
+        map: window.NPP_GOOGLE_MAP
+
+      });
+
+    directionsService.route(
+
+      {
+
+        origin: routeStart,
+
+        destination: routeDestination,
+
+        travelMode: google.maps.TravelMode.DRIVING
+
+      },
+
+      (result, status) => {
+
+        if (status === "OK") {
+
+          directionsRenderer.setDirections(result);
+
+        } else {
+
+          alert(`The route could not be calculated: ${status}`);
+
+        }
+
+      }
+
+    );
+
+  }
+
+  drawIncomingRoute();
+
+</script>
+
 
 </body>
 
