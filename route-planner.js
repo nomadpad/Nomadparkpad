@@ -441,7 +441,7 @@ if (routeStart && routeDestinationParam) {
 
     routeSearch.click();
 
-  }, 500);
+  }, 2000);
 
 }
 tripPlannerSubmit?.addEventListener("click", () => {
