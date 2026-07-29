@@ -211,7 +211,36 @@
 
 <script>
 
-  const routeParams = new URLSearchParams(window.location.search);
+ function enableTripAutocomplete() {
+
+  const startInput = document.getElementById("tripStartInput");
+
+  const destinationInput = document.getElementById("tripDestinationInput");
+
+  if (!window.google?.maps?.places) return;
+
+  if (!startInput || !destinationInput) return;
+
+  const options = {
+
+    fields: ["formatted_address", "geometry", "name"],
+
+    types: ["geocode"],
+
+    componentRestrictions: {
+
+      country: ["ca", "us"]
+
+    }
+
+  };
+
+  new google.maps.places.Autocomplete(startInput, options);
+
+  new google.maps.places.Autocomplete(destinationInput, options);
+
+}
+const routeParams = new URLSearchParams(window.location.search);
 
   const routeStart = routeParams.get("start");
 
@@ -285,7 +314,7 @@
     );
 
   }
-
+enableTripAutocomplete();
   drawIncomingRoute();
 
 </script>
