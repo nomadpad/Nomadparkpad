@@ -537,43 +537,4 @@ closeRoutePlanner();
   routeSearch.click();
 
 });
-startNavigationButton?.addEventListener("click", () => {
-alert("Go button pressed");
-  const origin = document
 
-    .querySelector("#tripStartInput")
-
-    ?.value.trim();
-
-  const destination = document
-
-    .querySelector("#tripDestinationInput")
-
-    ?.value.trim();
-
-  if (!origin || !destination) {
-
-    
-
-    return;
-
-  }
-
-  const navigationUrl =
-
-    "https://www.google.com/maps/dir/?api=1" +
-
-    `&origin=${encodeURIComponent(origin)}` +
-
-    `&destination=${encodeURIComponent(destination)}` +
-
-    "&travelmode=driving&dir_action=navigate";
-
-  window.location.assign(navigationUrl);
-
-});
-window.startNomadNavigation = function () {
-
-  alert("Go button pressed");
-
-};
