@@ -923,6 +923,37 @@ mix-blend-mode: multiply;
     const destinationInput =
 
       document.getElementById("tripDestinationInput");
+      function enableAddressAutocomplete() {
+
+  if (!window.google?.maps?.places) {
+
+    setTimeout(enableAddressAutocomplete, 300);
+
+    return;
+
+  }
+
+  const options = {
+
+    fields: ["formatted_address", "geometry", "name"],
+
+    types: ["geocode"],
+
+    componentRestrictions: {
+
+      country: ["ca", "us"]
+
+    }
+
+  };
+
+  new google.maps.places.Autocomplete(startInput, options);
+
+  new google.maps.places.Autocomplete(destinationInput, options);
+
+}
+
+enableAddressAutocomplete();
 
     const locationButton =
 
@@ -1071,8 +1102,9 @@ mix-blend-mode: multiply;
       );
 
     });
+    </script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyARloTGny6kPM-fcJ3chPejqPJz33pzh48&libraries=places"></script>
 
-  </script>
 
 </body>
 
