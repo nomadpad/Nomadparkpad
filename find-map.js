@@ -390,6 +390,11 @@ document.querySelectorAll(".explorer-chip").forEach((chip) => {
 const mapOnly =
 
   new URLSearchParams(window.location.search).get("mapOnly") === "true";
+  const routeParams = new URLSearchParams(window.location.search);
+
+const routeStart = routeParams.get("start");
+
+const routeDestination = routeParams.get("destination");
 
 if (mapOnly) {
 
@@ -472,18 +477,17 @@ mapSearchSubmit?.addEventListener("click", () => {
     if (navigator.geolocation) {
 
   navigator.geolocation.getCurrentPosition((position) => {
+const origin = routeStart || {
 
-    const origin = {
+  lat: position.coords.latitude,
 
-      lat: position.coords.latitude,
+  lng: position.coords.longitude
 
-      lng: position.coords.longitude
+};
 
-    };
+const destination =
 
-    const destination =
-
-      results[0].geometry.location;
+  routeDestination || results[0].geometry.location;
 
     const directionsService =
 
