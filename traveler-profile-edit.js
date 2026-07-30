@@ -3,7 +3,10 @@ import { supabase, supabaseConfigured } from "./supabase-client.js";
 const form = document.querySelector("#travelerProfileForm");
 
 const message = document.querySelector("#travelerProfileMessage");
+const profilePhotoInput = document.querySelector("#travelerProfilePhoto");
 
+const vehiclePhotoInput = document.querySelector("#travelerVehiclePhoto");
+let currentProfile = null;
 const aboutInput = document.querySelector("#travelerAbout");
 
 const vehicleTypeInput = document.querySelector("#travelerVehicleType");
@@ -85,7 +88,41 @@ if (window.google?.maps?.places && cityInput) {
 
 }
 const vehicleLeaksInput = document.querySelector("#travelerVehicleLeaks");
+async function uploadTravellerPhoto(file, userId, photoType) {
 
+  if (!file) return null;
+
+  const fileExtension = file.name.split(".").pop().toLowerCase();
+
+  const filePath = `${userId}/${photoType}.${fileExtension}`;
+
+  const { error: uploadError } = await supabase.storage
+
+    .from("traveller-photos")
+
+    .upload(filePath, file, {
+
+      upsert: true,
+
+      contentType: file.type
+
+    });
+
+  if (uploadError) {
+
+    throw uploadError;
+
+  }
+
+  const { data } = supabase.storage
+
+    .from("traveller-photos")
+
+    .getPublicUrl(filePath);
+
+  return data.publicUrl;
+
+}
 function showMessage(text, isError = false) {
 
   if (!message) return;
@@ -127,7 +164,7 @@ const { data: profile, error: profileError } = await supabase
 
   .select(
 
-  "about, vehicle_type, vehicle_model, vehicle_length, plate_region, city, province, vehicle_leaks"
+  "about, vehicle_type, vehicle_model, vehicle_length, plate_region, city, province, vehicle_leaks, profile_photo_url, vehicle_photo_url"
 
   )
 
@@ -144,6 +181,7 @@ if (profileError) {
 }
 
 if (profile) {
+  currentProfile = profile;
 
   aboutInput.value = profile.about || "";
 
@@ -184,7 +222,47 @@ form?.addEventListener("submit", async (event) => {
     return;
 
   }
+let profilePhotoUrl = currentProfile?.profile_photo_url || null;
 
+let vehiclePhotoUrl = currentProfile?.vehicle_photo_url || null;
+
+try {
+
+  if (profilePhotoInput?.files?.[0]) {
+
+  profilePhotoUrl = await uploadTravellerPhoto(
+
+    profilePhotoInput.files[0],
+
+    user.id,
+
+    "profile"
+
+  );
+
+}
+
+if (vehiclePhotoInput?.files?.[0]) {
+
+  vehiclePhotoUrl = await uploadTravellerPhoto(
+
+    vehiclePhotoInput.files[0],
+
+    user.id,
+
+    "vehicle"
+
+  );
+
+}
+
+} catch (photoError) {
+
+  showMessage(photoError.message, true);
+
+  return;
+
+}
   const { error } = await supabase
 
     .from("traveler_profiles")
@@ -206,7 +284,9 @@ form?.addEventListener("submit", async (event) => {
         plate_region: plateRegionInput.value.trim(),
         city: cityInput.value.trim(),
 province: provinceInput.value.trim(),
-        vehicle_leaks: vehicleLeaksInput.value
+        vehicle_leaks: vehicleLeaksInput.value,
+        profile_photo_url: profilePhotoUrl,
+vehicle_photo_url: vehiclePhotoUrl
 
       },
 
