@@ -209,7 +209,8 @@ vehicleTypeInput.dispatchEvent(new Event("change"));
 
   plateRegionInput.value = profile.plate_region || "";
 cityInput.value = profile.city || "";
-  provinceInput.value = profile.province || "";vehicleLeaksInput.value = profile.vehicle_leaks || "";
+  provinceInput.value = profile.province || "";
+vehicleLeaksInput.value = profile.vehicle_leaks || "";
 
 }
   showMessage("Traveller account loaded.");
