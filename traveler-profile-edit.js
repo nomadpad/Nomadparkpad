@@ -8,6 +8,11 @@ const profilePhotoPreview = document.querySelector(
 
   "#travelerProfilePhotoPreview"
 );
+const profilePhotoFrame = document.querySelector(
+
+  ".profile-photo-frame"
+
+);
   const vehiclePhotoInput = document.querySelector("#travelerVehiclePhoto");
 const vehiclePhotoPreview = document.querySelector(
 
@@ -96,6 +101,19 @@ if (window.google?.maps?.places && cityInput) {
 
 }
 const vehicleLeaksInput = document.querySelector("#travelerVehicleLeaks");
+profilePhotoInput?.addEventListener("change", () => {
+
+  const file = profilePhotoInput.files?.[0];
+
+  if (!file) return;
+
+  profilePhotoPreview.src = URL.createObjectURL(file);
+
+  profilePhotoPreview.hidden = false;
+
+  profilePhotoFrame.hidden = false;
+
+});
 async function uploadTravellerPhoto(file, userId, photoType) {
 
   if (!file) return null;
@@ -189,9 +207,8 @@ if (profile) {
 if (profile.profile_photo_url && profilePhotoPreview) {
 
   profilePhotoPreview.src = profile.profile_photo_url;
-
   profilePhotoPreview.hidden = false;
-
+profilePhotoFrame.hidden = false;
 }
 if (profile.vehicle_photo_url && vehiclePhotoPreview) {
 
