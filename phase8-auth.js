@@ -84,7 +84,7 @@ document.querySelector("#login-form")?.addEventListener("submit", async (event) 
     return;
   }
 
-  window.location.href = "index.html";
+  window.location.href = "traveler-profile-edit.html";
 });
 
 document.querySelector("#forgot-form")?.addEventListener("submit", async (event) => {
