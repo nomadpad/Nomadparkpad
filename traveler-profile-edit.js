@@ -235,7 +235,7 @@ async function initializeTravelerProfile() {
     return;
 
   }
-
+alert(`Logged in as: ${session.user.email}\nUser ID: ${session.user.id}`);
   try {
 
   await loadTravelerProfile(session.user.id);
