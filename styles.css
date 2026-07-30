@@ -887,3 +887,273 @@ footer p{
   }
 
 }
+#ways-to-earn {
+
+  display: none;
+
+}
+/* Visual host opportunity section */
+
+.host-opportunity-section {
+
+  padding: 72px 20px;
+
+  background:
+
+    linear-gradient(rgba(250, 247, 238, 0.95), rgba(250, 247, 238, 0.95)),
+
+    url("hero.jpg") center / cover;
+
+}
+
+.host-opportunity-heading {
+
+  max-width: 760px;
+
+  margin: 0 auto 36px;
+
+  text-align: center;
+
+}
+
+.host-opportunity-heading h2 {
+
+  margin: 8px 0 14px;
+
+  color: #123f31;
+
+  font-size: clamp(2.2rem, 7vw, 4rem);
+
+  line-height: 1;
+
+}
+
+.host-opportunity-heading p {
+
+  margin: 0;
+
+  color: #637068;
+
+  font-size: 1.1rem;
+
+  line-height: 1.6;
+
+}
+
+.host-ad-grid {
+
+  display: grid;
+
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+
+  gap: 24px;
+
+  max-width: 1200px;
+
+  margin: 0 auto;
+
+}
+
+.host-ad-card {
+
+  overflow: hidden;
+
+  border: 1px solid rgba(18, 63, 49, 0.12);
+
+  border-radius: 26px;
+
+  background: #ffffff;
+
+  box-shadow: 0 20px 50px rgba(18, 63, 49, 0.14);
+
+}
+
+.host-ad-photo {
+
+  position: relative;
+
+  min-height: 260px;
+
+  background-position: center;
+
+  background-size: cover;
+
+}
+
+.short-stops-card .host-ad-photo {
+
+  background-image:
+
+    linear-gradient(to top, rgba(0, 0, 0, 0.12), transparent),
+
+    url("hero.jpg");
+
+}
+
+.event-card .host-ad-photo {
+
+  background-image:
+
+    linear-gradient(to top, rgba(0, 0, 0, 0.18), transparent),
+
+    url("story-2.jpg");
+
+}
+
+.pickup-card .host-ad-photo {
+
+  background-image:
+
+    linear-gradient(to top, rgba(0, 0, 0, 0.12), transparent),
+
+    url("story-3.jpg");
+
+}
+
+.host-ad-label {
+
+  position: absolute;
+
+  top: 18px;
+
+  left: 18px;
+
+  padding: 9px 14px;
+
+  border-radius: 999px;
+
+  background: #123f31;
+
+  color: #ffffff;
+
+  font-size: 0.78rem;
+
+  font-weight: 800;
+
+  letter-spacing: 0.04em;
+
+}
+
+.host-ad-content {
+
+  padding: 26px;
+
+}
+
+.host-ad-content h3 {
+
+  margin: 0 0 14px;
+
+  color: #123f31;
+
+  font-size: 2rem;
+
+  line-height: 1.05;
+
+}
+
+.host-ad-content h3 em {
+
+  color: #d8661f;
+
+  font-family: Georgia, serif;
+
+  font-weight: 700;
+
+}
+
+.host-ad-content p {
+
+  margin: 0 0 20px;
+
+  color: #58665f;
+
+  line-height: 1.65;
+
+}
+
+.host-ad-tags {
+
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 9px;
+
+  margin-bottom: 22px;
+
+}
+
+.host-ad-tags span {
+
+  padding: 8px 11px;
+
+  border-radius: 999px;
+
+  background: #f1f5ef;
+
+  color: #123f31;
+
+  font-size: 0.78rem;
+
+  font-weight: 700;
+
+}
+
+.host-ad-content strong {
+
+  display: block;
+
+  padding-top: 18px;
+
+  border-top: 1px solid rgba(18, 63, 49, 0.12);
+
+  color: #d8661f;
+
+  font-size: 1rem;
+
+}
+
+.host-opportunity-action {
+
+  display: flex;
+
+  justify-content: center;
+
+  margin-top: 36px;
+
+}
+
+@media (max-width: 900px) {
+
+  .host-opportunity-section {
+
+    padding: 58px 16px;
+
+  }
+
+  .host-ad-grid {
+
+    grid-template-columns: 1fr;
+
+  }
+
+  .host-ad-photo {
+
+    min-height: 230px;
+
+  }
+
+  .host-ad-content {
+
+    padding: 24px;
+
+  }
+
+  .host-ad-content h3 {
+
+    font-size: 2.15rem;
+
+  }
+
+}
