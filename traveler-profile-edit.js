@@ -1,4 +1,3 @@
-alert("Traveller profile JavaScript loaded");
 import { supabase, supabaseConfigured } from "./supabase-client.js";
 
 const form = document.querySelector("#travelerProfileForm");
@@ -8,7 +7,8 @@ const profilePhotoInput = document.querySelector("#travelerProfilePhoto");
 const profilePhotoPreview = document.querySelector(
 
   "#travelerProfilePhotoPreview"
-const vehiclePhotoInput = document.querySelector("#travelerVehiclePhoto");
+);
+  const vehiclePhotoInput = document.querySelector("#travelerVehiclePhoto");
 const vehiclePhotoPreview = document.querySelector(
 
   "#travelerVehiclePhotoPreview"
