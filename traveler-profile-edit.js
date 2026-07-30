@@ -206,7 +206,7 @@ if (profile.vehicle_photo_url && vehiclePhotoPreview) {
   aboutInput.value = profile.about || "";
 
   vehicleTypeInput.value = profile.vehicle_type || "";
-
+vehicleTypeInput.dispatchEvent(new Event("change"));
   vehicleModelInput.value = profile.vehicle_model || "";
 
   vehicleLengthInput.value = profile.vehicle_length || "";
