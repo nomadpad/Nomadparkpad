@@ -234,7 +234,17 @@ async function initializeTravelerProfile() {
 
   }
 
+  try {
+
   await loadTravelerProfile(session.user.id);
+
+} catch (loadError) {
+
+  console.error(loadError);
+
+  showMessage(`Profile load error: ${loadError.message}`, true);
+
+}
 
 }
 
