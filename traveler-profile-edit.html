@@ -266,7 +266,7 @@
 
   import("./traveler-profile-edit.js").catch((error) => {
 
-    alert(`Traveller profile error: ${error.message}`);
+    alert(`Traveller profile error:\n${error.stack}`);
 
   });
 
