@@ -4,7 +4,11 @@ const form = document.querySelector("#travelerProfileForm");
 
 const message = document.querySelector("#travelerProfileMessage");
 const profilePhotoInput = document.querySelector("#travelerProfilePhoto");
+const profilePhotoPreview = document.querySelector(
 
+  "#travelerProfilePhotoPreview"
+
+);
 const vehiclePhotoInput = document.querySelector("#travelerVehiclePhoto");
 let currentProfile = null;
 const aboutInput = document.querySelector("#travelerAbout");
@@ -182,7 +186,13 @@ if (profileError) {
 
 if (profile) {
   currentProfile = profile;
+if (profile.profile_photo_url && profilePhotoPreview) {
 
+  profilePhotoPreview.src = profile.profile_photo_url;
+
+  profilePhotoPreview.hidden = false;
+
+}
   aboutInput.value = profile.about || "";
 
   vehicleTypeInput.value = profile.vehicle_type || "";
