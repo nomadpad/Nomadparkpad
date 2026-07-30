@@ -1,3 +1,4 @@
+alert("Traveller profile JavaScript loaded");
 import { supabase, supabaseConfigured } from "./supabase-client.js";
 
 const form = document.querySelector("#travelerProfileForm");
