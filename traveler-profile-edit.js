@@ -49,6 +49,41 @@ cityInput?.addEventListener("input", () => {
   }
 
 });
+if (window.google?.maps?.places && cityInput) {
+
+  const autocomplete = new google.maps.places.Autocomplete(cityInput, {
+
+    types: ["(cities)"],
+
+    fields: ["address_components", "name"]
+
+  });
+
+  autocomplete.addListener("place_changed", () => {
+
+    const place = autocomplete.getPlace();
+
+    const provinceComponent = place.address_components?.find((component) =>
+
+      component.types.includes("administrative_area_level_1")
+
+    );
+
+    if (place.name) {
+
+      cityInput.value = place.name;
+
+    }
+
+    if (provinceComponent) {
+
+      provinceInput.value = provinceComponent.long_name;
+
+    }
+
+  });
+
+}
 const vehicleLeaksInput = document.querySelector("#travelerVehicleLeaks");
 
 function showMessage(text, isError = false) {
