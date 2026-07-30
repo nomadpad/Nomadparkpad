@@ -169,11 +169,7 @@ const { data: profile, error: profileError } = await supabase
 
   .from("traveler_profiles")
 
-  .select(
-
-  "about, vehicle_type, vehicle_model, vehicle_length, plate_region, city, province, vehicle_leaks, profile_photo_url, vehicle_photo_url"
-
-  )
+  .select("*")
 
   .eq("user_id", userId)
 
