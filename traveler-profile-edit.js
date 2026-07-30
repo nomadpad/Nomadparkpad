@@ -220,7 +220,15 @@ cityInput.value = profile.city || "";
 
 }
 
-loadTravelerProfile();
+supabase.auth.onAuthStateChange((event, session) => {
+
+  if (session?.user) {
+
+    loadTravelerProfile();
+
+  }
+
+});
 form?.addEventListener("submit", async (event) => {
 
   event.preventDefault();
