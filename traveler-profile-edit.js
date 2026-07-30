@@ -220,15 +220,29 @@ cityInput.value = profile.city || "";
 
 }
 
-supabase.auth.onAuthStateChange((event, session) => {
+async function initializeTravelerProfile() {
 
-  if (session?.user) {
+  const {
 
-    loadTravelerProfile();
+    data: { session },
+
+    error
+
+  } = await supabase.auth.getSession();
+
+  if (error || !session?.user) {
+
+    window.location.href = "login.html";
+
+    return;
 
   }
 
-});
+  await loadTravelerProfile();
+
+}
+
+initializeTravelerProfile();
 form?.addEventListener("submit", async (event) => {
 
   event.preventDefault();
