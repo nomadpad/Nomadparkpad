@@ -7,9 +7,12 @@ const profilePhotoInput = document.querySelector("#travelerProfilePhoto");
 const profilePhotoPreview = document.querySelector(
 
   "#travelerProfilePhotoPreview"
+const vehiclePhotoInput = document.querySelector("#travelerVehiclePhoto");
+const vehiclePhotoPreview = document.querySelector(
+
+  "#travelerVehiclePhotoPreview"
 
 );
-const vehiclePhotoInput = document.querySelector("#travelerVehiclePhoto");
 let currentProfile = null;
 const aboutInput = document.querySelector("#travelerAbout");
 
@@ -191,6 +194,13 @@ if (profile.profile_photo_url && profilePhotoPreview) {
   profilePhotoPreview.src = profile.profile_photo_url;
 
   profilePhotoPreview.hidden = false;
+
+}
+if (profile.vehicle_photo_url && vehiclePhotoPreview) {
+
+  vehiclePhotoPreview.src = profile.vehicle_photo_url;
+
+  vehiclePhotoPreview.hidden = false;
 
 }
   aboutInput.value = profile.about || "";
