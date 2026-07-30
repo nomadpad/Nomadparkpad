@@ -140,7 +140,7 @@ function showMessage(text, isError = false) {
 
 }
 
-async function loadTravelerProfile() {
+async function loadTravelerProfile(userId) {
 
   if (!supabaseConfigured) {
 
@@ -175,7 +175,7 @@ const { data: profile, error: profileError } = await supabase
 
   )
 
-  .eq("user_id", user.id)
+  .eq("user_id", userId)
 
   .maybeSingle();
 
@@ -238,7 +238,7 @@ async function initializeTravelerProfile() {
 
   }
 
-  await loadTravelerProfile();
+  await loadTravelerProfile(session.user.id);
 
 }
 
