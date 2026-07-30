@@ -266,9 +266,17 @@
 
   import("./traveler-profile-edit.js").catch((error) => {
 
-    alert(`Traveller profile error:\n${error.stack}`);
+  alert(
 
-  });
+  `Traveller profile error:
+
+${error.message}
+
+Line: ${error.line ?? error.lineNumber ?? "unknown"}
+
+Column: ${error.column ?? error.columnNumber ?? "unknown"}`
+
+);
 
 </script>
 </body>
