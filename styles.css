@@ -772,3 +772,118 @@ footer p{
 
 }
 
+/* More Ways to Earn */
+
+.earning-section {
+
+  background: #f7f3e8;
+
+}
+
+.earning-grid {
+
+  display: grid;
+
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+
+  gap: 24px;
+
+  margin-top: 34px;
+
+}
+
+.earning-card {
+
+  display: flex;
+
+  flex-direction: column;
+
+  min-height: 100%;
+
+  padding: 30px;
+
+  border: 1px solid rgba(15, 75, 56, 0.12);
+
+  border-radius: 24px;
+
+  background: #ffffff;
+
+  box-shadow: 0 16px 40px rgba(15, 75, 56, 0.08);
+
+}
+
+.earning-icon {
+
+  display: grid;
+
+  place-items: center;
+
+  width: 58px;
+
+  height: 58px;
+
+  margin-bottom: 20px;
+
+  border-radius: 50%;
+
+  background: #eef6ef;
+
+  font-size: 28px;
+
+}
+
+.earning-card h3 {
+
+  margin: 0 0 14px;
+
+  color: #0f4b38;
+
+  font-size: 1.45rem;
+
+}
+
+.earning-card p {
+
+  margin: 0 0 22px;
+
+  color: #4d5b54;
+
+  line-height: 1.7;
+
+}
+
+.earning-card strong {
+
+  margin-top: auto;
+
+  color: #d66a1f;
+
+  line-height: 1.5;
+
+}
+
+.earning-action {
+
+  display: flex;
+
+  justify-content: center;
+
+  margin-top: 34px;
+
+}
+
+@media (max-width: 900px) {
+
+  .earning-grid {
+
+    grid-template-columns: 1fr;
+
+  }
+
+  .earning-card {
+
+    padding: 24px;
+
+  }
+
+}
