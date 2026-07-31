@@ -873,3 +873,78 @@ body {
   color: #174533;
 
 }
+.dashboard-map-layout {
+
+  display: grid;
+
+  grid-template-columns: 118px minmax(0, 1fr);
+
+  align-items: center;
+
+  gap: 8px;
+
+}
+
+.dashboard-map-filters {
+
+  grid-column: 1;
+
+  grid-row: 1;
+
+}
+
+.dashboard-map {
+
+  grid-column: 2;
+
+  grid-row: 1;
+
+  width: 100%;
+
+  min-width: 0;
+
+}
+
+.dashboard-map-type-controls {
+
+  grid-column: 2;
+
+  grid-row: 2;
+
+  display: flex;
+
+  justify-content: center;
+
+  margin-top: 12px;
+
+}
+
+.map-type-button {
+
+  width: 154px;
+
+  min-height: 58px;
+
+  padding: 10px 16px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 9px;
+
+  border: 2px solid #f28c28;
+
+  border-radius: 14px;
+
+  background: #174533;
+
+  color: #f7f1df;
+
+  font-size: 16px;
+
+  font-weight: 800;
+
+}
