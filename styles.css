@@ -1157,3 +1157,54 @@ footer p{
   }
 
 }
+/* Homepage section order */
+
+main {
+
+  display: flex;
+
+  flex-direction: column;
+
+}
+
+.hero {
+
+  order: 1;
+
+}
+
+.value-strip {
+
+  order: 2;
+
+}
+
+.host-opportunity-section {
+
+  order: 3;
+
+}
+
+.map-showcase {
+
+  order: 4;
+
+}
+
+.host-finder {
+
+  order: 5;
+
+}
+
+#trust {
+
+  order: 6;
+
+}
+
+.philosophy {
+
+  order: 7;
+
+}
