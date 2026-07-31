@@ -31,6 +31,11 @@ const vehicleLengthInput = document.querySelector("#travelerVehicleLength");
 const plateRegionInput = document.querySelector("#travelerPlateRegion");
 const cityInput = document.querySelector("#travelerCity");
 const provinceInput = document.querySelector("#travelerProvince");
+const profilePhotoZoom = document.querySelector(
+
+  "#travelerProfilePhotoZoom"
+
+);
 const cityProvinceMap = {
 
   edmonton: "Alberta",
@@ -112,6 +117,11 @@ profilePhotoInput?.addEventListener("change", () => {
   profilePhotoPreview.hidden = false;
 
   profilePhotoFrame.hidden = false;
+
+});
+profilePhotoZoom?.addEventListener("input", () => {
+
+  profilePhotoPreview.style.transform = `scale(${profilePhotoZoom.value})`;
 
 });
 async function uploadTravellerPhoto(file, userId, photoType) {
