@@ -186,3 +186,136 @@ body {
     background: #21492f;
 
 }
+.dashboard-map-layout {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 14px;
+
+  width: 100%;
+
+}
+
+.dashboard-map {
+
+  order: 2;
+
+  flex: 0 0 auto;
+
+}
+
+.dashboard-map-filters {
+
+  order: 1;
+
+  flex: 0 0 auto;
+
+}
+
+.map-filters-label {
+
+  margin: 0 0 8px;
+
+  max-width: 88px;
+
+  color: white;
+
+  font-size: 12px;
+
+  line-height: 1.2;
+
+  text-align: center;
+
+}
+
+.map-filter-buttons {
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 7px;
+
+}
+
+.map-filter-button {
+
+  width: 88px;
+
+  min-height: 40px;
+
+  padding: 7px 6px;
+
+  color: white;
+
+  background: rgba(14, 61, 46, 0.96);
+
+  border: 2px solid #f28c28;
+
+  border-radius: 11px;
+
+  font-size: 12px;
+
+  font-weight: 700;
+
+  line-height: 1.1;
+
+  cursor: pointer;
+
+  transition:
+
+    transform 0.15s ease,
+
+    background 0.15s ease,
+
+    color 0.15s ease;
+
+}
+
+.map-filter-button.is-active {
+
+  color: #173f31;
+
+  background: #f28c28;
+
+}
+
+.map-filter-button:active {
+
+  transform: scale(0.95);
+
+}
+
+@media (max-width: 430px) {
+
+  .dashboard-map-layout {
+
+    gap: 8px;
+
+  }
+
+  .map-filter-button {
+
+    width: 76px;
+
+    min-height: 36px;
+
+    padding: 5px 4px;
+
+    font-size: 10px;
+
+  }
+
+  .map-filters-label {
+
+    max-width: 76px;
+
+    font-size: 10px;
+
+  }
+
+}
