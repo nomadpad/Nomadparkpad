@@ -16,3 +16,38 @@ body {
   font-family: Arial, sans-serif;
 
 }
+.dashboard-header {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+}
+
+.dashboard-brand p {
+
+  margin: 0;
+
+  font-size: 22px;
+
+  font-weight: 700;
+
+}
+
+.settings-button {
+
+  padding: 10px 14px;
+
+  border: 1px solid #e58a2b;
+
+  border-radius: 12px;
+
+  background: transparent;
+
+  color: #f7f1df;
+
+  font-size: 14px;
+
+}
