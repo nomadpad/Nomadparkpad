@@ -133,7 +133,12 @@ function initTravellerMap() {
 
     streetViewControl: true,
 
-    fullscreenControl: true
+    fullscreenControl: true,
+    mapTypeControlOptions: {
+
+  position: google.maps.ControlPosition.TOP_CENTER
+
+},
 
   });
 
