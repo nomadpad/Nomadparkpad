@@ -327,3 +327,34 @@ body {
   }
 
 }
+.map-filter-count {
+
+  margin: 10px 0 0;
+
+  max-width: 94px;
+
+  color: #f7f1df;
+
+  font-size: 11px;
+
+  font-weight: 700;
+
+  line-height: 1.25;
+
+  text-align: center;
+
+}
+
+.map-filter-button.is-active {
+
+  background: #f28c28;
+
+  color: #173f31;
+
+  box-shadow:
+
+    0 0 0 2px rgba(242, 140, 40, 0.16),
+
+    0 0 14px rgba(242, 140, 40, 0.38);
+
+}

@@ -1,61 +1,107 @@
-function initTravellerMap() {
+const FILTER_COUNTS = {
 
-  const mapElement = document.getElementById("travellerMap");
+  pads: 37,
 
-  if (!mapElement || !window.google?.maps) {
+  instant: 8,
+
+  ev: 6,
+
+  packages: 4,
+
+  events: 12,
+
+  featured: 5
+
+};
+
+const FILTER_LABELS = {
+
+  pads: "locations nearby",
+
+  instant: "instant pads nearby",
+
+  ev: "EV hosts nearby",
+
+  packages: "package hosts nearby",
+
+  events: "events nearby",
+
+  featured: "featured hosts nearby"
+
+};
+
+function initMapFilters() {
+
+  const buttons = document.querySelectorAll(".map-filter-button");
+
+  const filterSection = document.querySelector(".dashboard-map-filters");
+
+  if (!buttons.length || !filterSection) {
 
     return;
 
   }
 
-  const fallbackLocation = {
+  let countDisplay = document.querySelector(".map-filter-count");
 
-    lat: 53.5461,
+  if (!countDisplay) {
 
-    lng: -113.4938
+    countDisplay = document.createElement("p");
 
-  };
+    countDisplay.className = "map-filter-count";
 
-  const map = new google.maps.Map(mapElement, {
+    filterSection.appendChild(countDisplay);
 
-    center: fallbackLocation,
+  }
 
-    zoom: 10
+  function activateFilter(button) {
+
+    buttons.forEach((item) => {
+
+      item.classList.remove("is-active");
+
+      item.setAttribute("aria-pressed", "false");
+
+    });
+
+    button.classList.add("is-active");
+
+    button.setAttribute("aria-pressed", "true");
+
+    const filter = button.dataset.filter || "pads";
+
+    const count = FILTER_COUNTS[filter] ?? 0;
+
+    const label = FILTER_LABELS[filter] || "locations nearby";
+
+    countDisplay.textContent = `${count} ${label}`;
+
+  }
+
+  buttons.forEach((button) => {
+
+    button.setAttribute(
+
+      "aria-pressed",
+
+      button.classList.contains("is-active") ? "true" : "false"
+
+    );
+
+    button.addEventListener("click", () => {
+
+      activateFilter(button);
+
+    });
 
   });
 
-  if (!navigator.geolocation) {
+  const activeButton =
 
-    return;
+    document.querySelector(".map-filter-button.is-active") || buttons[0];
 
-  }
-
-  navigator.geolocation.getCurrentPosition(
-
-    (position) => {
-
-      const travellerLocation = {
-
-        lat: position.coords.latitude,
-
-        lng: position.coords.longitude
-
-      };
-
-      map.setCenter(travellerLocation);
-
-      map.setZoom(11);
-
-    },
-
-    () => {
-
-      console.warn("Traveller location could not be loaded.");
-
-    }
-
-  );
+  activateFilter(activeButton);
 
 }
 
-window.initTravellerMap = initTravellerMap;
+document.addEventListener("DOMContentLoaded", initMapFilters);
