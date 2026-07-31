@@ -187,11 +187,67 @@
 
   </nav>
 
-  <section class="dashboard-weather">
+  <section class="dashboard-weather" id="dashboardWeather">
 
-    <p>Local weather</p>
+  <div class="weather-loading" id="weatherLoading">
 
-  </section>
+    Loading local weather…
+
+  </div>
+
+  <div class="weather-content" id="weatherContent" hidden>
+
+    <div class="weather-main">
+
+      <div class="weather-icon" id="weatherIcon">☀️</div>
+
+      <div class="weather-temperature">
+
+        <strong id="weatherTemperature">--°</strong>
+
+        <span id="weatherCondition">Local weather</span>
+
+      </div>
+
+    </div>
+
+    <div class="weather-details">
+
+      <div>
+
+        <span>Feels like</span>
+
+        <strong id="weatherFeelsLike">--°</strong>
+
+      </div>
+
+      <div>
+
+        <span>Wind</span>
+
+        <strong id="weatherWind">-- km/h</strong>
+
+      </div>
+
+      <div>
+
+        <span>Rain</span>
+
+        <strong id="weatherRain">--%</strong>
+
+      </div>
+
+    </div>
+
+    <p class="weather-summary" id="weatherSummary">
+
+      Checking conditions for your current location.
+
+    </p>
+
+  </div>
+
+</section>
 <script src="traveller-dashboard.js"></script>
 <script async
 
