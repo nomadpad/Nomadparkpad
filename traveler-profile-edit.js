@@ -260,11 +260,23 @@ if (profileError) {
 
 if (profile) {
   currentProfile = profile;
+  photoPositionX = Number(profile.profile_photo_position_x ?? 0);
+
+photoPositionY = Number(profile.profile_photo_position_y ?? 0);
+
+if (profilePhotoZoom) {
+
+  profilePhotoZoom.value = String(profile.profile_photo_zoom ?? 1);
+
+}
 if (profile.profile_photo_url && profilePhotoPreview) {
 
   profilePhotoPreview.src = profile.profile_photo_url;
   profilePhotoPreview.hidden = false;
 profilePhotoFrame.hidden = false;
+profilePhotoPreview.style.transform =
+
+  `translate(${photoPositionX}px, ${photoPositionY}px) scale(${profilePhotoZoom?.value ?? 1})`;
 }
 if (profile.vehicle_photo_url && vehiclePhotoPreview) {
 
@@ -409,7 +421,13 @@ if (vehiclePhotoInput?.files?.[0]) {
 province: provinceInput.value.trim(),
         vehicle_leaks: vehicleLeaksInput.value,
         profile_photo_url: profilePhotoUrl,
+        profile_photo_zoom: Number(profilePhotoZoom.value),
+
+profile_photo_position_x: photoPositionX,
+
+profile_photo_position_y: photoPositionY,
 vehicle_photo_url: vehiclePhotoUrl
+
 
       },
 
