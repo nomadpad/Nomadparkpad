@@ -82,3 +82,24 @@ body {
   font-size: 18px;
 
 }
+.dashboard-map {
+
+  margin-top: 24px;
+
+  min-height: 320px;
+
+  border-radius: 28px;
+
+  background: #f7f1df;
+
+  color: #0f3f2f;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  font-weight: 700;
+
+}
