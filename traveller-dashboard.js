@@ -376,9 +376,9 @@ async function loadLocalWeather(latitude, longitude) {
 
       getWeatherSummary(temperature, wind, rainChance, condition);
 
-    loading.hidden = true;
+    loading.remove();
 
-    content.hidden = false;
+content.hidden = false;
 
   } catch (error) {
 
