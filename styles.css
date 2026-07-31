@@ -1215,3 +1215,10 @@ main {
   display: none !important;
 
 }
+/* Remove Find Your Perfect Host */
+
+#find {
+
+  display: none !important;
+
+}
