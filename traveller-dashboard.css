@@ -148,3 +148,26 @@ body {
   color: #0f3f2f;
 
 }
+.dashboard-weather {
+
+  margin-top: 16px;
+
+  padding: 20px;
+
+  border-radius: 18px;
+
+  background: #f7f1df;
+
+  color: #0f3f2f;
+
+  font-size: 18px;
+
+  font-weight: 700;
+
+}
+
+.dashboard-weather p {
+
+  margin: 0;
+
+}
