@@ -83,8 +83,8 @@ document.querySelector("#login-form")?.addEventListener("submit", async (event) 
     setMessage(form, error.message, true);
     return;
   }
-
-  window.location.href = "traveler-profile-edit.html";
+window.location.href = "traveler-dashboard.html";
+  
 });
 
 document.querySelector("#forgot-form")?.addEventListener("submit", async (event) => {
