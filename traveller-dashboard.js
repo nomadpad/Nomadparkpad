@@ -133,15 +133,46 @@ function initTravellerMap() {
 
     streetViewControl: true,
 
-    fullscreenControl: true,
-    mapTypeControlOptions: {
+    fullscreenControl: true
 
-  position: google.maps.ControlPosition.TOP_CENTER
+  });
+const satelliteButton = document.querySelector(
 
-},
+  '.map-type-button[data-map-type="satellite"]'
+
+);
+
+if (satelliteButton) {
+
+  satelliteButton.addEventListener("click", () => {
+
+    const isSatellite =
+
+      map.getMapTypeId() === google.maps.MapTypeId.SATELLITE;
+
+    map.setMapTypeId(
+
+      isSatellite
+
+        ? google.maps.MapTypeId.ROADMAP
+
+        : google.maps.MapTypeId.SATELLITE
+
+    );
+
+    satelliteButton.classList.toggle("is-active", !isSatellite);
+
+    const label = satelliteButton.querySelector("span");
+
+    if (label) {
+
+      label.textContent = isSatellite ? "Satellite" : "Map";
+
+    }
 
   });
 
+}
   if (!navigator.geolocation) {
 
     return;
