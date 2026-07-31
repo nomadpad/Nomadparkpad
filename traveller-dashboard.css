@@ -358,3 +358,300 @@ body {
     0 0 14px rgba(242, 140, 40, 0.38);
 
 }
+/* ==================================================
+
+   PREMIUM TRAVELLER DASHBOARD MAP LAYOUT
+
+   ================================================== */
+
+.traveller-dashboard {
+
+  padding-left: 16px;
+
+  padding-right: 16px;
+
+}
+
+.dashboard-map-layout {
+
+  display: grid;
+
+  grid-template-columns: 118px minmax(0, 1fr);
+
+  align-items: center;
+
+  gap: 10px;
+
+  width: 100%;
+
+  margin-top: 22px;
+
+}
+
+.dashboard-map-filters {
+
+  grid-column: 1;
+
+  grid-row: 1;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: stretch;
+
+  justify-self: stretch;
+
+}
+
+.map-filters-label {
+
+  max-width: none;
+
+  margin: 0 0 10px;
+
+  color: #f7f1df;
+
+  font-size: 12px;
+
+  font-weight: 500;
+
+  line-height: 1.25;
+
+  text-align: center;
+
+}
+
+.map-filter-buttons {
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 8px;
+
+}
+
+.map-filter-button {
+
+  width: 100%;
+
+  min-height: 58px;
+
+  padding: 9px 8px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 7px;
+
+  border: 2px solid #f28c28;
+
+  border-radius: 13px;
+
+  background: rgba(17, 70, 52, 0.98);
+
+  color: #f7f1df;
+
+  font-size: 14px;
+
+  font-weight: 800;
+
+  line-height: 1.05;
+
+  white-space: nowrap;
+
+  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.12);
+
+  cursor: pointer;
+
+  transition:
+
+    transform 0.15s ease,
+
+    background 0.15s ease,
+
+    color 0.15s ease,
+
+    box-shadow 0.15s ease;
+
+}
+
+.map-filter-button.is-active {
+
+  background: #f39a3b;
+
+  color: #174533;
+
+  box-shadow:
+
+    0 0 0 2px rgba(243, 154, 59, 0.17),
+
+    0 0 18px rgba(243, 154, 59, 0.38);
+
+}
+
+.map-filter-button:active {
+
+  transform: scale(0.96);
+
+}
+
+.map-filter-count {
+
+  max-width: none;
+
+  margin: 12px 0 0;
+
+  color: #f7f1df;
+
+  font-size: 12px;
+
+  font-weight: 800;
+
+  line-height: 1.25;
+
+  text-align: center;
+
+}
+
+.dashboard-map {
+
+  grid-column: 2;
+
+  grid-row: 1;
+
+  width: 100%;
+
+  max-width: 520px;
+
+  justify-self: end;
+
+}
+
+#travellerMap {
+
+  width: 100%;
+
+  aspect-ratio: 1 / 1;
+
+  height: auto;
+
+  border: 3px solid #e99532;
+
+  border-radius: 50%;
+
+  overflow: hidden;
+
+  box-shadow:
+
+    0 0 0 4px rgba(233, 149, 50, 0.08),
+
+    0 10px 24px rgba(0, 0, 0, 0.22);
+
+}
+
+/* Keep the large action buttons balanced */
+
+.dashboard-actions {
+
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 12px;
+
+  margin-top: 20px;
+
+}
+
+.dashboard-actions a {
+
+  min-height: 64px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  border-radius: 17px;
+
+  font-size: 18px;
+
+  font-weight: 800;
+
+}
+
+/* Larger weather panel */
+
+.dashboard-weather {
+
+  min-height: 70px;
+
+  margin-top: 14px;
+
+  padding: 18px 20px;
+
+  display: flex;
+
+  align-items: center;
+
+  border-radius: 17px;
+
+}
+
+.dashboard-weather p {
+
+  margin: 0;
+
+  font-size: 21px;
+
+  font-weight: 800;
+
+}
+
+/* Very narrow phones */
+
+@media (max-width: 375px) {
+
+  .traveller-dashboard {
+
+    padding-left: 12px;
+
+    padding-right: 12px;
+
+  }
+
+  .dashboard-map-layout {
+
+    grid-template-columns: 104px minmax(0, 1fr);
+
+    gap: 7px;
+
+  }
+
+  .map-filter-button {
+
+    min-height: 52px;
+
+    padding: 7px 5px;
+
+    gap: 4px;
+
+    font-size: 12px;
+
+  }
+
+  .map-filters-label,
+
+  .map-filter-count {
+
+    font-size: 10px;
+
+  }
+
+}
