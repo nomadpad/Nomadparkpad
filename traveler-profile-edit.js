@@ -36,6 +36,14 @@ const profilePhotoZoom = document.querySelector(
   "#travelerProfilePhotoZoom"
 
 );
+let photoPositionX = 0;
+
+let photoPositionY = 0;
+let isDraggingPhoto = false;
+
+let dragStartX = 0;
+
+let dragStartY = 0;
 const cityProvinceMap = {
 
   edmonton: "Alberta",
@@ -121,7 +129,45 @@ profilePhotoInput?.addEventListener("change", () => {
 });
 profilePhotoZoom?.addEventListener("input", () => {
 
-  profilePhotoPreview.style.transform = `scale(${profilePhotoZoom.value})`;
+  profilePhotoPreview.style.transform =
+
+    `translate(${photoPositionX}px, ${photoPositionY}px) scale(${profilePhotoZoom.value})`;
+
+});
+
+profilePhotoPreview?.addEventListener("pointerdown", (event) => {
+
+  isDraggingPhoto = true;
+
+  dragStartX = event.clientX - photoPositionX;
+
+  dragStartY = event.clientY - photoPositionY;
+
+  profilePhotoPreview.setPointerCapture(event.pointerId);
+
+});
+profilePhotoPreview?.addEventListener("pointermove", (event) => {
+
+  if (!isDraggingPhoto) return;
+
+  photoPositionX = event.clientX - dragStartX;
+
+  photoPositionY = event.clientY - dragStartY;
+
+  profilePhotoPreview.style.transform =
+
+    `translate(${photoPositionX}px, ${photoPositionY}px) scale(${profilePhotoZoom.value})`;
+
+});
+profilePhotoPreview?.addEventListener("pointerup", () => {
+
+  isDraggingPhoto = false;
+
+});
+
+profilePhotoPreview?.addEventListener("pointercancel", () => {
+
+  isDraggingPhoto = false;
 
 });
 async function uploadTravellerPhoto(file, userId, photoType) {
