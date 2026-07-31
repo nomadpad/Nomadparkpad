@@ -83,7 +83,7 @@ document.querySelector("#login-form")?.addEventListener("submit", async (event) 
     setMessage(form, error.message, true);
     return;
   }
-window.location.href = "traveler-dashboard.html";
+window.location.href = "traveller-dashboard.html";
   
 });
 
