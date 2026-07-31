@@ -129,7 +129,7 @@ function initTravellerMap() {
 
     disableDefaultUI: false,
 
-    mapTypeControl: true,
+    mapTypeControl: false,
 
     streetViewControl: true,
 
