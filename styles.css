@@ -1208,3 +1208,10 @@ main {
   order: 7;
 
 }
+/* Remove the old three-card benefit strip */
+
+.value-strip {
+
+  display: none !important;
+
+}
