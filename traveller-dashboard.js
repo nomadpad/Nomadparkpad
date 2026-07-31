@@ -103,6 +103,9 @@ function initMapFilters() {
   activateFilter(activeButton);
 
 }
+let travellerMapInstance = null;
+
+let dashboardListingMarkers = [];
 function initTravellerMap() {
 
   const mapElement = document.getElementById("travellerMap");
@@ -136,6 +139,9 @@ function initTravellerMap() {
     fullscreenControl: true
 
   });
+  travellerMapInstance = map;
+
+loadDashboardListings();
 const satelliteButton = document.querySelector(
 
   '.map-type-button[data-map-type="satellite"]'
@@ -453,6 +459,101 @@ function initLocalWeather() {
     }
 
   );
+
+}
+async function loadDashboardListings() {
+
+  if (!window.supabase || !travellerMapInstance) {
+
+    console.warn("Supabase or dashboard map is not ready.");
+
+    return;
+
+  }
+
+  const { data, error } = await supabase
+
+    .from("listings")
+
+    .select(
+
+      "id, title, city, province, nightly_price, latitude, longitude, status"
+
+    )
+
+    .eq("status", "published")
+
+    .not("latitude", "is", null)
+
+    .not("longitude", "is", null);
+
+  if (error) {
+
+    console.error("Could not load dashboard listings:", error);
+
+    return;
+
+  }
+
+  dashboardListingMarkers.forEach((marker) => {
+
+    marker.setMap(null);
+
+  });
+
+  dashboardListingMarkers = [];
+
+  (data || []).forEach((listing) => {
+
+    const latitude = Number(listing.latitude);
+
+    const longitude = Number(listing.longitude);
+
+    if (!Number.isFinite(latitude) || !Number.isFinite(longitude)) {
+
+      return;
+
+    }
+
+    const marker = new google.maps.Marker({
+
+      map: travellerMapInstance,
+
+      position: {
+
+        lat: latitude,
+
+        lng: longitude
+
+      },
+
+      title: listing.title || "Nomad Park Pad"
+
+    });
+
+    dashboardListingMarkers.push(marker);
+
+  });
+
+  updateDashboardListingCount();
+
+}
+
+function updateDashboardListingCount() {
+
+  const countDisplay = document.querySelector(".map-filter-count");
+
+  if (!countDisplay) {
+
+    return;
+
+  }
+
+  const count = dashboardListingMarkers.length;
+
+  const word = count === 1 ? "location" : "locations";
+
+  countDisplay.textContent = `${count} ${word} nearby`;
 
 }
 window.initTravellerMap = initTravellerMap;
