@@ -78,9 +78,7 @@ button {
 
 .host-onboarding-page {
 
-  min-height: 100vh;
-
-  overflow: hidden;
+  min-height: auto;
 
 }
 
@@ -216,7 +214,7 @@ button {
 
 .onboarding-intro strong {
 
-  color: var(--orange);
+  white-space: nowrap;
 
 }
 
@@ -228,13 +226,13 @@ button {
 
   z-index: 1;
 
-  top: 20px;
+  top: 10px;
 
-  right: -70px;
+  right: -190px;
 
   bottom: 0;
 
-  width: 62%;
+  width: 118%;
 
   min-height: 0;
 
@@ -739,10 +737,11 @@ button {
     width: calc(100% - 22px);
 
     margin-top: -36px;
-
+margin-bottom: 20px;
     padding: 24px 14px;
 
     border-radius: 25px;
+  
 
   }
 
