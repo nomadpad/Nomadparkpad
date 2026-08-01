@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+
+    name="viewport"
+
+    content="width=device-width, initial-scale=1"
+
+  >
+
+  <title>
+
+    Admin Command Centre | Nomad Park Pad
+
+  </title>
+
+  <meta
+
+    name="description"
+
+    content="Private Nomad Park Pad administration command centre."
+
+  >
+
+  <meta
+
+    name="theme-color"
+
+    content="#0d3b2f"
+
+  >
+
+  <link
+
+    rel="icon"
+
+    type="image/png"
+
+    sizes="32x32"
+
+    href="favicon-32.png"
+
+  >
+
+  <link
+
+    rel="stylesheet"
+
+    href="admin-command.css"
+
+  >
+
+</head>
+
+<body>
+
+  <div class="admin-shell">
+
+    <aside
+
+      class="admin-sidebar"
+
+      id="adminSidebar"
+
+    >
+
+      <div class="admin-brand">
+
+        <a href="index.html">
+
+          <img
+
+            src="Nomad_Park_Pad_Primary_Logo.png"
+
+            alt="Nomad Park Pad"
+
+          >
+
+        </a>
+
+        <span>
+
+          Private Administration
+
+        </span>
+
+      </div>
+
+      <nav
+
+        class="admin-nav"
+
+        aria-label="Admin navigation"
+
+      >
+
+        <a
+
+          class="admin-nav-link active"
+
+          href="#overview"
+
+        >
+
+          <span>📊</span>
+
+          Overview
+
+        </a>
+
+        <a
+
+          class="admin-nav-link"
+
+          href="#earlyAccess"
+
+        >
+
+          <span>🚀</span>
+
+          Early Access
+
+        </a>
+
+        <a
+
+          class="admin-nav-link"
+
+          href="#members"
+
+        >
+
+          <span>👥</span>
+
+          Members
+
+        </a>
+
+        <a
+
+          class="admin-nav-link"
+
+          href="#listings"
+
+        >
+
+          <span>🏡</span>
+
+          Listings
+
+        </a>
+
+        <a
+
+          class="admin-nav-link"
+
+          href="#bookings"
+
+        >
+
+          <span>📅</span>
+
+          Bookings
+
+        </a>
+
+        <a
+
+          class="admin-nav-link"
+
+          href="#payments"
+
+        >
+
+          <span>💳</span>
+
+          Payments
+
+        </a>
+
+        <a
+
+          class="admin-nav-link"
+
+          href="#reports"
+
+        >
+
+          <span>🛡️</span>
+
+          Reports
+
+        </a>
+
+        <a
+
+          class="admin-nav-link"
+
+          href="#activity"
+
+        >
+
+          <span>📡</span>
+
+          Live Activity
+
+        </a>
+
+      </nav>
+
+      <div class="admin-room-switcher">
+
+        <p>
+
+          Your rooms
+
+        </p>
+
+        <a href="traveller.html">
+
+          🧳 Traveller Room
+
+        </a>
+
+        <a href="host-command.html">
+
+          🏡 Host Command Centre
+
+        </a>
+
+        <a
+
+          class="current-room"
+
+          href="admin-command.html"
+
+        >
+
+          🔐 Admin Command Centre
+
+        </a>
+
+      </div>
+
+    </aside>
+
+    <div
+
+      class="admin-backdrop"
+
+      id="adminBackdrop"
+
+      hidden
+
+    ></div>
+
+    <main class="admin-main">
+
+      <header class="admin-topbar">
+
+        <button
+
+          class="admin-menu-button"
+
+          id="adminMenuButton"
+
+          type="button"
+
+          aria-label="Open admin menu"
+
+          aria-expanded="false"
+
+        >
+
+          ☰
+
+        </button>
+
+        <div class="admin-topbar-copy">
+
+          <p>
+
+            NOMAD PARK PAD OPERATIONS
+
+          </p>
+
+          <strong>
+
+            Private Admin Room
+
+          </strong>
+
+        </div>
+
+        <div class="admin-profile">
+
+          <span class="admin-avatar">
+
+            D
+
+          </span>
+
+          <div>
+
+            <strong id="adminName">
+
+              Daniel
+
+            </strong>
+
+            <small>
+
+              Founder & Administrator
+
+            </small>
+
+          </div>
+
+        </div>
+
+      </header>
+
+      <section
+
+        class="admin-hero"
+
+        id="overview"
+
+      >
+
+        <div>
+
+          <p class="admin-kicker">
+
+            CONTROL TOWER
+
+          </p>
+
+          <h1>
+
+            Welcome to your Admin Room.
+
+          </h1>
+
+          <p>
+
+            Watch Nomad Park Pad grow, protect the community and manage the entire marketplace from one private command centre.
+
+          </p>
+
+        </div>
+
+        <div class="admin-status-card">
+
+          <span class="admin-status-dot"></span>
+
+          <div>
+
+            <strong>
+
+              Platform status
+
+            </strong>
+
+            <p id="platformStatus">
+
+              Preparing live marketplace data.
+
+            </p>
+
+          </div>
+
+        </div>
+
+      </section>
+
+      <section class="admin-metrics">
+
+        <article class="admin-metric-card">
+
+          <span>👥</span>
+
+          <div>
+
+            <small>Total members</small>
+
+            <strong id="totalMembers">0</strong>
+
+            <p>Hosts and travellers</p>
+
+          </div>
+
+        </article>
+
+        <article class="admin-metric-card">
+
+          <span>🏡</span>
+
+          <div>
+
+            <small>Published pads</small>
+
+            <strong id="totalListings">0</strong>
+
+            <p>Live marketplace inventory</p>
+
+          </div>
+
+        </article>
+
+        <article class="admin-metric-card">
+
+          <span>📬</span>
+
+          <div>
+
+            <small>Booking requests</small>
+
+            <strong id="totalBookings">0</strong>
+
+            <p>All marketplace requests</p>
+
+          </div>
+
+        </article>
+
+        <article class="admin-metric-card">
+
+          <span>💰</span>
+
+          <div>
+
+            <small>Platform revenue</small>
+
+            <strong id="platformRevenue">$0</strong>
+
+            <p>Before expenses and taxes</p>
+
+          </div>
+
+        </article>
+
+      </section>
+
+      <div class="admin-dashboard-grid">
+
+        <section
+
+          class="admin-panel admin-growth-panel"
+
+          id="earlyAccess"
+
+        >
+
+          <header class="admin-panel-header">
+
+            <div>
+
+              <p>EARLY ACCESS</p>
+
+              <h2>Growth Monitor</h2>
+
+            </div>
+
+            <span class="admin-live-pill">
+
+              LIVE
+
+            </span>
+
+          </header>
+
+          <div class="admin-growth-grid">
+
+            <article>
+
+              <small>New today</small>
+
+              <strong id="newToday">0</strong>
+
+              <span>members</span>
+
+            </article>
+
+            <article>
+
+              <small>New this week</small>
+
+              <strong id="newThisWeek">0</strong>
+
+              <span>members</span>
+
+            </article>
+
+            <article>
+
+              <small>Hosts ready</small>
+
+              <strong id="readyHosts">0</strong>
+
+              <span>published</span>
+
+            </article>
+
+            <article>
+
+              <small>Traveller demand</small>
+
+              <strong id="travellerDemand">0</strong>
+
+              <span>active searches</span>
+
+            </article>
+
+          </div>
+
+          <div class="admin-chart-placeholder">
+
+            <div class="admin-chart-bars">
+
+              <span></span>
+
+              <span></span>
+
+              <span></span>
+
+              <span></span>
+
+              <span></span>
+
+              <span></span>
+
+              <span></span>
+
+            </div>
+
+            <p>
+
+              Early Access signup growth will appear here.
+
+            </p>
+
+          </div>
+
+        </section>
+
+        <section
+
+          class="admin-panel"
+
+          id="activity"
+
+        >
+
+          <header class="admin-panel-header">
+
+            <div>
+
+              <p>REAL-TIME VIEW</p>
+
+              <h2>Live Activity</h2>
+
+            </div>
+
+            <button
+
+              class="admin-refresh-button"
+
+              id="refreshAdminData"
+
+              type="button"
+
+            >
+
+              Refresh
+
+            </button>
+
+          </header>
+
+          <div
+
+            class="admin-activity-feed"
+
+            id="adminActivityFeed"
+
+          >
+
+            <article class="admin-empty-state">
+
+              <span>📡</span>
+
+              <div>
+
+                <strong>
+
+                  Waiting for activity
+
+                </strong>
+
+                <p>
+
+                  New signups, listings and bookings will appear here.
+
+                </p>
+
+              </div>
+
+            </article>
+
+          </div>
+
+        </section>
+
+        <section
+
+          class="admin-panel"
+
+          id="members"
+
+        >
+
+          <header class="admin-panel-header">
+
+            <div>
+
+              <p>COMMUNITY</p>
+
+              <h2>Newest Members</h2>
+
+            </div>
+
+            <a href="#">
+
+              View all →
+
+            </a>
+
+          </header>
+
+          <div
+
+            class="admin-table"
+
+            id="newestMembersTable"
+
+          >
+
+            <div class="admin-table-row admin-table-head">
+
+              <span>Member</span>
+
+              <span>Role</span>
+
+              <span>Joined</span>
+
+              <span>Status</span>
+
+            </div>
+
+            <div class="admin-empty-table">
+
+              New members will appear here.
+
+            </div>
+
+          </div>
+
+        </section>
+
+        <section
+
+          class="admin-panel"
+
+          id="listings"
+
+        >
+
+          <header class="admin-panel-header">
+
+            <div>
+
+              <p>INVENTORY</p>
+
+              <h2>Listing Oversight</h2>
+
+            </div>
+
+            <a href="find-a-pad.html">
+
+              Open map →
+
+            </a>
+
+          </header>
+
+          <div class="admin-oversight-grid">
+
+            <article>
+
+              <span>🟢</span>
+
+              <strong id="publishedListingCount">0</strong>
+
+              <p>Published</p>
+
+            </article>
+
+            <article>
+
+              <span>🟡</span>
+
+              <strong id="draftListingCount">0</strong>
+
+              <p>Drafts</p>
+
+            </article>
+
+            <article>
+
+              <span>🔴</span>
+
+              <strong id="flaggedListingCount">0</strong>
+
+              <p>Flagged</p>
+
+            </article>
+
+          </div>
+
+        </section>
+
+        <section
+
+          class="admin-panel"
+
+          id="bookings"
+
+        >
+
+          <header class="admin-panel-header">
+
+            <div>
+
+              <p>MARKETPLACE</p>
+
+              <h2>Booking Centre</h2>
+
+            </div>
+
+            <span>
+
+              All requests
+
+            </span>
+
+          </header>
+
+          <div class="admin-oversight-grid">
+
+            <article>
+
+              <span>📨</span>
+
+              <strong id="pendingBookingCount">0</strong>
+
+              <p>Pending</p>
+
+            </article>
+
+            <article>
+
+              <span>✅</span>
+
+              <strong id="acceptedBookingCount">0</strong>
+
+              <p>Accepted</p>
+
+            </article>
+
+            <article>
+
+              <span>↩️</span>
+
+              <strong id="refundCount">0</strong>
+
+              <p>Refunds</p>
+
+            </article>
+
+          </div>
+
+        </section>
+
+        <section
+
+          class="admin-panel admin-money-panel"
+
+          id="payments"
+
+        >
+
+          <header class="admin-panel-header">
+
+            <div>
+
+              <p>FINANCIAL CONTROL</p>
+
+              <h2>Stripe & Revenue</h2>
+
+            </div>
+
+            <a href="host-payouts.html">
+
+              Payout view →
+
+            </a>
+
+          </header>
+
+          <div class="admin-money-grid">
+
+            <article>
+
+              <small>Gross bookings</small>
+
+              <strong id="grossBookings">$0</strong>
+
+            </article>
+
+            <article>
+
+              <small>Platform fees</small>
+
+              <strong id="platformFees">$0</strong>
+
+            </article>
+
+            <article>
+
+              <small>Host payouts</small>
+
+              <strong id="hostPayouts">$0</strong>
+
+            </article>
+
+            <article>
+
+              <small>Stripe onboarding</small>
+
+              <strong id="stripeReadyHosts">0</strong>
+
+            </article>
+
+          </div>
+
+        </section>
+
+        <section
+
+          class="admin-panel"
+
+          id="reports"
+
+        >
+
+          <header class="admin-panel-header">
+
+            <div>
+
+              <p>TRUST & SAFETY</p>
+
+              <h2>Reports & Alerts</h2>
+
+            </div>
+
+            <span class="admin-alert-count">
+
+              0
+
+            </span>
+
+          </header>
+
+          <div class="admin-empty-state">
+
+            <span>🛡️</span>
+
+            <div>
+
+              <strong>
+
+                No active reports
+
+              </strong>
+
+              <p>
+
+                Community reports, suspicious listings and payment alerts will appear here.
+
+              </p>
+
+            </div>
+
+          </div>
+
+        </section>
+
+      </div>
+
+    </main>
+
+  </div>
+
+  <script
+
+    type="module"
+
+    src="admin-command.js"
+
+  ></script>
+
+</body>
+
+</html>
