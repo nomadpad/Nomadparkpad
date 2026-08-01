@@ -1,0 +1,721 @@
+@import url("host-onboarding.css");
+
+/* ==========================================
+
+   PAGE 6 - REVIEW
+
+========================================== */
+
+.journey-step.completed {
+
+  color: var(--forest);
+
+}
+
+.journey-step.completed .journey-icon {
+
+  border-color: rgba(18, 63, 50, 0.28);
+
+  background: rgba(18, 63, 50, 0.1);
+
+  color: var(--forest);
+
+  filter: none;
+
+  opacity: 1;
+
+}
+
+/* READY MESSAGE */
+
+.review-ready-message {
+
+  max-width: 720px;
+
+  display: flex;
+
+  align-items: flex-start;
+
+  gap: 15px;
+
+  margin: 34px auto 24px;
+
+  padding: 20px;
+
+  border: 1px solid rgba(243, 107, 22, 0.2);
+
+  border-radius: 19px;
+
+  background:
+
+    linear-gradient(
+
+      135deg,
+
+      rgba(255, 247, 237, 0.98),
+
+      rgba(247, 234, 213, 0.66)
+
+    );
+
+  color: var(--forest);
+
+  text-align: left;
+
+}
+
+.review-ready-message > span {
+
+  flex: 0 0 auto;
+
+  font-size: 29px;
+
+  line-height: 1;
+
+}
+
+.review-ready-message strong {
+
+  display: block;
+
+  margin-bottom: 5px;
+
+  font-size: 17px;
+
+}
+
+.review-ready-message p {
+
+  margin: 0;
+
+  color: var(--muted);
+
+  font-size: 14px;
+
+  line-height: 1.5;
+
+}
+
+/* REVIEW LIST */
+
+.review-list {
+
+  display: grid;
+
+  gap: 16px;
+
+  max-width: 760px;
+
+  margin: 0 auto;
+
+}
+
+.review-card {
+
+  display: grid;
+
+  grid-template-columns: 58px minmax(0, 1fr);
+
+  gap: 17px;
+
+  padding: 22px;
+
+  border: 1px solid rgba(18, 63, 50, 0.12);
+
+  border-radius: 22px;
+
+  background:
+
+    linear-gradient(
+
+      180deg,
+
+      rgba(255, 255, 255, 0.98),
+
+      rgba(247, 234, 213, 0.34)
+
+    );
+
+  box-shadow: 0 12px 27px rgba(31, 55, 46, 0.07);
+
+  text-align: left;
+
+}
+
+.featured-review-card {
+
+  border-color: rgba(243, 107, 22, 0.32);
+
+  background:
+
+    linear-gradient(
+
+      180deg,
+
+      rgba(255, 249, 241, 1),
+
+      rgba(255, 237, 216, 0.62)
+
+    );
+
+  box-shadow: 0 15px 32px rgba(243, 107, 22, 0.11);
+
+}
+
+.review-card-icon {
+
+  width: 58px;
+
+  height: 58px;
+
+  display: grid;
+
+  place-items: center;
+
+  border-radius: 17px;
+
+  background: rgba(18, 63, 50, 0.065);
+
+  color: var(--forest);
+
+  font-size: 29px;
+
+}
+
+.featured-review-card .review-card-icon {
+
+  background: rgba(243, 107, 22, 0.1);
+
+}
+
+.review-card-content {
+
+  min-width: 0;
+
+}
+
+.review-card-heading {
+
+  display: flex;
+
+  align-items: flex-start;
+
+  justify-content: space-between;
+
+  gap: 16px;
+
+}
+
+.review-label {
+
+  margin: 0 0 4px;
+
+  color: var(--orange-dark);
+
+  font-size: 12px;
+
+  font-weight: 900;
+
+  letter-spacing: 0.08em;
+
+  text-transform: uppercase;
+
+}
+
+.review-card h3 {
+
+  margin: 0;
+
+  color: var(--forest);
+
+  font-size: 20px;
+
+  line-height: 1.25;
+
+}
+
+.edit-link {
+
+  flex: 0 0 auto;
+
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  min-height: 38px;
+
+  padding: 0 14px;
+
+  border: 1px solid rgba(18, 63, 50, 0.15);
+
+  border-radius: 11px;
+
+  background: white;
+
+  color: var(--forest);
+
+  font-size: 13px;
+
+  font-weight: 800;
+
+  text-decoration: none;
+
+  touch-action: manipulation;
+
+}
+
+.review-description {
+
+  margin: 13px 0 0;
+
+  color: var(--muted);
+
+  font-size: 14px;
+
+  line-height: 1.55;
+
+}
+
+.review-status {
+
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  margin-top: 15px;
+
+  padding: 8px 11px;
+
+  border-radius: 999px;
+
+  background: rgba(18, 63, 50, 0.07);
+
+  color: var(--forest);
+
+  font-size: 12px;
+
+  font-weight: 800;
+
+}
+
+.review-status span {
+
+  color: var(--orange);
+
+  font-weight: 900;
+
+}
+
+/* PRICE REVIEW */
+
+.review-price {
+
+  display: flex;
+
+  align-items: baseline;
+
+  gap: 9px;
+
+  margin-top: 14px;
+
+}
+
+.review-price strong {
+
+  color: var(--forest);
+
+  font-family: Georgia, "Times New Roman", serif;
+
+  font-size: 43px;
+
+  line-height: 1;
+
+}
+
+.review-price span {
+
+  color: var(--muted);
+
+  font-size: 14px;
+
+  font-weight: 700;
+
+}
+
+/* AVAILABILITY SUMMARY */
+
+.availability-summary {
+
+  display: grid;
+
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+
+  gap: 10px;
+
+  margin-top: 16px;
+
+}
+
+.availability-summary div {
+
+  padding: 14px;
+
+  border: 1px solid rgba(18, 63, 50, 0.1);
+
+  border-radius: 14px;
+
+  background: rgba(255, 255, 255, 0.7);
+
+}
+
+.availability-summary span,
+
+.availability-summary strong {
+
+  display: block;
+
+}
+
+.availability-summary span {
+
+  margin-bottom: 5px;
+
+  color: var(--muted);
+
+  font-size: 11px;
+
+  font-weight: 700;
+
+}
+
+.availability-summary strong {
+
+  color: var(--forest);
+
+  font-size: 13px;
+
+  line-height: 1.35;
+
+}
+
+/* ACCURACY CONFIRMATION */
+
+.accuracy-confirmation {
+
+  max-width: 760px;
+
+  display: grid;
+
+  grid-template-columns: 32px minmax(0, 1fr);
+
+  align-items: flex-start;
+
+  gap: 13px;
+
+  margin: 24px auto 0;
+
+  padding: 20px;
+
+  border: 2px solid rgba(18, 63, 50, 0.12);
+
+  border-radius: 19px;
+
+  background: white;
+
+  color: var(--forest);
+
+  text-align: left;
+
+  cursor: pointer;
+
+  transition:
+
+    border-color 180ms ease,
+
+    background 180ms ease,
+
+    box-shadow 180ms ease;
+
+}
+
+.accuracy-confirmation:has(input:checked) {
+
+  border-color: var(--orange);
+
+  background: #fff8ef;
+
+  box-shadow: 0 13px 28px rgba(243, 107, 22, 0.1);
+
+}
+
+.accuracy-confirmation input {
+
+  position: absolute;
+
+  opacity: 0;
+
+  pointer-events: none;
+
+}
+
+.confirmation-box {
+
+  width: 32px;
+
+  height: 32px;
+
+  display: grid;
+
+  place-items: center;
+
+  border: 2px solid rgba(18, 63, 50, 0.22);
+
+  border-radius: 9px;
+
+  background: white;
+
+  color: transparent;
+
+  font-size: 18px;
+
+  font-weight: 900;
+
+  transition:
+
+    border-color 180ms ease,
+
+    background 180ms ease,
+
+    color 180ms ease;
+
+}
+
+.accuracy-confirmation input:checked + .confirmation-box {
+
+  border-color: var(--orange);
+
+  background: var(--orange);
+
+  color: white;
+
+}
+
+.accuracy-confirmation strong,
+
+.accuracy-confirmation small {
+
+  display: block;
+
+}
+
+.accuracy-confirmation strong {
+
+  margin-bottom: 5px;
+
+  font-size: 16px;
+
+}
+
+.accuracy-confirmation small {
+
+  color: var(--muted);
+
+  font-size: 13px;
+
+  line-height: 1.5;
+
+}
+
+/* REMINDER */
+
+.review-reminder {
+
+  max-width: 760px;
+
+  margin: 22px auto 0;
+
+  padding: 16px 18px;
+
+  border: 1px solid rgba(18, 63, 50, 0.12);
+
+  border-radius: 16px;
+
+  background: rgba(18, 63, 50, 0.055);
+
+  color: var(--forest);
+
+  font-size: 14px;
+
+  font-weight: 700;
+
+  line-height: 1.5;
+
+  text-align: left;
+
+}
+
+/* ACTIONS */
+
+.review-actions {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 18px;
+
+  max-width: 760px;
+
+  margin: 34px auto 0;
+
+}
+
+.back-button {
+
+  min-height: 58px;
+
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  padding: 0 24px;
+
+  border: 1px solid rgba(18, 63, 50, 0.16);
+
+  border-radius: 14px;
+
+  background: white;
+
+  color: var(--forest);
+
+  font-weight: 800;
+
+  text-decoration: none;
+
+}
+
+.continue-button:disabled {
+
+  opacity: 0.43;
+
+  cursor: not-allowed;
+
+  transform: none;
+
+  box-shadow: none;
+
+}
+
+.confirmation-message {
+
+  margin: 17px 0 0;
+
+  color: var(--muted);
+
+  font-size: 13px;
+
+  font-weight: 700;
+
+  text-align: center;
+
+}
+
+.confirmation-message.confirmed {
+
+  color: var(--forest);
+
+}
+
+/* MOBILE */
+
+@media (max-width: 760px) {
+
+  .review-card {
+
+    grid-template-columns: 48px minmax(0, 1fr);
+
+    gap: 13px;
+
+    padding: 18px 15px;
+
+  }
+
+  .review-card-icon {
+
+    width: 48px;
+
+    height: 48px;
+
+    border-radius: 14px;
+
+    font-size: 25px;
+
+  }
+
+  .review-card h3 {
+
+    font-size: 18px;
+
+  }
+
+  .edit-link {
+
+    min-height: 36px;
+
+    padding: 0 12px;
+
+  }
+
+  .availability-summary {
+
+    grid-template-columns: 1fr;
+
+  }
+
+  .review-actions {
+
+    flex-direction: column-reverse;
+
+  }
+
+  .back-button,
+
+  .review-actions .continue-button {
+
+    width: 100%;
+
+  }
+
+}
+
+@media (max-width: 390px) {
+
+  .review-card {
+
+    grid-template-columns: 1fr;
+
+  }
+
+  .review-card-icon {
+
+    width: 46px;
+
+    height: 46px;
+
+  }
+
+  .review-card-heading {
+
+    gap: 10px;
+
+  }
+
+}
