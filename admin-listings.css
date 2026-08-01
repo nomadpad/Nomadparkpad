@@ -1058,3 +1058,580 @@ button {
   background: var(--orange);
 
 }
+/* =========================================================
+
+   LISTING DETAILS DIALOG
+
+========================================================= */
+
+.listing-dialog {
+
+  width: min(760px, calc(100% - 28px));
+
+  max-height: calc(100dvh - 28px);
+
+  padding: 0;
+
+  border: 0;
+
+  border-radius: 24px;
+
+  color: var(--forest);
+
+  background: transparent;
+
+  overflow: visible;
+
+}
+
+.listing-dialog::backdrop {
+
+  background: rgba(4, 22, 16, 0.68);
+
+  backdrop-filter: blur(5px);
+
+}
+
+.listing-dialog-card {
+
+  position: relative;
+
+  max-height: calc(100dvh - 28px);
+
+  padding: 24px;
+
+  border: 1px solid var(--border);
+
+  border-radius: 24px;
+
+  background:
+
+    radial-gradient(
+
+      circle at 95% 5%,
+
+      rgba(243, 106, 6, 0.13),
+
+      transparent 30%
+
+    ),
+
+    #fff;
+
+  box-shadow:
+
+    0 30px 80px rgba(4, 22, 16, 0.32);
+
+  overflow-y: auto;
+
+}
+
+.listing-dialog-close {
+
+  position: absolute;
+
+  top: 14px;
+
+  right: 14px;
+
+  z-index: 3;
+
+  width: 40px;
+
+  height: 40px;
+
+  display: grid;
+
+  place-items: center;
+
+  border: 1px solid var(--border);
+
+  border-radius: 50%;
+
+  color: var(--forest);
+
+  background: #fff;
+
+  font-size: 24px;
+
+  line-height: 1;
+
+}
+
+.listing-dialog-image-wrap {
+
+  position: relative;
+
+  aspect-ratio: 16 / 8;
+
+  overflow: hidden;
+
+  border-radius: 18px;
+
+  background: #efe9de;
+
+}
+
+.listing-dialog-image-wrap img {
+
+  width: 100%;
+
+  height: 100%;
+
+  display: block;
+
+  object-fit: cover;
+
+}
+
+.listing-dialog-copy {
+
+  margin-top: 20px;
+
+}
+
+.listing-dialog-copy > p {
+
+  margin: 0 0 7px;
+
+  color: var(--orange);
+
+  font-size: 9px;
+
+  font-weight: 900;
+
+  letter-spacing: 0.18em;
+
+}
+
+.listing-dialog-copy h2 {
+
+  margin: 0;
+
+  font-family: Georgia, "Times New Roman", serif;
+
+  font-size: 34px;
+
+  line-height: 1.04;
+
+}
+
+.listing-dialog-copy > span {
+
+  display: block;
+
+  margin-top: 8px;
+
+  color: #68766f;
+
+  font-size: 11px;
+
+  font-weight: 800;
+
+}
+
+.listing-dialog-grid {
+
+  display: grid;
+
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  gap: 12px;
+
+  margin-top: 22px;
+
+}
+
+.listing-dialog-grid article {
+
+  min-height: 94px;
+
+  padding: 16px;
+
+  border: 1px solid var(--border);
+
+  border-radius: 14px;
+
+  background: #faf7f1;
+
+}
+
+.listing-dialog-grid small {
+
+  color: #6b7972;
+
+  font-size: 9px;
+
+  font-weight: 800;
+
+  text-transform: uppercase;
+
+}
+
+.listing-dialog-grid strong {
+
+  display: block;
+
+  margin-top: 9px;
+
+  font-size: 13px;
+
+  overflow-wrap: anywhere;
+
+}
+
+.listing-dialog-actions {
+
+  display: grid;
+
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  gap: 10px;
+
+  margin-top: 20px;
+
+}
+
+.listing-dialog-actions button {
+
+  min-height: 44px;
+
+  padding: 0 15px;
+
+  border: 1px solid var(--border);
+
+  border-radius: 11px;
+
+  color: var(--forest);
+
+  background: #fff;
+
+  font-size: 10px;
+
+  font-weight: 900;
+
+}
+
+.listing-dialog-actions button:not(:disabled):hover {
+
+  color: #fff;
+
+  border-color: var(--orange);
+
+  background: var(--orange);
+
+}
+
+.listing-dialog-actions .warning-action {
+
+  color: #9c4f00;
+
+  border-color: rgba(243, 106, 6, 0.28);
+
+  background: #fff6ed;
+
+}
+
+.listing-dialog-actions .danger-action {
+
+  color: #a52f25;
+
+  border-color: rgba(165, 47, 37, 0.25);
+
+  background: #fff1ef;
+
+}
+
+.listing-dialog-actions button:disabled {
+
+  cursor: not-allowed;
+
+  opacity: 0.46;
+
+}
+
+.listing-action-note {
+
+  margin: 13px 0 0;
+
+  color: #74817b;
+
+  font-size: 9px;
+
+  line-height: 1.55;
+
+}
+
+/* =========================================================
+
+   MOBILE SIDEBAR
+
+========================================================= */
+
+.listings-backdrop {
+
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 998;
+
+  background: rgba(4, 20, 15, 0.62);
+
+  backdrop-filter: blur(4px);
+
+}
+
+.listings-backdrop[hidden] {
+
+  display: none;
+
+}
+
+@media (max-width: 1100px) {
+
+  .listings-shell {
+
+    display: block;
+
+    width: 100%;
+
+  }
+
+  .listings-main {
+
+    width: 100%;
+
+    min-width: 0;
+
+  }
+
+  .listings-sidebar {
+
+    position: fixed;
+
+    top: 0;
+
+    left: 0;
+
+    bottom: 0;
+
+    z-index: 999;
+
+    width: min(86vw, 310px);
+
+    height: 100dvh;
+
+    overflow-y: auto;
+
+    transform: translateX(-110%);
+
+    transition: transform 220ms ease;
+
+    box-shadow: 24px 0 50px rgba(0, 0, 0, 0.28);
+
+  }
+
+  .listings-sidebar.open {
+
+    transform: translateX(0);
+
+  }
+
+  .listings-menu-button {
+
+    display: grid;
+
+  }
+
+  .listings-topbar {
+
+    width: 100%;
+
+    padding: 10px 14px;
+
+  }
+
+  .listings-hero {
+
+    align-items: stretch;
+
+    flex-direction: column;
+
+    margin: 14px 12px 16px;
+
+    padding: 25px 20px;
+
+  }
+
+  .listings-back-button {
+
+    width: 100%;
+
+  }
+
+  .listings-summary {
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    margin: 0 12px 16px;
+
+  }
+
+  .listings-panel {
+
+    margin: 0 12px 16px;
+
+    padding: 20px;
+
+  }
+
+  .listings-filters {
+
+    grid-template-columns: 1fr;
+
+  }
+
+  .listings-grid {
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  }
+
+}
+
+/* =========================================================
+
+   PHONE LAYOUT
+
+========================================================= */
+
+@media (max-width: 620px) {
+
+  .listings-topbar-copy p {
+
+    display: none;
+
+  }
+
+  .listings-topbar-copy strong {
+
+    font-size: 17px;
+
+  }
+
+  .listings-admin-profile div {
+
+    display: none;
+
+  }
+
+  .listings-admin-profile {
+
+    padding: 4px;
+
+    border: 0;
+
+    background: transparent;
+
+  }
+
+  .listings-hero h1 {
+
+    font-size: 48px;
+
+  }
+
+  .listings-hero > div > p:last-child {
+
+    font-size: 13px;
+
+  }
+
+  .listings-summary {
+
+    gap: 10px;
+
+  }
+
+  .listings-summary article {
+
+    min-height: 112px;
+
+    grid-template-columns: 42px minmax(0, 1fr);
+
+    padding: 15px;
+
+  }
+
+  .listings-summary article > span {
+
+    width: 42px;
+
+    height: 42px;
+
+    font-size: 19px;
+
+  }
+
+  .listings-summary strong {
+
+    font-size: 28px;
+
+  }
+
+  .listings-panel-header h2 {
+
+    font-size: 25px;
+
+  }
+
+  .listings-grid {
+
+    grid-template-columns: 1fr;
+
+  }
+
+  .listing-dialog-card {
+
+    padding: 20px 16px;
+
+  }
+
+  .listing-dialog-copy h2 {
+
+    font-size: 28px;
+
+  }
+
+  .listing-dialog-grid,
+
+  .listing-dialog-actions {
+
+    grid-template-columns: 1fr;
+
+  }
+
+}
+
+/* =========================================================
+
+   EXTRA SMALL PHONES
+
+========================================================= */
+
+@media (max-width: 370px) {
+
+  .listings-summary {
+
+    grid-template-columns: 1fr;
+
+  }
+
+  .listings-hero h1 {
+
+    font-size: 42px;
+
+  }
+
+}
