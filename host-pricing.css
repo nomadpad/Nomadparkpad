@@ -565,3 +565,12 @@
   }
 
 }
+.price-button {
+
+  touch-action: manipulation;
+
+  -webkit-user-select: none;
+
+  user-select: none;
+
+}
