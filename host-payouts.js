@@ -65,15 +65,19 @@ async function loadStripeAccountStatus() {
 
     }
 
-    if (!data?.connected) {
+      if (!data?.connected) {
 
-      showStatus(
+  actionButton?.removeAttribute("hidden");
 
-        "Payout setup required",
+  manageMethodButton?.setAttribute("hidden", "");
 
-        "Your Stripe payout account has not been connected yet."
+  showStatus(
 
-      );
+    "Payout setup required",
+
+    "Your Stripe payout account has not been connected yet."
+
+  );
 
       if (methodMessage) {
 
@@ -164,7 +168,6 @@ manageMethodButton?.removeAttribute("hidden");
 }
 }
 
-actionButton?.setAttribute("hidden", "");
 
 manageMethodButton?.setAttribute("hidden", "");
 actionButton?.addEventListener("click", async (event) => {
