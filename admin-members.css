@@ -336,3 +336,394 @@ button{
   font-weight: 900;
 
 }
+/* =========================================================
+
+   FILTERS
+
+========================================================= */
+
+.members-filters {
+
+  display: grid;
+
+  grid-template-columns: minmax(260px, 2fr) 1fr 1fr;
+
+  gap: 14px;
+
+}
+
+.members-filters label {
+
+  display: grid;
+
+  gap: 7px;
+
+}
+
+.members-filters label > span {
+
+  color: #66736d;
+
+  font-size: 10px;
+
+  font-weight: 800;
+
+}
+
+.members-filters input,
+
+.members-filters select {
+
+  width: 100%;
+
+  min-height: 48px;
+
+  padding: 0 14px;
+
+  border: 1px solid var(--border);
+
+  border-radius: 12px;
+
+  color: var(--forest);
+
+  background: #fff;
+
+  outline: none;
+
+}
+
+.members-filters input:focus,
+
+.members-filters select:focus {
+
+  border-color: var(--orange);
+
+  box-shadow:
+
+    0 0 0 4px rgba(243, 106, 6, 0.1);
+
+}
+
+/* =========================================================
+
+   LOADING AND EMPTY STATES
+
+========================================================= */
+
+.members-loading,
+
+.members-empty {
+
+  min-height: 180px;
+
+  display: grid;
+
+  place-items: center;
+
+  color: #68766f;
+
+  text-align: center;
+
+}
+
+.members-empty {
+
+  align-content: center;
+
+  gap: 8px;
+
+}
+
+.members-empty > span {
+
+  font-size: 34px;
+
+}
+
+.members-empty strong {
+
+  color: var(--forest);
+
+  font-size: 16px;
+
+}
+
+.members-empty p {
+
+  margin: 0;
+
+  font-size: 11px;
+
+}
+
+/* =========================================================
+
+   MEMBER LIST
+
+========================================================= */
+
+.members-list {
+
+  display: grid;
+
+  gap: 12px;
+
+}
+
+.member-card {
+
+  display: grid;
+
+  grid-template-columns: minmax(0, 1fr) auto;
+
+  align-items: center;
+
+  gap: 18px;
+
+  padding: 17px;
+
+  border: 1px solid var(--border);
+
+  border-radius: 17px;
+
+  background:
+
+    linear-gradient(
+
+      135deg,
+
+      #ffffff,
+
+      #fcf8f2
+
+    );
+
+  transition:
+
+    transform 160ms ease,
+
+    box-shadow 160ms ease,
+
+    border-color 160ms ease;
+
+}
+
+.member-card:hover {
+
+  transform: translateY(-2px);
+
+  border-color: rgba(243, 106, 6, 0.25);
+
+  box-shadow:
+
+    0 12px 26px rgba(13, 59, 47, 0.09);
+
+}
+
+.member-card-main {
+
+  min-width: 0;
+
+  display: grid;
+
+  grid-template-columns: 52px minmax(0, 1fr);
+
+  align-items: center;
+
+  gap: 14px;
+
+}
+
+.member-card-avatar {
+
+  width: 52px;
+
+  height: 52px;
+
+  display: grid;
+
+  place-items: center;
+
+  border-radius: 50%;
+
+  color: #fff;
+
+  background:
+
+    linear-gradient(
+
+      135deg,
+
+      var(--forest-light),
+
+      var(--forest)
+
+    );
+
+  font-family: Georgia, "Times New Roman", serif;
+
+  font-size: 20px;
+
+  font-weight: 900;
+
+}
+
+.member-card-copy {
+
+  min-width: 0;
+
+}
+
+.member-card-title {
+
+  display: flex;
+
+  align-items: flex-start;
+
+  justify-content: space-between;
+
+  gap: 12px;
+
+}
+
+.member-card-name {
+
+  margin: 0;
+
+  font-family: Georgia, "Times New Roman", serif;
+
+  font-size: 20px;
+
+}
+
+.member-card-email {
+
+  margin: 4px 0 0;
+
+  color: #718078;
+
+  font-size: 10px;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+
+  white-space: nowrap;
+
+}
+
+.member-status-pill {
+
+  flex: 0 0 auto;
+
+  min-height: 26px;
+
+  display: inline-flex;
+
+  align-items: center;
+
+  padding: 0 10px;
+
+  border-radius: 999px;
+
+  color: #187446;
+
+  background: #e5f4ea;
+
+  font-size: 9px;
+
+  font-weight: 900;
+
+}
+
+.member-status-pill.suspended {
+
+  color: #9f2f23;
+
+  background: #fbe2dd;
+
+}
+
+.member-card-details {
+
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 8px;
+
+  margin-top: 11px;
+
+}
+
+.member-card-details span {
+
+  padding: 6px 9px;
+
+  border-radius: 999px;
+
+  color: #52635b;
+
+  background: #f4f0e8;
+
+  font-size: 9px;
+
+  font-weight: 800;
+
+}
+
+.member-card-actions {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+}
+
+.member-view-button,
+
+.member-more-button {
+
+  min-height: 39px;
+
+  border: 1px solid var(--border);
+
+  border-radius: 11px;
+
+  color: var(--forest);
+
+  background: #fff;
+
+  font-size: 10px;
+
+  font-weight: 900;
+
+}
+
+.member-view-button {
+
+  padding: 0 14px;
+
+}
+
+.member-more-button {
+
+  width: 42px;
+
+  padding: 0;
+
+}
+
+.member-view-button:hover,
+
+.member-more-button:hover {
+
+  color: #fff;
+
+  border-color: var(--orange);
+
+  background: var(--orange);
+
+}
