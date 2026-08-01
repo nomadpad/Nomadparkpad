@@ -903,7 +903,7 @@ margin-bottom: 20px;
   margin: 34px 0;
 
   padding: 42px 24px;
-
+min-height: 260px;
   border: 2px dashed rgba(18,63,50,.18);
 
   border-radius: 24px;
@@ -934,9 +934,11 @@ margin-bottom: 20px;
 
 }
 
-.upload-icon{
+.upload-icon {
 
-  font-size:48px;
+  font-size: 56px;
+
+  margin-bottom: 18px;
 
 }
 
