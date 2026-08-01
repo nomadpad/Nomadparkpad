@@ -3183,3 +3183,208 @@ a {
   }
 
 }
+/* ==========================================
+
+   STRIPE PAYOUT STATUS
+
+========================================== */
+
+.payout-status-card {
+
+  position: relative;
+
+  overflow: hidden;
+
+}
+
+.payout-status-card::before {
+
+  content: "";
+
+  position: absolute;
+
+  top: -70px;
+
+  right: -70px;
+
+  width: 170px;
+
+  height: 170px;
+
+  border-radius: 50%;
+
+  background:
+
+    radial-gradient(
+
+      circle,
+
+      rgba(243, 107, 22, 0.12),
+
+      transparent 68%
+
+    );
+
+  pointer-events: none;
+
+}
+
+.payout-status-card > * {
+
+  position: relative;
+
+  z-index: 1;
+
+}
+
+.payout-status-badge {
+
+  min-height: 25px;
+
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  padding: 0 9px;
+
+  border-radius: 999px;
+
+  font-size: 9px;
+
+  font-weight: 900;
+
+  text-transform: uppercase;
+
+}
+
+.payout-status-badge.checking {
+
+  color: #6f5d22;
+
+  background: #fff1c8;
+
+}
+
+.payout-status-badge.ready {
+
+  color: #17623a;
+
+  background: #e3f3e8;
+
+}
+
+.payout-status-badge.action-required {
+
+  color: #9a470f;
+
+  background: #ffe1cf;
+
+}
+
+.payout-status-badge.restricted {
+
+  color: #8c2f25;
+
+  background: #fbe0dc;
+
+}
+
+.payout-status-body {
+
+  display: grid;
+
+  grid-template-columns: 48px minmax(0, 1fr);
+
+  align-items: flex-start;
+
+  gap: 13px;
+
+  margin-top: 17px;
+
+  padding: 16px;
+
+  border: 1px solid var(--border);
+
+  border-radius: 15px;
+
+  background:
+
+    linear-gradient(
+
+      180deg,
+
+      rgba(255, 255, 255, 0.98),
+
+      rgba(247, 234, 213, 0.36)
+
+    );
+
+}
+
+.payout-status-icon {
+
+  width: 48px;
+
+  height: 48px;
+
+  display: grid;
+
+  place-items: center;
+
+  border-radius: 14px;
+
+  background: rgba(18, 63, 50, 0.075);
+
+  font-size: 23px;
+
+}
+
+.payout-status-body strong {
+
+  display: block;
+
+  margin-bottom: 5px;
+
+  color: var(--forest);
+
+  font-size: 14px;
+
+}
+
+.payout-status-body p {
+
+  margin: 0;
+
+  color: var(--muted);
+
+  font-size: 11px;
+
+  line-height: 1.45;
+
+}
+
+.payout-action-button {
+
+  margin-top: 13px;
+
+}
+
+.payout-details-link {
+
+  display: block;
+
+  margin-top: 13px;
+
+  color: var(--forest);
+
+  font-size: 11px;
+
+  font-weight: 900;
+
+  text-align: center;
+
+  text-decoration: none;
+
+}

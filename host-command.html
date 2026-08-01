@@ -1863,6 +1863,115 @@
               </a>
 
             </section>
+            <!-- STRIPE PAYOUTS -->
+
+<section
+
+  class="side-card payout-status-card"
+
+  id="payoutStatusCard"
+
+>
+
+  <header class="side-card-header">
+
+    <h2>
+
+      Payouts
+
+    </h2>
+
+    <span
+
+      class="payout-status-badge checking"
+
+      id="commandPayoutBadge"
+
+    >
+
+      Checking
+
+    </span>
+
+  </header>
+
+  <div class="payout-status-body">
+
+    <div
+
+      class="payout-status-icon"
+
+      id="commandPayoutIcon"
+
+    >
+
+      🏦
+
+    </div>
+
+    <div>
+
+      <strong id="commandPayoutTitle">
+
+        Checking Stripe
+
+      </strong>
+
+      <p id="commandPayoutMessage">
+
+        Confirming your payout account status.
+
+      </p>
+
+    </div>
+
+  </div>
+
+  <button
+
+    class="full-width-side-button payout-action-button"
+
+    id="commandPayoutSetup"
+
+    type="button"
+
+    hidden
+
+  >
+
+    Set Up Payouts
+
+  </button>
+
+  <button
+
+    class="full-width-side-button payout-action-button"
+
+    id="commandPayoutManage"
+
+    type="button"
+
+    hidden
+
+  >
+
+    Manage Payout Account
+
+  </button>
+
+  <a
+
+    class="payout-details-link"
+
+    href="host-payouts.html"
+
+  >
+
+    View payout details →
+
+  </a>
+
+</section>
 
             <!-- REVIEWS -->
 
@@ -2030,7 +2139,21 @@
 
   ></div>
 
-  <script src="host-command.js"></script>
+  <script
+
+  type="module"
+
+  src="auth-guard.js"
+
+></script>
+
+<script
+
+  type="module"
+
+  src="host-command.js"
+
+></script>
 
 </body>
 
