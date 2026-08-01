@@ -1,0 +1,1403 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+
+    name="viewport"
+
+    content="width=device-width, initial-scale=1, maximum-scale=1"
+
+  >
+
+  <title>Availability | Nomad Park Pad</title>
+
+  <meta
+
+    name="description"
+
+    content="Set the availability for your Nomad Park Pad listing."
+
+  >
+
+  <link
+
+    rel="stylesheet"
+
+    href="host-availability.css"
+
+  >
+
+</head>
+
+<body>
+
+  <main class="host-onboarding-page">
+
+    <!-- AVAILABILITY HERO -->
+
+    <section class="onboarding-hero">
+
+      <div class="onboarding-copy">
+
+        <img
+
+          src="logo.png"
+
+          alt="Nomad Park Pad"
+
+          class="onboarding-logo"
+
+        >
+
+        <p class="onboarding-greeting">
+
+          Step 5 of 7
+
+        </p>
+
+        <h1>
+
+          Set Your
+
+          <span>Availability</span>
+
+        </h1>
+
+        <div class="orange-accent"></div>
+
+        <h2>
+
+          You stay in control of your calendar.
+
+        </h2>
+
+        <p class="onboarding-intro">
+
+          Choose when travellers can request your space.
+
+          You can block or open dates anytime from your Host Hub.
+
+        </p>
+
+      </div>
+
+      <div
+
+        class="onboarding-photo"
+
+        role="img"
+
+        aria-label="Nomad Park Pad brand watermark"
+
+      ></div>
+
+    </section>
+
+    <!-- JOURNEY AREA -->
+
+    <section class="journey-panel">
+
+      <header class="journey-heading">
+
+        <span></span>
+
+        <h2>Your Journey</h2>
+
+        <span></span>
+
+      </header>
+
+      <div
+
+        class="journey-steps"
+
+        aria-label="Listing setup progress"
+
+      >
+
+        <div class="journey-step completed">
+
+          <div class="journey-icon">✓</div>
+
+          <strong>Property</strong>
+
+        </div>
+
+        <div class="journey-step completed">
+
+          <div class="journey-icon">✓</div>
+
+          <strong>Photos</strong>
+
+        </div>
+
+        <div class="journey-step completed">
+
+          <div class="journey-icon">✓</div>
+
+          <strong>Services</strong>
+
+        </div>
+
+        <div class="journey-step completed">
+
+          <div class="journey-icon">✓</div>
+
+          <strong>Pricing</strong>
+
+        </div>
+
+        <div class="journey-step active">
+
+          <div class="journey-icon">📅</div>
+
+          <strong>Availability</strong>
+
+        </div>
+
+        <div class="journey-step">
+
+          <div class="journey-icon">📋</div>
+
+          <strong>Review</strong>
+
+        </div>
+
+        <div class="journey-step">
+
+          <div class="journey-icon">🚀</div>
+
+          <strong>Publish</strong>
+
+        </div>
+
+      </div>
+
+      <!-- CURRENT STEP -->
+
+      <article class="current-step-card">
+
+        <p class="step-count">
+
+          Step 5 of 7
+
+        </p>
+
+        <div class="step-accent"></div>
+
+        <div class="current-step-icon">
+
+          📅
+
+        </div>
+
+        <h2>Your Availability</h2>
+
+        <p class="step-lead">
+
+          Choose when travellers can book.
+
+        </p>
+
+        <div class="step-divider">
+
+          <span></span>
+
+          <span>🌲</span>
+
+          <span></span>
+
+        </div>
+
+        <p class="step-description">
+
+          Select the option that best matches how often you plan to host.
+
+          You can adjust individual dates below.
+
+        </p>
+
+        <!-- AVAILABILITY MODE -->
+
+        <section
+
+          class="availability-modes"
+
+          aria-label="Availability type"
+
+        >
+
+          <button
+
+            class="availability-mode selected"
+
+            id="mostlyAvailableMode"
+
+            type="button"
+
+            data-mode="mostly-available"
+
+            aria-pressed="true"
+
+          >
+
+            <span class="mode-check">✓</span>
+
+            <span class="mode-icon">🌞</span>
+
+            <strong>
+
+              Available Most Days
+
+            </strong>
+
+            <small>
+
+              Your pad is available unless you block a date.
+
+            </small>
+
+            <span class="recommended-badge">
+
+              Recommended
+
+            </span>
+
+          </button>
+
+          <button
+
+            class="availability-mode"
+
+            id="selectedDatesMode"
+
+            type="button"
+
+            data-mode="selected-dates"
+
+            aria-pressed="false"
+
+          >
+
+            <span class="mode-check">✓</span>
+
+            <span class="mode-icon">🗓️</span>
+
+            <strong>
+
+              Select Available Dates
+
+            </strong>
+
+            <small>
+
+              Your pad is available only on dates you select.
+
+            </small>
+
+          </button>
+
+        </section>
+
+        <p
+
+          class="calendar-instruction"
+
+          id="calendarInstruction"
+
+        >
+
+          Tap any date you want to block.
+
+        </p>
+
+        <!-- CALENDAR -->
+
+        <section class="calendar-card">
+
+          <header class="calendar-header">
+
+            <button
+
+              class="calendar-arrow"
+
+              id="previousMonth"
+
+              type="button"
+
+              aria-label="Previous month"
+
+            >
+
+              ‹
+
+            </button>
+
+            <div>
+
+              <strong id="calendarMonth">
+
+                Month
+
+              </strong>
+
+              <small id="calendarStatus">
+
+                All future dates are currently available.
+
+              </small>
+
+            </div>
+
+            <button
+
+              class="calendar-arrow"
+
+              id="nextMonth"
+
+              type="button"
+
+              aria-label="Next month"
+
+            >
+
+              ›
+
+            </button>
+
+          </header>
+
+          <div
+
+            class="calendar-weekdays"
+
+            aria-hidden="true"
+
+          >
+
+            <span>Sun</span>
+
+            <span>Mon</span>
+
+            <span>Tue</span>
+
+            <span>Wed</span>
+
+            <span>Thu</span>
+
+            <span>Fri</span>
+
+            <span>Sat</span>
+
+          </div>
+
+          <div
+
+            class="calendar-grid"
+
+            id="calendarGrid"
+
+            aria-label="Availability calendar"
+
+          ></div>
+
+          <div class="calendar-legend">
+
+            <span>
+
+              <i class="legend-dot available-dot"></i>
+
+              Available
+
+            </span>
+
+            <span>
+
+              <i class="legend-dot selected-dot"></i>
+
+              Selected
+
+            </span>
+
+            <span>
+
+              <i class="legend-dot unavailable-dot"></i>
+
+              Unavailable
+
+            </span>
+
+          </div>
+
+        </section>
+
+        <!-- REPEAT AVAILABILITY -->
+
+        <section class="availability-section">
+
+          <div class="section-heading">
+
+            <span>🔁</span>
+
+            <div>
+
+              <strong>
+
+                Repeat availability
+
+              </strong>
+
+              <small>
+
+                Choose the days you usually welcome travellers.
+
+              </small>
+
+            </div>
+
+          </div>
+
+          <div
+
+            class="weekday-options"
+
+            aria-label="Recurring available days"
+
+          >
+
+            <button
+
+              class="weekday-button selected"
+
+              type="button"
+
+              data-day="1"
+
+              aria-pressed="true"
+
+            >
+
+              Mon
+
+            </button>
+
+            <button
+
+              class="weekday-button selected"
+
+              type="button"
+
+              data-day="2"
+
+              aria-pressed="true"
+
+            >
+
+              Tue
+
+            </button>
+
+            <button
+
+              class="weekday-button selected"
+
+              type="button"
+
+              data-day="3"
+
+              aria-pressed="true"
+
+            >
+
+              Wed
+
+            </button>
+
+            <button
+
+              class="weekday-button selected"
+
+              type="button"
+
+              data-day="4"
+
+              aria-pressed="true"
+
+            >
+
+              Thu
+
+            </button>
+
+            <button
+
+              class="weekday-button selected"
+
+              type="button"
+
+              data-day="5"
+
+              aria-pressed="true"
+
+            >
+
+              Fri
+
+            </button>
+
+            <button
+
+              class="weekday-button selected"
+
+              type="button"
+
+              data-day="6"
+
+              aria-pressed="true"
+
+            >
+
+              Sat
+
+            </button>
+
+            <button
+
+              class="weekday-button selected"
+
+              type="button"
+
+              data-day="0"
+
+              aria-pressed="true"
+
+            >
+
+              Sun
+
+            </button>
+
+          </div>
+
+        </section>
+
+        <!-- BOOKING OPTIONS -->
+
+        <section class="availability-section">
+
+          <div class="section-heading">
+
+            <span>⚙️</span>
+
+            <div>
+
+              <strong>
+
+                Booking preferences
+
+              </strong>
+
+              <small>
+
+                Set a few simple boundaries for each stay.
+
+              </small>
+
+            </div>
+
+          </div>
+
+          <label class="toggle-row">
+
+            <span>
+
+              <strong>
+
+                Accept same-day bookings
+
+              </strong>
+
+              <small>
+
+                Travellers may request your space for tonight.
+
+              </small>
+
+            </span>
+
+            <input
+
+              id="sameDayBookings"
+
+              type="checkbox"
+
+            >
+
+            <span class="toggle-switch"></span>
+
+          </label>
+
+          <div class="stay-option">
+
+            <div>
+
+              <strong>
+
+                Minimum stay
+
+              </strong>
+
+              <small>
+
+                The fewest nights a traveller can request.
+
+              </small>
+
+            </div>
+
+            <div
+
+              class="choice-buttons"
+
+              id="minimumStayOptions"
+
+            >
+
+              <button
+
+                class="choice-button selected"
+
+                type="button"
+
+                data-value="1"
+
+              >
+
+                1 night
+
+              </button>
+
+              <button
+
+                class="choice-button"
+
+                type="button"
+
+                data-value="2"
+
+              >
+
+                2 nights
+
+              </button>
+
+              <button
+
+                class="choice-button"
+
+                type="button"
+
+                data-value="3"
+
+              >
+
+                3 nights
+
+              </button>
+
+            </div>
+
+          </div>
+
+          <div class="stay-option">
+
+            <div>
+
+              <strong>
+
+                Maximum stay
+
+              </strong>
+
+              <small>
+
+                The longest single booking you will accept.
+
+              </small>
+
+            </div>
+
+            <div
+
+              class="choice-buttons"
+
+              id="maximumStayOptions"
+
+            >
+
+              <button
+
+                class="choice-button selected"
+
+                type="button"
+
+                data-value="7"
+
+              >
+
+                7 nights
+
+              </button>
+
+              <button
+
+                class="choice-button"
+
+                type="button"
+
+                data-value="14"
+
+              >
+
+                14 nights
+
+              </button>
+
+              <button
+
+                class="choice-button"
+
+                type="button"
+
+                data-value="30"
+
+              >
+
+                30+ nights
+
+              </button>
+
+            </div>
+
+          </div>
+
+        </section>
+
+        <!-- REMINDER -->
+
+        <p class="availability-reminder">
+
+          📅 Keeping your calendar current helps travellers book confidently
+
+          and reduces requests you cannot accept.
+
+        </p>
+
+        <!-- ACTIONS -->
+
+        <div class="availability-actions">
+
+          <a
+
+            class="back-button"
+
+            href="host-pricing.html"
+
+          >
+
+            ← Back
+
+          </a>
+
+          <button
+
+            class="continue-button"
+
+            id="continueAvailability"
+
+            type="button"
+
+          >
+
+            Continue
+
+            <span aria-hidden="true">→</span>
+
+          </button>
+
+        </div>
+
+        <p class="save-message">
+
+          <span aria-hidden="true">
+
+            🛡️
+
+          </span>
+
+          Your availability can be changed anytime.
+
+          <strong>
+
+            You remain in control.
+
+          </strong>
+
+        </p>
+
+      </article>
+
+    </section>
+
+  </main>
+
+  <script>
+
+    const mostlyAvailableMode =
+
+      document.getElementById("mostlyAvailableMode");
+
+    const selectedDatesMode =
+
+      document.getElementById("selectedDatesMode");
+
+    const calendarInstruction =
+
+      document.getElementById("calendarInstruction");
+
+    const calendarMonth =
+
+      document.getElementById("calendarMonth");
+
+    const calendarStatus =
+
+      document.getElementById("calendarStatus");
+
+    const calendarGrid =
+
+      document.getElementById("calendarGrid");
+
+    const previousMonthButton =
+
+      document.getElementById("previousMonth");
+
+    const nextMonthButton =
+
+      document.getElementById("nextMonth");
+
+    const weekdayButtons =
+
+      Array.from(
+
+        document.querySelectorAll(".weekday-button")
+
+      );
+
+    const continueButton =
+
+      document.getElementById("continueAvailability");
+
+    let availabilityMode =
+
+      "mostly-available";
+
+    let minimumStay =
+
+      1;
+
+    let maximumStay =
+
+      7;
+
+    const selectedDates =
+
+      new Set();
+
+    const recurringDays =
+
+      new Set([0, 1, 2, 3, 4, 5, 6]);
+
+    const today =
+
+      new Date();
+
+    today.setHours(0, 0, 0, 0);
+
+    let displayedMonth =
+
+      new Date(
+
+        today.getFullYear(),
+
+        today.getMonth(),
+
+        1
+
+      );
+
+    function formatDateKey(date) {
+
+      const year =
+
+        date.getFullYear();
+
+      const month =
+
+        String(date.getMonth() + 1).padStart(2, "0");
+
+      const day =
+
+        String(date.getDate()).padStart(2, "0");
+
+      return `${year}-${month}-${day}`;
+
+    }
+
+    function setAvailabilityMode(mode) {
+
+      availabilityMode =
+
+        mode;
+
+      const mostlySelected =
+
+        mode === "mostly-available";
+
+      mostlyAvailableMode.classList.toggle(
+
+        "selected",
+
+        mostlySelected
+
+      );
+
+      selectedDatesMode.classList.toggle(
+
+        "selected",
+
+        !mostlySelected
+
+      );
+
+      mostlyAvailableMode.setAttribute(
+
+        "aria-pressed",
+
+        String(mostlySelected)
+
+      );
+
+      selectedDatesMode.setAttribute(
+
+        "aria-pressed",
+
+        String(!mostlySelected)
+
+      );
+
+      calendarInstruction.textContent =
+
+        mostlySelected
+
+          ? "Tap any date you want to block."
+
+          : "Tap every date you want to make available.";
+
+      renderCalendar();
+
+    }
+
+    function renderCalendar() {
+
+      calendarGrid.innerHTML = "";
+
+      const year =
+
+        displayedMonth.getFullYear();
+
+      const month =
+
+        displayedMonth.getMonth();
+
+      const monthName =
+
+        displayedMonth.toLocaleDateString(
+
+          undefined,
+
+          {
+
+            month: "long",
+
+            year: "numeric"
+
+          }
+
+        );
+
+      calendarMonth.textContent =
+
+        monthName;
+
+      const firstDay =
+
+        new Date(year, month, 1).getDay();
+
+      const daysInMonth =
+
+        new Date(year, month + 1, 0).getDate();
+
+      for (let blank = 0; blank < firstDay; blank += 1) {
+
+        const spacer =
+
+          document.createElement("span");
+
+        spacer.className =
+
+          "calendar-spacer";
+
+        calendarGrid.appendChild(spacer);
+
+      }
+
+      for (let day = 1; day <= daysInMonth; day += 1) {
+
+        const date =
+
+          new Date(year, month, day);
+
+        const dateKey =
+
+          formatDateKey(date);
+
+        const button =
+
+          document.createElement("button");
+
+        button.type =
+
+          "button";
+
+        button.className =
+
+          "calendar-day";
+
+        button.textContent =
+
+          day;
+
+        button.dataset.date =
+
+          dateKey;
+
+        const isPast =
+
+          date < today;
+
+        const isSelected =
+
+          selectedDates.has(dateKey);
+
+        if (isPast) {
+
+          button.disabled =
+
+            true;
+
+          button.classList.add(
+
+            "past"
+
+          );
+
+        } else if (isSelected) {
+
+          button.classList.add(
+
+            availabilityMode === "mostly-available"
+
+              ? "unavailable"
+
+              : "selected"
+
+          );
+
+        } else if (availabilityMode === "mostly-available") {
+
+          button.classList.add(
+
+            "available"
+
+          );
+
+        }
+
+        button.addEventListener("click", () => {
+
+          if (selectedDates.has(dateKey)) {
+
+            selectedDates.delete(dateKey);
+
+          } else {
+
+            selectedDates.add(dateKey);
+
+          }
+
+          renderCalendar();
+
+        });
+
+        calendarGrid.appendChild(button);
+
+      }
+
+      const total =
+
+        selectedDates.size;
+
+      if (availabilityMode === "mostly-available") {
+
+        calendarStatus.textContent =
+
+          total === 0
+
+            ? "All future dates are currently available."
+
+            : `${total} date${total === 1 ? "" : "s"} blocked.`;
+
+      } else {
+
+        calendarStatus.textContent =
+
+          total === 0
+
+            ? "No dates selected yet."
+
+            : `${total} available date${total === 1 ? "" : "s"} selected.`;
+
+      }
+
+    }
+
+    function setupChoiceGroup(groupId, updateValue) {
+
+      const buttons =
+
+        Array.from(
+
+          document.querySelectorAll(
+
+            `#${groupId} .choice-button`
+
+          )
+
+        );
+
+      buttons.forEach((button) => {
+
+        button.addEventListener("click", () => {
+
+          buttons.forEach((item) => {
+
+            item.classList.remove("selected");
+
+          });
+
+          button.classList.add("selected");
+
+          updateValue(
+
+            Number(button.dataset.value)
+
+          );
+
+        });
+
+      });
+
+    }
+
+    mostlyAvailableMode.addEventListener("click", () => {
+
+      setAvailabilityMode(
+
+        "mostly-available"
+
+      );
+
+    });
+
+    selectedDatesMode.addEventListener("click", () => {
+
+      setAvailabilityMode(
+
+        "selected-dates"
+
+      );
+
+    });
+
+    previousMonthButton.addEventListener("click", () => {
+
+      const previous =
+
+        new Date(
+
+          displayedMonth.getFullYear(),
+
+          displayedMonth.getMonth() - 1,
+
+          1
+
+        );
+
+      const currentMonthStart =
+
+        new Date(
+
+          today.getFullYear(),
+
+          today.getMonth(),
+
+          1
+
+        );
+
+      if (previous < currentMonthStart) {
+
+        return;
+
+      }
+
+      displayedMonth =
+
+        previous;
+
+      renderCalendar();
+
+    });
+
+    nextMonthButton.addEventListener("click", () => {
+
+      displayedMonth =
+
+        new Date(
+
+          displayedMonth.getFullYear(),
+
+          displayedMonth.getMonth() + 1,
+
+          1
+
+        );
+
+      renderCalendar();
+
+    });
+
+    weekdayButtons.forEach((button) => {
+
+      button.addEventListener("click", () => {
+
+        const day =
+
+          Number(button.dataset.day);
+
+        if (recurringDays.has(day)) {
+
+          recurringDays.delete(day);
+
+          button.classList.remove("selected");
+
+          button.setAttribute("aria-pressed", "false");
+
+        } else {
+
+          recurringDays.add(day);
+
+          button.classList.add("selected");
+
+          button.setAttribute("aria-pressed", "true");
+
+        }
+
+      });
+
+    });
+
+    setupChoiceGroup(
+
+      "minimumStayOptions",
+
+      (value) => {
+
+        minimumStay =
+
+          value;
+
+      }
+
+    );
+
+    setupChoiceGroup(
+
+      "maximumStayOptions",
+
+      (value) => {
+
+        maximumStay =
+
+          value;
+
+      }
+
+    );
+
+    continueButton.addEventListener("click", () => {
+
+      const availabilityData = {
+
+        mode: availabilityMode,
+
+        dates: Array.from(selectedDates),
+
+        recurringDays: Array.from(recurringDays),
+
+        sameDayBookings:
+
+          document.getElementById("sameDayBookings").checked,
+
+        minimumStay,
+
+        maximumStay
+
+      };
+
+      sessionStorage.setItem(
+
+        "nomadAvailability",
+
+        JSON.stringify(availabilityData)
+
+      );
+
+      window.location.href =
+
+        "host-review.html";
+
+    });
+
+    renderCalendar();
+
+  </script>
+
+</body>
+
+</html>
