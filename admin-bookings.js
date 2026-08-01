@@ -774,65 +774,23 @@ async function loadBookings() {
 
   } =
 
-    await supabase
+  await supabase
 
-      .from("booking_requests")
+    .from("booking_requests")
 
-      .select(
+    .select("*")
 
-        `
+    .order(
 
-          id,
+      "created_at",
 
-          arrival,
+      {
 
-          departure,
+        ascending: false
 
-          travellers,
+      }
 
-          vehicle_type,
-
-          vehicle_length,
-
-          pets,
-
-          message,
-
-          status,
-
-          created_at,
-
-          listings (
-
-            id,
-
-            host_id,
-
-            title,
-
-            city,
-
-            province,
-
-            nightly_price
-
-          )
-
-        `
-
-      )
-
-      .order(
-
-        "created_at",
-
-        {
-
-          ascending: false
-
-        }
-
-      );
+    );
 
   if (error) {
 
