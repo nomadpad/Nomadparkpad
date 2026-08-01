@@ -1,0 +1,1063 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+
+    name="viewport"
+
+    content="width=device-width, initial-scale=1"
+
+  >
+
+  <title>
+
+    Booking Management | Nomad Park Pad
+
+  </title>
+
+  <meta
+
+    name="description"
+
+    content="Private Nomad Park Pad booking management."
+
+  >
+
+  <meta
+
+    name="theme-color"
+
+    content="#0d3b2f"
+
+  >
+
+  <link
+
+    rel="icon"
+
+    type="image/png"
+
+    sizes="32x32"
+
+    href="favicon-32.png"
+
+  >
+
+  <link
+
+    rel="stylesheet"
+
+    href="admin-bookings.css"
+
+  >
+
+</head>
+
+<body>
+
+  <div class="bookings-shell">
+
+    <aside
+
+      class="bookings-sidebar"
+
+      id="bookingsSidebar"
+
+    >
+
+      <div class="bookings-brand">
+
+        <a href="admin-command.html">
+
+          <img
+
+            src="Nomad_Park_Pad_Primary_Logo.png"
+
+            alt="Nomad Park Pad"
+
+          >
+
+        </a>
+
+        <span>
+
+          Private Administration
+
+        </span>
+
+      </div>
+
+      <nav
+
+        class="bookings-nav"
+
+        aria-label="Admin navigation"
+
+      >
+
+        <a href="admin-command.html">
+
+          <span>📊</span>
+
+          Overview
+
+        </a>
+
+        <a href="admin-command.html#earlyAccess">
+
+          <span>🚀</span>
+
+          Early Access
+
+        </a>
+
+        <a href="admin-members.html">
+
+          <span>👥</span>
+
+          Members
+
+        </a>
+
+        <a href="admin-listings.html">
+
+          <span>🏡</span>
+
+          Listings
+
+        </a>
+
+        <a
+
+          class="active"
+
+          href="admin-bookings.html"
+
+        >
+
+          <span>📅</span>
+
+          Bookings
+
+        </a>
+
+        <a href="admin-command.html#payments">
+
+          <span>💳</span>
+
+          Payments
+
+        </a>
+
+        <a href="admin-command.html#reports">
+
+          <span>🛡️</span>
+
+          Reports
+
+        </a>
+
+        <a href="admin-command.html#activity">
+
+          <span>📡</span>
+
+          Live Activity
+
+        </a>
+
+      </nav>
+
+      <div class="bookings-room-switcher">
+
+        <p>
+
+          Your rooms
+
+        </p>
+
+        <a href="traveller.html">
+
+          🧳 Traveller Room
+
+        </a>
+
+        <a href="host-command.html">
+
+          🏡 Host Command Centre
+
+        </a>
+
+        <a
+
+          class="current-room"
+
+          href="admin-command.html"
+
+        >
+
+          🔐 Admin Command Centre
+
+        </a>
+
+      </div>
+
+    </aside>
+
+    <div
+
+      class="bookings-backdrop"
+
+      id="bookingsBackdrop"
+
+      hidden
+
+    ></div>
+
+    <main class="bookings-main">
+
+      <header class="bookings-topbar">
+
+        <button
+
+          class="bookings-menu-button"
+
+          id="bookingsMenuButton"
+
+          type="button"
+
+          aria-label="Open admin menu"
+
+          aria-expanded="false"
+
+        >
+
+          ☰
+
+        </button>
+
+        <div class="bookings-topbar-copy">
+
+          <p>
+
+            NOMAD PARK PAD OPERATIONS
+
+          </p>
+
+          <strong>
+
+            Booking Management
+
+          </strong>
+
+        </div>
+
+        <div class="bookings-admin-profile">
+
+          <span class="bookings-admin-avatar">
+
+            D
+
+          </span>
+
+          <div>
+
+            <strong id="bookingsAdminName">
+
+              Dan
+
+            </strong>
+
+            <small>
+
+              Founder & Administrator
+
+            </small>
+
+          </div>
+
+        </div>
+
+      </header>
+
+      <section class="bookings-hero">
+
+        <div>
+
+          <p class="bookings-kicker">
+
+            MARKETPLACE BOOKINGS
+
+          </p>
+
+          <h1>
+
+            Booking Centre
+
+          </h1>
+
+          <p>
+
+            Review every booking request, confirmed stay, cancellation and refund from one private workspace.
+
+          </p>
+
+        </div>
+
+        <a
+
+          class="bookings-back-button"
+
+          href="admin-command.html"
+
+        >
+
+          ← Back to Admin Room
+
+        </a>
+
+      </section>
+
+      <section class="bookings-summary">
+
+        <article>
+
+          <span>📬</span>
+
+          <div>
+
+            <small>Pending</small>
+
+            <strong id="bookingPendingCount">0</strong>
+
+          </div>
+
+        </article>
+
+        <article>
+
+          <span>✅</span>
+
+          <div>
+
+            <small>Accepted</small>
+
+            <strong id="bookingAcceptedCount">0</strong>
+
+          </div>
+
+        </article>
+
+        <article>
+
+          <span>🚐</span>
+
+          <div>
+
+            <small>Active stays</small>
+
+            <strong id="bookingActiveCount">0</strong>
+
+          </div>
+
+        </article>
+
+        <article>
+
+          <span>🏁</span>
+
+          <div>
+
+            <small>Completed</small>
+
+            <strong id="bookingCompletedCount">0</strong>
+
+          </div>
+
+        </article>
+
+        <article>
+
+          <span>❌</span>
+
+          <div>
+
+            <small>Cancelled</small>
+
+            <strong id="bookingCancelledCount">0</strong>
+
+          </div>
+
+        </article>
+
+        <article>
+
+          <span>↩️</span>
+
+          <div>
+
+            <small>Refunded</small>
+
+            <strong id="bookingRefundedCount">0</strong>
+
+          </div>
+
+        </article>
+
+      </section>
+
+      <section class="bookings-panel">
+
+        <header class="bookings-panel-header">
+
+          <div>
+
+            <p>BOOKING DIRECTORY</p>
+
+            <h2>Search and filter</h2>
+
+          </div>
+
+          <button
+
+            class="bookings-refresh-button"
+
+            id="refreshBookings"
+
+            type="button"
+
+          >
+
+            Refresh
+
+          </button>
+
+        </header>
+
+        <div class="bookings-filters">
+
+          <label>
+
+            <span>
+
+              Search bookings
+
+            </span>
+
+            <input
+
+              id="bookingSearchInput"
+
+              type="search"
+
+              placeholder="Traveller, host or Pad"
+
+              autocomplete="off"
+
+            >
+
+          </label>
+
+          <label>
+
+            <span>
+
+              Status
+
+            </span>
+
+            <select id="bookingStatusFilter">
+
+              <option value="all">
+
+                All statuses
+
+              </option>
+
+              <option value="pending">
+
+                Pending
+
+              </option>
+
+              <option value="accepted">
+
+                Accepted
+
+              </option>
+
+              <option value="active">
+
+                Active stays
+
+              </option>
+
+              <option value="completed">
+
+                Completed
+
+              </option>
+
+              <option value="cancelled">
+
+                Cancelled
+
+              </option>
+
+              <option value="refunded">
+
+                Refunded
+
+              </option>
+
+            </select>
+
+          </label>
+
+          <label>
+
+            <span>
+
+              Sort by
+
+            </span>
+
+            <select id="bookingSortFilter">
+
+              <option value="newest">
+
+                Newest request
+
+              </option>
+
+              <option value="oldest">
+
+                Oldest request
+
+              </option>
+
+              <option value="checkin">
+
+                Check-in date
+
+              </option>
+
+              <option value="amount">
+
+                Highest amount
+
+              </option>
+
+            </select>
+
+          </label>
+
+          <label>
+
+            <span>
+
+              Check-in from
+
+            </span>
+
+            <input
+
+              id="bookingDateFilter"
+
+              type="date"
+
+            >
+
+          </label>
+
+        </div>
+
+      </section>
+
+      <section class="bookings-panel">
+
+        <header class="bookings-panel-header">
+
+          <div>
+
+            <p>MARKETPLACE</p>
+
+            <h2>All bookings</h2>
+
+          </div>
+
+          <span id="bookingResultsCount">
+
+            0 results
+
+          </span>
+
+        </header>
+
+        <div
+
+          class="bookings-loading"
+
+          id="bookingsLoading"
+
+        >
+
+          Loading bookings...
+
+        </div>
+
+        <div
+
+          class="bookings-list"
+
+          id="bookingsList"
+
+          hidden
+
+        ></div>
+
+        <div
+
+          class="bookings-empty"
+
+          id="bookingsEmpty"
+
+          hidden
+
+        >
+
+          <span>
+
+            📅
+
+          </span>
+
+          <strong>
+
+            No bookings found
+
+          </strong>
+
+          <p>
+
+            New traveller booking requests will appear here.
+
+          </p>
+
+        </div>
+
+      </section>
+
+    </main>
+
+  </div>
+
+  <template id="bookingCardTemplate">
+
+    <article class="booking-card">
+
+      <div class="booking-card-status-column">
+
+        <span class="booking-status-icon">
+
+          📬
+
+        </span>
+
+        <span class="booking-status-pill">
+
+          Pending
+
+        </span>
+
+      </div>
+
+      <div class="booking-card-main">
+
+        <div class="booking-card-heading">
+
+          <div>
+
+            <p class="booking-card-pad">
+
+              Pad unavailable
+
+            </p>
+
+            <h3 class="booking-card-route">
+
+              Traveller → Host
+
+            </h3>
+
+          </div>
+
+          <button
+
+            class="booking-more-button"
+
+            type="button"
+
+            aria-label="More booking actions"
+
+          >
+
+            •••
+
+          </button>
+
+        </div>
+
+        <div class="booking-card-people">
+
+          <span class="booking-card-traveller">
+
+            Traveller unavailable
+
+          </span>
+
+          <span class="booking-card-host">
+
+            Host unavailable
+
+          </span>
+
+        </div>
+
+        <div class="booking-card-details">
+
+          <span class="booking-card-dates">
+
+            Dates unavailable
+
+          </span>
+
+          <span class="booking-card-nights">
+
+            Nights unavailable
+
+          </span>
+
+          <span class="booking-card-amount">
+
+            Amount unavailable
+
+          </span>
+
+          <span class="booking-card-created">
+
+            Requested date unavailable
+
+          </span>
+
+        </div>
+
+      </div>
+
+      <div class="booking-card-actions">
+
+        <button
+
+          class="booking-view-button"
+
+          type="button"
+
+        >
+
+          View details
+
+        </button>
+
+        <button
+
+          class="booking-open-listing-button"
+
+          type="button"
+
+        >
+
+          Open Pad
+
+        </button>
+
+      </div>
+
+    </article>
+
+  </template>
+
+  <dialog
+
+    class="booking-dialog"
+
+    id="bookingDialog"
+
+  >
+
+    <div class="booking-dialog-card">
+
+      <button
+
+        class="booking-dialog-close"
+
+        id="bookingDialogClose"
+
+        type="button"
+
+        aria-label="Close booking details"
+
+      >
+
+        ×
+
+      </button>
+
+      <div class="booking-dialog-heading">
+
+        <span
+
+          class="booking-dialog-icon"
+
+          id="dialogBookingIcon"
+
+        >
+
+          📬
+
+        </span>
+
+        <div>
+
+          <p>
+
+            BOOKING DETAILS
+
+          </p>
+
+          <h2 id="dialogBookingTitle">
+
+            Booking request
+
+          </h2>
+
+          <span id="dialogBookingStatus">
+
+            Pending
+
+          </span>
+
+        </div>
+
+      </div>
+
+      <div class="booking-dialog-grid">
+
+        <article>
+
+          <small>Traveller</small>
+
+          <strong id="dialogBookingTraveller">
+
+            Unavailable
+
+          </strong>
+
+        </article>
+
+        <article>
+
+          <small>Host</small>
+
+          <strong id="dialogBookingHost">
+
+            Unavailable
+
+          </strong>
+
+        </article>
+
+        <article>
+
+          <small>Pad</small>
+
+          <strong id="dialogBookingListing">
+
+            Unavailable
+
+          </strong>
+
+        </article>
+
+        <article>
+
+          <small>Check-in</small>
+
+          <strong id="dialogBookingCheckin">
+
+            Unavailable
+
+          </strong>
+
+        </article>
+
+        <article>
+
+          <small>Check-out</small>
+
+          <strong id="dialogBookingCheckout">
+
+            Unavailable
+
+          </strong>
+
+        </article>
+
+        <article>
+
+          <small>Nights</small>
+
+          <strong id="dialogBookingNights">
+
+            Unavailable
+
+          </strong>
+
+        </article>
+
+        <article>
+
+          <small>Booking total</small>
+
+          <strong id="dialogBookingAmount">
+
+            Unavailable
+
+          </strong>
+
+        </article>
+
+        <article>
+
+          <small>Booking ID</small>
+
+          <strong id="dialogBookingId">
+
+            Unavailable
+
+          </strong>
+
+        </article>
+
+      </div>
+
+      <div class="booking-dialog-actions">
+
+        <button
+
+          id="dialogOpenTraveller"
+
+          type="button"
+
+        >
+
+          View traveller
+
+        </button>
+
+        <button
+
+          id="dialogOpenHost"
+
+          type="button"
+
+        >
+
+          View host
+
+        </button>
+
+        <button
+
+          id="dialogOpenListing"
+
+          type="button"
+
+        >
+
+          Open Pad
+
+        </button>
+
+        <button
+
+          id="dialogViewMessages"
+
+          type="button"
+
+          disabled
+
+        >
+
+          View messages
+
+        </button>
+
+        <button
+
+          class="warning-action"
+
+          id="dialogCancelBooking"
+
+          type="button"
+
+          disabled
+
+        >
+
+          Cancel booking
+
+        </button>
+
+        <button
+
+          class="danger-action"
+
+          id="dialogRefundBooking"
+
+          type="button"
+
+          disabled
+
+        >
+
+          Issue refund
+
+        </button>
+
+      </div>
+
+      <p class="booking-action-note">
+
+        Cancellation, refund and dispute actions will be enabled through protected server-side admin functions.
+
+      </p>
+
+    </div>
+
+  </dialog>
+
+  <script
+
+    type="module"
+
+    src="admin-bookings.js"
+
+  ></script>
+
+</body>
+
+</html>
