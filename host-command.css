@@ -3388,3 +3388,8 @@ a {
   text-decoration: none;
 
 }
+.payout-action-button[hidden] {
+
+  display: none !important;
+
+}

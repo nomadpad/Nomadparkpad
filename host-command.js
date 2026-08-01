@@ -1334,7 +1334,11 @@ async function loadHostDashboard() {
 
           .select(
 
-            "id,arrival,departure,travellers,traveler_name,vehicle_type,vehicle_length,pets,message,status,created_at,listings!inner(host_id)"
+            .select(
+
+  "id,arrival,departure,travellers,vehicle_type,vehicle_length,pets,message,status,created_at,listings!inner(host_id)"
+
+)
 
           )
 
