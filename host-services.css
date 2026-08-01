@@ -1191,3 +1191,56 @@ margin-bottom: 20px;
   }
 
 }
+.map-reminder {
+
+  max-width: 680px;
+
+  display: flex;
+
+  align-items: flex-start;
+
+  justify-content: center;
+
+  gap: 10px;
+
+  margin: 24px auto 8px;
+
+  padding: 16px 18px;
+
+  border: 1px solid rgba(18, 63, 50, 0.12);
+
+  border-radius: 16px;
+
+  background: rgba(18, 63, 50, 0.055);
+
+  color: var(--forest);
+
+  font-size: 15px;
+
+  font-weight: 700;
+
+  line-height: 1.5;
+
+  text-align: left;
+
+}
+
+.map-reminder span {
+
+  flex: 0 0 auto;
+
+  font-size: 22px;
+
+  line-height: 1.2;
+
+}
+
+@media (max-width: 760px) {
+
+  .map-reminder {
+
+    font-size: 14px;
+
+  }
+
+}
