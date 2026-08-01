@@ -1585,3 +1585,16 @@
   }
 
 }
+/* Force hidden booking states to disappear */
+
+.bookings-loading[hidden],
+
+.bookings-empty[hidden],
+
+.bookings-list[hidden],
+
+[hidden] {
+
+  display: none !important;
+
+}
