@@ -720,17 +720,21 @@ button {
 
   .onboarding-photo {
 
-    top: 38px;
+  top: 20px;
 
-    right: -140px;
+  left: 50%;
 
-    width: 112%;
+  right: auto;
 
-    opacity: 0.045;
+  width: 112%;
 
-    background-position: center;
+  opacity: 0.035;
 
-  }
+  background-position: center;
+
+  transform: translateX(-50%);
+
+}
 
   .journey-panel {
 
