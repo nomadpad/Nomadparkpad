@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+
+    name="viewport"
+
+    content="width=device-width, initial-scale=1"
+
+  >
+
+  <title>
+
+    Listing Management | Nomad Park Pad
+
+  </title>
+
+  <meta
+
+    name="description"
+
+    content="Private Nomad Park Pad listing management."
+
+  >
+
+  <meta
+
+    name="theme-color"
+
+    content="#0d3b2f"
+
+  >
+
+  <link
+
+    rel="icon"
+
+    type="image/png"
+
+    sizes="32x32"
+
+    href="favicon-32.png"
+
+  >
+
+  <link
+
+    rel="stylesheet"
+
+    href="admin-listings.css"
+
+  >
+
+</head>
+
+<body>
+
+  <div class="listings-shell">
+
+    <aside
+
+      class="listings-sidebar"
+
+      id="listingsSidebar"
+
+    >
+
+      <div class="listings-brand">
+
+        <a href="admin-command.html">
+
+          <img
+
+            src="Nomad_Park_Pad_Primary_Logo.png"
+
+            alt="Nomad Park Pad"
+
+          >
+
+        </a>
+
+        <span>
+
+          Private Administration
+
+        </span>
+
+      </div>
+
+      <nav
+
+        class="listings-nav"
+
+        aria-label="Admin navigation"
+
+      >
+
+        <a href="admin-command.html">
+
+          <span>📊</span>
+
+          Overview
+
+        </a>
+
+        <a href="admin-command.html#earlyAccess">
+
+          <span>🚀</span>
+
+          Early Access
+
+        </a>
+
+        <a href="admin-members.html">
+
+          <span>👥</span>
+
+          Members
+
+        </a>
+
+        <a
+
+          class="active"
+
+          href="admin-listings.html"
+
+        >
+
+          <span>🏡</span>
+
+          Listings
+
+        </a>
+
+        <a href="admin-command.html#bookings">
+
+          <span>📅</span>
+
+          Bookings
+
+        </a>
+
+        <a href="admin-command.html#payments">
+
+          <span>💳</span>
+
+          Payments
+
+        </a>
+
+        <a href="admin-command.html#reports">
+
+          <span>🛡️</span>
+
+          Reports
+
+        </a>
+
+        <a href="admin-command.html#activity">
+
+          <span>📡</span>
+
+          Live Activity
+
+        </a>
+
+      </nav>
+
+      <div class="listings-room-switcher">
+
+        <p>
+
+          Your rooms
+
+        </p>
+
+        <a href="traveller.html">
+
+          🧳 Traveller Room
+
+        </a>
+
+        <a href="host-command.html">
+
+          🏡 Host Command Centre
+
+        </a>
+
+        <a
+
+          class="current-room"
+
+          href="admin-command.html"
+
+        >
+
+          🔐 Admin Command Centre
+
+        </a>
+
+      </div>
+
+    </aside>
+
+    <div
+
+      class="listings-backdrop"
+
+      id="listingsBackdrop"
+
+      hidden
+
+    ></div>
+
+    <main class="listings-main">
+
+      <header class="listings-topbar">
+
+        <button
+
+          class="listings-menu-button"
+
+          id="listingsMenuButton"
+
+          type="button"
+
+          aria-label="Open admin menu"
+
+          aria-expanded="false"
+
+        >
+
+          ☰
+
+        </button>
+
+        <div class="listings-topbar-copy">
+
+          <p>
+
+            NOMAD PARK PAD OPERATIONS
+
+          </p>
+
+          <strong>
+
+            Listing Management
+
+          </strong>
+
+        </div>
+
+        <div class="listings-admin-profile">
+
+          <span class="listings-admin-avatar">
+
+            D
+
+          </span>
+
+          <div>
+
+            <strong id="listingsAdminName">
+
+              Dan
+
+            </strong>
+
+            <small>
+
+              Founder & Administrator
+
+            </small>
+
+          </div>
+
+        </div>
+
+      </header>
+
+      <section class="listings-hero">
+
+        <div>
+
+          <p class="listings-kicker">
+
+            MARKETPLACE INVENTORY
+
+          </p>
+
+          <h1>
+
+            Listings
+
+          </h1>
+
+          <p>
+
+            Review every Pad, inspect host inventory and keep the marketplace accurate and trustworthy.
+
+          </p>
+
+        </div>
+
+        <a
+
+          class="listings-back-button"
+
+          href="admin-command.html"
+
+        >
+
+          ← Back to Admin Room
+
+        </a>
+
+      </section>
+
+      <section class="listings-summary">
+
+        <article>
+
+          <span>🏡</span>
+
+          <div>
+
+            <small>Total listings</small>
+
+            <strong id="listingTotalCount">0</strong>
+
+          </div>
+
+        </article>
+
+        <article>
+
+          <span>🟢</span>
+
+          <div>
+
+            <small>Published</small>
+
+            <strong id="listingPublishedCount">0</strong>
+
+          </div>
+
+        </article>
+
+        <article>
+
+          <span>🟡</span>
+
+          <div>
+
+            <small>Drafts</small>
+
+            <strong id="listingDraftCount">0</strong>
+
+          </div>
+
+        </article>
+
+        <article>
+
+          <span>⏸️</span>
+
+          <div>
+
+            <small>Paused</small>
+
+            <strong id="listingPausedCount">0</strong>
+
+          </div>
+
+        </article>
+
+        <article>
+
+          <span>🚩</span>
+
+          <div>
+
+            <small>Flagged</small>
+
+            <strong id="listingFlaggedCount">0</strong>
+
+          </div>
+
+        </article>
+
+      </section>
+
+      <section class="listings-panel">
+
+        <header class="listings-panel-header">
+
+          <div>
+
+            <p>LISTING DIRECTORY</p>
+
+            <h2>Search and filter</h2>
+
+          </div>
+
+          <button
+
+            class="listings-refresh-button"
+
+            id="refreshListings"
+
+            type="button"
+
+          >
+
+            Refresh
+
+          </button>
+
+        </header>
+
+        <div class="listings-filters">
+
+          <label>
+
+            <span>
+
+              Search listings
+
+            </span>
+
+            <input
+
+              id="listingSearchInput"
+
+              type="search"
+
+              placeholder="Title, city or host"
+
+              autocomplete="off"
+
+            >
+
+          </label>
+
+          <label>
+
+            <span>
+
+              Status
+
+            </span>
+
+            <select id="listingStatusFilter">
+
+              <option value="all">
+
+                All statuses
+
+              </option>
+
+              <option value="published">
+
+                Published
+
+              </option>
+
+              <option value="draft">
+
+                Draft
+
+              </option>
+
+              <option value="paused">
+
+                Paused
+
+              </option>
+
+              <option value="flagged">
+
+                Flagged
+
+              </option>
+
+            </select>
+
+          </label>
+
+          <label>
+
+            <span>
+
+              Sort by
+
+            </span>
+
+            <select id="listingSortFilter">
+
+              <option value="newest">
+
+                Newest first
+
+              </option>
+
+              <option value="oldest">
+
+                Oldest first
+
+              </option>
+
+              <option value="title">
+
+                Title A–Z
+
+              </option>
+
+              <option value="city">
+
+                City A–Z
+
+              </option>
+
+            </select>
+
+          </label>
+
+        </div>
+
+      </section>
+
+      <section class="listings-panel">
+
+        <header class="listings-panel-header">
+
+          <div>
+
+            <p>INVENTORY</p>
+
+            <h2>All Pads</h2>
+
+          </div>
+
+          <span id="listingResultsCount">
+
+            0 results
+
+          </span>
+
+        </header>
+
+        <div
+
+          class="listings-loading"
+
+          id="listingsLoading"
+
+        >
+
+          Loading listings...
+
+        </div>
+
+        <div
+
+          class="listings-grid"
+
+          id="listingsGrid"
+
+          hidden
+
+        ></div>
+
+        <div
+
+          class="listings-empty"
+
+          id="listingsEmpty"
+
+          hidden
+
+        >
+
+          <span>
+
+            🏡
+
+          </span>
+
+          <strong>
+
+            No listings found
+
+          </strong>
+
+          <p>
+
+            New host Pads will appear here as they are created.
+
+          </p>
+
+        </div>
+
+      </section>
+
+    </main>
+
+  </div>
+
+  <template id="listingCardTemplate">
+
+    <article class="listing-card">
+
+      <div class="listing-image-wrap">
+
+        <img
+
+          class="listing-card-image"
+
+          src="hero.jpg"
+
+          alt=""
+
+        >
+
+        <span class="listing-status-pill">
+
+          Draft
+
+        </span>
+
+      </div>
+
+      <div class="listing-card-body">
+
+        <div class="listing-card-heading">
+
+          <div>
+
+            <p class="listing-card-location">
+
+              Location unavailable
+
+            </p>
+
+            <h3 class="listing-card-title">
+
+              Untitled Pad
+
+            </h3>
+
+          </div>
+
+          <button
+
+            class="listing-more-button"
+
+            type="button"
+
+            aria-label="More listing actions"
+
+          >
+
+            •••
+
+          </button>
+
+        </div>
+
+        <div class="listing-card-details">
+
+          <span class="listing-card-host">
+
+            Host unavailable
+
+          </span>
+
+          <span class="listing-card-price">
+
+            Price unavailable
+
+          </span>
+
+          <span class="listing-card-created">
+
+            Created date unavailable
+
+          </span>
+
+        </div>
+
+        <div class="listing-card-actions">
+
+          <button
+
+            class="listing-view-button"
+
+            type="button"
+
+          >
+
+            View details
+
+          </button>
+
+          <button
+
+            class="listing-preview-button"
+
+            type="button"
+
+          >
+
+            Preview Pad
+
+          </button>
+
+        </div>
+
+      </div>
+
+    </article>
+
+  </template>
+
+  <dialog
+
+    class="listing-dialog"
+
+    id="listingDialog"
+
+  >
+
+    <div class="listing-dialog-card">
+
+      <button
+
+        class="listing-dialog-close"
+
+        id="listingDialogClose"
+
+        type="button"
+
+        aria-label="Close listing details"
+
+      >
+
+        ×
+
+      </button>
+
+      <div class="listing-dialog-image-wrap">
+
+        <img
+
+          id="dialogListingImage"
+
+          src="hero.jpg"
+
+          alt=""
+
+        >
+
+        <span
+
+          class="listing-status-pill"
+
+          id="dialogListingStatus"
+
+        >
+
+          Draft
+
+        </span>
+
+      </div>
+
+      <div class="listing-dialog-copy">
+
+        <p>
+
+          LISTING DETAILS
+
+        </p>
+
+        <h2 id="dialogListingTitle">
+
+          Untitled Pad
+
+        </h2>
+
+        <span id="dialogListingLocation">
+
+          Location unavailable
+
+        </span>
+
+      </div>
+
+      <div class="listing-dialog-grid">
+
+        <article>
+
+          <small>Host</small>
+
+          <strong id="dialogListingHost">
+
+            Unavailable
+
+          </strong>
+
+        </article>
+
+        <article>
+
+          <small>Nightly price</small>
+
+          <strong id="dialogListingPrice">
+
+            Unavailable
+
+          </strong>
+
+        </article>
+
+        <article>
+
+          <small>Created</small>
+
+          <strong id="dialogListingCreated">
+
+            Unavailable
+
+          </strong>
+
+        </article>
+
+        <article>
+
+          <small>Listing ID</small>
+
+          <strong id="dialogListingId">
+
+            Unavailable
+
+          </strong>
+
+        </article>
+
+      </div>
+
+      <div class="listing-dialog-actions">
+
+        <button
+
+          id="dialogOpenListing"
+
+          type="button"
+
+        >
+
+          Open listing
+
+        </button>
+
+        <button
+
+          id="dialogOpenHost"
+
+          type="button"
+
+        >
+
+          View host
+
+        </button>
+
+        <button
+
+          class="warning-action"
+
+          id="dialogPauseListing"
+
+          type="button"
+
+          disabled
+
+        >
+
+          Pause listing
+
+        </button>
+
+        <button
+
+          class="danger-action"
+
+          id="dialogRemoveListing"
+
+          type="button"
+
+          disabled
+
+        >
+
+          Remove listing
+
+        </button>
+
+      </div>
+
+      <p class="listing-action-note">
+
+        Listing moderation actions will be enabled after protected admin update functions are added.
+
+      </p>
+
+    </div>
+
+  </dialog>
+
+  <script
+
+    type="module"
+
+    src="admin-listings.js"
+
+  ></script>
+
+</body>
+
+</html>

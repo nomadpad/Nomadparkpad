@@ -1,0 +1,91 @@
+@import url("admin-command.css");
+
+/* ==========================================
+
+   LISTING MANAGEMENT
+
+========================================== */
+
+.listings-shell {
+
+    display: flex;
+
+    min-height: 100vh;
+
+    background: var(--page-bg);
+
+}
+
+.listings-main {
+
+    flex: 1;
+
+    padding: 34px;
+
+}
+
+.listings-grid {
+
+    display: grid;
+
+    grid-template-columns: repeat(4, minmax(0,1fr));
+
+    gap: 18px;
+
+    margin: 28px 0;
+
+}
+
+.listing-stat-card {
+
+    background: white;
+
+    border-radius: 22px;
+
+    padding: 24px;
+
+    border: 1px solid var(--border);
+
+    box-shadow: var(--shadow-soft);
+
+}
+
+.listing-stat-card h3 {
+
+    font-size: 13px;
+
+    color: var(--muted);
+
+    text-transform: uppercase;
+
+    letter-spacing: .08em;
+
+}
+
+.listing-stat-card strong {
+
+    display: block;
+
+    margin-top: 12px;
+
+    font-size: 42px;
+
+    color: var(--forest);
+
+}
+
+.listing-panel {
+
+    background: white;
+
+    border-radius: 24px;
+
+    padding: 28px;
+
+    border: 1px solid var(--border);
+
+    box-shadow: var(--shadow-soft);
+
+    margin-bottom: 24px;
+
+}
