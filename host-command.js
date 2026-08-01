@@ -1910,4 +1910,68 @@ setRadarView(
 
 loadHostDashboard();
 
-loadStripeStatus();
+const stripeStatusTimeout =
+
+  window.setTimeout(() => {
+
+    setPayoutStatus({
+
+      badgeText: "Setup needed",
+
+      badgeClass: "action-required",
+
+      icon: "🏦",
+
+      title: "Connect Stripe",
+
+      message:
+
+        "Complete payout setup before accepting paid bookings.",
+
+      showSetup: true
+
+    });
+
+  }, 5000);
+
+loadStripeStatus()
+
+  .catch((error) => {
+
+    console.error(
+
+      "Stripe status failed:",
+
+      error
+
+    );
+
+    setPayoutStatus({
+
+      badgeText: "Setup needed",
+
+      badgeClass: "action-required",
+
+      icon: "🏦",
+
+      title: "Connect Stripe",
+
+      message:
+
+        "Complete payout setup before accepting paid bookings.",
+
+      showSetup: true
+
+    });
+
+  })
+
+  .finally(() => {
+
+    window.clearTimeout(
+
+      stripeStatusTimeout
+
+    );
+
+  });
