@@ -1066,19 +1066,17 @@ function renderMembers() {
 
       viewButton?.addEventListener(
 
-        "click",
+  "click",
 
-        () => {
+  () => {
 
-          openMemberDialog(
+    window.location.href =
 
-            member
+      `admin-member-details.html?id=${encodeURIComponent(member.id)}`;
 
-          );
+  }
 
-        }
-
-      );
+);
 
       moreButton?.addEventListener(
 
