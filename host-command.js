@@ -1910,68 +1910,38 @@ setRadarView(
 
 loadHostDashboard();
 
-const stripeStatusTimeout =
+/*
 
-  window.setTimeout(() => {
+  Show a useful default immediately.
 
-    setPayoutStatus({
+  Stripe can update this afterward if it responds.
 
-      badgeText: "Setup needed",
+*/
 
-      badgeClass: "action-required",
+setPayoutStatus({
 
-      icon: "🏦",
+  badgeText: "Setup needed",
 
-      title: "Connect Stripe",
+  badgeClass: "action-required",
 
-      message:
+  icon: "🏦",
 
-        "Complete payout setup before accepting paid bookings.",
+  title: "Connect Stripe",
 
-      showSetup: true
+  message:
 
-    });
+    "Complete payout setup before accepting paid bookings.",
 
-  }, 5000);
+  showSetup: true,
 
-loadStripeStatus()
+  showManage: false
 
-  .catch((error) => {
+});
 
-    console.error(
+/*
 
-      "Stripe status failed:",
+  Check the real Stripe status in the background.
 
-      error
+*/
 
-    );
-
-    setPayoutStatus({
-
-      badgeText: "Setup needed",
-
-      badgeClass: "action-required",
-
-      icon: "🏦",
-
-      title: "Connect Stripe",
-
-      message:
-
-        "Complete payout setup before accepting paid bookings.",
-
-      showSetup: true
-
-    });
-
-  })
-
-  .finally(() => {
-
-    window.clearTimeout(
-
-      stripeStatusTimeout
-
-    );
-
-  });
+loadStripeStatus();
