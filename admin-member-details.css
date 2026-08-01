@@ -1,0 +1,353 @@
+:root {
+
+  --forest: #0d3b2f;
+
+  --forest-light: #1f5a49;
+
+  --orange: #f36a06;
+
+  --cream: #f8f4ec;
+
+  --panel: rgba(255, 255, 255, 0.96);
+
+  --border: rgba(13, 59, 47, 0.12);
+
+  --shadow: 0 18px 45px rgba(13, 59, 47, 0.1);
+
+  --radius: 24px;
+
+}
+
+*,
+
+*::before,
+
+*::after {
+
+  box-sizing: border-box;
+
+}
+
+html {
+
+  scroll-behavior: smooth;
+
+}
+
+body {
+
+  margin: 0;
+
+  font-family: Inter, system-ui, sans-serif;
+
+  color: var(--forest);
+
+  background:
+
+    radial-gradient(circle at top right, #ffe6cf 0%, transparent 36%),
+
+    linear-gradient(#fbf8f3, #f6f2ea);
+
+}
+
+a {
+
+  color: inherit;
+
+  text-decoration: none;
+
+}
+
+button {
+
+  font: inherit;
+
+  cursor: pointer;
+
+}
+
+[hidden] {
+
+  display: none !important;
+
+}
+
+.member-details-shell {
+
+  display: grid;
+
+  grid-template-columns: 290px minmax(0, 1fr);
+
+  min-height: 100vh;
+
+}
+/* =========================================================
+
+   HERO
+
+========================================================= */
+
+.member-details-hero {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 24px;
+
+  margin: 28px;
+
+  padding: 32px;
+
+  border: 1px solid rgba(243, 106, 6, 0.16);
+
+  border-radius: var(--radius);
+
+  background:
+
+    radial-gradient(
+
+      circle at 90% 20%,
+
+      rgba(243, 106, 6, 0.16),
+
+      transparent 28%
+
+    ),
+
+    linear-gradient(135deg, #fff, #f9ead8);
+
+  box-shadow: var(--shadow);
+
+}
+
+.member-details-kicker {
+
+  margin: 0 0 10px;
+
+  color: var(--orange);
+
+  font-size: 10px;
+
+  font-weight: 900;
+
+  letter-spacing: 0.2em;
+
+}
+
+.member-details-hero h1 {
+
+  margin: 0;
+
+  font-family: Georgia, "Times New Roman", serif;
+
+  font-size: clamp(40px, 6vw, 68px);
+
+  line-height: 0.96;
+
+}
+
+.member-details-hero > div > p:last-child {
+
+  max-width: 700px;
+
+  margin: 16px 0 0;
+
+  color: #68766f;
+
+  line-height: 1.6;
+
+}
+
+.member-details-back-button {
+
+  flex: 0 0 auto;
+
+  min-height: 44px;
+
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  padding: 0 16px;
+
+  border: 1px solid var(--border);
+
+  border-radius: 12px;
+
+  background: #fff;
+
+  font-size: 11px;
+
+  font-weight: 900;
+
+}
+
+.member-details-status {
+
+  margin: 0 28px 20px;
+
+  padding: 14px 18px;
+
+  border: 1px solid var(--border);
+
+  border-radius: 14px;
+
+  color: #64736c;
+
+  background: rgba(255, 255, 255, 0.9);
+
+  font-size: 11px;
+
+  font-weight: 700;
+
+}
+/* =========================================================
+
+   ACCESS LIST
+
+========================================================= */
+
+.member-access-list {
+
+  display: grid;
+
+  gap: 12px;
+
+}
+
+.member-access-list article {
+
+  min-height: 82px;
+
+  display: grid;
+
+  grid-template-columns: 46px minmax(0, 1fr);
+
+  align-items: center;
+
+  gap: 13px;
+
+  padding: 15px;
+
+  border: 1px solid var(--border);
+
+  border-radius: 14px;
+
+  background: #faf7f1;
+
+}
+
+.member-access-list article > span {
+
+  width: 46px;
+
+  height: 46px;
+
+  display: grid;
+
+  place-items: center;
+
+  border-radius: 13px;
+
+  background: #fff1e4;
+
+  font-size: 21px;
+
+}
+
+.member-access-list small {
+
+  color: #6b7972;
+
+  font-size: 9px;
+
+  font-weight: 800;
+
+  text-transform: uppercase;
+
+}
+
+.member-access-list strong {
+
+  display: block;
+
+  margin-top: 7px;
+
+  font-size: 14px;
+
+}
+
+/* =========================================================
+
+   ACTIVITY STATS
+
+========================================================= */
+
+.member-stat-grid {
+
+  display: grid;
+
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  gap: 12px;
+
+}
+
+.member-stat-grid article {
+
+  min-height: 110px;
+
+  display: grid;
+
+  align-content: center;
+
+  padding: 16px;
+
+  border: 1px solid var(--border);
+
+  border-radius: 14px;
+
+  background:
+
+    linear-gradient(
+
+      135deg,
+
+      #ffffff,
+
+      #faf4eb
+
+    );
+
+}
+
+.member-stat-grid small {
+
+  color: #6b7972;
+
+  font-size: 9px;
+
+  font-weight: 800;
+
+  text-transform: uppercase;
+
+}
+
+.member-stat-grid strong {
+
+  display: block;
+
+  margin-top: 10px;
+
+  font-family: Georgia, "Times New Roman", serif;
+
+  font-size: 34px;
+
+  line-height: 1;
+
+}

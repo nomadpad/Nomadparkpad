@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+
+    name="viewport"
+
+    content="width=device-width, initial-scale=1"
+
+  >
+
+  <title>
+
+    Member Details | Nomad Park Pad
+
+  </title>
+
+  <meta
+
+    name="description"
+
+    content="Private Nomad Park Pad member details."
+
+  >
+
+  <meta
+
+    name="theme-color"
+
+    content="#0d3b2f"
+
+  >
+
+  <link
+
+    rel="icon"
+
+    type="image/png"
+
+    sizes="32x32"
+
+    href="favicon-32.png"
+
+  >
+
+  <link
+
+    rel="stylesheet"
+
+    href="admin-member-details.css"
+
+  >
+
+</head>
+
+<body>
+
+  <div class="member-details-shell">
+
+    <aside
+
+      class="member-details-sidebar"
+
+      id="memberDetailsSidebar"
+
+    >
+
+      <div class="member-details-brand">
+
+        <a href="admin-command.html">
+
+          <img
+
+            src="Nomad_Park_Pad_Primary_Logo.png"
+
+            alt="Nomad Park Pad"
+
+          >
+
+        </a>
+
+        <span>
+
+          Private Administration
+
+        </span>
+
+      </div>
+
+      <nav
+
+        class="member-details-nav"
+
+        aria-label="Admin navigation"
+
+      >
+
+        <a href="admin-command.html">
+
+          <span>📊</span>
+
+          Overview
+
+        </a>
+
+        <a href="admin-command.html#earlyAccess">
+
+          <span>🚀</span>
+
+          Early Access
+
+        </a>
+
+        <a
+
+          class="active"
+
+          href="admin-members.html"
+
+        >
+
+          <span>👥</span>
+
+          Members
+
+        </a>
+
+        <a href="admin-command.html#listings">
+
+          <span>🏡</span>
+
+          Listings
+
+        </a>
+
+        <a href="admin-command.html#bookings">
+
+          <span>📅</span>
+
+          Bookings
+
+        </a>
+
+        <a href="admin-command.html#payments">
+
+          <span>💳</span>
+
+          Payments
+
+        </a>
+
+        <a href="admin-command.html#reports">
+
+          <span>🛡️</span>
+
+          Reports
+
+        </a>
+
+        <a href="admin-command.html#activity">
+
+          <span>📡</span>
+
+          Live Activity
+
+        </a>
+
+      </nav>
+
+      <div class="member-details-room-switcher">
+
+        <p>
+
+          Your rooms
+
+        </p>
+
+        <a href="traveller.html">
+
+          🧳 Traveller Room
+
+        </a>
+
+        <a href="host-command.html">
+
+          🏡 Host Command Centre
+
+        </a>
+
+        <a
+
+          class="current-room"
+
+          href="admin-command.html"
+
+        >
+
+          🔐 Admin Command Centre
+
+        </a>
+
+      </div>
+
+    </aside>
+
+    <div
+
+      class="member-details-backdrop"
+
+      id="memberDetailsBackdrop"
+
+      hidden
+
+    ></div>
+
+    <main class="member-details-main">
+
+      <header class="member-details-topbar">
+
+        <button
+
+          class="member-details-menu-button"
+
+          id="memberDetailsMenuButton"
+
+          type="button"
+
+          aria-label="Open admin menu"
+
+          aria-expanded="false"
+
+        >
+
+          ☰
+
+        </button>
+
+        <div class="member-details-topbar-copy">
+
+          <p>
+
+            NOMAD PARK PAD OPERATIONS
+
+          </p>
+
+          <strong>
+
+            Member Details
+
+          </strong>
+
+        </div>
+
+        <div class="member-details-profile">
+
+          <span class="member-details-avatar-small">
+
+            D
+
+          </span>
+
+          <div>
+
+            <strong id="memberDetailsAdminName">
+
+              Dan
+
+            </strong>
+
+            <small>
+
+              Founder & Administrator
+
+            </small>
+
+          </div>
+
+        </div>
+
+      </header>
+
+      <section class="member-details-hero">
+
+        <div>
+
+          <p class="member-details-kicker">
+
+            MEMBER PROFILE
+
+          </p>
+
+          <h1 id="memberDetailsName">
+
+            Loading member...
+
+          </h1>
+
+          <p id="memberDetailsHeadline">
+
+            Retrieving secure account information.
+
+          </p>
+
+        </div>
+
+        <a
+
+          class="member-details-back-button"
+
+          href="admin-members.html"
+
+        >
+
+          ← Back to Members
+
+        </a>
+
+      </section>
+
+      <section
+
+        class="member-details-status"
+
+        id="memberDetailsStatus"
+
+      >
+
+        Loading member details...
+
+      </section>
+
+      <section class="member-details-grid">
+
+        <article class="member-details-card member-profile-card">
+
+          <header>
+
+            <div>
+
+              <p>PROFILE</p>
+
+              <h2>Member overview</h2>
+
+            </div>
+
+            <span
+
+              class="member-status-badge"
+
+              id="memberDetailsStatusBadge"
+
+            >
+
+              Active
+
+            </span>
+
+          </header>
+
+          <div class="member-profile-summary">
+
+            <span
+
+              class="member-profile-avatar"
+
+              id="memberDetailsAvatar"
+
+            >
+
+              N
+
+            </span>
+
+            <div>
+
+              <h3 id="memberDetailsProfileName">
+
+                Member
+
+              </h3>
+
+              <p id="memberDetailsRole">
+
+                Member
+
+              </p>
+
+            </div>
+
+          </div>
+
+          <div class="member-profile-fields">
+
+            <article>
+
+              <small>Email</small>
+
+              <strong id="memberDetailsEmail">
+
+                Secure Authentication record
+
+              </strong>
+
+            </article>
+
+            <article>
+
+              <small>City</small>
+
+              <strong id="memberDetailsCity">
+
+                Unavailable
+
+              </strong>
+
+            </article>
+
+            <article>
+
+              <small>Joined</small>
+
+              <strong id="memberDetailsJoined">
+
+                Unavailable
+
+              </strong>
+
+            </article>
+
+            <article>
+
+              <small>Member ID</small>
+
+              <strong id="memberDetailsId">
+
+                Unavailable
+
+              </strong>
+
+            </article>
+
+          </div>
+
+        </article>
+
+        <article class="member-details-card">
+
+          <header>
+
+            <div>
+
+              <p>ACCOUNT</p>
+
+              <h2>Access & status</h2>
+
+            </div>
+
+          </header>
+
+          <div class="member-access-list">
+
+            <article>
+
+              <span>🧳</span>
+
+              <div>
+
+                <small>Traveller access</small>
+
+                <strong id="memberTravellerAccess">
+
+                  No
+
+                </strong>
+
+              </div>
+
+            </article>
+
+            <article>
+
+              <span>🏡</span>
+
+              <div>
+
+                <small>Host access</small>
+
+                <strong id="memberHostAccess">
+
+                  No
+
+                </strong>
+
+              </div>
+
+            </article>
+
+            <article>
+
+              <span>🔐</span>
+
+              <div>
+
+                <small>Administrator</small>
+
+                <strong id="memberAdminAccess">
+
+                  No
+
+                </strong>
+
+              </div>
+
+            </article>
+
+            <article>
+
+              <span>💳</span>
+
+              <div>
+
+                <small>Stripe onboarding</small>
+
+                <strong id="memberStripeStatus">
+
+                  Not connected
+
+                </strong>
+
+              </div>
+
+            </article>
+
+          </div>
+
+        </article>
+
+        <article class="member-details-card">
+
+          <header>
+
+            <div>
+
+              <p>HOST ACTIVITY</p>
+
+              <h2>Marketplace activity</h2>
+
+            </div>
+
+          </header>
+
+          <div class="member-stat-grid">
+
+            <article>
+
+              <small>Listings</small>
+
+              <strong id="memberListingCount">0</strong>
+
+            </article>
+
+            <article>
+
+              <small>Published</small>
+
+              <strong id="memberPublishedCount">0</strong>
+
+            </article>
+
+            <article>
+
+              <small>Bookings</small>
+
+              <strong id="memberBookingCount">0</strong>
+
+            </article>
+
+            <article>
+
+              <small>Reviews</small>
+
+              <strong id="memberReviewCount">0</strong>
+
+            </article>
+
+          </div>
+
+        </article>
+
+        <article class="member-details-card">
+
+          <header>
+
+            <div>
+
+              <p>TRAVELLER ACTIVITY</p>
+
+              <h2>Trips & saves</h2>
+
+            </div>
+
+          </header>
+
+          <div class="member-stat-grid">
+
+            <article>
+
+              <small>Booking requests</small>
+
+              <strong id="memberTravellerBookings">0</strong>
+
+            </article>
+
+            <article>
+
+              <small>Saved Pads</small>
+
+              <strong id="memberSavedPads">0</strong>
+
+            </article>
+
+            <article>
+
+              <small>Reviews written</small>
+
+              <strong id="memberReviewsWritten">0</strong>
+
+            </article>
+
+            <article>
+
+              <small>Reports</small>
+
+              <strong id="memberReportCount">0</strong>
+
+            </article>
+
+          </div>
+
+        </article>
+
+        <article class="member-details-card member-admin-tools">
+
+          <header>
+
+            <div>
+
+              <p>ADMIN TOOLS</p>
+
+              <h2>Member actions</h2>
+
+            </div>
+
+          </header>
+
+          <div class="member-action-grid">
+
+            <button
+
+              id="memberOpenPublicProfile"
+
+              type="button"
+
+            >
+
+              👁️ Open public profile
+
+            </button>
+
+            <button
+
+              id="memberViewListings"
+
+              type="button"
+
+            >
+
+              🏡 View listings
+
+            </button>
+
+            <button
+
+              id="memberViewBookings"
+
+              type="button"
+
+            >
+
+              📅 View bookings
+
+            </button>
+
+            <button
+
+              id="memberSendMessage"
+
+              type="button"
+
+              disabled
+
+            >
+
+              💬 Send message
+
+            </button>
+
+            <button
+
+              id="memberSuspendAccount"
+
+              class="warning-action"
+
+              type="button"
+
+              disabled
+
+            >
+
+              ⛔ Suspend account
+
+            </button>
+
+            <button
+
+              id="memberDeleteAccount"
+
+              class="danger-action"
+
+              type="button"
+
+              disabled
+
+            >
+
+              🗑️ Delete account
+
+            </button>
+
+          </div>
+
+          <p class="member-tools-note">
+
+            Suspension, deletion and direct admin messaging will be enabled through protected server-side actions.
+
+          </p>
+
+        </article>
+
+      </section>
+
+    </main>
+
+  </div>
+
+  <script
+
+    type="module"
+
+    src="admin-member-details.js"
+
+  ></script>
+
+</body>
+
+</html>
