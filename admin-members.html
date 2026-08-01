@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+
+    name="viewport"
+
+    content="width=device-width, initial-scale=1"
+
+  >
+
+  <title>
+
+    Member Management | Nomad Park Pad
+
+  </title>
+
+  <meta
+
+    name="description"
+
+    content="Private Nomad Park Pad member management."
+
+  >
+
+  <meta
+
+    name="theme-color"
+
+    content="#0d3b2f"
+
+  >
+
+  <link
+
+    rel="icon"
+
+    type="image/png"
+
+    sizes="32x32"
+
+    href="favicon-32.png"
+
+  >
+
+  <link
+
+    rel="stylesheet"
+
+    href="admin-members.css"
+
+  >
+
+</head>
+
+<body>
+
+  <div class="members-shell">
+
+    <aside
+
+      class="members-sidebar"
+
+      id="membersSidebar"
+
+    >
+
+      <div class="members-brand">
+
+        <a href="admin-command.html">
+
+          <img
+
+            src="Nomad_Park_Pad_Primary_Logo.png"
+
+            alt="Nomad Park Pad"
+
+          >
+
+        </a>
+
+        <span>
+
+          Private Administration
+
+        </span>
+
+      </div>
+
+      <nav
+
+        class="members-nav"
+
+        aria-label="Admin navigation"
+
+      >
+
+        <a href="admin-command.html">
+
+          <span>📊</span>
+
+          Overview
+
+        </a>
+
+        <a href="admin-command.html#earlyAccess">
+
+          <span>🚀</span>
+
+          Early Access
+
+        </a>
+
+        <a
+
+          class="active"
+
+          href="admin-members.html"
+
+        >
+
+          <span>👥</span>
+
+          Members
+
+        </a>
+
+        <a href="admin-command.html#listings">
+
+          <span>🏡</span>
+
+          Listings
+
+        </a>
+
+        <a href="admin-command.html#bookings">
+
+          <span>📅</span>
+
+          Bookings
+
+        </a>
+
+        <a href="admin-command.html#payments">
+
+          <span>💳</span>
+
+          Payments
+
+        </a>
+
+        <a href="admin-command.html#reports">
+
+          <span>🛡️</span>
+
+          Reports
+
+        </a>
+
+        <a href="admin-command.html#activity">
+
+          <span>📡</span>
+
+          Live Activity
+
+        </a>
+
+      </nav>
+
+      <div class="members-room-switcher">
+
+        <p>
+
+          Your rooms
+
+        </p>
+
+        <a href="traveller.html">
+
+          🧳 Traveller Room
+
+        </a>
+
+        <a href="host-command.html">
+
+          🏡 Host Command Centre
+
+        </a>
+
+        <a
+
+          class="current-room"
+
+          href="admin-command.html"
+
+        >
+
+          🔐 Admin Command Centre
+
+        </a>
+
+      </div>
+
+    </aside>
+
+    <div
+
+      class="members-backdrop"
+
+      id="membersBackdrop"
+
+      hidden
+
+    ></div>
+
+    <main class="members-main">
+
+      <header class="members-topbar">
+
+        <button
+
+          class="members-menu-button"
+
+          id="membersMenuButton"
+
+          type="button"
+
+          aria-label="Open admin menu"
+
+          aria-expanded="false"
+
+        >
+
+          ☰
+
+        </button>
+
+        <div class="members-topbar-copy">
+
+          <p>
+
+            NOMAD PARK PAD OPERATIONS
+
+          </p>
+
+          <strong>
+
+            Member Management
+
+          </strong>
+
+        </div>
+
+        <div class="members-profile">
+
+          <span class="members-avatar">
+
+            D
+
+          </span>
+
+          <div>
+
+            <strong id="membersAdminName">
+
+              Dan
+
+            </strong>
+
+            <small>
+
+              Founder & Administrator
+
+            </small>
+
+          </div>
+
+        </div>
+
+      </header>
+
+      <section class="members-hero">
+
+        <div>
+
+          <p class="members-kicker">
+
+            COMMUNITY CONTROL
+
+          </p>
+
+          <h1>
+
+            Members
+
+          </h1>
+
+          <p>
+
+            Search, review and manage every Nomad Park Pad member from one private workspace.
+
+          </p>
+
+        </div>
+
+        <a
+
+          class="members-back-button"
+
+          href="admin-command.html"
+
+        >
+
+          ← Back to Admin Room
+
+        </a>
+
+      </section>
+
+      <section class="members-summary">
+
+        <article>
+
+          <span>👥</span>
+
+          <div>
+
+            <small>Total members</small>
+
+            <strong id="memberTotalCount">0</strong>
+
+          </div>
+
+        </article>
+
+        <article>
+
+          <span>🧳</span>
+
+          <div>
+
+            <small>Travellers</small>
+
+            <strong id="memberTravellerCount">0</strong>
+
+          </div>
+
+        </article>
+
+        <article>
+
+          <span>🏡</span>
+
+          <div>
+
+            <small>Hosts</small>
+
+            <strong id="memberHostCount">0</strong>
+
+          </div>
+
+        </article>
+
+        <article>
+
+          <span>🔐</span>
+
+          <div>
+
+            <small>Administrators</small>
+
+            <strong id="memberAdminCount">0</strong>
+
+          </div>
+
+        </article>
+
+      </section>
+
+      <section class="members-panel">
+
+        <header class="members-panel-header">
+
+          <div>
+
+            <p>MEMBER DIRECTORY</p>
+
+            <h2>Search and filter</h2>
+
+          </div>
+
+          <button
+
+            class="members-refresh-button"
+
+            id="refreshMembers"
+
+            type="button"
+
+          >
+
+            Refresh
+
+          </button>
+
+        </header>
+
+        <div class="members-filters">
+
+          <label class="members-search">
+
+            <span>
+
+              Search members
+
+            </span>
+
+            <input
+
+              id="memberSearchInput"
+
+              type="search"
+
+              placeholder="Name, city or role"
+
+              autocomplete="off"
+
+            >
+
+          </label>
+
+          <label>
+
+            <span>
+
+              Role
+
+            </span>
+
+            <select id="memberRoleFilter">
+
+              <option value="all">
+
+                All roles
+
+              </option>
+
+              <option value="traveler">
+
+                Travellers
+
+              </option>
+
+              <option value="host">
+
+                Hosts
+
+              </option>
+
+              <option value="both">
+
+                Host + Traveller
+
+              </option>
+
+              <option value="admin">
+
+                Administrators
+
+              </option>
+
+            </select>
+
+          </label>
+
+          <label>
+
+            <span>
+
+              Status
+
+            </span>
+
+            <select id="memberStatusFilter">
+
+              <option value="all">
+
+                All statuses
+
+              </option>
+
+              <option value="active">
+
+                Active
+
+              </option>
+
+              <option value="suspended">
+
+                Suspended
+
+              </option>
+
+            </select>
+
+          </label>
+
+        </div>
+
+      </section>
+
+      <section class="members-panel">
+
+        <header class="members-panel-header">
+
+          <div>
+
+            <p>COMMUNITY</p>
+
+            <h2>All members</h2>
+
+          </div>
+
+          <span id="memberResultsCount">
+
+            0 results
+
+          </span>
+
+        </header>
+
+        <div
+
+          class="members-loading"
+
+          id="membersLoading"
+
+        >
+
+          Loading members...
+
+        </div>
+
+        <div
+
+          class="members-list"
+
+          id="membersList"
+
+          hidden
+
+        ></div>
+
+        <div
+
+          class="members-empty"
+
+          id="membersEmpty"
+
+          hidden
+
+        >
+
+          <span>
+
+            👤
+
+          </span>
+
+          <strong>
+
+            No members found
+
+          </strong>
+
+          <p>
+
+            Try changing the search or filter options.
+
+          </p>
+
+        </div>
+
+      </section>
+
+    </main>
+
+  </div>
+
+  <template id="memberCardTemplate">
+
+    <article class="member-card">
+
+      <div class="member-card-main">
+
+        <span class="member-card-avatar">
+
+          N
+
+        </span>
+
+        <div class="member-card-copy">
+
+          <div class="member-card-title">
+
+            <div>
+
+              <h3 class="member-card-name">
+
+                Member Name
+
+              </h3>
+
+              <p class="member-card-email">
+
+                Email unavailable
+
+              </p>
+
+            </div>
+
+            <span class="member-status-pill">
+
+              Active
+
+            </span>
+
+          </div>
+
+          <div class="member-card-details">
+
+            <span class="member-role">
+
+              Member
+
+            </span>
+
+            <span class="member-city">
+
+              City unavailable
+
+            </span>
+
+            <span class="member-joined">
+
+              Joined date unavailable
+
+            </span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="member-card-actions">
+
+        <button
+
+          class="member-view-button"
+
+          type="button"
+
+        >
+
+          View details
+
+        </button>
+
+        <button
+
+          class="member-more-button"
+
+          type="button"
+
+          aria-label="More member actions"
+
+        >
+
+          •••
+
+        </button>
+
+      </div>
+
+    </article>
+
+  </template>
+
+  <dialog
+
+    class="member-dialog"
+
+    id="memberDialog"
+
+  >
+
+    <div class="member-dialog-card">
+
+      <button
+
+        class="member-dialog-close"
+
+        id="memberDialogClose"
+
+        type="button"
+
+        aria-label="Close member details"
+
+      >
+
+        ×
+
+      </button>
+
+      <div class="member-dialog-profile">
+
+        <span
+
+          class="member-dialog-avatar"
+
+          id="dialogMemberAvatar"
+
+        >
+
+          N
+
+        </span>
+
+        <div>
+
+          <p>
+
+            MEMBER PROFILE
+
+          </p>
+
+          <h2 id="dialogMemberName">
+
+            Member
+
+          </h2>
+
+          <span id="dialogMemberRole">
+
+            Member
+
+          </span>
+
+        </div>
+
+      </div>
+
+      <div class="member-dialog-grid">
+
+        <article>
+
+          <small>Email</small>
+
+          <strong id="dialogMemberEmail">
+
+            Unavailable
+
+          </strong>
+
+        </article>
+
+        <article>
+
+          <small>City</small>
+
+          <strong id="dialogMemberCity">
+
+            Unavailable
+
+          </strong>
+
+        </article>
+
+        <article>
+
+          <small>Joined</small>
+
+          <strong id="dialogMemberJoined">
+
+            Unavailable
+
+          </strong>
+
+        </article>
+
+        <article>
+
+          <small>Account status</small>
+
+          <strong id="dialogMemberStatus">
+
+            Active
+
+          </strong>
+
+        </article>
+
+        <article>
+
+          <small>Published pads</small>
+
+          <strong id="dialogMemberListings">
+
+            0
+
+          </strong>
+
+        </article>
+
+        <article>
+
+          <small>Booking requests</small>
+
+          <strong id="dialogMemberBookings">
+
+            0
+
+          </strong>
+
+        </article>
+
+      </div>
+
+      <div class="member-dialog-actions">
+
+        <button
+
+          class="member-secondary-action"
+
+          id="dialogViewProfile"
+
+          type="button"
+
+        >
+
+          Open public profile
+
+        </button>
+
+        <button
+
+          class="member-warning-action"
+
+          id="dialogSuspendMember"
+
+          type="button"
+
+          disabled
+
+        >
+
+          Suspend account
+
+        </button>
+
+      </div>
+
+      <p class="member-action-note">
+
+        Account suspension will be enabled after the protected admin action is added.
+
+      </p>
+
+    </div>
+
+  </dialog>
+
+  <script
+
+    type="module"
+
+    src="admin-members.js"
+
+  ></script>
+
+</body>
+
+</html>
