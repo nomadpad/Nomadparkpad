@@ -1454,3 +1454,206 @@ a {
   }
 
 }
+/* ==========================
+
+   HOST SIGNUP PAGE
+
+========================== */
+
+.host-signup-page{
+
+  min-height:100vh;
+
+  padding:32px 20px 60px;
+
+}
+
+.host-signup-layout{
+
+  max-width:1180px;
+
+  margin:40px auto 0;
+
+  display:grid;
+
+  grid-template-columns:1.1fr .9fr;
+
+  gap:48px;
+
+  align-items:center;
+
+}
+
+.host-signup-message h1{
+
+  margin:0 0 18px;
+
+  font-size:64px;
+
+  line-height:.95;
+
+  color:var(--forest);
+
+}
+
+.host-signup-message p{
+
+  font-size:20px;
+
+  line-height:1.7;
+
+  color:var(--text);
+
+}
+
+.host-signup-promises{
+
+  margin-top:34px;
+
+  display:grid;
+
+  gap:14px;
+
+}
+
+.host-signup-promises span{
+
+  font-weight:700;
+
+  color:var(--forest);
+
+}
+
+.host-signup-card{
+
+  background:#fff;
+
+  border-radius:28px;
+
+  padding:34px;
+
+  box-shadow:0 22px 60px rgba(26,47,39,.12);
+
+}
+
+.host-signup-card label{
+
+  display:block;
+
+  margin-bottom:18px;
+
+  font-weight:700;
+
+  color:var(--forest);
+
+}
+
+.host-signup-card input[type=text],
+
+.host-signup-card input[type=email],
+
+.host-signup-card input[type=password]{
+
+  width:100%;
+
+  margin-top:8px;
+
+  padding:15px 16px;
+
+  border:1px solid rgba(18,63,50,.16);
+
+  border-radius:14px;
+
+  font-size:16px;
+
+  box-sizing:border-box;
+
+}
+
+.host-signup-name-grid{
+
+  display:grid;
+
+  grid-template-columns:1fr 1fr;
+
+  gap:16px;
+
+}
+
+.host-signup-submit{
+
+  width:100%;
+
+  margin-top:18px;
+
+}
+
+.host-signup-login{
+
+  margin-top:26px;
+
+  text-align:center;
+
+}
+
+.host-signup-login a{
+
+  color:var(--orange);
+
+  font-weight:700;
+
+}
+
+.host-signup-terms{
+
+  display:flex !important;
+
+  align-items:flex-start;
+
+  gap:12px;
+
+  margin-top:10px;
+
+}
+
+.host-signup-terms input{
+
+  margin-top:4px;
+
+}
+
+@media(max-width:900px){
+
+.host-signup-layout{
+
+grid-template-columns:1fr;
+
+gap:34px;
+
+}
+
+.host-signup-message h1{
+
+font-size:46px;
+
+}
+
+.host-signup-message p{
+
+font-size:18px;
+
+}
+
+.host-signup-card{
+
+padding:26px;
+
+}
+
+.host-signup-name-grid{
+
+grid-template-columns:1fr;
+
+}
+
+}
