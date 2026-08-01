@@ -1,0 +1,2037 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+
+    name="viewport"
+
+    content="width=device-width, initial-scale=1, maximum-scale=1"
+
+  >
+
+  <title>Host Command Centre | Nomad Park Pad</title>
+
+  <meta
+
+    name="description"
+
+    content="Manage your Nomad Park Pad listings, bookings, earnings and local traveller demand."
+
+  >
+
+  <link
+
+    rel="stylesheet"
+
+    href="host-command.css"
+
+  >
+
+</head>
+
+<body>
+
+  <div class="command-shell">
+
+    <!-- MOBILE HEADER -->
+
+    <header class="mobile-header">
+
+      <a
+
+        class="mobile-brand"
+
+        href="index.html"
+
+        aria-label="Nomad Park Pad home"
+
+      >
+
+        <img
+
+          src="logo.png"
+
+          alt="Nomad Park Pad"
+
+        >
+
+      </a>
+
+      <button
+
+        class="mobile-menu-button"
+
+        id="mobileMenuButton"
+
+        type="button"
+
+        aria-label="Open host navigation"
+
+        aria-expanded="false"
+
+      >
+
+        ☰
+
+      </button>
+
+    </header>
+
+    <!-- SIDEBAR -->
+
+    <aside
+
+      class="command-sidebar"
+
+      id="commandSidebar"
+
+    >
+
+      <div class="sidebar-brand">
+
+        <a
+
+          href="index.html"
+
+          aria-label="Nomad Park Pad home"
+
+        >
+
+          <img
+
+            src="logo.png"
+
+            alt="Nomad Park Pad"
+
+          >
+
+        </a>
+
+        <button
+
+          class="sidebar-close"
+
+          id="sidebarClose"
+
+          type="button"
+
+          aria-label="Close host navigation"
+
+        >
+
+          ×
+
+        </button>
+
+      </div>
+
+      <nav
+
+        class="sidebar-nav"
+
+        aria-label="Host navigation"
+
+      >
+
+        <a
+
+          class="sidebar-link active"
+
+          href="host-command.html"
+
+        >
+
+          <span>🏠</span>
+
+          Overview
+
+        </a>
+
+        <a
+
+          class="sidebar-link"
+
+          href="my-listings.html"
+
+        >
+
+          <span>🏡</span>
+
+          My Pads
+
+        </a>
+
+        <a
+
+          class="sidebar-link"
+
+          href="#bookingRequests"
+
+        >
+
+          <span>📨</span>
+
+          Booking Requests
+
+          <strong class="nav-count">
+
+            3
+
+          </strong>
+
+        </a>
+
+        <a
+
+          class="sidebar-link"
+
+          href="host-availability.html"
+
+        >
+
+          <span>📅</span>
+
+          Calendar
+
+        </a>
+
+        <a
+
+          class="sidebar-link"
+
+          href="messages.html"
+
+        >
+
+          <span>💬</span>
+
+          Messages
+
+          <strong class="nav-count">
+
+            2
+
+          </strong>
+
+        </a>
+
+        <a
+
+          class="sidebar-link"
+
+          href="#earningsSection"
+
+        >
+
+          <span>💰</span>
+
+          Earnings
+
+        </a>
+
+        <a
+
+          class="sidebar-link"
+
+          href="host-payouts.html"
+
+        >
+
+          <span>🏦</span>
+
+          Payouts
+
+        </a>
+
+        <a
+
+          class="sidebar-link"
+
+          href="#reviewsSection"
+
+        >
+
+          <span>⭐</span>
+
+          Reviews
+
+        </a>
+
+        <a
+
+          class="sidebar-link"
+
+          href="#performanceSection"
+
+        >
+
+          <span>📈</span>
+
+          Insights
+
+        </a>
+
+        <a
+
+          class="sidebar-link"
+
+          href="#hostRadar"
+
+        >
+
+          <span>📡</span>
+
+          Map & Radar
+
+          <strong class="new-badge">
+
+            New
+
+          </strong>
+
+        </a>
+
+        <a
+
+          class="sidebar-link"
+
+          href="host-profile.html"
+
+        >
+
+          <span>👤</span>
+
+          Profile & Settings
+
+        </a>
+
+        <a
+
+          class="sidebar-link"
+
+          href="contact.html"
+
+        >
+
+          <span>❓</span>
+
+          Help & Support
+
+        </a>
+
+      </nav>
+
+      <div class="sidebar-community-card">
+
+        <p class="sidebar-community-kicker">
+
+          HOST COMMUNITY
+
+        </p>
+
+        <h2>
+
+          You are helping travellers feel safer on the road.
+
+        </h2>
+
+        <p>
+
+          Thank you for opening your space and growing the Nomad network.
+
+        </p>
+
+        <div class="community-illustration">
+
+          🚐 🌲 🔥
+
+        </div>
+
+      </div>
+
+      <a
+
+        class="create-pad-button"
+
+        href="host-onboarding.html"
+
+      >
+
+        <span>＋</span>
+
+        Create Another Pad
+
+      </a>
+
+    </aside>
+
+    <!-- PAGE AREA -->
+
+    <div class="command-page">
+
+      <!-- DESKTOP TOP BAR -->
+
+      <header class="command-topbar">
+
+        <div class="topbar-weather">
+
+          <span class="weather-icon">
+
+            ☀️
+
+          </span>
+
+          <div>
+
+            <strong>18°C</strong>
+
+            <small>Edmonton, AB</small>
+
+          </div>
+
+        </div>
+
+        <div class="topbar-actions">
+
+          <a
+
+            class="topbar-icon-button"
+
+            href="messages.html"
+
+            aria-label="Messages"
+
+          >
+
+            💬
+
+            <span>2</span>
+
+          </a>
+
+          <button
+
+            class="topbar-icon-button"
+
+            type="button"
+
+            aria-label="Notifications"
+
+          >
+
+            🔔
+
+            <span>1</span>
+
+          </button>
+
+          <a
+
+            class="host-profile-chip"
+
+            href="host-profile.html"
+
+          >
+
+            <div class="host-avatar">
+
+              D
+
+            </div>
+
+            <div>
+
+              <strong>Daniel</strong>
+
+              <small>Host since May 2026</small>
+
+            </div>
+
+            <span aria-hidden="true">
+
+              ▾
+
+            </span>
+
+          </a>
+
+        </div>
+
+      </header>
+
+      <!-- MAIN DASHBOARD -->
+
+      <main class="command-main">
+
+        <!-- WELCOME -->
+
+        <section class="welcome-row">
+
+          <div>
+
+            <p class="command-kicker">
+
+              LIVE HOST CONTROL CENTRE
+
+            </p>
+
+            <h1>
+
+              Good morning, Daniel! 🌲
+
+            </h1>
+
+            <p>
+
+              Your pad is ready. Here is what is happening nearby.
+
+            </p>
+
+          </div>
+
+          <a
+
+            class="secondary-action"
+
+            href="host-profile.html"
+
+          >
+
+            View My Profile
+
+          </a>
+
+        </section>
+
+        <!-- PRIMARY GRID -->
+
+        <div class="dashboard-layout">
+
+          <div class="dashboard-primary">
+
+            <!-- TOP STAT CARDS -->
+
+            <section
+
+              class="summary-grid"
+
+              aria-label="Host summary"
+
+            >
+
+              <article class="summary-card urgent-card">
+
+                <div class="summary-card-icon">
+
+                  📨
+
+                </div>
+
+                <strong class="summary-number">
+
+                  3
+
+                </strong>
+
+                <h2>
+
+                  Pending requests
+
+                </h2>
+
+                <p>
+
+                  Needs your response
+
+                </p>
+
+                <a href="#bookingRequests">
+
+                  View requests →
+
+                </a>
+
+              </article>
+
+              <article class="summary-card">
+
+                <div class="summary-card-icon">
+
+                  🚐
+
+                </div>
+
+                <p class="summary-eyebrow">
+
+                  Next arrival
+
+                </p>
+
+                <strong class="summary-date">
+
+                  May 30
+
+                </strong>
+
+                <h2>
+
+                  In 2 days
+
+                </h2>
+
+                <p>
+
+                  Van traveller
+
+                </p>
+
+                <a href="#upcomingStays">
+
+                  View details →
+
+                </a>
+
+              </article>
+
+              <article
+
+                class="summary-card earnings-card"
+
+                id="earningsSection"
+
+              >
+
+                <div class="summary-card-icon">
+
+                  💰
+
+                </div>
+
+                <p class="summary-eyebrow">
+
+                  This month
+
+                </p>
+
+                <strong class="summary-money">
+
+                  $1,240
+
+                </strong>
+
+                <h2>
+
+                  Earnings
+
+                </h2>
+
+                <p class="positive-change">
+
+                  ▲ 18% vs last month
+
+                </p>
+
+                <a href="#performanceSection">
+
+                  View earnings →
+
+                </a>
+
+              </article>
+
+              <article class="summary-card">
+
+                <div class="summary-card-icon">
+
+                  🏡
+
+                </div>
+
+                <strong class="summary-number">
+
+                  1
+
+                </strong>
+
+                <h2>
+
+                  Published pad
+
+                </h2>
+
+                <p>
+
+                  Live and bookable
+
+                </p>
+
+                <a href="#myPads">
+
+                  View my pad →
+
+                </a>
+
+              </article>
+
+            </section>
+
+            <!-- HOST RADAR -->
+
+            <section
+
+              class="dashboard-card radar-section"
+
+              id="hostRadar"
+
+            >
+
+              <header class="dashboard-section-header">
+
+                <div>
+
+                  <p class="section-kicker">
+
+                    LOCAL ACTIVITY
+
+                  </p>
+
+                  <h2>
+
+                    Host Radar
+
+                    <span>(30 km)</span>
+
+                  </h2>
+
+                  <p>
+
+                    See local demand, arrivals and nearby host activity.
+
+                  </p>
+
+                </div>
+
+                <div class="radar-header-actions">
+
+                  <select
+
+                    id="radarDistance"
+
+                    aria-label="Radar distance"
+
+                  >
+
+                    <option value="10">
+
+                      10 km
+
+                    </option>
+
+                    <option value="20">
+
+                      20 km
+
+                    </option>
+
+                    <option
+
+                      value="30"
+
+                      selected
+
+                    >
+
+                      30 km
+
+                    </option>
+
+                    <option value="50">
+
+                      50 km
+
+                    </option>
+
+                  </select>
+
+                  <button
+
+                    class="icon-action"
+
+                    type="button"
+
+                    aria-label="Expand Host Radar"
+
+                  >
+
+                    ↗
+
+                  </button>
+
+                </div>
+
+              </header>
+
+              <div
+
+                class="radar-tabs"
+
+                role="tablist"
+
+                aria-label="Host Radar views"
+
+              >
+
+                <button
+
+                  class="radar-tab active"
+
+                  type="button"
+
+                  data-radar-view="area"
+
+                >
+
+                  My Area
+
+                </button>
+
+                <button
+
+                  class="radar-tab"
+
+                  type="button"
+
+                  data-radar-view="demand"
+
+                >
+
+                  Traveller Demand
+
+                </button>
+
+                <button
+
+                  class="radar-tab"
+
+                  type="button"
+
+                  data-radar-view="arrivals"
+
+                >
+
+                  Arrivals
+
+                </button>
+
+              </div>
+
+              <div
+
+                class="radar-map"
+
+                id="radarMap"
+
+              >
+
+                <div class="map-road road-one"></div>
+
+                <div class="map-road road-two"></div>
+
+                <div class="map-road road-three"></div>
+
+                <div class="map-road road-four"></div>
+
+                <div class="radar-radius">
+
+                  <div class="my-pad-pin">
+
+                    🏠
+
+                  </div>
+
+                  <span class="radar-centre-label">
+
+                    Your Pad
+
+                  </span>
+
+                </div>
+
+                <button
+
+                  class="demand-bubble bubble-one"
+
+                  type="button"
+
+                  aria-label="Four travellers searching"
+
+                >
+
+                  <strong>4</strong>
+
+                  <span>Travellers searching</span>
+
+                </button>
+
+                <button
+
+                  class="demand-bubble bubble-two"
+
+                  type="button"
+
+                  aria-label="Two travellers need parking tonight"
+
+                >
+
+                  <strong>2</strong>
+
+                  <span>Need parking tonight</span>
+
+                </button>
+
+                <button
+
+                  class="demand-bubble bubble-three"
+
+                  type="button"
+
+                  aria-label="One EV traveller nearby"
+
+                >
+
+                  <strong>1</strong>
+
+                  <span>EV traveller within 12 km</span>
+
+                </button>
+
+                <button
+
+                  class="demand-bubble bubble-four"
+
+                  type="button"
+
+                  aria-label="Three other hosts nearby"
+
+                >
+
+                  <strong>3</strong>
+
+                  <span>Other hosts nearby</span>
+
+                </button>
+
+                <span class="other-host-pin host-pin-one">
+
+                  🏠
+
+                </span>
+
+                <span class="other-host-pin host-pin-two">
+
+                  🏠
+
+                </span>
+
+                <span class="other-host-pin host-pin-three">
+
+                  🏠
+
+                </span>
+
+              </div>
+
+              <div class="radar-legend">
+
+                <span>
+
+                  <i class="legend-marker your-pad-marker"></i>
+
+                  Your Pad
+
+                </span>
+
+                <span>
+
+                  <i class="legend-marker host-marker"></i>
+
+                  Other Host
+
+                </span>
+
+                <span>
+
+                  <i class="legend-marker demand-marker"></i>
+
+                  Traveller Demand
+
+                </span>
+
+                <span>
+
+                  <i class="legend-marker tonight-marker"></i>
+
+                  Tonight
+
+                </span>
+
+                <span>
+
+                  <i class="legend-marker ev-marker"></i>
+
+                  EV Need
+
+                </span>
+
+              </div>
+
+              <p class="radar-privacy-note">
+
+                🛡️ Traveller demand is shown anonymously. Exact locations
+
+                are never displayed before a confirmed booking.
+
+              </p>
+
+            </section>
+
+            <!-- PERFORMANCE -->
+
+            <section
+
+              class="dashboard-card"
+
+              id="performanceSection"
+
+            >
+
+              <header class="dashboard-section-header">
+
+                <div>
+
+                  <p class="section-kicker">
+
+                    YOUR PERFORMANCE
+
+                  </p>
+
+                  <h2>
+
+                    This month
+
+                  </h2>
+
+                </div>
+
+                <select aria-label="Performance period">
+
+                  <option>
+
+                    This month
+
+                  </option>
+
+                  <option>
+
+                    Last 30 days
+
+                  </option>
+
+                  <option>
+
+                    This year
+
+                  </option>
+
+                </select>
+
+              </header>
+
+              <div class="performance-grid">
+
+                <article class="performance-card">
+
+                  <span>
+
+                    Listing views
+
+                  </span>
+
+                  <strong>
+
+                    248
+
+                  </strong>
+
+                  <small class="positive-change">
+
+                    ▲ 24%
+
+                  </small>
+
+                  <div class="mini-chart">
+
+                    <i style="height: 28%"></i>
+
+                    <i style="height: 42%"></i>
+
+                    <i style="height: 34%"></i>
+
+                    <i style="height: 55%"></i>
+
+                    <i style="height: 48%"></i>
+
+                    <i style="height: 68%"></i>
+
+                    <i style="height: 82%"></i>
+
+                  </div>
+
+                </article>
+
+                <article class="performance-card">
+
+                  <span>
+
+                    Saves
+
+                  </span>
+
+                  <strong>
+
+                    36
+
+                  </strong>
+
+                  <small class="positive-change">
+
+                    ▲ 12%
+
+                  </small>
+
+                  <div class="mini-chart">
+
+                    <i style="height: 18%"></i>
+
+                    <i style="height: 30%"></i>
+
+                    <i style="height: 28%"></i>
+
+                    <i style="height: 46%"></i>
+
+                    <i style="height: 44%"></i>
+
+                    <i style="height: 60%"></i>
+
+                    <i style="height: 67%"></i>
+
+                  </div>
+
+                </article>
+
+                <article class="performance-card">
+
+                  <span>
+
+                    Booking requests
+
+                  </span>
+
+                  <strong>
+
+                    7
+
+                  </strong>
+
+                  <small class="warm-change">
+
+                    ▲ 40%
+
+                  </small>
+
+                  <div class="mini-chart orange-chart">
+
+                    <i style="height: 16%"></i>
+
+                    <i style="height: 43%"></i>
+
+                    <i style="height: 31%"></i>
+
+                    <i style="height: 62%"></i>
+
+                    <i style="height: 52%"></i>
+
+                    <i style="height: 71%"></i>
+
+                    <i style="height: 79%"></i>
+
+                  </div>
+
+                </article>
+
+                <article class="performance-card">
+
+                  <span>
+
+                    Confirmed stays
+
+                  </span>
+
+                  <strong>
+
+                    5
+
+                  </strong>
+
+                  <small class="positive-change">
+
+                    ▲ 25%
+
+                  </small>
+
+                  <div class="mini-chart">
+
+                    <i style="height: 22%"></i>
+
+                    <i style="height: 29%"></i>
+
+                    <i style="height: 39%"></i>
+
+                    <i style="height: 47%"></i>
+
+                    <i style="height: 58%"></i>
+
+                    <i style="height: 67%"></i>
+
+                    <i style="height: 75%"></i>
+
+                  </div>
+
+                </article>
+
+              </div>
+
+            </section>
+
+            <!-- MY PADS -->
+
+            <section
+
+              class="dashboard-card"
+
+              id="myPads"
+
+            >
+
+              <header class="dashboard-section-header">
+
+                <div>
+
+                  <p class="section-kicker">
+
+                    YOUR INVENTORY
+
+                  </p>
+
+                  <h2>
+
+                    Your Pads
+
+                  </h2>
+
+                </div>
+
+                <a
+
+                  class="section-link"
+
+                  href="my-listings.html"
+
+                >
+
+                  Manage all →
+
+                </a>
+
+              </header>
+
+              <article class="pad-card">
+
+                <div class="pad-image">
+
+                  <span class="live-badge">
+
+                    Live
+
+                  </span>
+
+                  <div class="pad-image-placeholder">
+
+                    🏡
+
+                  </div>
+
+                </div>
+
+                <div class="pad-information">
+
+                  <p class="pad-location">
+
+                    📍 Beaumont, AB
+
+                  </p>
+
+                  <h3>
+
+                    Forest View Driveway Pad
+
+                  </h3>
+
+                  <div class="pad-amenities">
+
+                    <span>🚐 Fits up to 28 ft</span>
+
+                    <span>🔌 30A power</span>
+
+                    <span>📶 Wi-Fi</span>
+
+                    <span>🐾 Pets OK</span>
+
+                  </div>
+
+                  <div class="pad-metrics">
+
+                    <div>
+
+                      <strong>$25</strong>
+
+                      <span>Nightly rate</span>
+
+                    </div>
+
+                    <div>
+
+                      <strong>92%</strong>
+
+                      <span>Response rate</span>
+
+                    </div>
+
+                    <div>
+
+                      <strong>4.9 ⭐</strong>
+
+                      <span>27 reviews</span>
+
+                    </div>
+
+                  </div>
+
+                </div>
+
+                <div class="pad-actions">
+
+                  <a
+
+                    href="edit-listing.html"
+
+                  >
+
+                    ✏️ Edit Pad
+
+                  </a>
+
+                  <a
+
+                    href="host-availability.html"
+
+                  >
+
+                    📅 Calendar
+
+                  </a>
+
+                  <button
+
+                    type="button"
+
+                    aria-label="More listing options"
+
+                  >
+
+                    •••
+
+                  </button>
+
+                </div>
+
+              </article>
+
+              <div class="add-pad-banner">
+
+                <div>
+
+                  <span>🏠</span>
+
+                  <div>
+
+                    <strong>
+
+                      Add another pad and earn more
+
+                    </strong>
+
+                    <small>
+
+                      More inventory creates more booking opportunities.
+
+                    </small>
+
+                  </div>
+
+                </div>
+
+                <a href="host-onboarding.html">
+
+                  Create Another Pad
+
+                </a>
+
+              </div>
+
+            </section>
+
+            <!-- OPPORTUNITY -->
+
+            <section class="opportunity-banner">
+
+              <div class="opportunity-art">
+
+                🚐 🌲
+
+              </div>
+
+              <div>
+
+                <p class="section-kicker">
+
+                  LOCAL OPPORTUNITY
+
+                </p>
+
+                <h2>
+
+                  Demand is high this weekend.
+
+                </h2>
+
+                <p>
+
+                  Consider opening more dates to increase your chances
+
+                  of receiving a booking.
+
+                </p>
+
+              </div>
+
+              <a href="host-availability.html">
+
+                Open My Calendar
+
+              </a>
+
+            </section>
+
+          </div>
+
+          <!-- RIGHT SIDEBAR -->
+
+          <aside class="dashboard-secondary">
+
+            <!-- TODAY -->
+
+            <section class="side-card">
+
+              <header>
+
+                <h2>
+
+                  Today at a glance
+
+                </h2>
+
+              </header>
+
+              <div class="glance-list">
+
+                <div>
+
+                  <span>
+
+                    Check-ins today
+
+                  </span>
+
+                  <strong>
+
+                    0
+
+                  </strong>
+
+                </div>
+
+                <div>
+
+                  <span>
+
+                    Check-outs today
+
+                  </span>
+
+                  <strong>
+
+                    0
+
+                  </strong>
+
+                </div>
+
+                <div>
+
+                  <span>
+
+                    Unread messages
+
+                  </span>
+
+                  <strong class="attention-number">
+
+                    2
+
+                  </strong>
+
+                </div>
+
+                <div>
+
+                  <span>
+
+                    Calendar alerts
+
+                  </span>
+
+                  <strong class="attention-number">
+
+                    1
+
+                  </strong>
+
+                  <small>
+
+                    Conflict on June 6
+
+                  </small>
+
+                </div>
+
+              </div>
+
+            </section>
+
+            <!-- UPCOMING STAYS -->
+
+            <section
+
+              class="side-card"
+
+              id="upcomingStays"
+
+            >
+
+              <header class="side-card-header">
+
+                <h2>
+
+                  Upcoming stays
+
+                </h2>
+
+                <a href="host-availability.html">
+
+                  View all →
+
+                </a>
+
+              </header>
+
+              <article class="stay-row">
+
+                <div>
+
+                  <strong>
+
+                    May 30 – Jun 1
+
+                  </strong>
+
+                  <span>
+
+                    Van Traveller
+
+                  </span>
+
+                </div>
+
+                <span class="status-badge confirmed">
+
+                  Confirmed
+
+                </span>
+
+              </article>
+
+              <article class="stay-row">
+
+                <div>
+
+                  <strong>
+
+                    Jun 6 – Jun 7
+
+                  </strong>
+
+                  <span>
+
+                    Car Traveller
+
+                  </span>
+
+                </div>
+
+                <span class="status-badge pending">
+
+                  Pending
+
+                </span>
+
+              </article>
+
+              <article class="stay-row">
+
+                <div>
+
+                  <strong>
+
+                    Jun 12 – Jun 14
+
+                  </strong>
+
+                  <span>
+
+                    Skoolie
+
+                  </span>
+
+                </div>
+
+                <span class="status-badge confirmed">
+
+                  Confirmed
+
+                </span>
+
+              </article>
+
+              <a
+
+                class="full-width-side-button"
+
+                href="host-availability.html"
+
+              >
+
+                📅 View Calendar
+
+              </a>
+
+            </section>
+
+            <!-- BOOKING REQUESTS -->
+
+            <section
+
+              class="side-card"
+
+              id="bookingRequests"
+
+            >
+
+              <header class="side-card-header">
+
+                <h2>
+
+                  Booking requests
+
+                </h2>
+
+                <span class="request-count">
+
+                  3
+
+                </span>
+
+              </header>
+
+              <article class="request-preview">
+
+                <div class="request-avatar">
+
+                  S
+
+                </div>
+
+                <div>
+
+                  <strong>
+
+                    Sarah M.
+
+                  </strong>
+
+                  <span>
+
+                    May 30 – Jun 1
+
+                  </span>
+
+                  <small>
+
+                    Overnight · Wi-Fi
+
+                  </small>
+
+                </div>
+
+              </article>
+
+              <article class="request-preview">
+
+                <div class="request-avatar">
+
+                  M
+
+                </div>
+
+                <div>
+
+                  <strong>
+
+                    Mike R.
+
+                  </strong>
+
+                  <span>
+
+                    Jun 6 – Jun 7
+
+                  </span>
+
+                  <small>
+
+                    EV charging
+
+                  </small>
+
+                </div>
+
+              </article>
+
+              <button
+
+                class="full-width-side-button"
+
+                type="button"
+
+              >
+
+                Review Requests
+
+              </button>
+
+            </section>
+
+            <!-- MESSAGES -->
+
+            <section class="side-card">
+
+              <header class="side-card-header">
+
+                <h2>
+
+                  Recent messages
+
+                </h2>
+
+                <a href="messages.html">
+
+                  View all →
+
+                </a>
+
+              </header>
+
+              <article class="message-preview">
+
+                <div class="message-avatar">
+
+                  S
+
+                </div>
+
+                <div>
+
+                  <strong>
+
+                    Sarah M.
+
+                  </strong>
+
+                  <span>
+
+                    Hi! We are looking forward to staying at your pad...
+
+                  </span>
+
+                </div>
+
+                <small>
+
+                  9:21 AM
+
+                </small>
+
+              </article>
+
+              <article class="message-preview">
+
+                <div class="message-avatar">
+
+                  M
+
+                </div>
+
+                <div>
+
+                  <strong>
+
+                    Mike R.
+
+                  </strong>
+
+                  <span>
+
+                    Thanks again for the great stay!
+
+                  </span>
+
+                </div>
+
+                <small>
+
+                  Yesterday
+
+                </small>
+
+              </article>
+
+              <a
+
+                class="full-width-side-button"
+
+                href="messages.html"
+
+              >
+
+                Go to Messages
+
+              </a>
+
+            </section>
+
+            <!-- REVIEWS -->
+
+            <section
+
+              class="side-card"
+
+              id="reviewsSection"
+
+            >
+
+              <header>
+
+                <h2>
+
+                  Host reputation
+
+                </h2>
+
+              </header>
+
+              <div class="reputation-score">
+
+                <strong>
+
+                  4.9
+
+                </strong>
+
+                <span>
+
+                  ⭐⭐⭐⭐⭐
+
+                </span>
+
+                <small>
+
+                  27 traveller reviews
+
+                </small>
+
+              </div>
+
+              <div class="reputation-details">
+
+                <div>
+
+                  <span>
+
+                    Response rate
+
+                  </span>
+
+                  <strong>
+
+                    92%
+
+                  </strong>
+
+                </div>
+
+                <div>
+
+                  <span>
+
+                    Acceptance rate
+
+                  </span>
+
+                  <strong>
+
+                    88%
+
+                  </strong>
+
+                </div>
+
+              </div>
+
+            </section>
+
+            <!-- QUICK ACTIONS -->
+
+            <section class="side-card quick-actions-card">
+
+              <header>
+
+                <h2>
+
+                  Quick actions
+
+                </h2>
+
+              </header>
+
+              <a href="host-availability.html">
+
+                <span>📅</span>
+
+                Update Calendar
+
+                <strong>›</strong>
+
+              </a>
+
+              <a href="host-pricing.html">
+
+                <span>💰</span>
+
+                Adjust Price
+
+                <strong>›</strong>
+
+              </a>
+
+              <a href="host-photos.html">
+
+                <span>📷</span>
+
+                Add Photos
+
+                <strong>›</strong>
+
+              </a>
+
+              <a href="listing-preview.html">
+
+                <span>👁️</span>
+
+                Preview Listing
+
+                <strong>›</strong>
+
+              </a>
+
+              <button type="button">
+
+                <span>⏸️</span>
+
+                Pause Listing
+
+                <strong>›</strong>
+
+              </button>
+
+            </section>
+
+          </aside>
+
+        </div>
+
+      </main>
+
+    </div>
+
+  </div>
+
+  <div
+
+    class="sidebar-backdrop"
+
+    id="sidebarBackdrop"
+
+    hidden
+
+  ></div>
+
+  <script src="host-command.js"></script>
+
+</body>
+
+</html>
