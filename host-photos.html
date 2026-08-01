@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+
+    name="viewport"
+
+    content="width=device-width, initial-scale=1"
+
+  >
+
+  <title>Photos | Nomad Park Pad</title>
+
+  <meta
+
+    name="description"
+
+    content="Add photos to your Nomad Park Pad listing."
+
+  >
+
+  <link
+
+    rel="stylesheet"
+
+    href="host-photos.css"
+
+  >
+
+</head>
+
+<body>
+
+  <main class="host-photos-page">
+
+    <!-- WELCOME HERO -->
+
+    <section class="photos-hero">
+
+      <div class="photos-copy">
+
+        <img
+
+          src="logo.png"
+
+          alt="Nomad Park Pad"
+
+          class="photos-logo"
+
+        >
+
+        <p class="photos-step-label">
+
+          Step 2 of 7
+
+        </p>
+
+        <h1>
+
+          Add Great Photos
+
+        </h1>
+
+        <div class="orange-accent"></div>
+
+        <h2>
+
+          Travellers book with their eyes first.
+
+        </h2>
+
+        <p class="photos-intro">
+
+          Clear, welcoming photos help travellers understand your space
+
+          and feel confident before they arrive.
+
+        </p>
+
+      </div>
+
+      <div
+
+        class="photos-watermark"
+
+        aria-hidden="true"
+
+      ></div>
+
+    </section>
+
+    <!-- JOURNEY PANEL -->
+
+    <section class="journey-panel">
+
+      <header class="journey-heading">
+
+        <span></span>
+
+        <h2>Your Journey</h2>
+
+        <span></span>
+
+      </header>
+
+      <div
+
+        class="journey-steps"
+
+        aria-label="Listing setup progress"
+
+      >
+
+        <div class="journey-step completed">
+
+          <div class="journey-icon">✓</div>
+
+          <strong>Property</strong>
+
+        </div>
+
+        <div class="journey-step active">
+
+          <div class="journey-icon">🖼️</div>
+
+          <strong>Photos</strong>
+
+        </div>
+
+        <div class="journey-step">
+
+          <div class="journey-icon">⚡</div>
+
+          <strong>Services</strong>
+
+        </div>
+
+        <div class="journey-step">
+
+          <div class="journey-icon">＄</div>
+
+          <strong>Pricing</strong>
+
+        </div>
+
+        <div class="journey-step">
+
+          <div class="journey-icon">📅</div>
+
+          <strong>Availability</strong>
+
+        </div>
+
+        <div class="journey-step">
+
+          <div class="journey-icon">📋</div>
+
+          <strong>Review</strong>
+
+        </div>
+
+        <div class="journey-step">
+
+          <div class="journey-icon">🚀</div>
+
+          <strong>Publish</strong>
+
+        </div>
+
+      </div>
+
+      <!-- PHOTO STEP CARD -->
+
+      <article class="photos-card">
+
+        <p class="step-count">
+
+          Step 2 of 7
+
+        </p>
+
+        <div class="step-accent"></div>
+
+        <div class="current-step-icon">
+
+          📷
+
+        </div>
+
+        <h2>Add Your Photos</h2>
+
+        <p class="step-lead">
+
+          Show travellers exactly where they’ll park.
+
+        </p>
+
+        <div class="step-divider">
+
+          <span></span>
+
+          <span>🌲</span>
+
+          <span></span>
+
+        </div>
+
+        <p class="step-description">
+
+          Add clear photos of the parking space, entrance and surrounding
+
+          area. Your first photo will become the cover image.
+
+        </p>
+
+        <!-- UPLOAD AREA -->
+
+        <label
+
+          class="photo-upload"
+
+          id="photoUploadArea"
+
+          for="photoInput"
+
+        >
+
+          <input
+
+            id="photoInput"
+
+            type="file"
+
+            accept="image/*"
+
+            multiple
+
+            hidden
+
+          >
+
+          <div class="upload-icon">
+
+            📷
+
+          </div>
+
+          <h3>Choose Your Photos</h3>
+
+          <p>
+
+            Tap here to select photos from your phone.
+
+          </p>
+
+          <span class="upload-button">
+
+            Choose Photos
+
+          </span>
+
+        </label>
+
+        <!-- PHOTO PREVIEWS -->
+
+        <div
+
+          id="photoPreview"
+
+          class="photo-preview"
+
+          aria-live="polite"
+
+        ></div>
+
+        <!-- PHOTO TIPS -->
+
+        <section class="photo-tips">
+
+          <h3>Quick photo tips</h3>
+
+          <div class="photo-tip">
+
+            <span>✓</span>
+
+            <p>Show the full parking space.</p>
+
+          </div>
+
+          <div class="photo-tip">
+
+            <span>✓</span>
+
+            <p>Take photos during daylight.</p>
+
+          </div>
+
+          <div class="photo-tip">
+
+            <span>✓</span>
+
+            <p>Include the driveway entrance.</p>
+
+          </div>
+
+          <div class="photo-tip">
+
+            <span>✓</span>
+
+            <p>Remove vehicles or clutter when possible.</p>
+
+          </div>
+
+        </section>
+
+        <!-- ACTIONS -->
+
+        <div class="photo-actions">
+
+          <a
+
+            class="back-button"
+
+            href="host-onboarding.html"
+
+          >
+
+            ← Back
+
+          </a>
+
+          <button
+
+            id="continuePhotos"
+
+            class="continue-button"
+
+            type="button"
+
+            disabled
+
+          >
+
+            Continue
+
+            <span aria-hidden="true">→</span>
+
+          </button>
+
+        </div>
+
+        <p class="save-message">
+
+          <span aria-hidden="true">🛡️</span>
+
+          Your selected photos stay on this page while you continue.
+
+        </p>
+
+      </article>
+
+    </section>
+
+  </main>
+
+  <script>
+
+    const photoInput =
+
+      document.getElementById("photoInput");
+
+    const photoPreview =
+
+      document.getElementById("photoPreview");
+
+    const continueButton =
+
+      document.getElementById("continuePhotos");
+
+    let selectedPhotos = [];
+
+    function renderPhotos() {
+
+      photoPreview.innerHTML = "";
+
+      selectedPhotos.forEach((file, index) => {
+
+        const photoCard =
+
+          document.createElement("article");
+
+        photoCard.className = "photo-preview-card";
+
+        const image =
+
+          document.createElement("img");
+
+        image.src =
+
+          URL.createObjectURL(file);
+
+        image.alt =
+
+          `Selected listing photo ${index + 1}`;
+
+        const badge =
+
+          document.createElement("span");
+
+        badge.className = "photo-badge";
+
+        badge.textContent =
+
+          index === 0
+
+            ? "★ Cover Photo"
+
+            : `Photo ${index + 1}`;
+
+        const removeButton =
+
+          document.createElement("button");
+
+        removeButton.type = "button";
+
+        removeButton.className = "remove-photo";
+
+        removeButton.setAttribute(
+
+          "aria-label",
+
+          `Remove photo ${index + 1}`
+
+        );
+
+        removeButton.textContent = "×";
+
+        removeButton.addEventListener("click", () => {
+
+          selectedPhotos.splice(index, 1);
+
+          renderPhotos();
+
+        });
+
+        photoCard.append(
+
+          image,
+
+          badge,
+
+          removeButton
+
+        );
+
+        photoPreview.appendChild(photoCard);
+
+      });
+
+      continueButton.disabled =
+
+        selectedPhotos.length === 0;
+
+    }
+
+    photoInput?.addEventListener("change", (event) => {
+
+      const files =
+
+        Array.from(event.target.files || []);
+
+      selectedPhotos = [
+
+        ...selectedPhotos,
+
+        ...files
+
+      ];
+
+      renderPhotos();
+
+      photoInput.value = "";
+
+    });
+
+    continueButton?.addEventListener("click", () => {
+
+      if (!selectedPhotos.length) {
+
+        return;
+
+      }
+
+      window.location.href =
+
+        "host-services.html";
+
+    });
+
+  </script>
+
+</body>
+
+</html>
