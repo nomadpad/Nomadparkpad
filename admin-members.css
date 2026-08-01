@@ -727,3 +727,358 @@ button{
   background: var(--orange);
 
 }
+/* =========================================================
+
+   MOBILE SIDEBAR
+
+========================================================= */
+
+.members-backdrop {
+
+  position: fixed;
+
+  inset: 0;
+
+  background: rgba(4, 20, 15, 0.62);
+
+  backdrop-filter: blur(4px);
+
+  z-index: 998;
+
+}
+
+.members-backdrop[hidden] {
+
+  display: none;
+
+}
+
+@media (max-width: 1100px) {
+
+  .members-shell {
+
+    display: block;
+
+    width: 100%;
+
+  }
+
+  .members-main {
+
+    width: 100%;
+
+    min-width: 0;
+
+  }
+
+  .members-sidebar {
+
+    position: fixed;
+
+    z-index: 999;
+
+    top: 0;
+
+    left: 0;
+
+    bottom: 0;
+
+    width: min(86vw, 310px);
+
+    height: 100dvh;
+
+    overflow-y: auto;
+
+    transform: translateX(-110%);
+
+    transition: transform 220ms ease;
+
+    box-shadow: 24px 0 50px rgba(0, 0, 0, 0.28);
+
+  }
+
+  .members-sidebar.open {
+
+    transform: translateX(0);
+
+  }
+
+  .members-menu-button {
+
+    display: grid;
+
+  }
+
+  .members-topbar {
+
+    width: 100%;
+
+    padding: 10px 14px;
+
+  }
+
+  .members-hero {
+
+    align-items: stretch;
+
+    flex-direction: column;
+
+    margin: 14px 12px 16px;
+
+    padding: 25px 20px;
+
+  }
+
+  .members-back-button {
+
+    width: 100%;
+
+  }
+
+  .members-summary {
+
+    margin: 0 12px 16px;
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  }
+
+  .members-panel {
+
+    margin: 0 12px 16px;
+
+    padding: 20px;
+
+  }
+
+  .members-filters {
+
+    grid-template-columns: 1fr;
+
+  }
+
+  .member-card {
+
+    grid-template-columns: 1fr;
+
+  }
+
+  .member-card-actions {
+
+    justify-content: flex-end;
+
+  }
+
+}
+
+/* =========================================================
+
+   PHONE LAYOUT
+
+========================================================= */
+
+@media (max-width: 520px) {
+
+  .members-topbar-copy p {
+
+    display: none;
+
+  }
+
+  .members-topbar-copy strong {
+
+    font-size: 17px;
+
+  }
+
+  .members-profile div {
+
+    display: none;
+
+  }
+
+  .members-profile {
+
+    padding: 4px;
+
+    border: 0;
+
+    background: transparent;
+
+  }
+
+  .members-avatar {
+
+    width: 40px;
+
+    height: 40px;
+
+  }
+
+  .members-hero h1 {
+
+    font-size: 48px;
+
+  }
+
+  .members-hero > div > p:last-child {
+
+    font-size: 13px;
+
+  }
+
+  .members-summary {
+
+    gap: 10px;
+
+  }
+
+  .members-summary article {
+
+    min-height: 116px;
+
+    grid-template-columns: 42px minmax(0, 1fr);
+
+    padding: 15px;
+
+  }
+
+  .members-summary article > span {
+
+    width: 42px;
+
+    height: 42px;
+
+    font-size: 19px;
+
+  }
+
+  .members-summary strong {
+
+    font-size: 29px;
+
+  }
+
+  .members-panel-header {
+
+    gap: 12px;
+
+  }
+
+  .members-panel-header h2 {
+
+    font-size: 25px;
+
+  }
+
+  .member-card-main {
+
+    grid-template-columns: 46px minmax(0, 1fr);
+
+  }
+
+  .member-card-avatar {
+
+    width: 46px;
+
+    height: 46px;
+
+  }
+
+  .member-card-title {
+
+    display: grid;
+
+    gap: 8px;
+
+  }
+
+  .member-status-pill {
+
+    width: fit-content;
+
+  }
+
+  .member-card-actions {
+
+    display: grid;
+
+    grid-template-columns: 1fr 44px;
+
+  }
+
+  .member-view-button {
+
+    width: 100%;
+
+  }
+
+  .member-dialog-card {
+
+    padding: 24px 18px;
+
+  }
+
+  .member-dialog-profile {
+
+    grid-template-columns: 58px minmax(0, 1fr);
+
+  }
+
+  .member-dialog-avatar {
+
+    width: 58px;
+
+    height: 58px;
+
+    font-size: 23px;
+
+  }
+
+  .member-dialog-profile h2 {
+
+    font-size: 26px;
+
+  }
+
+  .member-dialog-grid {
+
+    grid-template-columns: 1fr;
+
+  }
+
+  .member-dialog-actions {
+
+    flex-direction: column;
+
+  }
+
+  .member-dialog-actions button {
+
+    width: 100%;
+
+  }
+
+}
+
+/* =========================================================
+
+   EXTRA SMALL PHONES
+
+========================================================= */
+
+@media (max-width: 370px) {
+
+  .members-summary {
+
+    grid-template-columns: 1fr;
+
+  }
+
+  .members-hero h1 {
+
+    font-size: 42px;
+
+  }
+
+}
