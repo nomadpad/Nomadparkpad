@@ -51,9 +51,13 @@ document.querySelector("#real-signup-form")?.addEventListener("submit", async (e
 
   window.location.href =
 
-    role === "traveler"
+  role === "host"
 
-      ? "traveler-profile.html"
+    ? "host-dashboard.html"
+
+    : role === "traveler"
+
+      ? "traveler-dashboard.html"
 
       : "account.html";
 
