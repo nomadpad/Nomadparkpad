@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+
+    name="viewport"
+
+    content="width=device-width, initial-scale=1"
+
+  >
+
+  <title>Pricing | Nomad Park Pad</title>
+
+  <meta
+
+    name="description"
+
+    content="Set the price for your Nomad Park Pad host listing."
+
+  >
+
+  <link
+
+    rel="stylesheet"
+
+    href="host-pricing.css"
+
+  >
+
+</head>
+
+<body>
+
+  <main class="host-onboarding-page">
+
+    <!-- PRICING HERO -->
+
+    <section class="onboarding-hero">
+
+      <div class="onboarding-copy">
+
+        <img
+
+          src="logo.png"
+
+          alt="Nomad Park Pad"
+
+          class="onboarding-logo"
+
+        >
+
+        <p class="onboarding-greeting">
+
+          Step 4 of 7
+
+        </p>
+
+        <h1>
+
+          Set Your
+
+          <span>Price</span>
+
+        </h1>
+
+        <div class="orange-accent"></div>
+
+        <h2>
+
+          You decide what your space is worth.
+
+        </h2>
+
+        <p class="onboarding-intro">
+
+          Choose a fair starting price today.
+
+          You can change it anytime from your Host Hub.
+
+        </p>
+
+      </div>
+
+      <div
+
+        class="onboarding-photo"
+
+        role="img"
+
+        aria-label="Nomad Park Pad brand watermark"
+
+      ></div>
+
+    </section>
+
+    <!-- JOURNEY AREA -->
+
+    <section class="journey-panel">
+
+      <header class="journey-heading">
+
+        <span></span>
+
+        <h2>Your Journey</h2>
+
+        <span></span>
+
+      </header>
+
+      <div
+
+        class="journey-steps"
+
+        aria-label="Listing setup progress"
+
+      >
+
+        <div class="journey-step completed">
+
+          <div class="journey-icon">✓</div>
+
+          <strong>Property</strong>
+
+        </div>
+
+        <div class="journey-step completed">
+
+          <div class="journey-icon">✓</div>
+
+          <strong>Photos</strong>
+
+        </div>
+
+        <div class="journey-step completed">
+
+          <div class="journey-icon">✓</div>
+
+          <strong>Services</strong>
+
+        </div>
+
+        <div class="journey-step active">
+
+          <div class="journey-icon">＄</div>
+
+          <strong>Pricing</strong>
+
+        </div>
+
+        <div class="journey-step">
+
+          <div class="journey-icon">📅</div>
+
+          <strong>Availability</strong>
+
+        </div>
+
+        <div class="journey-step">
+
+          <div class="journey-icon">📋</div>
+
+          <strong>Review</strong>
+
+        </div>
+
+        <div class="journey-step">
+
+          <div class="journey-icon">🚀</div>
+
+          <strong>Publish</strong>
+
+        </div>
+
+      </div>
+
+      <!-- CURRENT STEP -->
+
+      <article class="current-step-card">
+
+        <p class="step-count">
+
+          Step 4 of 7
+
+        </p>
+
+        <div class="step-accent"></div>
+
+        <div class="current-step-icon">
+
+          💰
+
+        </div>
+
+        <h2>Your Price</h2>
+
+        <p class="step-lead">
+
+          Set your nightly parking rate.
+
+        </p>
+
+        <div class="step-divider">
+
+          <span></span>
+
+          <span>🌲</span>
+
+          <span></span>
+
+        </div>
+
+        <p class="step-description">
+
+          Start with a price that feels fair for your location,
+
+          parking space and included services.
+
+        </p>
+
+        <!-- PRICE CONTROL -->
+
+        <section
+
+          class="price-selector"
+
+          aria-label="Nightly price selector"
+
+        >
+
+          <p class="price-label">
+
+            Nightly rate
+
+          </p>
+
+          <div class="price-control">
+
+            <button
+
+              class="price-button"
+
+              id="decreasePrice"
+
+              type="button"
+
+              aria-label="Decrease nightly price"
+
+            >
+
+              −
+
+            </button>
+
+            <div class="price-display">
+
+              <span class="currency-symbol">$</span>
+
+              <input
+
+                id="nightlyPrice"
+
+                type="number"
+
+                min="5"
+
+                max="250"
+
+                step="1"
+
+                value="35"
+
+                inputmode="numeric"
+
+                aria-label="Nightly price"
+
+              >
+
+              <small>per night</small>
+
+            </div>
+
+            <button
+
+              class="price-button"
+
+              id="increasePrice"
+
+              type="button"
+
+              aria-label="Increase nightly price"
+
+            >
+
+              +
+
+            </button>
+
+          </div>
+
+          <p
+
+            class="price-guidance"
+
+            id="priceGuidance"
+
+            aria-live="polite"
+
+          >
+
+            A comfortable starting price for a new listing.
+
+          </p>
+
+        </section>
+
+        <!-- SIMPLE EARNINGS PREVIEW -->
+
+        <section class="earnings-preview">
+
+          <div class="earnings-heading">
+
+            <span class="earnings-icon">📈</span>
+
+            <div>
+
+              <strong>Possible monthly earnings</strong>
+
+              <small>Based on 10 booked nights</small>
+
+            </div>
+
+          </div>
+
+          <div class="earnings-amount">
+
+            <strong id="monthlyGross">$350</strong>
+
+            <span>before fees and taxes</span>
+
+          </div>
+
+        </section>
+
+        <p class="pricing-note">
+
+          💡 Smart local pricing suggestions can be added later as
+
+          Nomad Park Pad gathers real booking data.
+
+        </p>
+
+        <!-- ACTIONS -->
+
+        <div class="pricing-actions">
+
+          <a
+
+            class="back-button"
+
+            href="host-services.html"
+
+          >
+
+            ← Back
+
+          </a>
+
+          <button
+
+            class="continue-button"
+
+            id="continuePricing"
+
+            type="button"
+
+          >
+
+            Continue
+
+            <span aria-hidden="true">→</span>
+
+          </button>
+
+        </div>
+
+        <p class="save-message">
+
+          <span aria-hidden="true">🛡️</span>
+
+          You remain in control of your price.
+
+          <strong>Change it anytime.</strong>
+
+        </p>
+
+      </article>
+
+    </section>
+
+  </main>
+
+  <script>
+
+    const priceInput =
+
+      document.getElementById("nightlyPrice");
+
+    const decreaseButton =
+
+      document.getElementById("decreasePrice");
+
+    const increaseButton =
+
+      document.getElementById("increasePrice");
+
+    const monthlyGross =
+
+      document.getElementById("monthlyGross");
+
+    const priceGuidance =
+
+      document.getElementById("priceGuidance");
+
+    const continueButton =
+
+      document.getElementById("continuePricing");
+
+    const minimumPrice = 5;
+
+    const maximumPrice = 250;
+
+    function cleanPrice(value) {
+
+      const number =
+
+        Number.parseInt(value, 10);
+
+      if (Number.isNaN(number)) {
+
+        return 35;
+
+      }
+
+      return Math.min(
+
+        maximumPrice,
+
+        Math.max(minimumPrice, number)
+
+      );
+
+    }
+
+    function updatePricing() {
+
+      const price =
+
+        cleanPrice(priceInput.value);
+
+      priceInput.value =
+
+        price;
+
+      monthlyGross.textContent =
+
+        `$${price * 10}`;
+
+      if (price < 20) {
+
+        priceGuidance.textContent =
+
+          "A budget-friendly price that may attract more travellers.";
+
+      } else if (price <= 45) {
+
+        priceGuidance.textContent =
+
+          "A comfortable starting price for a new listing.";
+
+      } else if (price <= 75) {
+
+        priceGuidance.textContent =
+
+          "A premium price that may suit strong locations or added services.";
+
+      } else {
+
+        priceGuidance.textContent =
+
+          "A high-end rate. Make sure your location and services support it.";
+
+      }
+
+    }
+
+    decreaseButton?.addEventListener("click", () => {
+
+      priceInput.value =
+
+        cleanPrice(priceInput.value) - 1;
+
+      updatePricing();
+
+    });
+
+    increaseButton?.addEventListener("click", () => {
+
+      priceInput.value =
+
+        cleanPrice(priceInput.value) + 1;
+
+      updatePricing();
+
+    });
+
+    priceInput?.addEventListener("input", () => {
+
+      updatePricing();
+
+    });
+
+    priceInput?.addEventListener("blur", () => {
+
+      updatePricing();
+
+    });
+
+    continueButton?.addEventListener("click", () => {
+
+      const nightlyPrice =
+
+        cleanPrice(priceInput.value);
+
+      sessionStorage.setItem(
+
+        "nomadNightlyPrice",
+
+        String(nightlyPrice)
+
+      );
+
+      window.location.href =
+
+        "host-availability.html";
+
+    });
+
+    updatePricing();
+
+  </script>
+
+</body>
+
+</html>
