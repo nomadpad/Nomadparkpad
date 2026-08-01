@@ -78,7 +78,7 @@ document.querySelector("#login-form")?.addEventListener("submit", async (event) 
 
   setMessage(form, "Logging in...");
 
-  const { error } = await supabase.auth.signInWithPassword({
+  const { data, error } = await supabase.auth.signInWithPassword({
     email: document.querySelector("#login-email").value.trim(),
     password: document.querySelector("#login-password").value
   });
@@ -87,7 +87,20 @@ document.querySelector("#login-form")?.addEventListener("submit", async (event) 
     setMessage(form, error.message, true);
     return;
   }
-window.location.href = "traveller-dashboard.html";
+  const role = data.user?.user_metadata?.role;
+
+window.location.href =
+
+  role === "host"
+
+    ? "host-dashboard.html"
+
+    : role === "traveler"
+
+      ? "traveller-dashboard.html"
+
+      : "account.html";
+
   
 });
 
