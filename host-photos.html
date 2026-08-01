@@ -20,7 +20,7 @@
 
     name="description"
 
-    content="Add photos to your Nomad Park Pad listing."
+    content="Add photos to your Nomad Park Pad host listing."
 
   >
 
@@ -36,13 +36,13 @@
 
 <body>
 
-  <main class="host-photos-page">
+  <main class="host-onboarding-page">
 
-    <!-- WELCOME HERO -->
+    <!-- PHOTOS HERO -->
 
-    <section class="photos-hero">
+    <section class="onboarding-hero">
 
-      <div class="photos-copy">
+      <div class="onboarding-copy">
 
         <img
 
@@ -50,11 +50,11 @@
 
           alt="Nomad Park Pad"
 
-          class="photos-logo"
+          class="onboarding-logo"
 
         >
 
-        <p class="photos-step-label">
+        <p class="onboarding-greeting">
 
           Step 2 of 7
 
@@ -62,7 +62,9 @@
 
         <h1>
 
-          Add Great Photos
+          Add Great
+
+          <span>Photos</span>
 
         </h1>
 
@@ -74,7 +76,7 @@
 
         </h2>
 
-        <p class="photos-intro">
+        <p class="onboarding-intro">
 
           Clear, welcoming photos help travellers understand your space
 
@@ -86,15 +88,17 @@
 
       <div
 
-        class="photos-watermark"
+        class="onboarding-photo"
 
-        aria-hidden="true"
+        role="img"
+
+        aria-label="Nomad Park Pad brand watermark"
 
       ></div>
 
     </section>
 
-    <!-- JOURNEY PANEL -->
+    <!-- JOURNEY AREA -->
 
     <section class="journey-panel">
 
@@ -107,6 +111,8 @@
         <span></span>
 
       </header>
+
+      <!-- PROGRESS ROAD -->
 
       <div
 
@@ -174,9 +180,9 @@
 
       </div>
 
-      <!-- PHOTO STEP CARD -->
+      <!-- CURRENT STEP -->
 
-      <article class="photos-card">
+      <article class="current-step-card">
 
         <p class="step-count">
 
@@ -192,7 +198,7 @@
 
         </div>
 
-        <h2>Add Your Photos</h2>
+        <h2>Your Photos</h2>
 
         <p class="step-lead">
 
@@ -223,8 +229,6 @@
         <label
 
           class="photo-upload"
-
-          id="photoUploadArea"
 
           for="photoInput"
 
@@ -288,7 +292,7 @@
 
             <span>✓</span>
 
-            <p>Show the full parking space.</p>
+            <p>Show the entire parking space.</p>
 
           </div>
 
@@ -336,9 +340,9 @@
 
           <button
 
-            id="continuePhotos"
-
             class="continue-button"
+
+            id="continuePhotos"
 
             type="button"
 
@@ -390,11 +394,11 @@
 
       selectedPhotos.forEach((file, index) => {
 
-        const photoCard =
+        const card =
 
           document.createElement("article");
 
-        photoCard.className = "photo-preview-card";
+        card.className = "photo-preview-card";
 
         const image =
 
@@ -448,7 +452,7 @@
 
         });
 
-        photoCard.append(
+        card.append(
 
           image,
 
@@ -458,7 +462,7 @@
 
         );
 
-        photoPreview.appendChild(photoCard);
+        photoPreview.appendChild(card);
 
       });
 
