@@ -276,23 +276,7 @@ function roleLabel(member) {
 
 function memberCity(member) {
 
-  return (
-
-    [
-
-      member?.city,
-
-      member?.province
-
-    ]
-
-      .filter(Boolean)
-
-      .join(", ") ||
-
-    "Location unavailable"
-
-  );
+  return member?.city || "Location unavailable";
 
 }
 
@@ -568,9 +552,9 @@ async function loadMembers() {
 
       .select(
 
-        "id,first_name,last_name,role,is_admin,city,province,created_at"
+  "id,first_name,last_name,role,is_admin,city,created_at"
 
-      )
+)
 
       .order(
 
