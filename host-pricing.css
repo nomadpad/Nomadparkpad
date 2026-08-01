@@ -864,3 +864,522 @@ margin-bottom: 20px;
   }
 
 }
+/* ==========================================
+
+   PAGE 4 - PRICING
+
+========================================== */
+
+.journey-step.completed {
+
+  color: var(--forest);
+
+}
+
+.journey-step.completed .journey-icon {
+
+  border-color: rgba(18, 63, 50, 0.28);
+
+  background: rgba(18, 63, 50, 0.1);
+
+  color: var(--forest);
+
+  filter: none;
+
+  opacity: 1;
+
+}
+
+.price-selector {
+
+  max-width: 680px;
+
+  margin: 34px auto 24px;
+
+  padding: 30px 22px;
+
+  border: 1px solid rgba(18, 63, 50, 0.12);
+
+  border-radius: 24px;
+
+  background:
+
+    linear-gradient(
+
+      180deg,
+
+      rgba(255, 255, 255, 0.98),
+
+      rgba(247, 234, 213, 0.5)
+
+    );
+
+  box-shadow: 0 14px 34px rgba(31, 55, 46, 0.08);
+
+}
+
+.price-label {
+
+  margin: 0 0 24px;
+
+  color: var(--forest);
+
+  font-size: 16px;
+
+  font-weight: 800;
+
+}
+
+.price-control {
+
+  display: grid;
+
+  grid-template-columns: 64px minmax(0, 1fr) 64px;
+
+  align-items: center;
+
+  gap: 18px;
+
+}
+
+.price-button {
+
+  width: 64px;
+
+  height: 64px;
+
+  display: grid;
+
+  place-items: center;
+
+  border: 1px solid rgba(18, 63, 50, 0.15);
+
+  border-radius: 18px;
+
+  background: white;
+
+  color: var(--forest);
+
+  font-size: 34px;
+
+  font-weight: 700;
+
+  line-height: 1;
+
+  cursor: pointer;
+
+  box-shadow: 0 10px 24px rgba(31, 55, 46, 0.08);
+
+  transition:
+
+    transform 180ms ease,
+
+    border-color 180ms ease,
+
+    box-shadow 180ms ease;
+
+}
+
+.price-button:hover {
+
+  transform: translateY(-2px);
+
+  border-color: var(--orange);
+
+  box-shadow: 0 14px 28px rgba(243, 107, 22, 0.14);
+
+}
+
+.price-button:active {
+
+  transform: translateY(0);
+
+}
+
+.price-display {
+
+  min-height: 150px;
+
+  display: grid;
+
+  grid-template-columns: auto auto;
+
+  justify-content: center;
+
+  align-content: center;
+
+  padding: 22px;
+
+  border: 2px solid rgba(243, 107, 22, 0.22);
+
+  border-radius: 24px;
+
+  background:
+
+    radial-gradient(
+
+      circle at top,
+
+      rgba(255, 248, 238, 1),
+
+      rgba(255, 255, 255, 0.98) 68%
+
+    );
+
+  box-shadow:
+
+    0 15px 32px rgba(243, 107, 22, 0.1),
+
+    inset 0 0 0 1px rgba(243, 107, 22, 0.05);
+
+}
+
+.currency-symbol {
+
+  align-self: center;
+
+  color: var(--forest);
+
+  font-family: Georgia, "Times New Roman", serif;
+
+  font-size: 42px;
+
+  font-weight: 700;
+
+}
+
+#nightlyPrice {
+
+  width: 125px;
+
+  border: 0;
+
+  outline: 0;
+
+  background: transparent;
+
+  color: var(--forest);
+
+  font-family: Georgia, "Times New Roman", serif;
+
+  font-size: clamp(58px, 9vw, 86px);
+
+  font-weight: 700;
+
+  line-height: 1;
+
+  text-align: center;
+
+  appearance: textfield;
+
+}
+
+#nightlyPrice::-webkit-inner-spin-button,
+
+#nightlyPrice::-webkit-outer-spin-button {
+
+  margin: 0;
+
+  appearance: none;
+
+}
+
+.price-display small {
+
+  grid-column: 1 / -1;
+
+  margin-top: 8px;
+
+  color: var(--muted);
+
+  font-size: 15px;
+
+  font-weight: 700;
+
+}
+
+.price-guidance {
+
+  max-width: 520px;
+
+  margin: 22px auto 0;
+
+  color: var(--forest);
+
+  font-size: 15px;
+
+  font-weight: 700;
+
+  line-height: 1.5;
+
+  text-align: center;
+
+}
+
+.earnings-preview {
+
+  max-width: 680px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 22px;
+
+  margin: 22px auto;
+
+  padding: 24px;
+
+  border: 1px solid rgba(18, 63, 50, 0.12);
+
+  border-radius: 22px;
+
+  background: rgba(18, 63, 50, 0.045);
+
+}
+
+.earnings-heading {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 14px;
+
+  text-align: left;
+
+}
+
+.earnings-icon {
+
+  font-size: 34px;
+
+}
+
+.earnings-heading strong,
+
+.earnings-heading small {
+
+  display: block;
+
+}
+
+.earnings-heading strong {
+
+  margin-bottom: 4px;
+
+  color: var(--forest);
+
+  font-size: 17px;
+
+}
+
+.earnings-heading small {
+
+  color: var(--muted);
+
+  font-size: 13px;
+
+}
+
+.earnings-amount {
+
+  text-align: right;
+
+}
+
+.earnings-amount strong,
+
+.earnings-amount span {
+
+  display: block;
+
+}
+
+.earnings-amount strong {
+
+  color: var(--forest);
+
+  font-family: Georgia, "Times New Roman", serif;
+
+  font-size: 36px;
+
+}
+
+.earnings-amount span {
+
+  margin-top: 4px;
+
+  color: var(--muted);
+
+  font-size: 12px;
+
+}
+
+.pricing-note {
+
+  max-width: 680px;
+
+  margin: 22px auto 0;
+
+  padding: 16px 18px;
+
+  border: 1px solid rgba(18, 63, 50, 0.12);
+
+  border-radius: 16px;
+
+  background: rgba(18, 63, 50, 0.055);
+
+  color: var(--forest);
+
+  font-size: 14px;
+
+  font-weight: 700;
+
+  line-height: 1.5;
+
+  text-align: left;
+
+}
+
+.pricing-actions {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 18px;
+
+  margin-top: 34px;
+
+}
+
+.back-button {
+
+  min-height: 58px;
+
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  padding: 0 24px;
+
+  border: 1px solid rgba(18, 63, 50, 0.16);
+
+  border-radius: 14px;
+
+  background: white;
+
+  color: var(--forest);
+
+  font-weight: 800;
+
+  text-decoration: none;
+
+  transition:
+
+    transform 180ms ease,
+
+    border-color 180ms ease,
+
+    box-shadow 180ms ease;
+
+}
+
+.back-button:hover {
+
+  transform: translateY(-2px);
+
+  border-color: rgba(18, 63, 50, 0.38);
+
+  box-shadow: 0 12px 24px rgba(31, 55, 46, 0.08);
+
+}
+
+@media (max-width: 760px) {
+
+  .price-selector {
+
+    padding: 24px 16px;
+
+  }
+
+  .price-control {
+
+    grid-template-columns: 54px minmax(0, 1fr) 54px;
+
+    gap: 10px;
+
+  }
+
+  .price-button {
+
+    width: 54px;
+
+    height: 54px;
+
+    border-radius: 16px;
+
+    font-size: 30px;
+
+  }
+
+  .price-display {
+
+    min-height: 132px;
+
+    padding: 18px 10px;
+
+  }
+
+  .currency-symbol {
+
+    font-size: 34px;
+
+  }
+
+  #nightlyPrice {
+
+    width: 100px;
+
+    font-size: 58px;
+
+  }
+
+  .earnings-preview {
+
+    align-items: flex-start;
+
+    flex-direction: column;
+
+  }
+
+  .earnings-amount {
+
+    width: 100%;
+
+    text-align: left;
+
+  }
+
+  .pricing-actions {
+
+    flex-direction: column-reverse;
+
+  }
+
+  .back-button,
+
+  .pricing-actions .continue-button {
+
+    width: 100%;
+
+  }
+
+}
