@@ -20,7 +20,7 @@
 
     name="description"
 
-    content="Set the price for your Nomad Park Pad host listing."
+    content="Set the nightly price for your Nomad Park Pad listing."
 
   >
 
@@ -222,7 +222,7 @@
 
         </p>
 
-        <!-- PRICE CONTROL -->
+        <!-- PRICE SELECTOR -->
 
         <section
 
@@ -258,29 +258,31 @@
 
             <div class="price-display">
 
-              <span class="currency-symbol">$</span>
+              <span class="currency-symbol">
 
-              <input
+                $
+
+              </span>
+
+              <strong
+
+                class="nightly-price"
 
                 id="nightlyPrice"
 
-                type="number"
-
-                min="5"
-
-                max="250"
-
-                step="1"
-
-                value="35"
-
-                inputmode="numeric"
-
-                aria-label="Nightly price"
+                aria-live="polite"
 
               >
 
-              <small>per night</small>
+                35
+
+              </strong>
+
+              <small>
+
+                per night
+
+              </small>
 
             </div>
 
@@ -318,19 +320,31 @@
 
         </section>
 
-        <!-- SIMPLE EARNINGS PREVIEW -->
+        <!-- EARNINGS PREVIEW -->
 
         <section class="earnings-preview">
 
           <div class="earnings-heading">
 
-            <span class="earnings-icon">📈</span>
+            <span class="earnings-icon">
+
+              📈
+
+            </span>
 
             <div>
 
-              <strong>Possible monthly earnings</strong>
+              <strong>
 
-              <small>Based on 10 booked nights</small>
+                Possible monthly earnings
+
+              </strong>
+
+              <small>
+
+                Based on 10 booked nights
+
+              </small>
 
             </div>
 
@@ -338,9 +352,17 @@
 
           <div class="earnings-amount">
 
-            <strong id="monthlyGross">$350</strong>
+            <strong id="monthlyGross">
 
-            <span>before fees and taxes</span>
+              $350
+
+            </strong>
+
+            <span>
+
+              before fees and taxes
+
+            </span>
 
           </div>
 
@@ -348,9 +370,9 @@
 
         <p class="pricing-note">
 
-          💡 Smart local pricing suggestions can be added later as
+          💡 Smart local pricing suggestions can be added later
 
-          Nomad Park Pad gathers real booking data.
+          as Nomad Park Pad gathers real booking data.
 
         </p>
 
@@ -390,11 +412,19 @@
 
         <p class="save-message">
 
-          <span aria-hidden="true">🛡️</span>
+          <span aria-hidden="true">
+
+            🛡️
+
+          </span>
 
           You remain in control of your price.
 
-          <strong>Change it anytime.</strong>
+          <strong>
+
+            Change it anytime.
+
+          </strong>
 
         </p>
 
@@ -406,7 +436,7 @@
 
   <script>
 
-    const priceInput =
+    const priceDisplay =
 
       document.getElementById("nightlyPrice");
 
@@ -434,59 +464,35 @@
 
     const maximumPrice = 250;
 
-    function cleanPrice(value) {
-
-      const number =
-
-        Number.parseInt(value, 10);
-
-      if (Number.isNaN(number)) {
-
-        return 35;
-
-      }
-
-      return Math.min(
-
-        maximumPrice,
-
-        Math.max(minimumPrice, number)
-
-      );
-
-    }
+    let nightlyPrice = 35;
 
     function updatePricing() {
 
-      const price =
+      priceDisplay.textContent =
 
-        cleanPrice(priceInput.value);
-
-      priceInput.value =
-
-        price;
+        nightlyPrice;
 
       monthlyGross.textContent =
 
-        `$${price * 10}`;
+        `$${nightlyPrice * 10}`;
 
-      if (price < 20) {
+      if (nightlyPrice < 20) {
 
         priceGuidance.textContent =
 
           "A budget-friendly price that may attract more travellers.";
 
-      } else if (price <= 45) {
+      } else if (nightlyPrice <= 45) {
 
         priceGuidance.textContent =
 
           "A comfortable starting price for a new listing.";
 
-      } else if (price <= 75) {
+      } else if (nightlyPrice <= 75) {
 
         priceGuidance.textContent =
 
-          "A premium price that may suit strong locations or added services.";
+          "A premium price for strong locations or added services.";
 
       } else {
 
@@ -500,9 +506,15 @@
 
     decreaseButton?.addEventListener("click", () => {
 
-      priceInput.value =
+      nightlyPrice =
 
-        cleanPrice(priceInput.value) - 1;
+        Math.max(
+
+          minimumPrice,
+
+          nightlyPrice - 1
+
+        );
 
       updatePricing();
 
@@ -510,31 +522,21 @@
 
     increaseButton?.addEventListener("click", () => {
 
-      priceInput.value =
+      nightlyPrice =
 
-        cleanPrice(priceInput.value) + 1;
+        Math.min(
 
-      updatePricing();
+          maximumPrice,
 
-    });
+          nightlyPrice + 1
 
-    priceInput?.addEventListener("input", () => {
-
-      updatePricing();
-
-    });
-
-    priceInput?.addEventListener("blur", () => {
+        );
 
       updatePricing();
 
     });
 
     continueButton?.addEventListener("click", () => {
-
-      const nightlyPrice =
-
-        cleanPrice(priceInput.value);
 
       sessionStorage.setItem(
 
