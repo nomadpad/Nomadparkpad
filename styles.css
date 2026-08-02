@@ -1615,3 +1615,80 @@ main {
   }
 
 }
+/* Final mobile guard for homepage command-centre images */
+
+.dashboard-showcase {
+
+  width: 100%;
+
+  max-width: 100%;
+
+  overflow: hidden;
+
+  box-sizing: border-box;
+
+}
+
+.dashboard-grid {
+
+  width: 100%;
+
+  max-width: 1240px;
+
+  margin-inline: auto;
+
+}
+
+.dashboard-card {
+
+  width: 100%;
+
+  max-width: 100%;
+
+  min-width: 0;
+
+  overflow: hidden;
+
+  box-sizing: border-box;
+
+}
+
+.dashboard-card > img {
+
+  display: block !important;
+
+  width: 100% !important;
+
+  max-width: 100% !important;
+
+  height: auto !important;
+
+  margin: 0 !important;
+
+  object-fit: contain !important;
+
+  object-position: top center !important;
+
+}
+
+@media (max-width: 850px) {
+
+  .dashboard-showcase {
+
+    padding-inline: 16px;
+
+  }
+
+  .dashboard-grid {
+
+    grid-template-columns: 1fr !important;
+
+  }
+
+  .dashboard-card {
+
+    border-radius: 22px;
+
+  }
+
+}
