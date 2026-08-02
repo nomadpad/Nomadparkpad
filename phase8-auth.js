@@ -102,39 +102,83 @@ const {
   .eq("id", data.user.id)
 
   .maybeSingle();
-
 if (profileError) {
 
-  console.error(
+  console.error("Could not load login destination:", profileError);
 
-    "Could not load login destination:",
+  setMessage(
 
-    profileError
+    form,
+
+    "Your account was signed in, but your profile permissions could not be loaded.",
+
+    true
 
   );
 
+  return;
+
 }
 
-if (profile?.is_admin) {
+if (!profile) {
+
+  console.error("No profile row found for user:", data.user.id);
+
+  setMessage(
+
+    form,
+
+    "Your account was signed in, but no matching profile was found.",
+
+    true
+
+  );
+
+  return;
+
+}
+
+if (profile.is_admin === true) {
 
   window.location.href = "admin-command.html";
 
 } else if (
 
-  profile?.is_host ||
+  profile.is_host === true ||
 
-  profile?.role === "host"
+  profile.role === "host" ||
+
+  profile.role === "both"
 
 ) {
 
   window.location.href = "host-command.html";
 
-} else {
+} else if (
+
+  profile.role === "traveler" ||
+
+  profile.role === "traveller"
+
+) {
 
   window.location.href = "traveller.html";
 
-}
+} else {
 
+  console.error("Unknown account role:", profile);
+
+  setMessage(
+
+    form,
+
+    "Your account role could not be identified.",
+
+    true
+
+  );
+
+}
   
 });
 
