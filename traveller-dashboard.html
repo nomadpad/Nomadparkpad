@@ -14,339 +14,787 @@
 
   >
 
-  <title>Traveller Dashboard | Nomad Park Pad</title>
-<link rel="stylesheet" href="traveller-dashboard.css">
+  <title>
+
+    Traveller Dashboard | Nomad Park Pad
+
+  </title>
+
+  <link
+
+    rel="stylesheet"
+
+    href="traveller-dashboard.css"
+
+  >
+
 </head>
 
 <body>
 
   <main class="traveller-dashboard">
 
-  <header class="dashboard-header">
+    <header class="dashboard-header">
 
-    <div class="dashboard-brand">
+      <div class="dashboard-brand">
 
-  <img
+        <img
 
-    src="logo.png"
+          src="logo.png"
 
-    alt="Nomad Park Pad"
+          alt="Nomad Park Pad"
 
-    class="dashboard-logo"
+          class="dashboard-logo"
 
-  >
+        >
 
-</div>
-<button
+      </div>
 
-  id="mapIdentityButton"
+      <button
 
-  class="map-identity-button"
+        id="mapIdentityButton"
 
-  type="button"
+        class="map-identity-button"
 
-  aria-label="Choose your map identity"
+        type="button"
 
->
+        aria-label="Choose your map identity"
 
-  😎
+      >
 
-</button>
-    <button type="button" class="settings-button">
+        😎
 
-      Settings
+      </button>
 
-    </button>
+      <button
 
-  </header>
+        type="button"
 
-  <section class="dashboard-welcome">
+        class="settings-button"
 
-    <p>Good morning,</p>
+      >
 
-    <h1>Traveller!</h1>
+        Settings
 
-    <p>Adventure is calling.</p>
+      </button>
 
-  </section>
-  <div class="traveller-visibility-control">
+    </header>
 
-  <label class="visibility-switch">
+    <section class="dashboard-welcome">
 
-    <input
+      <p>
 
-      type="checkbox"
+        Good morning,
 
-      id="travellerMapVisible"
+      </p>
 
-    >
+      <h1>
 
-    <span class="visibility-slider"></span>
+        Traveller!
 
-  </label>
+      </h1>
 
-  <div>
+      <p>
 
-    <strong>Show me on the traveller map</strong>
+        Adventure is calling.
 
-    <p>Your exact location will not be shown.</p>
+      </p>
 
-  </div>
+    </section>
 
-</div>
-<div class="dashboard-map-layout">
-  <section class="dashboard-map">
+    <div class="traveller-visibility-control">
 
-  <div id="travellerMap"></div>
+      <label class="visibility-switch">
 
-</section>
-<section class="dashboard-map-filters">
+        <input
 
-  <p class="map-filters-label">Nearby within 30 km</p>
+          type="checkbox"
 
-  <div class="map-filter-buttons">
+          id="travellerMapVisible"
 
-    <button
+        >
 
-      type="button"
+        <span class="visibility-slider"></span>
 
-      class="map-filter-button is-active"
+      </label>
 
-      data-filter="pads"
+      <div>
 
-    >
+        <strong>
 
-      🏕 Park Pads
+          Show me on the traveller map
 
-    </button>
+        </strong>
 
-    <button
+        <p>
 
-      type="button"
+          Your exact location will not be shown.
 
-      class="map-filter-button"
-
-      data-filter="instant"
-
-    >
-
-      ⚡ Instant
-
-    </button>
-
-    <button
-
-      type="button"
-
-      class="map-filter-button"
-
-      data-filter="ev"
-
-    >
-
-      🔌 EV
-
-    </button>
-
-    <button
-
-      type="button"
-
-      class="map-filter-button"
-
-      data-filter="packages"
-
-    >
-📦 Packages
-      
-
-    </button>
-
-    <button
-
-      type="button"
-
-      class="map-filter-button"
-
-      data-filter="events"
-
-    >
-
-      🎉 Events
-
-    </button>
-
-    <button
-
-      type="button"
-
-      class="map-filter-button"
-
-      data-filter="featured"
-
-    >
-
-      ⭐ Featured
-
-    </button>
-
-  </div>
-
-</section>
-
-<div class="dashboard-map-type-controls">
-
-  <button
-
-    type="button"
-
-    class="map-type-button"
-
-    data-map-type="satellite"
-
-  >
-
-    🛰️
-
-    <span>Satellite</span>
-
-  </button>
-
-</div>
-
-</div>
-
-
-<nav class="dashboard-actions">
-
-
-    <a href="map.html">Map</a>
-
-    <a href="messages.html">Messages</a>
-
-  </nav>
-
-  <section class="dashboard-weather" id="dashboardWeather">
-
-  <div class="weather-loading" id="weatherLoading">
-
-    Loading local weather…
-
-  </div>
-
-  <div class="weather-content" id="weatherContent" hidden>
-
-    <div class="weather-main">
-
-      <div class="weather-icon" id="weatherIcon">☀️</div>
-
-      <div class="weather-temperature">
-
-        <strong id="weatherTemperature">--°</strong>
-
-        <span id="weatherCondition">Local weather</span>
+        </p>
 
       </div>
 
     </div>
 
-    <div class="weather-details">
+    <section
 
-      <div>
+      class="traveller-card-editor"
 
-        <span>Feels like</span>
+      id="travellerCardEditor"
 
-        <strong id="weatherFeelsLike">--°</strong>
+    >
+
+      <button
+
+        type="button"
+
+        class="traveller-card-editor-toggle"
+
+        id="travellerCardEditorToggle"
+
+        aria-expanded="false"
+
+        aria-controls="travellerCardEditorBody"
+
+      >
+
+        <span class="traveller-card-editor-heading">
+
+          <strong>
+
+            My Public Traveller Card
+
+          </strong>
+
+          <small>
+
+            Choose what other travellers can see.
+
+          </small>
+
+        </span>
+
+        <span
+
+          class="traveller-card-editor-arrow"
+
+          aria-hidden="true"
+
+        >
+
+          ▾
+
+        </span>
+
+      </button>
+
+      <div
+
+        class="traveller-card-editor-body"
+
+        id="travellerCardEditorBody"
+
+        hidden
+
+      >
+
+        <form id="travellerCardForm">
+
+          <div class="traveller-card-field">
+
+            <label for="travellerPublicName">
+
+              Public first name
+
+            </label>
+
+            <input
+
+              type="text"
+
+              id="travellerPublicName"
+
+              name="travellerPublicName"
+
+              maxlength="40"
+
+              placeholder="Daniel"
+
+              autocomplete="given-name"
+
+            >
+
+            <small>
+
+              Use a first name or nickname. Your surname stays private.
+
+            </small>
+
+          </div>
+
+          <div class="traveller-card-field">
+
+            <label for="travellerHomeRegion">
+
+              Home region
+
+            </label>
+
+            <input
+
+              type="text"
+
+              id="travellerHomeRegion"
+
+              name="travellerHomeRegion"
+
+              maxlength="80"
+
+              placeholder="Edmonton, Alberta"
+
+              autocomplete="address-level1"
+
+            >
+
+          </div>
+
+          <div class="traveller-card-field">
+
+            <label for="travellerVehicleType">
+
+              Vehicle or travel setup
+
+            </label>
+
+            <input
+
+              type="text"
+
+              id="travellerVehicleType"
+
+              name="travellerVehicleType"
+
+              maxlength="80"
+
+              placeholder="Ford Bronco Sport"
+
+            >
+
+          </div>
+
+          <div class="traveller-card-field">
+
+            <label for="travellerDestination">
+
+              Where are you heading?
+
+            </label>
+
+            <input
+
+              type="text"
+
+              id="travellerDestination"
+
+              name="travellerDestination"
+
+              maxlength="120"
+
+              placeholder="Heading toward Banff"
+
+            >
+
+          </div>
+
+          <div class="traveller-card-field">
+
+            <label for="travellerIntro">
+
+              Short introduction
+
+            </label>
+
+            <textarea
+
+              id="travellerIntro"
+
+              name="travellerIntro"
+
+              maxlength="240"
+
+              rows="4"
+
+              placeholder="Road-tripping, camping and always happy to meet friendly travellers."
+
+            ></textarea>
+
+            <small>
+
+              Maximum 240 characters.
+
+            </small>
+
+          </div>
+
+          <label class="traveller-chat-option">
+
+            <input
+
+              type="checkbox"
+
+              id="travellerOpenToChat"
+
+              name="travellerOpenToChat"
+
+            >
+
+            <span>
+
+              <strong>
+
+                Open to friendly messages
+
+              </strong>
+
+              <small>
+
+                Other signed-in travellers may contact you.
+
+              </small>
+
+            </span>
+
+          </label>
+
+          <div
+
+            class="traveller-card-preview"
+
+            id="travellerCardPreview"
+
+          >
+
+            <span
+
+              class="traveller-card-preview-emoji"
+
+              id="travellerCardPreviewEmoji"
+
+            >
+
+              😎
+
+            </span>
+
+            <div>
+
+              <strong id="travellerCardPreviewName">
+
+                Nomad Traveller
+
+              </strong>
+
+              <p id="travellerCardPreviewDetails">
+
+                Add a home region and travel setup.
+
+              </p>
+
+            </div>
+
+          </div>
+
+          <p
+
+            class="traveller-card-message"
+
+            id="travellerCardMessage"
+
+            role="status"
+
+            aria-live="polite"
+
+          ></p>
+
+          <button
+
+            type="submit"
+
+            class="traveller-card-save-button"
+
+            id="travellerCardSaveButton"
+
+          >
+
+            Save Traveller Card
+
+          </button>
+
+        </form>
 
       </div>
 
-      <div>
+    </section>
 
-        <span>Wind</span>
+    <div class="dashboard-map-layout">
 
-        <strong id="weatherWind">-- km/h</strong>
+      <section class="dashboard-map">
 
-      </div>
+        <div id="travellerMap"></div>
 
-      <div>
+      </section>
 
-        <span>Rain</span>
+      <section class="dashboard-map-filters">
 
-        <strong id="weatherRain">--%</strong>
+        <p class="map-filters-label">
+
+          Nearby within 30 km
+
+        </p>
+
+        <div class="map-filter-buttons">
+
+          <button
+
+            type="button"
+
+            class="map-filter-button is-active"
+
+            data-filter="pads"
+
+          >
+
+            🏕 Park Pads
+
+          </button>
+
+          <button
+
+            type="button"
+
+            class="map-filter-button"
+
+            data-filter="instant"
+
+          >
+
+            ⚡ Instant
+
+          </button>
+
+          <button
+
+            type="button"
+
+            class="map-filter-button"
+
+            data-filter="ev"
+
+          >
+
+            🔌 EV
+
+          </button>
+
+          <button
+
+            type="button"
+
+            class="map-filter-button"
+
+            data-filter="packages"
+
+          >
+
+            📦 Packages
+
+          </button>
+
+          <button
+
+            type="button"
+
+            class="map-filter-button"
+
+            data-filter="events"
+
+          >
+
+            🎉 Events
+
+          </button>
+
+          <button
+
+            type="button"
+
+            class="map-filter-button"
+
+            data-filter="featured"
+
+          >
+
+            ⭐ Featured
+
+          </button>
+
+        </div>
+
+      </section>
+
+      <div class="dashboard-map-type-controls">
+
+        <button
+
+          type="button"
+
+          class="map-type-button"
+
+          data-map-type="satellite"
+
+        >
+
+          🛰️
+
+          <span>
+
+            Satellite
+
+          </span>
+
+        </button>
 
       </div>
 
     </div>
 
-    <p class="weather-summary" id="weatherSummary">
+    <nav class="dashboard-actions">
 
-      Checking conditions for your current location.
+      <a href="map.html">
 
-    </p>
+        Map
 
-  </div>
+      </a>
 
-</section>
-<div id="emojiPicker" class="emoji-picker" hidden>
+      <a href="messages.html">
 
-  <h3>Choose your map identity</h3>
+        Messages
 
-  <div class="emoji-grid">
+      </a>
 
-    <button type="button">😎</button>
+    </nav>
 
-    <button type="button">🏕️</button>
+    <section
 
-    <button type="button">🐕</button>
+      class="dashboard-weather"
 
-    <button type="button">🎣</button>
+      id="dashboardWeather"
 
-    <button type="button">🛶</button>
+    >
 
-    <button type="button">🚴</button>
+      <div
 
-    <button type="button">🌲</button>
+        class="weather-loading"
 
-    <button type="button">📸</button>
+        id="weatherLoading"
 
-    <button type="button">☕</button>
+      >
 
-    <button type="button">🔥</button>
+        Loading local weather…
 
-    <button type="button">🦊</button>
+      </div>
 
-    <button type="button">🐻</button>
+      <div
 
-    <button type="button">🦅</button>
+        class="weather-content"
 
-    <button type="button">🍁</button>
+        id="weatherContent"
 
-    <button type="button">🚙</button>
+        hidden
 
-    <button type="button">⭐</button>
+      >
 
-    <button type="button">🌊</button>
+        <div class="weather-main">
 
-    <button type="button">🐾</button>
+          <div
 
-    <button type="button">🎵</button>
+            class="weather-icon"
 
-    <button type="button">🧭</button>
+            id="weatherIcon"
 
-  </div>
+          >
 
-</div>
-<script src="supabase-config.js"></script>
+            ☀️
 
+          </div>
 
-<script type="module" src="traveller-dashboard.js"></script>
-<script async
+          <div class="weather-temperature">
 
-src="https://maps.googleapis.com/maps/api/js?key=AIzaSyARloTGny6kPM-fcJ3chPejqPJz33pzh48&callback=initTravellerMap&libraries=places">
+            <strong id="weatherTemperature">
 
-</script>
+              --°
 
-</main>
+            </strong>
+
+            <span id="weatherCondition">
+
+              Local weather
+
+            </span>
+
+          </div>
+
+        </div>
+
+        <div class="weather-details">
+
+          <div>
+
+            <span>
+
+              Feels like
+
+            </span>
+
+            <strong id="weatherFeelsLike">
+
+              --°
+
+            </strong>
+
+          </div>
+
+          <div>
+
+            <span>
+
+              Wind
+
+            </span>
+
+            <strong id="weatherWind">
+
+              -- km/h
+
+            </strong>
+
+          </div>
+
+          <div>
+
+            <span>
+
+              Rain
+
+            </span>
+
+            <strong id="weatherRain">
+
+              --%
+
+            </strong>
+
+          </div>
+
+        </div>
+
+        <p
+
+          class="weather-summary"
+
+          id="weatherSummary"
+
+        >
+
+          Checking conditions for your current location.
+
+        </p>
+
+      </div>
+
+    </section>
+
+    <div
+
+      id="emojiPicker"
+
+      class="emoji-picker"
+
+      hidden
+
+    >
+
+      <h3>
+
+        Choose your map identity
+
+      </h3>
+
+      <div class="emoji-grid">
+
+        <button type="button">😎</button>
+
+        <button type="button">🏕️</button>
+
+        <button type="button">🐕</button>
+
+        <button type="button">🎣</button>
+
+        <button type="button">🛶</button>
+
+        <button type="button">🚴</button>
+
+        <button type="button">🌲</button>
+
+        <button type="button">📸</button>
+
+        <button type="button">☕</button>
+
+        <button type="button">🔥</button>
+
+        <button type="button">🦊</button>
+
+        <button type="button">🐻</button>
+
+        <button type="button">🦅</button>
+
+        <button type="button">🍁</button>
+
+        <button type="button">🚙</button>
+
+        <button type="button">⭐</button>
+
+        <button type="button">🌊</button>
+
+        <button type="button">🐾</button>
+
+        <button type="button">🎵</button>
+
+        <button type="button">🧭</button>
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <script src="supabase-config.js"></script>
+
+  <script
+
+    type="module"
+
+    src="traveller-dashboard.js"
+
+  ></script>
+
+  <script
+
+    async
+
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyARloTGny6kPM-fcJ3chPejqPJz33pzh48&callback=initTravellerMap&libraries=places"
+
+  ></script>
 
 </body>
 
