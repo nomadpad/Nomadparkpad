@@ -128,9 +128,9 @@ const travellerMapVisibleToggle =
 
 async function getSignedInUser() {
 
-  if (!window.supabase) {
+  if (typeof supabase === "undefined" || !supabase?.auth) {
 
-    console.warn("Supabase is not ready.");
+    console.error("Supabase client is not ready.");
 
     return null;
 
@@ -144,9 +144,17 @@ async function getSignedInUser() {
 
   } = await supabase.auth.getUser();
 
-  if (error || !user) {
+  if (error) {
 
     console.error("Could not load signed-in user:", error);
+
+    return null;
+
+  }
+
+  if (!user) {
+
+    console.error("No signed-in user session was found.");
 
     return null;
 
@@ -155,6 +163,8 @@ async function getSignedInUser() {
   return user;
 
 }
+
+
 
 /* =========================================================
 
