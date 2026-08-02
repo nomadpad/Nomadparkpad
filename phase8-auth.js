@@ -97,7 +97,7 @@ const {
 
   .from("profiles")
 
-  .select("is_admin, is_host, role")
+  .select("is_admin, role")
 
   .eq("id", data.user.id)
 
@@ -143,8 +143,6 @@ if (profile.is_admin === true) {
   window.location.href = "admin-command.html";
 
 } else if (
-
-  profile.is_host === true ||
 
   profile.role === "host" ||
 
