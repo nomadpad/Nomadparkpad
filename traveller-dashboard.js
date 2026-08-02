@@ -128,6 +128,62 @@ const travellerMapVisibleToggle =
 
   document.getElementById("travellerMapVisible");
 
+const travellerCardEditorToggle =
+
+  document.getElementById("travellerCardEditorToggle");
+
+const travellerCardEditorBody =
+
+  document.getElementById("travellerCardEditorBody");
+
+const travellerCardForm =
+
+  document.getElementById("travellerCardForm");
+
+const travellerPublicName =
+
+  document.getElementById("travellerPublicName");
+
+const travellerHomeRegion =
+
+  document.getElementById("travellerHomeRegion");
+
+const travellerVehicleType =
+
+  document.getElementById("travellerVehicleType");
+
+const travellerDestination =
+
+  document.getElementById("travellerDestination");
+
+const travellerIntro =
+
+  document.getElementById("travellerIntro");
+
+const travellerOpenToChat =
+
+  document.getElementById("travellerOpenToChat");
+
+const travellerCardPreviewEmoji =
+
+  document.getElementById("travellerCardPreviewEmoji");
+
+const travellerCardPreviewName =
+
+  document.getElementById("travellerCardPreviewName");
+
+const travellerCardPreviewDetails =
+
+  document.getElementById("travellerCardPreviewDetails");
+
+const travellerCardMessage =
+
+  document.getElementById("travellerCardMessage");
+
+const travellerCardSaveButton =
+
+  document.getElementById("travellerCardSaveButton");
+
 /* =========================================================
 
    AUTH
@@ -144,13 +200,7 @@ async function getSignedInUser() {
 
     if (error) {
 
-      console.error(
-
-        "Session lookup failed:",
-
-        error
-
-      );
+      console.error("Session lookup failed:", error);
 
       return null;
 
@@ -160,13 +210,7 @@ async function getSignedInUser() {
 
   } catch (error) {
 
-    console.error(
-
-      "Account lookup crashed:",
-
-      error
-
-    );
+    console.error("Account lookup crashed:", error);
 
     return null;
 
@@ -184,19 +228,11 @@ function initMapFilters() {
 
   const buttons =
 
-    document.querySelectorAll(
-
-      ".map-filter-button"
-
-    );
+    document.querySelectorAll(".map-filter-button");
 
   const filterSection =
 
-    document.querySelector(
-
-      ".dashboard-map-filters"
-
-    );
+    document.querySelector(".dashboard-map-filters");
 
   if (!buttons.length || !filterSection) {
 
@@ -206,27 +242,15 @@ function initMapFilters() {
 
   let countDisplay =
 
-    document.querySelector(
-
-      ".map-filter-count"
-
-    );
+    document.querySelector(".map-filter-count");
 
   if (!countDisplay) {
 
-    countDisplay =
+    countDisplay = document.createElement("p");
 
-      document.createElement("p");
+    countDisplay.className = "map-filter-count";
 
-    countDisplay.className =
-
-      "map-filter-count";
-
-    filterSection.appendChild(
-
-      countDisplay
-
-    );
+    filterSection.appendChild(countDisplay);
 
   }
 
@@ -236,25 +260,13 @@ function initMapFilters() {
 
       item.classList.remove("is-active");
 
-      item.setAttribute(
-
-        "aria-pressed",
-
-        "false"
-
-      );
+      item.setAttribute("aria-pressed", "false");
 
     });
 
     button.classList.add("is-active");
 
-    button.setAttribute(
-
-      "aria-pressed",
-
-      "true"
-
-    );
+    button.setAttribute("aria-pressed", "true");
 
     const filter =
 
@@ -282,11 +294,7 @@ function initMapFilters() {
 
       "aria-pressed",
 
-      button.classList.contains(
-
-        "is-active"
-
-      )
+      button.classList.contains("is-active")
 
         ? "true"
 
@@ -294,17 +302,11 @@ function initMapFilters() {
 
     );
 
-    button.addEventListener(
+    button.addEventListener("click", () => {
 
-      "click",
+      activateFilter(button);
 
-      () => {
-
-        activateFilter(button);
-
-      }
-
-    );
+    });
 
   });
 
@@ -336,9 +338,7 @@ function createEmojiMarkerIcon(
 
 ) {
 
-  const safeEmoji =
-
-    emoji || "🚐";
+  const safeEmoji = emoji || "🚐";
 
   const svg = `
 
@@ -414,13 +414,7 @@ function createEmojiMarkerIcon(
 
     scaledSize:
 
-      new google.maps.Size(
-
-        size,
-
-        size
-
-      ),
+      new google.maps.Size(size, size),
 
     anchor:
 
@@ -456,9 +450,7 @@ function updateTravellerIdentityMarker(
 
   }
 
-  currentTravellerLocation =
-
-    position;
+  currentTravellerLocation = position;
 
   if (!travellerIdentityMarker) {
 
@@ -466,23 +458,19 @@ function updateTravellerIdentityMarker(
 
       new google.maps.Marker({
 
-        map:
-
-          travellerMapInstance,
+        map: travellerMapInstance,
 
         position,
 
-        icon:
+        icon: createEmojiMarkerIcon(
 
-          createEmojiMarkerIcon(
+          currentEmoji,
 
-            currentEmoji,
+          54,
 
-            54,
+          "#f36b16"
 
-            "#f36b16"
-
-          ),
+        ),
 
         title: "You",
 
@@ -494,11 +482,7 @@ function updateTravellerIdentityMarker(
 
   }
 
-  travellerIdentityMarker.setPosition(
-
-    position
-
-  );
+  travellerIdentityMarker.setPosition(position);
 
   travellerIdentityMarker.setIcon(
 
@@ -550,22 +534,6 @@ async function saveTravellerMapLocation() {
 
   }
 
-  const approximateLatitude =
-
-    makeLocationApproximate(
-
-      currentTravellerLocation.lat
-
-    );
-
-  const approximateLongitude =
-
-    makeLocationApproximate(
-
-      currentTravellerLocation.lng
-
-    );
-
   const { error } =
 
     await supabase
@@ -578,29 +546,29 @@ async function saveTravellerMapLocation() {
 
         traveller_latitude:
 
-          approximateLatitude,
+          makeLocationApproximate(
+
+            currentTravellerLocation.lat
+
+          ),
 
         traveller_longitude:
 
-          approximateLongitude,
+          makeLocationApproximate(
+
+            currentTravellerLocation.lng
+
+          ),
 
         traveller_location_updated_at:
 
           new Date().toISOString(),
 
-        traveller_status:
-
-          "available"
+        traveller_status: "available"
 
       })
 
-      .eq(
-
-        "id",
-
-        user.id
-
-      );
+      .eq("id", user.id);
 
   if (error) {
 
@@ -624,9 +592,7 @@ async function saveTravellerMapLocation() {
 
   }
 
-  travellerMapIsVisible =
-
-    true;
+  travellerMapIsVisible = true;
 
   localStorage.setItem(
 
@@ -674,13 +640,7 @@ async function hideTravellerFromMap() {
 
       })
 
-      .eq(
-
-        "id",
-
-        user.id
-
-      );
+      .eq("id", user.id);
 
   if (error) {
 
@@ -696,9 +656,7 @@ async function hideTravellerFromMap() {
 
   }
 
-  travellerMapIsVisible =
-
-    false;
+  travellerMapIsVisible = false;
 
   localStorage.setItem(
 
@@ -744,19 +702,9 @@ async function loadTravellerVisibility() {
 
       .from("profiles")
 
-      .select(
+      .select("traveller_map_visible")
 
-        "traveller_map_visible"
-
-      )
-
-      .eq(
-
-        "id",
-
-        user.id
-
-      )
+      .eq("id", user.id)
 
       .maybeSingle();
 
@@ -776,9 +724,7 @@ async function loadTravellerVisibility() {
 
   travellerMapIsVisible =
 
-    profile?.traveller_map_visible ===
-
-    true;
+    profile?.traveller_map_visible === true;
 
   travellerMapVisibleToggle.checked =
 
@@ -872,6 +818,476 @@ function initTravellerVisibilityToggle() {
 
 /* =========================================================
 
+   PUBLIC TRAVELLER CARD EDITOR
+
+========================================================= */
+
+function setTravellerCardMessage(
+
+  text = "",
+
+  type = ""
+
+) {
+
+  if (!travellerCardMessage) {
+
+    return;
+
+  }
+
+  travellerCardMessage.textContent =
+
+    text;
+
+  travellerCardMessage.classList.remove(
+
+    "is-success",
+
+    "is-error"
+
+  );
+
+  if (type) {
+
+    travellerCardMessage.classList.add(
+
+      type
+
+    );
+
+  }
+
+}
+
+function updateTravellerCardPreview() {
+
+  const publicName =
+
+    travellerPublicName?.value.trim() ||
+
+    "Nomad Traveller";
+
+  const homeRegion =
+
+    travellerHomeRegion?.value.trim();
+
+  const vehicleType =
+
+    travellerVehicleType?.value.trim();
+
+  const details = [
+
+    homeRegion,
+
+    vehicleType
+
+  ].filter(Boolean);
+
+  if (travellerCardPreviewEmoji) {
+
+    travellerCardPreviewEmoji.textContent =
+
+      currentEmoji || "😎";
+
+  }
+
+  if (travellerCardPreviewName) {
+
+    travellerCardPreviewName.textContent =
+
+      publicName;
+
+  }
+
+  if (travellerCardPreviewDetails) {
+
+    travellerCardPreviewDetails.textContent =
+
+      details.length
+
+        ? details.join(" • ")
+
+        : "Add a home region and travel setup.";
+
+  }
+
+}
+
+function initTravellerCardEditorToggle() {
+
+  travellerCardEditorToggle?.addEventListener(
+
+    "click",
+
+    () => {
+
+      const isOpen =
+
+        travellerCardEditorToggle.getAttribute(
+
+          "aria-expanded"
+
+        ) === "true";
+
+      travellerCardEditorToggle.setAttribute(
+
+        "aria-expanded",
+
+        String(!isOpen)
+
+      );
+
+      if (travellerCardEditorBody) {
+
+        travellerCardEditorBody.hidden =
+
+          isOpen;
+
+      }
+
+    }
+
+  );
+
+}
+
+async function loadTravellerCardEditor() {
+
+  if (!travellerCardForm) {
+
+    return;
+
+  }
+
+  const user =
+
+    await getSignedInUser();
+
+  if (!user) {
+
+    return;
+
+  }
+
+  const {
+
+    data: profile,
+
+    error
+
+  } =
+
+    await supabase
+
+      .from("profiles")
+
+      .select(
+
+        `
+
+          traveller_public_name,
+
+          traveller_home_region,
+
+          traveller_vehicle_type,
+
+          traveller_destination,
+
+          traveller_intro,
+
+          traveller_open_to_chat
+
+        `
+
+      )
+
+      .eq("id", user.id)
+
+      .maybeSingle();
+
+  if (error) {
+
+    console.error(
+
+      "Could not load traveller card:",
+
+      error
+
+    );
+
+    setTravellerCardMessage(
+
+      "Your traveller card could not be loaded.",
+
+      "is-error"
+
+    );
+
+    return;
+
+  }
+
+  if (travellerPublicName) {
+
+    travellerPublicName.value =
+
+      profile?.traveller_public_name || "";
+
+  }
+
+  if (travellerHomeRegion) {
+
+    travellerHomeRegion.value =
+
+      profile?.traveller_home_region || "";
+
+  }
+
+  if (travellerVehicleType) {
+
+    travellerVehicleType.value =
+
+      profile?.traveller_vehicle_type || "";
+
+  }
+
+  if (travellerDestination) {
+
+    travellerDestination.value =
+
+      profile?.traveller_destination || "";
+
+  }
+
+  if (travellerIntro) {
+
+    travellerIntro.value =
+
+      profile?.traveller_intro || "";
+
+  }
+
+  if (travellerOpenToChat) {
+
+    travellerOpenToChat.checked =
+
+      profile?.traveller_open_to_chat === true;
+
+  }
+
+  updateTravellerCardPreview();
+
+}
+
+function initTravellerCardPreview() {
+
+  const previewFields = [
+
+    travellerPublicName,
+
+    travellerHomeRegion,
+
+    travellerVehicleType,
+
+    travellerDestination,
+
+    travellerIntro
+
+  ];
+
+  previewFields.forEach((field) => {
+
+    field?.addEventListener(
+
+      "input",
+
+      updateTravellerCardPreview
+
+    );
+
+  });
+
+  travellerOpenToChat?.addEventListener(
+
+    "change",
+
+    updateTravellerCardPreview
+
+  );
+
+}
+
+function initTravellerCardForm() {
+
+  travellerCardForm?.addEventListener(
+
+    "submit",
+
+    async (event) => {
+
+      event.preventDefault();
+
+      const user =
+
+        await getSignedInUser();
+
+      if (!user) {
+
+        setTravellerCardMessage(
+
+          "Please log in again before saving.",
+
+          "is-error"
+
+        );
+
+        return;
+
+      }
+
+      const publicName =
+
+        travellerPublicName?.value.trim() || null;
+
+      const homeRegion =
+
+        travellerHomeRegion?.value.trim() || null;
+
+      const vehicleType =
+
+        travellerVehicleType?.value.trim() || null;
+
+      const destination =
+
+        travellerDestination?.value.trim() || null;
+
+      const intro =
+
+        travellerIntro?.value.trim() || null;
+
+      const openToChat =
+
+        travellerOpenToChat?.checked === true;
+
+      if (
+
+        publicName &&
+
+        publicName.length > 40
+
+      ) {
+
+        setTravellerCardMessage(
+
+          "Your public name is too long.",
+
+          "is-error"
+
+        );
+
+        return;
+
+      }
+
+      travellerCardSaveButton.disabled =
+
+        true;
+
+      travellerCardSaveButton.textContent =
+
+        "Saving…";
+
+      setTravellerCardMessage("");
+
+      const { error } =
+
+        await supabase
+
+          .from("profiles")
+
+          .update({
+
+            traveller_public_name:
+
+              publicName,
+
+            traveller_home_region:
+
+              homeRegion,
+
+            traveller_vehicle_type:
+
+              vehicleType,
+
+            traveller_destination:
+
+              destination,
+
+            traveller_intro:
+
+              intro,
+
+            traveller_open_to_chat:
+
+              openToChat
+
+          })
+
+          .eq("id", user.id);
+
+      travellerCardSaveButton.disabled =
+
+        false;
+
+      travellerCardSaveButton.textContent =
+
+        "Save Traveller Card";
+
+      if (error) {
+
+        console.error(
+
+          "Could not save traveller card:",
+
+          error
+
+        );
+
+        setTravellerCardMessage(
+
+          "Your traveller card could not be saved: " +
+
+          error.message,
+
+          "is-error"
+
+        );
+
+        return;
+
+      }
+
+      setTravellerCardMessage(
+
+        "Traveller card saved.",
+
+        "is-success"
+
+      );
+
+      updateTravellerCardPreview();
+
+      await loadNearbyTravellers();
+
+    }
+
+  );
+
+}
+
+/* =========================================================
+
    NEARBY TRAVELLERS
 
 ========================================================= */
@@ -912,21 +1328,15 @@ function formatTravellerStatus(status) {
 
   const statusLabels = {
 
-    available:
+    available: "Available",
 
-      "Available",
-
-    looking_for_pad:
-
-      "Looking for a pad",
+    looking_for_pad: "Looking for a pad",
 
     staying_with_host:
 
       "Staying with a host",
 
-    offline:
-
-      "Offline"
+    offline: "Offline"
 
   };
 
@@ -940,19 +1350,11 @@ function formatTravellerStatus(status) {
 
 }
 
-function buildTravellerCard(
-
-  traveller
-
-) {
+function buildTravellerCard(traveller) {
 
   const distanceNumber =
 
-    Number(
-
-      traveller.distance_km
-
-    );
+    Number(traveller.distance_km);
 
   const distance =
 
@@ -970,6 +1372,16 @@ function buildTravellerCard(
 
     );
 
+  const publicName =
+
+    escapeHtml(
+
+      traveller.public_name ||
+
+      "Nearby Nomad"
+
+    );
+
   const status =
 
     escapeHtml(
@@ -981,6 +1393,50 @@ function buildTravellerCard(
       )
 
     );
+
+  const homeRegion =
+
+    traveller.home_region
+
+      ? `
+
+        <p style="margin:8px 0 0;">
+
+          <strong>From:</strong>
+
+          ${escapeHtml(
+
+            traveller.home_region
+
+          )}
+
+        </p>
+
+      `
+
+      : "";
+
+  const vehicleType =
+
+    traveller.vehicle_type
+
+      ? `
+
+        <p style="margin:8px 0 0;">
+
+          <strong>Travelling in:</strong>
+
+          ${escapeHtml(
+
+            traveller.vehicle_type
+
+          )}
+
+        </p>
+
+      `
+
+      : "";
 
   const destination =
 
@@ -1024,13 +1480,41 @@ function buildTravellerCard(
 
       : "";
 
+  const chatStatus =
+
+    traveller.open_to_chat
+
+      ? `
+
+        <p
+
+          style="
+
+            margin:10px 0 0;
+
+            color:#2f8b57;
+
+            font-weight:700;
+
+          "
+
+        >
+
+          💬 Open to friendly messages
+
+        </p>
+
+      `
+
+      : "";
+
   return `
 
     <div
 
       style="
 
-        max-width:260px;
+        max-width:270px;
 
         padding:4px 2px;
 
@@ -1066,7 +1550,7 @@ function buildTravellerCard(
 
           <strong style="font-size:17px;">
 
-            Nearby Nomad
+            ${publicName}
 
           </strong>
 
@@ -1100,9 +1584,15 @@ function buildTravellerCard(
 
       </p>
 
+      ${homeRegion}
+
+      ${vehicleType}
+
       ${destination}
 
       ${intro}
+
+      ${chatStatus}
 
       <p
 
@@ -1204,19 +1694,11 @@ async function loadNearbyTravellers() {
 
       const latitude =
 
-        Number(
-
-          traveller.latitude
-
-        );
+        Number(traveller.latitude);
 
       const longitude =
 
-        Number(
-
-          traveller.longitude
-
-        );
+        Number(traveller.longitude);
 
       if (
 
@@ -1234,9 +1716,7 @@ async function loadNearbyTravellers() {
 
         new google.maps.Marker({
 
-          map:
-
-            travellerMapInstance,
+          map: travellerMapInstance,
 
           position: {
 
@@ -1246,21 +1726,19 @@ async function loadNearbyTravellers() {
 
           },
 
-          icon:
+          icon: createEmojiMarkerIcon(
 
-            createEmojiMarkerIcon(
+            traveller.map_emoji || "🚐",
 
-              traveller.map_emoji ||
+            46,
 
-                "🚐",
+            "#0d3b2f"
 
-              46,
-
-              "#0d3b2f"
-
-            ),
+          ),
 
           title:
+
+            traveller.public_name ||
 
             "Nearby traveller",
 
@@ -1294,13 +1772,9 @@ async function loadNearbyTravellers() {
 
           travellerInfoWindow.open({
 
-            map:
+            map: travellerMapInstance,
 
-              travellerMapInstance,
-
-            anchor:
-
-              marker
+            anchor: marker
 
           });
 
@@ -1378,27 +1852,17 @@ function initTravellerMap() {
 
       {
 
-        center:
-
-          fallbackLocation,
+        center: fallbackLocation,
 
         zoom: 10,
 
-        disableDefaultUI:
+        disableDefaultUI: false,
 
-          false,
+        mapTypeControl: false,
 
-        mapTypeControl:
+        streetViewControl: true,
 
-          false,
-
-        streetViewControl:
-
-          true,
-
-        fullscreenControl:
-
-          true
+        fullscreenControl: true
 
       }
 
@@ -1516,11 +1980,7 @@ function initTravellerMap() {
 
       );
 
-      travellerMapInstance.setZoom(
-
-        11
-
-      );
+      travellerMapInstance.setZoom(11);
 
       updateTravellerIdentityMarker(
 
@@ -1552,17 +2012,11 @@ function initTravellerMap() {
 
     {
 
-      enableHighAccuracy:
+      enableHighAccuracy: false,
 
-        false,
+      timeout: 8000,
 
-      timeout:
-
-        8000,
-
-      maximumAge:
-
-        600000
+      maximumAge: 600000
 
     }
 
@@ -1630,33 +2084,11 @@ async function loadDashboardListings() {
 
       )
 
-      .eq(
+      .eq("status", "published")
 
-        "status",
+      .not("latitude", "is", null)
 
-        "published"
-
-      )
-
-      .not(
-
-        "latitude",
-
-        "is",
-
-        null
-
-      )
-
-      .not(
-
-        "longitude",
-
-        "is",
-
-        null
-
-      );
+      .not("longitude", "is", null);
 
   if (error) {
 
@@ -1690,19 +2122,11 @@ async function loadDashboardListings() {
 
       const latitude =
 
-        Number(
-
-          listing.latitude
-
-        );
+        Number(listing.latitude);
 
       const longitude =
 
-        Number(
-
-          listing.longitude
-
-        );
+        Number(listing.longitude);
 
       if (
 
@@ -1720,9 +2144,7 @@ async function loadDashboardListings() {
 
         new google.maps.Marker({
 
-          map:
-
-            travellerMapInstance,
+          map: travellerMapInstance,
 
           position: {
 
@@ -2014,9 +2436,7 @@ async function loadLocalWeather(
 
     const values = {
 
-      weatherIcon:
-
-        icon,
+      weatherIcon: icon,
 
       weatherTemperature:
 
@@ -2060,11 +2480,7 @@ async function loadLocalWeather(
 
         const element =
 
-          document.getElementById(
-
-            id
-
-          );
+          document.getElementById(id);
 
         if (element) {
 
@@ -2082,9 +2498,7 @@ async function loadLocalWeather(
 
     if (content) {
 
-      content.hidden =
-
-        false;
+      content.hidden = false;
 
     }
 
@@ -2156,17 +2570,11 @@ function initLocalWeather() {
 
     {
 
-      enableHighAccuracy:
+      enableHighAccuracy: false,
 
-        false,
+      timeout: 8000,
 
-      timeout:
-
-        8000,
-
-      maximumAge:
-
-        600000
+      maximumAge: 600000
 
     }
 
@@ -2206,6 +2614,8 @@ async function loadMapEmoji() {
 
     updateTravellerIdentityMarker();
 
+    updateTravellerCardPreview();
+
   }
 
   const user =
@@ -2232,13 +2642,7 @@ async function loadMapEmoji() {
 
       .select("map_emoji")
 
-      .eq(
-
-        "id",
-
-        user.id
-
-      )
+      .eq("id", user.id)
 
       .maybeSingle();
 
@@ -2282,6 +2686,8 @@ async function loadMapEmoji() {
 
   updateTravellerIdentityMarker();
 
+  updateTravellerCardPreview();
+
 }
 
 /* =========================================================
@@ -2316,101 +2722,91 @@ document
 
   )
 
-  .forEach(
+  .forEach((emojiButton) => {
 
-    (emojiButton) => {
+    emojiButton.addEventListener(
 
-      emojiButton.addEventListener(
+      "click",
 
-        "click",
+      async () => {
 
-        async () => {
+        const selectedEmoji =
 
-          const selectedEmoji =
+          emojiButton.textContent.trim();
 
-            emojiButton.textContent.trim();
+        currentEmoji =
 
-          currentEmoji =
+          selectedEmoji;
+
+        if (mapIdentityButton) {
+
+          mapIdentityButton.textContent =
 
             selectedEmoji;
 
-          if (mapIdentityButton) {
+        }
 
-            mapIdentityButton.textContent =
+        if (emojiPicker) {
 
-              selectedEmoji;
-
-          }
-
-          if (emojiPicker) {
-
-            emojiPicker.hidden =
-
-              true;
-
-          }
-
-          localStorage.setItem(
-
-            "npp-map-emoji",
-
-            selectedEmoji
-
-          );
-
-          updateTravellerIdentityMarker();
-
-          const user =
-
-            await getSignedInUser();
-
-          if (!user) {
-
-            return;
-
-          }
-
-          const { error } =
-
-            await supabase
-
-              .from("profiles")
-
-              .update({
-
-                map_emoji:
-
-                  selectedEmoji
-
-              })
-
-              .eq(
-
-                "id",
-
-                user.id
-
-              );
-
-          if (error) {
-
-            console.error(
-
-              "Could not save map emoji:",
-
-              error
-
-            );
-
-          }
+          emojiPicker.hidden = true;
 
         }
 
-      );
+        localStorage.setItem(
 
-    }
+          "npp-map-emoji",
 
-  );
+          selectedEmoji
+
+        );
+
+        updateTravellerIdentityMarker();
+
+        updateTravellerCardPreview();
+
+        const user =
+
+          await getSignedInUser();
+
+        if (!user) {
+
+          return;
+
+        }
+
+        const { error } =
+
+          await supabase
+
+            .from("profiles")
+
+            .update({
+
+              map_emoji:
+
+                selectedEmoji
+
+            })
+
+            .eq("id", user.id);
+
+        if (error) {
+
+          console.error(
+
+            "Could not save map emoji:",
+
+            error
+
+          );
+
+        }
+
+      }
+
+    );
+
+  });
 
 /* =========================================================
 
@@ -2430,9 +2826,17 @@ document.addEventListener(
 
     initTravellerVisibilityToggle();
 
+    initTravellerCardEditorToggle();
+
+    initTravellerCardPreview();
+
+    initTravellerCardForm();
+
     loadMapEmoji();
 
     loadTravellerVisibility();
+
+    loadTravellerCardEditor();
 
     if (window.google?.maps) {
 
