@@ -823,24 +823,27 @@ function initTravellerVisibilityToggle() {
         const saved =
 
           await saveTravellerMapLocation();
-
+console.log("Traveller visibility save result:", saved);
         if (!saved) {
 
-          travellerMapVisibleToggle.checked =
+  console.error("Traveller visibility could not be saved.");
 
-            false;
+  travellerMapVisibleToggle.checked = false;
 
-          travellerMapIsVisible = false;
+  travellerMapIsVisible = false;
 
-          localStorage.setItem(
+  localStorage.setItem(
 
-            "npp-traveller-map-visible",
+    "npp-traveller-map-visible",
 
-            "false"
+    "false"
 
-          );
+  );
 
-        }
+  return;
+
+}
+
 
       } else {
 
