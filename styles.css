@@ -89,11 +89,20 @@ button,input,select{font:inherit}
   background:linear-gradient(90deg,#fffaf2 0%,#fff6e8 46%,#f4dfc6 46%)
 }
 
-.hero-copy{
-  padding:54px 3vw 40px 5%;
-  display:flex;
-  flex-direction:column;
-  justify-content:center
+.hero-copy {
+
+  padding: 54px 3vw 40px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+
+  align-items: center;
+
+  text-align: center;
+
 }
 
 .kicker{
@@ -103,13 +112,28 @@ button,input,select{font:inherit}
   letter-spacing:.04em
 }
 
-.hero h1{
-  font-family:Georgia,"Times New Roman",serif;
-  margin:0;
-  color:var(--forest);
-  font-size:clamp(50px,6vw,84px);
-  line-height:1.02;
-  letter-spacing:-.045em
+.hero h1 {
+
+  font-family: Georgia, "Times New Roman", serif;
+
+  margin: 0;
+
+  color: var(--forest);
+
+  font-size: clamp(50px, 6vw, 84px);
+
+  line-height: 1.02;
+
+  letter-spacing: -0.045em;
+
+  width: 100%;
+
+  max-width: none;
+
+  text-align: center;
+
+  white-space: nowrap;
+
 }
 
 .hero h1 span{color:var(--orange)}
@@ -1336,5 +1360,16 @@ main {
 .btn-login:active {
 
   transform: scale(0.98);
+
+}
+@media (max-width: 900px) {
+
+  .hero h1 {
+
+    white-space: normal;
+
+    font-size: clamp(42px, 10vw, 64px);
+
+  }
 
 }
