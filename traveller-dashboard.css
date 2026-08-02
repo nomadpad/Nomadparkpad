@@ -1202,3 +1202,114 @@ body {
   transform: scale(0.88);
 
 }
+.traveller-visibility-control {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 14px;
+
+  margin: 18px 0 22px;
+
+  padding: 16px;
+
+  border: 1px solid rgba(243, 107, 22, 0.35);
+
+  border-radius: 18px;
+
+  background: rgba(255, 250, 242, 0.08);
+
+}
+
+.traveller-visibility-control strong {
+
+  display: block;
+
+  margin-bottom: 4px;
+
+}
+
+.traveller-visibility-control p {
+
+  margin: 0;
+
+  font-size: 13px;
+
+  opacity: 0.78;
+
+}
+
+.visibility-switch {
+
+  position: relative;
+
+  display: inline-block;
+
+  width: 52px;
+
+  height: 30px;
+
+  flex: 0 0 auto;
+
+}
+
+.visibility-switch input {
+
+  opacity: 0;
+
+  width: 0;
+
+  height: 0;
+
+}
+
+.visibility-slider {
+
+  position: absolute;
+
+  inset: 0;
+
+  cursor: pointer;
+
+  border-radius: 999px;
+
+  background: rgba(255, 255, 255, 0.25);
+
+  transition: 0.2s ease;
+
+}
+
+.visibility-slider::before {
+
+  content: "";
+
+  position: absolute;
+
+  width: 22px;
+
+  height: 22px;
+
+  left: 4px;
+
+  top: 4px;
+
+  border-radius: 50%;
+
+  background: white;
+
+  transition: 0.2s ease;
+
+}
+
+.visibility-switch input:checked + .visibility-slider {
+
+  background: #f36b16;
+
+}
+
+.visibility-switch input:checked + .visibility-slider::before {
+
+  transform: translateX(22px);
+
+}
