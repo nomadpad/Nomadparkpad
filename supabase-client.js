@@ -12,5 +12,5 @@ const configured =
 
 export const supabase = configured ? createClient(url, key) : null;
 export const supabaseConfigured = Boolean(configured);
-
+window.supabase = supabase;
 window.NPP_SUPABASE_READY = supabaseConfigured;
