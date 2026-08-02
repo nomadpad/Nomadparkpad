@@ -30,6 +30,22 @@ const FILTER_LABELS = {
 
 };
 
+let travellerMapInstance = null;
+
+let dashboardListingMarkers = [];
+
+let currentEmoji = "😎";
+
+const mapIdentityButton = document.getElementById("mapIdentityButton");
+
+const emojiPicker = document.getElementById("emojiPicker");
+
+/* ---------------------------------
+
+   MAP FILTERS
+
+--------------------------------- */
+
 function initMapFilters() {
 
   const buttons = document.querySelectorAll(".map-filter-button");
@@ -103,14 +119,26 @@ function initMapFilters() {
   activateFilter(activeButton);
 
 }
-let travellerMapInstance = null;
 
-let dashboardListingMarkers = [];
+/* ---------------------------------
+
+   TRAVELLER MAP
+
+--------------------------------- */
+
 function initTravellerMap() {
 
   const mapElement = document.getElementById("travellerMap");
 
   if (!mapElement || !window.google?.maps) {
+
+    return;
+
+  }
+
+  if (travellerMapInstance) {
+
+    google.maps.event.trigger(travellerMapInstance, "resize");
 
     return;
 
@@ -139,46 +167,49 @@ function initTravellerMap() {
     fullscreenControl: true
 
   });
+
   travellerMapInstance = map;
 
-loadDashboardListings();
-const satelliteButton = document.querySelector(
+  loadDashboardListings();
 
-  '.map-type-button[data-map-type="satellite"]'
+  const satelliteButton = document.querySelector(
 
-);
+    '.map-type-button[data-map-type="satellite"]'
 
-if (satelliteButton) {
+  );
 
-  satelliteButton.addEventListener("click", () => {
+  if (satelliteButton) {
 
-    const isSatellite =
+    satelliteButton.addEventListener("click", () => {
 
-      map.getMapTypeId() === google.maps.MapTypeId.SATELLITE;
+      const isSatellite =
 
-    map.setMapTypeId(
+        map.getMapTypeId() === google.maps.MapTypeId.SATELLITE;
 
-      isSatellite
+      map.setMapTypeId(
 
-        ? google.maps.MapTypeId.ROADMAP
+        isSatellite
 
-        : google.maps.MapTypeId.SATELLITE
+          ? google.maps.MapTypeId.ROADMAP
 
-    );
+          : google.maps.MapTypeId.SATELLITE
 
-    satelliteButton.classList.toggle("is-active", !isSatellite);
+      );
 
-    const label = satelliteButton.querySelector("span");
+      satelliteButton.classList.toggle("is-active", !isSatellite);
 
-    if (label) {
+      const label = satelliteButton.querySelector("span");
 
-      label.textContent = isSatellite ? "Satellite" : "Map";
+      if (label) {
 
-    }
+        label.textContent = isSatellite ? "Satellite" : "Map";
 
-  });
+      }
 
-}
+    });
+
+  }
+
   if (!navigator.geolocation) {
 
     return;
@@ -212,6 +243,117 @@ if (satelliteButton) {
   );
 
 }
+
+window.initTravellerMap = initTravellerMap;
+
+/* ---------------------------------
+
+   PUBLISHED PAD MARKERS
+
+--------------------------------- */
+
+async function loadDashboardListings() {
+
+  if (!window.supabase || !travellerMapInstance) {
+
+    console.warn("Supabase or dashboard map is not ready.");
+
+    return;
+
+  }
+
+  const { data, error } = await supabase
+
+    .from("listings")
+
+    .select(
+
+      "id, title, city, province, nightly_price, latitude, longitude, status"
+
+    )
+
+    .eq("status", "published")
+
+    .not("latitude", "is", null)
+
+    .not("longitude", "is", null);
+
+  if (error) {
+
+    console.error("Could not load dashboard listings:", error);
+
+    return;
+
+  }
+
+  dashboardListingMarkers.forEach((marker) => {
+
+    marker.setMap(null);
+
+  });
+
+  dashboardListingMarkers = [];
+
+  (data || []).forEach((listing) => {
+
+    const latitude = Number(listing.latitude);
+
+    const longitude = Number(listing.longitude);
+
+    if (!Number.isFinite(latitude) || !Number.isFinite(longitude)) {
+
+      return;
+
+    }
+
+    const marker = new google.maps.Marker({
+
+      map: travellerMapInstance,
+
+      position: {
+
+        lat: latitude,
+
+        lng: longitude
+
+      },
+
+      title: listing.title || "Nomad Park Pad"
+
+    });
+
+    dashboardListingMarkers.push(marker);
+
+  });
+
+  updateDashboardListingCount();
+
+}
+
+function updateDashboardListingCount() {
+
+  const countDisplay = document.querySelector(".map-filter-count");
+
+  if (!countDisplay) {
+
+    return;
+
+  }
+
+  const count = dashboardListingMarkers.length;
+
+  const word = count === 1 ? "location" : "locations";
+
+  countDisplay.textContent = `${count} ${word} nearby`;
+
+}
+
+/* ---------------------------------
+
+   WEATHER
+
+--------------------------------- */
+
 const WEATHER_CODES = {
 
   0: ["☀️", "Clear sky"],
@@ -364,15 +506,19 @@ async function loadLocalWeather(latitude, longitude) {
 
     document.getElementById("weatherIcon").textContent = icon;
 
-    document.getElementById("weatherTemperature").textContent =
+    document.getElementById(
 
-      `${temperature}°C`;
+      "weatherTemperature"
+
+    ).textContent = `${temperature}°C`;
 
     document.getElementById("weatherCondition").textContent = condition;
 
-    document.getElementById("weatherFeelsLike").textContent =
+    document.getElementById(
 
-      `${feelsLike}°C`;
+      "weatherFeelsLike"
+
+    ).textContent = `${feelsLike}°C`;
 
     document.getElementById("weatherWind").textContent = `${wind} km/h`;
 
@@ -382,17 +528,25 @@ async function loadLocalWeather(latitude, longitude) {
 
       getWeatherSummary(temperature, wind, rainChance, condition);
 
-    loading.remove();
+    loading?.remove();
 
-content.hidden = false;
+    if (content) {
+
+      content.hidden = false;
+
+    }
 
   } catch (error) {
 
     console.error(error);
 
-    loading.textContent =
+    if (loading) {
 
-      "Local weather could not be loaded. Tap refresh to try again.";
+      loading.textContent =
+
+        "Local weather could not be loaded. Tap refresh to try again.";
+
+    }
 
   }
 
@@ -461,122 +615,36 @@ function initLocalWeather() {
   );
 
 }
-async function loadDashboardListings() {
 
-  if (!window.supabase || !travellerMapInstance) {
+/* ---------------------------------
 
-    console.warn("Supabase or dashboard map is not ready.");
+   MAP IDENTITY EMOJI
 
-    return;
+--------------------------------- */
 
-  }
+async function loadMapEmoji() {
 
-  const { data, error } = await supabase
+  const localEmoji = localStorage.getItem("npp-map-emoji");
 
-    .from("listings")
+  if (localEmoji) {
 
-    .select(
+    currentEmoji = localEmoji;
 
-      "id, title, city, province, nightly_price, latitude, longitude, status"
+    if (mapIdentityButton) {
 
-    )
-
-    .eq("status", "published")
-
-    .not("latitude", "is", null)
-
-    .not("longitude", "is", null);
-
-  if (error) {
-
-    console.error("Could not load dashboard listings:", error);
-
-    return;
-
-  }
-
-  dashboardListingMarkers.forEach((marker) => {
-
-    marker.setMap(null);
-
-  });
-
-  dashboardListingMarkers = [];
-
-  (data || []).forEach((listing) => {
-
-    const latitude = Number(listing.latitude);
-
-    const longitude = Number(listing.longitude);
-
-    if (!Number.isFinite(latitude) || !Number.isFinite(longitude)) {
-
-      return;
+      mapIdentityButton.textContent = localEmoji;
 
     }
 
-    const marker = new google.maps.Marker({
+  }
 
-      map: travellerMapInstance,
+  if (!window.supabase) {
 
-      position: {
-
-        lat: latitude,
-
-        lng: longitude
-
-      },
-
-      title: listing.title || "Nomad Park Pad"
-
-    });
-
-    dashboardListingMarkers.push(marker);
-
-  });
-
-  updateDashboardListingCount();
-
-}
-
-function updateDashboardListingCount() {
-
-  const countDisplay = document.querySelector(".map-filter-count");
-
-  if (!countDisplay) {
+    console.warn("Supabase is not ready for emoji loading.");
 
     return;
 
   }
-
-  const count = dashboardListingMarkers.length;
-
-  const word = count === 1 ? "location" : "locations";
-
-  countDisplay.textContent = `${count} ${word} nearby`;
-
-}
-window.initTravellerMap = initTravellerMap;
-document.addEventListener("DOMContentLoaded", () => {
-
-  initMapFilters();
-
-  initLocalWeather();
-
-  if (window.google?.maps) {
-
-    initTravellerMap();
-
-  }
-
-});
-const mapIdentityButton = document.getElementById("mapIdentityButton");
-
-const emojiPicker = document.getElementById("emojiPicker");
-
-let currentEmoji = "😎";
-
-async function loadMapEmoji() {
 
   const {
 
@@ -612,13 +680,15 @@ async function loadMapEmoji() {
 
   }
 
-  currentEmoji = profile?.map_emoji || "😎";
+  currentEmoji = profile?.map_emoji || localEmoji || "😎";
 
   if (mapIdentityButton) {
 
-  mapIdentityButton.textContent = currentEmoji;
+    mapIdentityButton.textContent = currentEmoji;
 
-}
+  }
+
+  localStorage.setItem("npp-map-emoji", currentEmoji);
 
 }
 
@@ -640,72 +710,94 @@ document
 
     emojiButton.addEventListener("click", async () => {
 
-  const selectedEmoji = emojiButton.textContent.trim();
+      const selectedEmoji = emojiButton.textContent.trim();
 
-  currentEmoji = selectedEmoji;
+      currentEmoji = selectedEmoji;
 
-  if (mapIdentityButton) {
+      if (mapIdentityButton) {
 
-  mapIdentityButton.textContent = currentEmoji;
+        mapIdentityButton.textContent = selectedEmoji;
 
-}
+      }
 
-  if (emojiPicker) {
+      if (emojiPicker) {
 
-  emojiPicker.hidden = true;
+        emojiPicker.hidden = true;
 
-}
+      }
 
-  localStorage.setItem("npp-map-emoji", selectedEmoji);
+      localStorage.setItem("npp-map-emoji", selectedEmoji);
 
-  if (!window.supabase) {
+      if (!window.supabase) {
 
-    console.error("Supabase is not ready yet.");
+        console.warn("Emoji changed locally, but Supabase is not ready.");
 
-    return;
+        return;
 
-  }
+      }
 
-  const {
+      const {
 
-    data: { user },
+        data: { user },
 
-    error: userError
+        error: userError
 
-  } = await supabase.auth.getUser();
+      } = await supabase.auth.getUser();
 
-  if (userError || !user) {
+      if (userError || !user) {
 
-    console.error(
+        console.error(
 
-      "Could not save emoji without a signed-in user:",
+          "Could not save emoji without a signed-in user:",
 
-      userError
+          userError
 
-    );
+        );
 
-    return;
+        return;
 
-  }
+      }
 
-  const { error: updateError } = await supabase
+      const { error: updateError } = await supabase
 
-    .from("profiles")
+        .from("profiles")
 
-    .update({ map_emoji: selectedEmoji })
+        .update({
 
-    .eq("id", user.id);
+          map_emoji: selectedEmoji
 
-  if (updateError) {
+        })
 
-    console.error("Could not save map emoji:", updateError);
+        .eq("id", user.id);
 
-  }
+      if (updateError) {
 
-});
+        console.error("Could not save map emoji:", updateError);
+
+      }
+
+    });
+
+  });
+
+/* ---------------------------------
+
+   DASHBOARD STARTUP
+
+--------------------------------- */
 
 document.addEventListener("DOMContentLoaded", () => {
 
+  initMapFilters();
+
+  initLocalWeather();
+
   loadMapEmoji();
+
+  if (window.google?.maps) {
+
+    initTravellerMap();
+
+  }
 
 });
