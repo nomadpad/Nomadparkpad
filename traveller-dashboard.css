@@ -1313,3 +1313,374 @@ body {
   transform: translateX(22px);
 
 }
+/* =========================================================
+
+   PUBLIC TRAVELLER CARD EDITOR
+
+========================================================= */
+
+.traveller-card-editor {
+
+  margin: 18px 0 22px;
+
+  border: 1px solid rgba(243, 107, 22, 0.35);
+
+  border-radius: 20px;
+
+  overflow: hidden;
+
+  background: rgba(255, 250, 242, 0.08);
+
+}
+
+.traveller-card-editor-toggle {
+
+  width: 100%;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 16px;
+
+  padding: 17px 18px;
+
+  border: 0;
+
+  background: transparent;
+
+  color: inherit;
+
+  text-align: left;
+
+  cursor: pointer;
+
+}
+
+.traveller-card-editor-toggle:active {
+
+  background: rgba(255, 255, 255, 0.08);
+
+}
+
+.traveller-card-editor-heading {
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 4px;
+
+}
+
+.traveller-card-editor-heading strong {
+
+  font-size: 16px;
+
+}
+
+.traveller-card-editor-heading small {
+
+  font-size: 13px;
+
+  opacity: 0.75;
+
+}
+
+.traveller-card-editor-arrow {
+
+  font-size: 22px;
+
+  transition: transform 0.2s ease;
+
+}
+
+.traveller-card-editor-toggle[aria-expanded="true"]
+
+  .traveller-card-editor-arrow {
+
+  transform: rotate(180deg);
+
+}
+
+.traveller-card-editor-body {
+
+  padding: 0 18px 20px;
+
+}
+
+.traveller-card-editor-body[hidden] {
+
+  display: none;
+
+}
+
+.traveller-card-field {
+
+  margin-top: 16px;
+
+}
+
+.traveller-card-field label {
+
+  display: block;
+
+  margin-bottom: 7px;
+
+  font-weight: 700;
+
+}
+
+.traveller-card-field input,
+
+.traveller-card-field textarea {
+
+  width: 100%;
+
+  box-sizing: border-box;
+
+  border: 1px solid rgba(13, 59, 47, 0.22);
+
+  border-radius: 14px;
+
+  padding: 13px 14px;
+
+  background: #ffffff;
+
+  color: #173c31;
+
+  font: inherit;
+
+  outline: none;
+
+}
+
+.traveller-card-field textarea {
+
+  resize: vertical;
+
+  min-height: 110px;
+
+}
+
+.traveller-card-field input:focus,
+
+.traveller-card-field textarea:focus {
+
+  border-color: #f36b16;
+
+  box-shadow: 0 0 0 3px rgba(243, 107, 22, 0.14);
+
+}
+
+.traveller-card-field small {
+
+  display: block;
+
+  margin-top: 6px;
+
+  font-size: 12px;
+
+  opacity: 0.72;
+
+}
+
+.traveller-chat-option {
+
+  display: flex;
+
+  align-items: flex-start;
+
+  gap: 12px;
+
+  margin-top: 18px;
+
+  padding: 14px;
+
+  border-radius: 16px;
+
+  background: rgba(255, 255, 255, 0.08);
+
+  cursor: pointer;
+
+}
+
+.traveller-chat-option input {
+
+  width: 20px;
+
+  height: 20px;
+
+  margin-top: 2px;
+
+  accent-color: #f36b16;
+
+}
+
+.traveller-chat-option span {
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 4px;
+
+}
+
+.traveller-chat-option small {
+
+  font-size: 12px;
+
+  opacity: 0.74;
+
+}
+
+.traveller-card-preview {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 14px;
+
+  margin-top: 20px;
+
+  padding: 16px;
+
+  border-radius: 18px;
+
+  background: #fffaf2;
+
+  color: #173c31;
+
+  box-shadow: 0 10px 26px rgba(13, 59, 47, 0.12);
+
+}
+
+.traveller-card-preview-emoji {
+
+  flex: 0 0 auto;
+
+  width: 54px;
+
+  height: 54px;
+
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  border: 3px solid #f36b16;
+
+  border-radius: 50%;
+
+  background: #ffffff;
+
+  font-size: 28px;
+
+}
+
+.traveller-card-preview strong {
+
+  display: block;
+
+  font-size: 17px;
+
+}
+
+.traveller-card-preview p {
+
+  margin: 5px 0 0;
+
+  font-size: 13px;
+
+  color: #66746e;
+
+}
+
+.traveller-card-message {
+
+  min-height: 20px;
+
+  margin: 14px 0 0;
+
+  font-size: 13px;
+
+  text-align: center;
+
+}
+
+.traveller-card-message.is-success {
+
+  color: #2f8b57;
+
+}
+
+.traveller-card-message.is-error {
+
+  color: #c44232;
+
+}
+
+.traveller-card-save-button {
+
+  width: 100%;
+
+  margin-top: 10px;
+
+  padding: 14px 18px;
+
+  border: 0;
+
+  border-radius: 14px;
+
+  background: #f36b16;
+
+  color: #ffffff;
+
+  font-weight: 800;
+
+  font-size: 15px;
+
+  cursor: pointer;
+
+}
+
+.traveller-card-save-button:active {
+
+  transform: scale(0.98);
+
+}
+
+.traveller-card-save-button:disabled {
+
+  opacity: 0.6;
+
+  cursor: wait;
+
+}
+
+@media (max-width: 560px) {
+
+  .traveller-card-editor-toggle {
+
+    padding: 15px 16px;
+
+  }
+
+  .traveller-card-editor-body {
+
+    padding: 0 16px 18px;
+
+  }
+
+  .traveller-card-preview {
+
+    align-items: flex-start;
+
+  }
+
+}
