@@ -632,46 +632,60 @@ document
 
     emojiButton.addEventListener("click", async () => {
 
-      const selectedEmoji = emojiButton.textContent.trim();
+  const selectedEmoji = emojiButton.textContent.trim();
 
-      const {
+  currentEmoji = selectedEmoji;
 
-        data: { user },
+  mapIdentityButton.textContent = selectedEmoji;
 
-        error: userError
+  emojiPicker.hidden = true;
 
-      } = await supabase.auth.getUser();
+  localStorage.setItem("npp-map-emoji", selectedEmoji);
 
-      if (userError || !user) {
+  if (!window.supabase) {
 
-        console.error("Could not save emoji without a signed-in user:", userError);
+    console.error("Supabase is not ready yet.");
 
-        return;
+    return;
 
-      }
+  }
 
-      currentEmoji = selectedEmoji;
+  const {
 
-      mapIdentityButton.textContent = selectedEmoji;
+    data: { user },
 
-      emojiPicker.hidden = true;
+    error: userError
 
-      const { error: updateError } = await supabase
+  } = await supabase.auth.getUser();
 
-        .from("profiles")
+  if (userError || !user) {
 
-        .update({ map_emoji: selectedEmoji })
+    console.error(
 
-        .eq("id", user.id);
+      "Could not save emoji without a signed-in user:",
 
-      if (updateError) {
+      userError
 
-        console.error("Could not save map emoji:", updateError);
+    );
 
-      }
+    return;
 
-    });
+  }
 
-  });
+  const { error: updateError } = await supabase
+
+    .from("profiles")
+
+    .update({ map_emoji: selectedEmoji })
+
+    .eq("id", user.id);
+
+  if (updateError) {
+
+    console.error("Could not save map emoji:", updateError);
+
+  }
+
+});
 
 loadMapEmoji();
