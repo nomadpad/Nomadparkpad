@@ -1,4 +1,5 @@
 import { supabase } from "./supabase-client.js";
+
 /* =========================================================
 
    NOMAD PARK PAD
@@ -6,6 +7,8 @@ import { supabase } from "./supabase-client.js";
    TRAVELLER COMMAND CENTRE
 
 ========================================================= */
+
+const NEARBY_TRAVELLER_RADIUS_KM = 30;
 
 const FILTER_COUNTS = {
 
@@ -95,7 +98,11 @@ let travellerMapInstance = null;
 
 let travellerIdentityMarker = null;
 
+let travellerInfoWindow = null;
+
 let dashboardListingMarkers = [];
+
+let nearbyTravellerMarkers = [];
 
 let currentEmoji = "😎";
 
@@ -131,39 +138,17 @@ async function getSignedInUser() {
 
   try {
 
-    if (typeof supabase === "undefined") {
+    const { data, error } =
 
-      alert("Supabase client is undefined on this page.");
-
-      return null;
-
-    }
-
-    if (!supabase?.auth) {
-
-      alert("Supabase authentication is not available on this page.");
-
-      return null;
-
-    }
-
-    const {
-
-      data,
-
-      error
-
-    } = await supabase.auth.getSession();
+      await supabase.auth.getSession();
 
     if (error) {
 
-      console.error("Session lookup failed:", error);
+      console.error(
 
-      alert(
+        "Session lookup failed:",
 
-        "Session error: " +
-
-        (error.message || "Unknown error")
+        error
 
       );
 
@@ -171,31 +156,15 @@ async function getSignedInUser() {
 
     }
 
-    const user = data?.session?.user;
-
-    if (!user) {
-
-      alert(
-
-        "No active login session was found. Please log out and log back in."
-
-      );
-
-      return null;
-
-    }
-
-    return user;
+    return data?.session?.user || null;
 
   } catch (error) {
 
-    console.error("Account lookup crashed:", error);
+    console.error(
 
-    alert(
+      "Account lookup crashed:",
 
-      "Account lookup error: " +
-
-      (error.message || "Unknown error")
+      error
 
     );
 
@@ -204,8 +173,6 @@ async function getSignedInUser() {
   }
 
 }
-
-
 
 /* =========================================================
 
@@ -217,11 +184,19 @@ function initMapFilters() {
 
   const buttons =
 
-    document.querySelectorAll(".map-filter-button");
+    document.querySelectorAll(
+
+      ".map-filter-button"
+
+    );
 
   const filterSection =
 
-    document.querySelector(".dashboard-map-filters");
+    document.querySelector(
+
+      ".dashboard-map-filters"
+
+    );
 
   if (!buttons.length || !filterSection) {
 
@@ -231,15 +206,27 @@ function initMapFilters() {
 
   let countDisplay =
 
-    document.querySelector(".map-filter-count");
+    document.querySelector(
+
+      ".map-filter-count"
+
+    );
 
   if (!countDisplay) {
 
-    countDisplay = document.createElement("p");
+    countDisplay =
 
-    countDisplay.className = "map-filter-count";
+      document.createElement("p");
 
-    filterSection.appendChild(countDisplay);
+    countDisplay.className =
+
+      "map-filter-count";
+
+    filterSection.appendChild(
+
+      countDisplay
+
+    );
 
   }
 
@@ -249,21 +236,39 @@ function initMapFilters() {
 
       item.classList.remove("is-active");
 
-      item.setAttribute("aria-pressed", "false");
+      item.setAttribute(
+
+        "aria-pressed",
+
+        "false"
+
+      );
 
     });
 
     button.classList.add("is-active");
 
-    button.setAttribute("aria-pressed", "true");
+    button.setAttribute(
 
-    const filter = button.dataset.filter || "pads";
+      "aria-pressed",
 
-    const count = FILTER_COUNTS[filter] ?? 0;
+      "true"
+
+    );
+
+    const filter =
+
+      button.dataset.filter || "pads";
+
+    const count =
+
+      FILTER_COUNTS[filter] ?? 0;
 
     const label =
 
-      FILTER_LABELS[filter] || "locations nearby";
+      FILTER_LABELS[filter] ||
+
+      "locations nearby";
 
     countDisplay.textContent =
 
@@ -277,7 +282,11 @@ function initMapFilters() {
 
       "aria-pressed",
 
-      button.classList.contains("is-active")
+      button.classList.contains(
+
+        "is-active"
+
+      )
 
         ? "true"
 
@@ -285,11 +294,17 @@ function initMapFilters() {
 
     );
 
-    button.addEventListener("click", () => {
+    button.addEventListener(
 
-      activateFilter(button);
+      "click",
 
-    });
+      () => {
+
+        activateFilter(button);
+
+      }
+
+    );
 
   });
 
@@ -307,13 +322,23 @@ function initMapFilters() {
 
 /* =========================================================
 
-   EMOJI MARKER
+   EMOJI MARKERS
 
 ========================================================= */
 
-function createEmojiMarkerIcon(emoji, size = 52) {
+function createEmojiMarkerIcon(
 
-  const safeEmoji = emoji || "😎";
+  emoji,
+
+  size = 52,
+
+  ringColor = "#f36b16"
+
+) {
+
+  const safeEmoji =
+
+    emoji || "🚐";
 
   const svg = `
 
@@ -339,7 +364,7 @@ function createEmojiMarkerIcon(emoji, size = 52) {
 
         fill="#fffaf2"
 
-        stroke="#f36b16"
+        stroke="${ringColor}"
 
         stroke-width="4"
 
@@ -389,7 +414,13 @@ function createEmojiMarkerIcon(emoji, size = 52) {
 
     scaledSize:
 
-      new google.maps.Size(size, size),
+      new google.maps.Size(
+
+        size,
+
+        size
+
+      ),
 
     anchor:
 
@@ -425,7 +456,9 @@ function updateTravellerIdentityMarker(
 
   }
 
-  currentTravellerLocation = position;
+  currentTravellerLocation =
+
+    position;
 
   if (!travellerIdentityMarker) {
 
@@ -433,17 +466,23 @@ function updateTravellerIdentityMarker(
 
       new google.maps.Marker({
 
-        map: travellerMapInstance,
+        map:
+
+          travellerMapInstance,
 
         position,
 
-        icon: createEmojiMarkerIcon(
+        icon:
 
-          currentEmoji,
+          createEmojiMarkerIcon(
 
-          54
+            currentEmoji,
 
-        ),
+            54,
+
+            "#f36b16"
+
+          ),
 
         title: "You",
 
@@ -455,7 +494,11 @@ function updateTravellerIdentityMarker(
 
   }
 
-  travellerIdentityMarker.setPosition(position);
+  travellerIdentityMarker.setPosition(
+
+    position
+
+  );
 
   travellerIdentityMarker.setIcon(
 
@@ -463,7 +506,9 @@ function updateTravellerIdentityMarker(
 
       currentEmoji,
 
-      54
+      54,
+
+      "#f36b16"
 
     )
 
@@ -479,169 +524,89 @@ function updateTravellerIdentityMarker(
 
 function makeLocationApproximate(value) {
 
-  return Number(Number(value).toFixed(2));
+  return Number(
 
-}
+    Number(value).toFixed(2)
 
-function getCurrentPosition() {
-
-  return new Promise((resolve, reject) => {
-
-    if (!navigator.geolocation) {
-
-      reject(
-
-        new Error(
-
-          "Location services are unavailable."
-
-        )
-
-      );
-
-      return;
-
-    }
-
-    navigator.geolocation.getCurrentPosition(
-
-      resolve,
-
-      reject,
-
-      {
-
-        enableHighAccuracy: false,
-
-        timeout: 10000,
-
-        maximumAge: 300000
-
-      }
-
-    );
-
-  });
+  );
 
 }
 
 async function saveTravellerMapLocation() {
 
-  const user = await getSignedInUser();
+  const user =
 
-  if (!user) {
+    await getSignedInUser();
 
-    alert("Your account could not be loaded.");
+  if (
+
+    !user ||
+
+    !currentTravellerLocation
+
+  ) {
 
     return false;
 
   }
 
-  let location = currentTravellerLocation;
-
-  if (!location) {
-
-    try {
-
-      const position =
-
-        await getCurrentPosition();
-
-      location = {
-
-        lat: position.coords.latitude,
-
-        lng: position.coords.longitude
-
-      };
-
-      currentTravellerLocation = location;
-
-    } catch (error) {
-
-      console.error(
-
-        "Traveller location error:",
-
-        error
-
-      );
-
-      if (error.code === 1) {
-
-        alert("Location permission was denied.");
-
-      } else if (error.code === 2) {
-
-        alert(
-
-          "Your current location is unavailable."
-
-        );
-
-      } else if (error.code === 3) {
-
-        alert(
-
-          "The location request timed out. Please try again."
-
-        );
-
-      } else {
-
-        alert(
-
-          "Your current location could not be loaded."
-
-        );
-
-      }
-
-      return false;
-
-    }
-
-  }
-
   const approximateLatitude =
 
-    makeLocationApproximate(location.lat);
+    makeLocationApproximate(
+
+      currentTravellerLocation.lat
+
+    );
 
   const approximateLongitude =
 
-    makeLocationApproximate(location.lng);
+    makeLocationApproximate(
 
-  const { error } = await supabase
+      currentTravellerLocation.lng
 
-    .from("profiles")
+    );
 
-    .update({
+  const { error } =
 
-      traveller_map_visible: true,
+    await supabase
 
-      traveller_latitude:
+      .from("profiles")
 
-        approximateLatitude,
+      .update({
 
-      traveller_longitude:
+        traveller_map_visible: true,
 
-        approximateLongitude,
+        traveller_latitude:
 
-      traveller_location_updated_at:
+          approximateLatitude,
 
-        new Date().toISOString(),
+        traveller_longitude:
 
-      traveller_status: "available"
+          approximateLongitude,
 
-    })
+        traveller_location_updated_at:
 
-    .eq("id", user.id);
+          new Date().toISOString(),
+
+        traveller_status:
+
+          "available"
+
+      })
+
+      .eq(
+
+        "id",
+
+        user.id
+
+      );
 
   if (error) {
 
     console.error(
 
-      "Supabase visibility update failed:",
+      "Traveller visibility update failed:",
 
       error
 
@@ -659,7 +624,9 @@ async function saveTravellerMapLocation() {
 
   }
 
-  travellerMapIsVisible = true;
+  travellerMapIsVisible =
+
+    true;
 
   localStorage.setItem(
 
@@ -669,13 +636,17 @@ async function saveTravellerMapLocation() {
 
   );
 
+  await loadNearbyTravellers();
+
   return true;
 
 }
 
 async function hideTravellerFromMap() {
 
-  const user = await getSignedInUser();
+  const user =
+
+    await getSignedInUser();
 
   if (!user) {
 
@@ -683,41 +654,41 @@ async function hideTravellerFromMap() {
 
   }
 
-  const { error } = await supabase
+  const { error } =
 
-    .from("profiles")
+    await supabase
 
-    .update({
+      .from("profiles")
 
-      traveller_map_visible: false,
+      .update({
 
-      traveller_latitude: null,
+        traveller_map_visible: false,
 
-      traveller_longitude: null,
+        traveller_latitude: null,
 
-      traveller_location_updated_at: null,
+        traveller_longitude: null,
 
-      traveller_status: "offline"
+        traveller_location_updated_at: null,
 
-    })
+        traveller_status: "offline"
 
-    .eq("id", user.id);
+      })
+
+      .eq(
+
+        "id",
+
+        user.id
+
+      );
 
   if (error) {
 
     console.error(
 
-      "Could not hide traveller from map:",
+      "Could not hide traveller:",
 
       error
-
-    );
-
-    alert(
-
-      "Your traveller-map setting could not be changed: " +
-
-      error.message
 
     );
 
@@ -725,7 +696,9 @@ async function hideTravellerFromMap() {
 
   }
 
-  travellerMapIsVisible = false;
+  travellerMapIsVisible =
+
+    false;
 
   localStorage.setItem(
 
@@ -734,6 +707,8 @@ async function hideTravellerFromMap() {
     "false"
 
   );
+
+  await loadNearbyTravellers();
 
   return true;
 
@@ -747,19 +722,9 @@ async function loadTravellerVisibility() {
 
   }
 
-  const locallyVisible =
+  const user =
 
-    localStorage.getItem(
-
-      "npp-traveller-map-visible"
-
-    ) === "true";
-
-  travellerMapVisibleToggle.checked =
-
-    locallyVisible;
-
-  const user = await getSignedInUser();
+    await getSignedInUser();
 
   if (!user) {
 
@@ -773,27 +738,27 @@ async function loadTravellerVisibility() {
 
     error
 
-  } = await supabase
+  } =
 
-    .from("profiles")
+    await supabase
 
-    .select(
+      .from("profiles")
 
-      `
+      .select(
 
-        traveller_map_visible,
+        "traveller_map_visible"
 
-        traveller_latitude,
+      )
 
-        traveller_longitude
+      .eq(
 
-      `
+        "id",
 
-    )
+        user.id
 
-    .eq("id", user.id)
+      )
 
-    .maybeSingle();
+      .maybeSingle();
 
   if (error) {
 
@@ -811,7 +776,9 @@ async function loadTravellerVisibility() {
 
   travellerMapIsVisible =
 
-    profile?.traveller_map_visible === true;
+    profile?.traveller_map_visible ===
+
+    true;
 
   travellerMapVisibleToggle.checked =
 
@@ -867,15 +834,9 @@ function initTravellerVisibilityToggle() {
 
               false;
 
-            travellerMapIsVisible = false;
+            travellerMapIsVisible =
 
-            localStorage.setItem(
-
-              "npp-traveller-map-visible",
-
-              "false"
-
-            );
+              false;
 
           }
 
@@ -911,6 +872,456 @@ function initTravellerVisibilityToggle() {
 
 /* =========================================================
 
+   NEARBY TRAVELLERS
+
+========================================================= */
+
+function clearNearbyTravellerMarkers() {
+
+  nearbyTravellerMarkers.forEach(
+
+    (marker) => {
+
+      marker.setMap(null);
+
+    }
+
+  );
+
+  nearbyTravellerMarkers = [];
+
+}
+
+function escapeHtml(value = "") {
+
+  return String(value)
+
+    .replaceAll("&", "&amp;")
+
+    .replaceAll("<", "&lt;")
+
+    .replaceAll(">", "&gt;")
+
+    .replaceAll('"', "&quot;")
+
+    .replaceAll("'", "&#039;");
+
+}
+
+function formatTravellerStatus(status) {
+
+  const statusLabels = {
+
+    available:
+
+      "Available",
+
+    looking_for_pad:
+
+      "Looking for a pad",
+
+    staying_with_host:
+
+      "Staying with a host",
+
+    offline:
+
+      "Offline"
+
+  };
+
+  return (
+
+    statusLabels[status] ||
+
+    "Travelling"
+
+  );
+
+}
+
+function buildTravellerCard(
+
+  traveller
+
+) {
+
+  const distanceNumber =
+
+    Number(
+
+      traveller.distance_km
+
+    );
+
+  const distance =
+
+    Number.isFinite(distanceNumber)
+
+      ? `${distanceNumber.toFixed(1)} km away`
+
+      : "Nearby";
+
+  const emoji =
+
+    escapeHtml(
+
+      traveller.map_emoji || "🚐"
+
+    );
+
+  const status =
+
+    escapeHtml(
+
+      formatTravellerStatus(
+
+        traveller.traveller_status
+
+      )
+
+    );
+
+  const destination =
+
+    traveller.destination
+
+      ? `
+
+        <p style="margin:8px 0 0;">
+
+          <strong>Heading toward:</strong>
+
+          ${escapeHtml(
+
+            traveller.destination
+
+          )}
+
+        </p>
+
+      `
+
+      : "";
+
+  const intro =
+
+    traveller.intro
+
+      ? `
+
+        <p style="margin:8px 0 0;">
+
+          ${escapeHtml(
+
+            traveller.intro
+
+          )}
+
+        </p>
+
+      `
+
+      : "";
+
+  return `
+
+    <div
+
+      style="
+
+        max-width:260px;
+
+        padding:4px 2px;
+
+        color:#173c31;
+
+        font-family:Arial,sans-serif;
+
+      "
+
+    >
+
+      <div
+
+        style="
+
+          display:flex;
+
+          align-items:center;
+
+          gap:10px;
+
+        "
+
+      >
+
+        <span style="font-size:32px;">
+
+          ${emoji}
+
+        </span>
+
+        <div>
+
+          <strong style="font-size:17px;">
+
+            Nearby Nomad
+
+          </strong>
+
+          <div
+
+            style="
+
+              margin-top:2px;
+
+              color:#66746e;
+
+              font-size:13px;
+
+            "
+
+          >
+
+            ${escapeHtml(distance)}
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <p style="margin:10px 0 0;">
+
+        <strong>Status:</strong>
+
+        ${status}
+
+      </p>
+
+      ${destination}
+
+      ${intro}
+
+      <p
+
+        style="
+
+          margin:10px 0 0;
+
+          color:#7b857f;
+
+          font-size:12px;
+
+        "
+
+      >
+
+        Approximate location only
+
+      </p>
+
+    </div>
+
+  `;
+
+}
+
+async function loadNearbyTravellers() {
+
+  if (
+
+    !travellerMapInstance ||
+
+    !currentTravellerLocation
+
+  ) {
+
+    return;
+
+  }
+
+  const user =
+
+    await getSignedInUser();
+
+  if (!user) {
+
+    return;
+
+  }
+
+  const {
+
+    data,
+
+    error
+
+  } =
+
+    await supabase.rpc(
+
+      "get_nearby_travellers",
+
+      {
+
+        viewer_latitude:
+
+          currentTravellerLocation.lat,
+
+        viewer_longitude:
+
+          currentTravellerLocation.lng,
+
+        radius_km:
+
+          NEARBY_TRAVELLER_RADIUS_KM
+
+      }
+
+    );
+
+  if (error) {
+
+    console.error(
+
+      "Could not load nearby travellers:",
+
+      error
+
+    );
+
+    return;
+
+  }
+
+  clearNearbyTravellerMarkers();
+
+  (data || []).forEach(
+
+    (traveller) => {
+
+      const latitude =
+
+        Number(
+
+          traveller.latitude
+
+        );
+
+      const longitude =
+
+        Number(
+
+          traveller.longitude
+
+        );
+
+      if (
+
+        !Number.isFinite(latitude) ||
+
+        !Number.isFinite(longitude)
+
+      ) {
+
+        return;
+
+      }
+
+      const marker =
+
+        new google.maps.Marker({
+
+          map:
+
+            travellerMapInstance,
+
+          position: {
+
+            lat: latitude,
+
+            lng: longitude
+
+          },
+
+          icon:
+
+            createEmojiMarkerIcon(
+
+              traveller.map_emoji ||
+
+                "🚐",
+
+              46,
+
+              "#0d3b2f"
+
+            ),
+
+          title:
+
+            "Nearby traveller",
+
+          zIndex: 600
+
+        });
+
+      marker.addListener(
+
+        "click",
+
+        () => {
+
+          if (!travellerInfoWindow) {
+
+            travellerInfoWindow =
+
+              new google.maps.InfoWindow();
+
+          }
+
+          travellerInfoWindow.setContent(
+
+            buildTravellerCard(
+
+              traveller
+
+            )
+
+          );
+
+          travellerInfoWindow.open({
+
+            map:
+
+              travellerMapInstance,
+
+            anchor:
+
+              marker
+
+          });
+
+        }
+
+      );
+
+      nearbyTravellerMarkers.push(
+
+        marker
+
+      );
+
+    }
+
+  );
+
+}
+
+/* =========================================================
+
    TRAVELLER MAP
 
 ========================================================= */
@@ -919,7 +1330,11 @@ function initTravellerMap() {
 
   const mapElement =
 
-    document.getElementById("travellerMap");
+    document.getElementById(
+
+      "travellerMap"
+
+    );
 
   if (
 
@@ -963,17 +1378,27 @@ function initTravellerMap() {
 
       {
 
-        center: fallbackLocation,
+        center:
+
+          fallbackLocation,
 
         zoom: 10,
 
-        disableDefaultUI: false,
+        disableDefaultUI:
 
-        mapTypeControl: false,
+          false,
 
-        streetViewControl: true,
+        mapTypeControl:
 
-        fullscreenControl: true
+          false,
+
+        streetViewControl:
+
+          true,
+
+        fullscreenControl:
+
+          true
 
       }
 
@@ -1059,13 +1484,15 @@ function initTravellerMap() {
 
   if (!navigator.geolocation) {
 
+    loadNearbyTravellers();
+
     return;
 
   }
 
   navigator.geolocation.getCurrentPosition(
 
-    (position) => {
+    async (position) => {
 
       const travellerLocation = {
 
@@ -1089,7 +1516,11 @@ function initTravellerMap() {
 
       );
 
-      travellerMapInstance.setZoom(11);
+      travellerMapInstance.setZoom(
+
+        11
+
+      );
 
       updateTravellerIdentityMarker(
 
@@ -1097,9 +1528,11 @@ function initTravellerMap() {
 
       );
 
+      await loadNearbyTravellers();
+
     },
 
-    () => {
+    async () => {
 
       console.warn(
 
@@ -1113,15 +1546,23 @@ function initTravellerMap() {
 
       );
 
+      await loadNearbyTravellers();
+
     },
 
     {
 
-      enableHighAccuracy: false,
+      enableHighAccuracy:
 
-      timeout: 8000,
+        false,
 
-      maximumAge: 600000
+      timeout:
+
+        8000,
+
+      maximumAge:
+
+        600000
 
     }
 
@@ -1143,23 +1584,23 @@ async function loadDashboardListings() {
 
   if (
 
-    !window.supabase ||
+    !travellerMapInstance ||
 
-    !travellerMapInstance
+    !supabase
 
   ) {
-
-    console.warn(
-
-      "Supabase or dashboard map is not ready."
-
-    );
 
     return;
 
   }
 
-  const { data, error } =
+  const {
+
+    data,
+
+    error
+
+  } =
 
     await supabase
 
@@ -1189,11 +1630,33 @@ async function loadDashboardListings() {
 
       )
 
-      .eq("status", "published")
+      .eq(
 
-      .not("latitude", "is", null)
+        "status",
 
-      .not("longitude", "is", null);
+        "published"
+
+      )
+
+      .not(
+
+        "latitude",
+
+        "is",
+
+        null
+
+      )
+
+      .not(
+
+        "longitude",
+
+        "is",
+
+        null
+
+      );
 
   if (error) {
 
@@ -1221,57 +1684,71 @@ async function loadDashboardListings() {
 
   dashboardListingMarkers = [];
 
-  (data || []).forEach((listing) => {
+  (data || []).forEach(
 
-    const latitude =
+    (listing) => {
 
-      Number(listing.latitude);
+      const latitude =
 
-    const longitude =
+        Number(
 
-      Number(listing.longitude);
+          listing.latitude
 
-    if (
+        );
 
-      !Number.isFinite(latitude) ||
+      const longitude =
 
-      !Number.isFinite(longitude)
+        Number(
 
-    ) {
+          listing.longitude
 
-      return;
+        );
+
+      if (
+
+        !Number.isFinite(latitude) ||
+
+        !Number.isFinite(longitude)
+
+      ) {
+
+        return;
+
+      }
+
+      const marker =
+
+        new google.maps.Marker({
+
+          map:
+
+            travellerMapInstance,
+
+          position: {
+
+            lat: latitude,
+
+            lng: longitude
+
+          },
+
+          title:
+
+            listing.title ||
+
+            "Nomad Park Pad"
+
+        });
+
+      dashboardListingMarkers.push(
+
+        marker
+
+      );
 
     }
 
-    const marker =
-
-      new google.maps.Marker({
-
-        map: travellerMapInstance,
-
-        position: {
-
-          lat: latitude,
-
-          lng: longitude
-
-        },
-
-        title:
-
-          listing.title ||
-
-          "Nomad Park Pad"
-
-      });
-
-    dashboardListingMarkers.push(
-
-      marker
-
-    );
-
-  });
+  );
 
   updateDashboardListingCount();
 
@@ -1537,7 +2014,9 @@ async function loadLocalWeather(
 
     const values = {
 
-      weatherIcon: icon,
+      weatherIcon:
+
+        icon,
 
       weatherTemperature:
 
@@ -1581,7 +2060,11 @@ async function loadLocalWeather(
 
         const element =
 
-          document.getElementById(id);
+          document.getElementById(
+
+            id
+
+          );
 
         if (element) {
 
@@ -1599,7 +2082,9 @@ async function loadLocalWeather(
 
     if (content) {
 
-      content.hidden = false;
+      content.hidden =
+
+        false;
 
     }
 
@@ -1671,11 +2156,17 @@ function initLocalWeather() {
 
     {
 
-      enableHighAccuracy: false,
+      enableHighAccuracy:
 
-      timeout: 8000,
+        false,
 
-      maximumAge: 600000
+      timeout:
+
+        8000,
+
+      maximumAge:
+
+        600000
 
     }
 
@@ -1701,7 +2192,9 @@ async function loadMapEmoji() {
 
   if (localEmoji) {
 
-    currentEmoji = localEmoji;
+    currentEmoji =
+
+      localEmoji;
 
     if (mapIdentityButton) {
 
@@ -1731,15 +2224,23 @@ async function loadMapEmoji() {
 
     error
 
-  } = await supabase
+  } =
 
-    .from("profiles")
+    await supabase
 
-    .select("map_emoji")
+      .from("profiles")
 
-    .eq("id", user.id)
+      .select("map_emoji")
 
-    .maybeSingle();
+      .eq(
+
+        "id",
+
+        user.id
+
+      )
+
+      .maybeSingle();
 
   if (error) {
 
@@ -1815,89 +2316,101 @@ document
 
   )
 
-  .forEach((emojiButton) => {
+  .forEach(
 
-    emojiButton.addEventListener(
+    (emojiButton) => {
 
-      "click",
+      emojiButton.addEventListener(
 
-      async () => {
+        "click",
 
-        const selectedEmoji =
+        async () => {
 
-          emojiButton.textContent.trim();
+          const selectedEmoji =
 
-        currentEmoji =
+            emojiButton.textContent.trim();
 
-          selectedEmoji;
-
-        if (mapIdentityButton) {
-
-          mapIdentityButton.textContent =
+          currentEmoji =
 
             selectedEmoji;
 
-        }
+          if (mapIdentityButton) {
 
-        if (emojiPicker) {
+            mapIdentityButton.textContent =
 
-          emojiPicker.hidden = true;
+              selectedEmoji;
 
-        }
+          }
 
-        localStorage.setItem(
+          if (emojiPicker) {
 
-          "npp-map-emoji",
+            emojiPicker.hidden =
 
-          selectedEmoji
+              true;
 
-        );
+          }
 
-        updateTravellerIdentityMarker();
+          localStorage.setItem(
 
-        const user =
+            "npp-map-emoji",
 
-          await getSignedInUser();
-
-        if (!user) {
-
-          return;
-
-        }
-
-        const { error } =
-
-          await supabase
-
-            .from("profiles")
-
-            .update({
-
-              map_emoji:
-
-                selectedEmoji
-
-            })
-
-            .eq("id", user.id);
-
-        if (error) {
-
-          console.error(
-
-            "Could not save map emoji:",
-
-            error
+            selectedEmoji
 
           );
 
+          updateTravellerIdentityMarker();
+
+          const user =
+
+            await getSignedInUser();
+
+          if (!user) {
+
+            return;
+
+          }
+
+          const { error } =
+
+            await supabase
+
+              .from("profiles")
+
+              .update({
+
+                map_emoji:
+
+                  selectedEmoji
+
+              })
+
+              .eq(
+
+                "id",
+
+                user.id
+
+              );
+
+          if (error) {
+
+            console.error(
+
+              "Could not save map emoji:",
+
+              error
+
+            );
+
+          }
+
         }
 
-      }
+      );
 
-    );
+    }
 
-  });
+  );
 
 /* =========================================================
 
