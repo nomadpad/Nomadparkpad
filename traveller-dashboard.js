@@ -1,3 +1,9 @@
+/* =========================================================
+
+   TRAVELLER COMMAND CENTRE
+
+========================================================= */
+
 const FILTER_COUNTS = {
 
   pads: 37,
@@ -29,330 +35,6 @@ const FILTER_LABELS = {
   featured: "featured hosts nearby"
 
 };
-
-let travellerMapInstance = null;
-
-let dashboardListingMarkers = [];
-
-let currentEmoji = "😎";
-
-const mapIdentityButton = document.getElementById("mapIdentityButton");
-
-const emojiPicker = document.getElementById("emojiPicker");
-
-/* ---------------------------------
-
-   MAP FILTERS
-
---------------------------------- */
-
-function initMapFilters() {
-
-  const buttons = document.querySelectorAll(".map-filter-button");
-
-  const filterSection = document.querySelector(".dashboard-map-filters");
-
-  if (!buttons.length || !filterSection) {
-
-    return;
-
-  }
-
-  let countDisplay = document.querySelector(".map-filter-count");
-
-  if (!countDisplay) {
-
-    countDisplay = document.createElement("p");
-
-    countDisplay.className = "map-filter-count";
-
-    filterSection.appendChild(countDisplay);
-
-  }
-
-  function activateFilter(button) {
-
-    buttons.forEach((item) => {
-
-      item.classList.remove("is-active");
-
-      item.setAttribute("aria-pressed", "false");
-
-    });
-
-    button.classList.add("is-active");
-
-    button.setAttribute("aria-pressed", "true");
-
-    const filter = button.dataset.filter || "pads";
-
-    const count = FILTER_COUNTS[filter] ?? 0;
-
-    const label = FILTER_LABELS[filter] || "locations nearby";
-
-    countDisplay.textContent = `${count} ${label}`;
-
-  }
-
-  buttons.forEach((button) => {
-
-    button.setAttribute(
-
-      "aria-pressed",
-
-      button.classList.contains("is-active") ? "true" : "false"
-
-    );
-
-    button.addEventListener("click", () => {
-
-      activateFilter(button);
-
-    });
-
-  });
-
-  const activeButton =
-
-    document.querySelector(".map-filter-button.is-active") || buttons[0];
-
-  activateFilter(activeButton);
-
-}
-
-/* ---------------------------------
-
-   TRAVELLER MAP
-
---------------------------------- */
-
-function initTravellerMap() {
-
-  const mapElement = document.getElementById("travellerMap");
-
-  if (!mapElement || !window.google?.maps) {
-
-    return;
-
-  }
-
-  if (travellerMapInstance) {
-
-    google.maps.event.trigger(travellerMapInstance, "resize");
-
-    return;
-
-  }
-
-  const fallbackLocation = {
-
-    lat: 53.5461,
-
-    lng: -113.4938
-
-  };
-
-  const map = new google.maps.Map(mapElement, {
-
-    center: fallbackLocation,
-
-    zoom: 10,
-
-    disableDefaultUI: false,
-
-    mapTypeControl: false,
-
-    streetViewControl: true,
-
-    fullscreenControl: true
-
-  });
-
-  travellerMapInstance = map;
-
-  loadDashboardListings();
-
-  const satelliteButton = document.querySelector(
-
-    '.map-type-button[data-map-type="satellite"]'
-
-  );
-
-  if (satelliteButton) {
-
-    satelliteButton.addEventListener("click", () => {
-
-      const isSatellite =
-
-        map.getMapTypeId() === google.maps.MapTypeId.SATELLITE;
-
-      map.setMapTypeId(
-
-        isSatellite
-
-          ? google.maps.MapTypeId.ROADMAP
-
-          : google.maps.MapTypeId.SATELLITE
-
-      );
-
-      satelliteButton.classList.toggle("is-active", !isSatellite);
-
-      const label = satelliteButton.querySelector("span");
-
-      if (label) {
-
-        label.textContent = isSatellite ? "Satellite" : "Map";
-
-      }
-
-    });
-
-  }
-
-  if (!navigator.geolocation) {
-
-    return;
-
-  }
-
-  navigator.geolocation.getCurrentPosition(
-
-    (position) => {
-
-      const travellerLocation = {
-
-        lat: position.coords.latitude,
-
-        lng: position.coords.longitude
-
-      };
-
-      map.setCenter(travellerLocation);
-
-      map.setZoom(11);
-
-    },
-
-    () => {
-
-      console.warn("Traveller location could not be loaded.");
-
-    }
-
-  );
-
-}
-
-window.initTravellerMap = initTravellerMap;
-
-/* ---------------------------------
-
-   PUBLISHED PAD MARKERS
-
---------------------------------- */
-
-async function loadDashboardListings() {
-
-  if (!window.supabase || !travellerMapInstance) {
-
-    console.warn("Supabase or dashboard map is not ready.");
-
-    return;
-
-  }
-
-  const { data, error } = await supabase
-
-    .from("listings")
-
-    .select(
-
-      "id, title, city, province, nightly_price, latitude, longitude, status"
-
-    )
-
-    .eq("status", "published")
-
-    .not("latitude", "is", null)
-
-    .not("longitude", "is", null);
-
-  if (error) {
-
-    console.error("Could not load dashboard listings:", error);
-
-    return;
-
-  }
-
-  dashboardListingMarkers.forEach((marker) => {
-
-    marker.setMap(null);
-
-  });
-
-  dashboardListingMarkers = [];
-
-  (data || []).forEach((listing) => {
-
-    const latitude = Number(listing.latitude);
-
-    const longitude = Number(listing.longitude);
-
-    if (!Number.isFinite(latitude) || !Number.isFinite(longitude)) {
-
-      return;
-
-    }
-
-    const marker = new google.maps.Marker({
-
-      map: travellerMapInstance,
-
-      position: {
-
-        lat: latitude,
-
-        lng: longitude
-
-      },
-
-      title: listing.title || "Nomad Park Pad"
-
-    });
-
-    dashboardListingMarkers.push(marker);
-
-  });
-
-  updateDashboardListingCount();
-
-}
-
-function updateDashboardListingCount() {
-
-  const countDisplay = document.querySelector(".map-filter-count");
-
-  if (!countDisplay) {
-
-    return;
-
-  }
-
-  const count = dashboardListingMarkers.length;
-
-  const word = count === 1 ? "location" : "locations";
-
-  countDisplay.textContent = `${count} ${word} nearby`;
-
-}
-
-/* ---------------------------------
-
-   WEATHER
-
---------------------------------- */
 
 const WEATHER_CODES = {
 
@@ -400,41 +82,911 @@ const WEATHER_CODES = {
 
 };
 
-function getWeatherSummary(temperature, wind, rain, condition) {
+/* =========================================================
+
+   STATE
+
+========================================================= */
+
+let travellerMapInstance = null;
+
+let travellerIdentityMarker = null;
+
+let dashboardListingMarkers = [];
+
+let currentEmoji = "😎";
+
+let currentTravellerLocation = null;
+
+/* =========================================================
+
+   ELEMENTS
+
+========================================================= */
+
+const mapIdentityButton =
+
+  document.getElementById("mapIdentityButton");
+
+const emojiPicker =
+
+  document.getElementById("emojiPicker");
+
+/* =========================================================
+
+   MAP FILTERS
+
+========================================================= */
+
+function initMapFilters() {
+
+  const buttons =
+
+    document.querySelectorAll(".map-filter-button");
+
+  const filterSection =
+
+    document.querySelector(".dashboard-map-filters");
+
+  if (!buttons.length || !filterSection) {
+
+    return;
+
+  }
+
+  let countDisplay =
+
+    document.querySelector(".map-filter-count");
+
+  if (!countDisplay) {
+
+    countDisplay =
+
+      document.createElement("p");
+
+    countDisplay.className =
+
+      "map-filter-count";
+
+    filterSection.appendChild(
+
+      countDisplay
+
+    );
+
+  }
+
+  function activateFilter(button) {
+
+    buttons.forEach((item) => {
+
+      item.classList.remove("is-active");
+
+      item.setAttribute(
+
+        "aria-pressed",
+
+        "false"
+
+      );
+
+    });
+
+    button.classList.add("is-active");
+
+    button.setAttribute(
+
+      "aria-pressed",
+
+      "true"
+
+    );
+
+    const filter =
+
+      button.dataset.filter || "pads";
+
+    const count =
+
+      FILTER_COUNTS[filter] ?? 0;
+
+    const label =
+
+      FILTER_LABELS[filter] ||
+
+      "locations nearby";
+
+    countDisplay.textContent =
+
+      `${count} ${label}`;
+
+  }
+
+  buttons.forEach((button) => {
+
+    button.setAttribute(
+
+      "aria-pressed",
+
+      button.classList.contains("is-active")
+
+        ? "true"
+
+        : "false"
+
+    );
+
+    button.addEventListener(
+
+      "click",
+
+      () => {
+
+        activateFilter(button);
+
+      }
+
+    );
+
+  });
+
+  const activeButton =
+
+    document.querySelector(
+
+      ".map-filter-button.is-active"
+
+    ) || buttons[0];
+
+  activateFilter(activeButton);
+
+}
+
+/* =========================================================
+
+   EMOJI MAP MARKER
+
+========================================================= */
+
+function createEmojiMarkerIcon(
+
+  emoji,
+
+  size = 52
+
+) {
+
+  const safeEmoji =
+
+    emoji || "😎";
+
+  const svg = `
+
+    <svg
+
+      xmlns="http://www.w3.org/2000/svg"
+
+      width="${size}"
+
+      height="${size}"
+
+      viewBox="0 0 ${size} ${size}"
+
+    >
+
+      <circle
+
+        cx="${size / 2}"
+
+        cy="${size / 2}"
+
+        r="${size / 2 - 3}"
+
+        fill="#fffaf2"
+
+        stroke="#f36b16"
+
+        stroke-width="4"
+
+      />
+
+      <circle
+
+        cx="${size / 2}"
+
+        cy="${size / 2}"
+
+        r="${size / 2 - 8}"
+
+        fill="#ffffff"
+
+        stroke="#0d3b2f"
+
+        stroke-width="1.5"
+
+      />
+
+      <text
+
+        x="50%"
+
+        y="53%"
+
+        text-anchor="middle"
+
+        dominant-baseline="middle"
+
+        font-size="${size * 0.5}"
+
+      >${safeEmoji}</text>
+
+    </svg>
+
+  `;
+
+  return {
+
+    url:
+
+      `data:image/svg+xml;charset=UTF-8,` +
+
+      encodeURIComponent(svg),
+
+    scaledSize:
+
+      new google.maps.Size(
+
+        size,
+
+        size
+
+      ),
+
+    anchor:
+
+      new google.maps.Point(
+
+        size / 2,
+
+        size / 2
+
+      )
+
+  };
+
+}
+
+function updateTravellerIdentityMarker(
+
+  position = currentTravellerLocation
+
+) {
+
+  if (
+
+    !travellerMapInstance ||
+
+    !window.google?.maps ||
+
+    !position
+
+  ) {
+
+    return;
+
+  }
+
+  currentTravellerLocation = position;
+
+  if (!travellerIdentityMarker) {
+
+    travellerIdentityMarker =
+
+      new google.maps.Marker({
+
+        map: travellerMapInstance,
+
+        position,
+
+        icon:
+
+          createEmojiMarkerIcon(
+
+            currentEmoji,
+
+            54
+
+          ),
+
+        title: "You",
+
+        zIndex: 999
+
+      });
+
+    return;
+
+  }
+
+  travellerIdentityMarker.setPosition(
+
+    position
+
+  );
+
+  travellerIdentityMarker.setIcon(
+
+    createEmojiMarkerIcon(
+
+      currentEmoji,
+
+      54
+
+    )
+
+  );
+
+}
+
+/* =========================================================
+
+   TRAVELLER MAP
+
+========================================================= */
+
+function initTravellerMap() {
+
+  const mapElement =
+
+    document.getElementById(
+
+      "travellerMap"
+
+    );
+
+  if (
+
+    !mapElement ||
+
+    !window.google?.maps
+
+  ) {
+
+    return;
+
+  }
+
+  if (travellerMapInstance) {
+
+    google.maps.event.trigger(
+
+      travellerMapInstance,
+
+      "resize"
+
+    );
+
+    return;
+
+  }
+
+  const fallbackLocation = {
+
+    lat: 53.5461,
+
+    lng: -113.4938
+
+  };
+
+  const map =
+
+    new google.maps.Map(
+
+      mapElement,
+
+      {
+
+        center: fallbackLocation,
+
+        zoom: 10,
+
+        disableDefaultUI: false,
+
+        mapTypeControl: false,
+
+        streetViewControl: true,
+
+        fullscreenControl: true
+
+      }
+
+    );
+
+  travellerMapInstance = map;
+
+  /*
+
+    Show the traveller at the fallback
+
+    location immediately. Geolocation
+
+    will move the marker when available.
+
+  */
+
+  currentTravellerLocation =
+
+    fallbackLocation;
+
+  updateTravellerIdentityMarker(
+
+    fallbackLocation
+
+  );
+
+  loadDashboardListings();
+
+  const satelliteButton =
+
+    document.querySelector(
+
+      '.map-type-button[data-map-type="satellite"]'
+
+    );
+
+  if (satelliteButton) {
+
+    satelliteButton.addEventListener(
+
+      "click",
+
+      () => {
+
+        const isSatellite =
+
+          map.getMapTypeId() ===
+
+          google.maps.MapTypeId.SATELLITE;
+
+        map.setMapTypeId(
+
+          isSatellite
+
+            ? google.maps.MapTypeId.ROADMAP
+
+            : google.maps.MapTypeId.SATELLITE
+
+        );
+
+        satelliteButton.classList.toggle(
+
+          "is-active",
+
+          !isSatellite
+
+        );
+
+        const label =
+
+          satelliteButton.querySelector(
+
+            "span"
+
+          );
+
+        if (label) {
+
+          label.textContent =
+
+            isSatellite
+
+              ? "Satellite"
+
+              : "Map";
+
+        }
+
+      }
+
+    );
+
+  }
+
+  if (!navigator.geolocation) {
+
+    return;
+
+  }
+
+  navigator.geolocation.getCurrentPosition(
+
+    (position) => {
+
+      const travellerLocation = {
+
+        lat:
+
+          position.coords.latitude,
+
+        lng:
+
+          position.coords.longitude
+
+      };
+
+      currentTravellerLocation =
+
+        travellerLocation;
+
+      map.setCenter(
+
+        travellerLocation
+
+      );
+
+      map.setZoom(11);
+
+      updateTravellerIdentityMarker(
+
+        travellerLocation
+
+      );
+
+    },
+
+    () => {
+
+      console.warn(
+
+        "Traveller location could not be loaded."
+
+      );
+
+      updateTravellerIdentityMarker(
+
+        fallbackLocation
+
+      );
+
+    },
+
+    {
+
+      enableHighAccuracy: false,
+
+      timeout: 8000,
+
+      maximumAge: 600000
+
+    }
+
+  );
+
+}
+
+/*
+
+  Google Maps can call this global function
+
+  after its script finishes loading.
+
+*/
+
+window.initTravellerMap =
+
+  initTravellerMap;
+
+/* =========================================================
+
+   PUBLISHED PAD MARKERS
+
+========================================================= */
+
+async function loadDashboardListings() {
+
+  if (
+
+    !window.supabase ||
+
+    !travellerMapInstance
+
+  ) {
+
+    console.warn(
+
+      "Supabase or dashboard map is not ready."
+
+    );
+
+    return;
+
+  }
+
+  const {
+
+    data,
+
+    error
+
+  } =
+
+    await supabase
+
+      .from("listings")
+
+      .select(
+
+        `
+
+          id,
+
+          title,
+
+          city,
+
+          province,
+
+          nightly_price,
+
+          latitude,
+
+          longitude,
+
+          status
+
+        `
+
+      )
+
+      .eq(
+
+        "status",
+
+        "published"
+
+      )
+
+      .not(
+
+        "latitude",
+
+        "is",
+
+        null
+
+      )
+
+      .not(
+
+        "longitude",
+
+        "is",
+
+        null
+
+      );
+
+  if (error) {
+
+    console.error(
+
+      "Could not load dashboard listings:",
+
+      error
+
+    );
+
+    return;
+
+  }
+
+  dashboardListingMarkers.forEach(
+
+    (marker) => {
+
+      marker.setMap(null);
+
+    }
+
+  );
+
+  dashboardListingMarkers = [];
+
+  (data || []).forEach(
+
+    (listing) => {
+
+      const latitude =
+
+        Number(listing.latitude);
+
+      const longitude =
+
+        Number(listing.longitude);
+
+      if (
+
+        !Number.isFinite(latitude) ||
+
+        !Number.isFinite(longitude)
+
+      ) {
+
+        return;
+
+      }
+
+      const marker =
+
+        new google.maps.Marker({
+
+          map:
+
+            travellerMapInstance,
+
+          position: {
+
+            lat: latitude,
+
+            lng: longitude
+
+          },
+
+          title:
+
+            listing.title ||
+
+            "Nomad Park Pad"
+
+        });
+
+      dashboardListingMarkers.push(
+
+        marker
+
+      );
+
+    }
+
+  );
+
+  updateDashboardListingCount();
+
+}
+
+function updateDashboardListingCount() {
+
+  const countDisplay =
+
+    document.querySelector(
+
+      ".map-filter-count"
+
+    );
+
+  if (!countDisplay) {
+
+    return;
+
+  }
+
+  const count =
+
+    dashboardListingMarkers.length;
+
+  const word =
+
+    count === 1
+
+      ? "location"
+
+      : "locations";
+
+  countDisplay.textContent =
+
+    `${count} ${word} nearby`;
+
+}
+
+/* =========================================================
+
+   WEATHER
+
+========================================================= */
+
+function getWeatherSummary(
+
+  temperature,
+
+  wind,
+
+  rain,
+
+  condition
+
+) {
 
   if (rain >= 60) {
 
-    return `${condition}. Keep the rain gear close.`;
+    return (
+
+      `${condition}. ` +
+
+      "Keep the rain gear close."
+
+    );
 
   }
 
   if (wind >= 35) {
 
-    return `${condition}. Strong winds may affect outdoor plans.`;
+    return (
+
+      `${condition}. ` +
+
+      "Strong winds may affect outdoor plans."
+
+    );
 
   }
 
   if (temperature >= 25) {
 
-    return `${condition}. A warm day for exploring nearby.`;
+    return (
+
+      `${condition}. ` +
+
+      "A warm day for exploring nearby."
+
+    );
 
   }
 
   if (temperature <= 5) {
 
-    return `${condition}. Bundle up before heading out.`;
+    return (
+
+      `${condition}. ` +
+
+      "Bundle up before heading out."
+
+    );
 
   }
 
-  return `${condition}. Comfortable conditions for the road.`;
+  return (
+
+    `${condition}. ` +
+
+    "Comfortable conditions for the road."
+
+  );
 
 }
 
-async function loadLocalWeather(latitude, longitude) {
+async function loadLocalWeather(
 
-  const loading = document.getElementById("weatherLoading");
+  latitude,
 
-  const content = document.getElementById("weatherContent");
+  longitude
+
+) {
+
+  const loading =
+
+    document.getElementById(
+
+      "weatherLoading"
+
+    );
+
+  const content =
+
+    document.getElementById(
+
+      "weatherContent"
+
+    );
 
   try {
 
@@ -458,75 +1010,239 @@ async function loadLocalWeather(latitude, longitude) {
 
       "&forecast_days=1";
 
-    const response = await fetch(url);
+    const response =
+
+      await fetch(url);
 
     if (!response.ok) {
 
-      throw new Error(`Weather request failed: ${response.status}`);
+      throw new Error(
+
+        `Weather request failed: ${response.status}`
+
+      );
 
     }
 
-    const data = await response.json();
+    const data =
 
-    const current = data.current;
+      await response.json();
+
+    const current =
+
+      data.current;
 
     if (!current) {
 
-      throw new Error("Current weather was unavailable.");
+      throw new Error(
+
+        "Current weather was unavailable."
+
+      );
 
     }
 
-    const currentHour = current.time?.slice(0, 13);
+    const currentHour =
 
-    const hourlyIndex = data.hourly?.time?.findIndex((time) =>
+      current.time?.slice(0, 13);
 
-      time.startsWith(currentHour)
+    const hourlyIndex =
 
-    );
+      data.hourly?.time?.findIndex(
+
+        (time) =>
+
+          time.startsWith(
+
+            currentHour
+
+          )
+
+      );
 
     const rainChance =
 
       hourlyIndex >= 0
 
-        ? data.hourly.precipitation_probability[hourlyIndex] ?? 0
+        ? data.hourly
+
+            .precipitation_probability[
+
+              hourlyIndex
+
+            ] ?? 0
 
         : 0;
 
-    const temperature = Math.round(current.temperature_2m);
+    const temperature =
 
-    const feelsLike = Math.round(current.apparent_temperature);
+      Math.round(
 
-    const wind = Math.round(current.wind_speed_10m);
+        current.temperature_2m
 
-    const weatherCode = current.weather_code;
+      );
 
-    const [icon, condition] =
+    const feelsLike =
 
-      WEATHER_CODES[weatherCode] || ["🌤️", "Current conditions"];
+      Math.round(
 
-    document.getElementById("weatherIcon").textContent = icon;
+        current.apparent_temperature
 
-    document.getElementById(
+      );
 
-      "weatherTemperature"
+    const wind =
 
-    ).textContent = `${temperature}°C`;
+      Math.round(
 
-    document.getElementById("weatherCondition").textContent = condition;
+        current.wind_speed_10m
 
-    document.getElementById(
+      );
 
-      "weatherFeelsLike"
+    const weatherCode =
 
-    ).textContent = `${feelsLike}°C`;
+      current.weather_code;
 
-    document.getElementById("weatherWind").textContent = `${wind} km/h`;
+    const [
 
-    document.getElementById("weatherRain").textContent = `${rainChance}%`;
+      icon,
 
-    document.getElementById("weatherSummary").textContent =
+      condition
 
-      getWeatherSummary(temperature, wind, rainChance, condition);
+    ] =
+
+      WEATHER_CODES[
+
+        weatherCode
+
+      ] || [
+
+        "🌤️",
+
+        "Current conditions"
+
+      ];
+
+    const weatherIcon =
+
+      document.getElementById(
+
+        "weatherIcon"
+
+      );
+
+    const weatherTemperature =
+
+      document.getElementById(
+
+        "weatherTemperature"
+
+      );
+
+    const weatherCondition =
+
+      document.getElementById(
+
+        "weatherCondition"
+
+      );
+
+    const weatherFeelsLike =
+
+      document.getElementById(
+
+        "weatherFeelsLike"
+
+      );
+
+    const weatherWind =
+
+      document.getElementById(
+
+        "weatherWind"
+
+      );
+
+    const weatherRain =
+
+      document.getElementById(
+
+        "weatherRain"
+
+      );
+
+    const weatherSummary =
+
+      document.getElementById(
+
+        "weatherSummary"
+
+      );
+
+    if (weatherIcon) {
+
+      weatherIcon.textContent =
+
+        icon;
+
+    }
+
+    if (weatherTemperature) {
+
+      weatherTemperature.textContent =
+
+        `${temperature}°C`;
+
+    }
+
+    if (weatherCondition) {
+
+      weatherCondition.textContent =
+
+        condition;
+
+    }
+
+    if (weatherFeelsLike) {
+
+      weatherFeelsLike.textContent =
+
+        `${feelsLike}°C`;
+
+    }
+
+    if (weatherWind) {
+
+      weatherWind.textContent =
+
+        `${wind} km/h`;
+
+    }
+
+    if (weatherRain) {
+
+      weatherRain.textContent =
+
+        `${rainChance}%`;
+
+    }
+
+    if (weatherSummary) {
+
+      weatherSummary.textContent =
+
+        getWeatherSummary(
+
+          temperature,
+
+          wind,
+
+          rainChance,
+
+          condition
+
+        );
+
+    }
 
     loading?.remove();
 
@@ -616,31 +1332,47 @@ function initLocalWeather() {
 
 }
 
-/* ---------------------------------
+/* =========================================================
 
-   MAP IDENTITY EMOJI
+   LOAD SAVED MAP EMOJI
 
---------------------------------- */
+========================================================= */
 
 async function loadMapEmoji() {
 
-  const localEmoji = localStorage.getItem("npp-map-emoji");
+  const localEmoji =
+
+    localStorage.getItem(
+
+      "npp-map-emoji"
+
+    );
 
   if (localEmoji) {
 
-    currentEmoji = localEmoji;
+    currentEmoji =
+
+      localEmoji;
 
     if (mapIdentityButton) {
 
-      mapIdentityButton.textContent = localEmoji;
+      mapIdentityButton.textContent =
+
+        localEmoji;
 
     }
+
+    updateTravellerIdentityMarker();
 
   }
 
   if (!window.supabase) {
 
-    console.warn("Supabase is not ready for emoji loading.");
+    console.warn(
+
+      "Supabase is not ready for emoji loading."
+
+    );
 
     return;
 
@@ -652,152 +1384,268 @@ async function loadMapEmoji() {
 
     error: userError
 
-  } = await supabase.auth.getUser();
+  } =
+
+    await supabase.auth.getUser();
 
   if (userError || !user) {
 
-    console.error("Could not load signed-in user:", userError);
+    console.error(
+
+      "Could not load signed-in user:",
+
+      userError
+
+    );
 
     return;
 
   }
 
-  const { data: profile, error: profileError } = await supabase
+  const {
 
-    .from("profiles")
+    data: profile,
 
-    .select("map_emoji")
+    error: profileError
 
-    .eq("id", user.id)
+  } =
 
-    .maybeSingle();
+    await supabase
+
+      .from("profiles")
+
+      .select("map_emoji")
+
+      .eq("id", user.id)
+
+      .maybeSingle();
 
   if (profileError) {
 
-    console.error("Could not load map emoji:", profileError);
+    console.error(
+
+      "Could not load map emoji:",
+
+      profileError
+
+    );
 
     return;
 
   }
 
-  currentEmoji = profile?.map_emoji || localEmoji || "😎";
+  currentEmoji =
+
+    profile?.map_emoji ||
+
+    localEmoji ||
+
+    "😎";
 
   if (mapIdentityButton) {
 
-    mapIdentityButton.textContent = currentEmoji;
+    mapIdentityButton.textContent =
+
+      currentEmoji;
 
   }
 
-  localStorage.setItem("npp-map-emoji", currentEmoji);
+  localStorage.setItem(
+
+    "npp-map-emoji",
+
+    currentEmoji
+
+  );
+
+  updateTravellerIdentityMarker();
 
 }
 
-mapIdentityButton?.addEventListener("click", () => {
+/* =========================================================
 
-  if (emojiPicker) {
+   EMOJI PICKER
 
-    emojiPicker.hidden = !emojiPicker.hidden;
+========================================================= */
+
+mapIdentityButton?.addEventListener(
+
+  "click",
+
+  () => {
+
+    if (emojiPicker) {
+
+      emojiPicker.hidden =
+
+        !emojiPicker.hidden;
+
+    }
 
   }
 
-});
+);
 
 document
 
-  .querySelectorAll("#emojiPicker .emoji-grid button")
+  .querySelectorAll(
+
+    "#emojiPicker .emoji-grid button"
+
+  )
 
   .forEach((emojiButton) => {
 
-    emojiButton.addEventListener("click", async () => {
+    emojiButton.addEventListener(
 
-      const selectedEmoji = emojiButton.textContent.trim();
+      "click",
 
-      currentEmoji = selectedEmoji;
+      async () => {
 
-      if (mapIdentityButton) {
+        const selectedEmoji =
 
-        mapIdentityButton.textContent = selectedEmoji;
+          emojiButton.textContent.trim();
 
-      }
+        currentEmoji =
 
-      if (emojiPicker) {
+          selectedEmoji;
 
-        emojiPicker.hidden = true;
+        if (mapIdentityButton) {
 
-      }
+          mapIdentityButton.textContent =
 
-      localStorage.setItem("npp-map-emoji", selectedEmoji);
+            selectedEmoji;
 
-      if (!window.supabase) {
+        }
 
-        console.warn("Emoji changed locally, but Supabase is not ready.");
+        if (emojiPicker) {
 
-        return;
+          emojiPicker.hidden = true;
 
-      }
+        }
 
-      const {
+        localStorage.setItem(
 
-        data: { user },
+          "npp-map-emoji",
 
-        error: userError
-
-      } = await supabase.auth.getUser();
-
-      if (userError || !user) {
-
-        console.error(
-
-          "Could not save emoji without a signed-in user:",
-
-          userError
+          selectedEmoji
 
         );
 
-        return;
+        /*
+
+          Update the map immediately.
+
+          No refresh and no Save button.
+
+        */
+
+        updateTravellerIdentityMarker();
+
+        if (!window.supabase) {
+
+          console.warn(
+
+            "Emoji changed locally, but Supabase is not ready."
+
+          );
+
+          return;
+
+        }
+
+        const {
+
+          data: { user },
+
+          error: userError
+
+        } =
+
+          await supabase.auth.getUser();
+
+        if (userError || !user) {
+
+          console.error(
+
+            "Could not save emoji without a signed-in user:",
+
+            userError
+
+          );
+
+          return;
+
+        }
+
+        const {
+
+          error: updateError
+
+        } =
+
+          await supabase
+
+            .from("profiles")
+
+            .update({
+
+              map_emoji:
+
+                selectedEmoji
+
+            })
+
+            .eq(
+
+              "id",
+
+              user.id
+
+            );
+
+        if (updateError) {
+
+          console.error(
+
+            "Could not save map emoji:",
+
+            updateError
+
+          );
+
+        }
 
       }
 
-      const { error: updateError } = await supabase
-
-        .from("profiles")
-
-        .update({
-
-          map_emoji: selectedEmoji
-
-        })
-
-        .eq("id", user.id);
-
-      if (updateError) {
-
-        console.error("Could not save map emoji:", updateError);
-
-      }
-
-    });
+    );
 
   });
 
-/* ---------------------------------
+/* =========================================================
 
    DASHBOARD STARTUP
 
---------------------------------- */
+========================================================= */
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener(
 
-  initMapFilters();
+  "DOMContentLoaded",
 
-  initLocalWeather();
+  () => {
 
-  loadMapEmoji();
+    initMapFilters();
 
-  if (window.google?.maps) {
+    initLocalWeather();
 
-    initTravellerMap();
+    loadMapEmoji();
+
+    if (window.google?.maps) {
+
+      initTravellerMap();
+
+    }
 
   }
 
-});
+);
