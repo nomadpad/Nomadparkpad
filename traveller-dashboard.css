@@ -1103,3 +1103,102 @@ body {
   line-height: 1.35;
 
 }
+.map-identity-button {
+
+  width: 48px;
+
+  height: 48px;
+
+  border: 1px solid rgba(243, 107, 22, 0.55);
+
+  border-radius: 50%;
+
+  background: #fffaf2;
+
+  font-size: 26px;
+
+  line-height: 1;
+
+  cursor: pointer;
+
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+}
+
+.map-identity-button:active {
+
+  transform: scale(0.92);
+
+}
+
+.emoji-picker {
+
+  position: fixed;
+
+  left: 50%;
+
+  bottom: 24px;
+
+  width: calc(100% - 28px);
+
+  max-width: 420px;
+
+  transform: translateX(-50%);
+
+  padding: 22px;
+
+  border-radius: 24px;
+
+  background: #ffffff;
+
+  box-shadow: 0 20px 50px rgba(13, 59, 47, 0.22);
+
+  z-index: 9999;
+
+  text-align: center;
+
+}
+
+.emoji-picker h3 {
+
+  margin: 0 0 18px;
+
+  color: #0d3b2f;
+
+}
+
+.emoji-grid {
+
+  display: grid;
+
+  grid-template-columns: repeat(5, 1fr);
+
+  gap: 12px;
+
+}
+
+.emoji-grid button {
+
+  min-height: 54px;
+
+  border: 0;
+
+  border-radius: 14px;
+
+  background: #fffaf2;
+
+  font-size: 30px;
+
+  cursor: pointer;
+
+}
+
+.emoji-grid button:active {
+
+  transform: scale(0.88);
+
+}
