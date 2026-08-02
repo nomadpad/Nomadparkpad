@@ -612,19 +612,37 @@ async function saveTravellerMapLocation() {
 
     return true;
 
-  } catch (error) {
+} catch (error) {
 
-    console.error(
+  console.error("Traveller location error:", error);
 
-      "Traveller location permission failed:",
+  if (error.code === 1) {
 
-      error
+    alert("Location permission was denied.");
+
+  } else if (error.code === 2) {
+
+    alert("Your location is currently unavailable.");
+
+  } else if (error.code === 3) {
+
+    alert("Location request timed out. Please try again.");
+
+  } else {
+
+    alert(
+
+      "Location error: " +
+
+      (error.message || "Unknown error")
 
     );
 
-    return false;
-
   }
+
+  return false;
+
+}
 
 }
 
