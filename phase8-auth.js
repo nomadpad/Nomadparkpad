@@ -160,7 +160,7 @@ if (profile.is_admin === true) {
 
 ) {
 
-  window.location.href = "traveller.html";
+  window.location.href = "traveller-dashboard.html";
 
 } else {
 
