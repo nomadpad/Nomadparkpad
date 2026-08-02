@@ -1,3 +1,4 @@
+import { supabase } from "./supabase-client.js";
 /* =========================================================
 
    NOMAD PARK PAD
