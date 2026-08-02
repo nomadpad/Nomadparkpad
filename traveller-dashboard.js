@@ -574,32 +574,104 @@ const mapIdentityButton = document.getElementById("mapIdentityButton");
 
 const emojiPicker = document.getElementById("emojiPicker");
 
+let currentEmoji = "😎";
+
+async function loadMapEmoji() {
+
+  const {
+
+    data: { user },
+
+    error: userError
+
+  } = await supabase.auth.getUser();
+
+  if (userError || !user) {
+
+    console.error("Could not load signed-in user:", userError);
+
+    return;
+
+  }
+
+  const { data: profile, error: profileError } = await supabase
+
+    .from("profiles")
+
+    .select("map_emoji")
+
+    .eq("id", user.id)
+
+    .maybeSingle();
+
+  if (profileError) {
+
+    console.error("Could not load map emoji:", profileError);
+
+    return;
+
+  }
+
+  currentEmoji = profile?.map_emoji || "😎";
+
+  mapIdentityButton.textContent = currentEmoji;
+
+}
+
 mapIdentityButton?.addEventListener("click", () => {
 
   emojiPicker.hidden = !emojiPicker.hidden;
 
 });
 
-document.querySelectorAll("#emojiPicker .emoji-grid button").forEach(button => {
+document
 
-  button.addEventListener("click", () => {
+  .querySelectorAll("#emojiPicker .emoji-grid button")
 
-    mapIdentityButton.textContent = button.textContent;
+  .forEach((emojiButton) => {
 
-    emojiPicker.hidden = true;
+    emojiButton.addEventListener("click", async () => {
 
-    // Temporary local save
+      const selectedEmoji = emojiButton.textContent.trim();
 
-    localStorage.setItem("npp-map-emoji", button.textContent);
+      const {
+
+        data: { user },
+
+        error: userError
+
+      } = await supabase.auth.getUser();
+
+      if (userError || !user) {
+
+        console.error("Could not save emoji without a signed-in user:", userError);
+
+        return;
+
+      }
+
+      currentEmoji = selectedEmoji;
+
+      mapIdentityButton.textContent = selectedEmoji;
+
+      emojiPicker.hidden = true;
+
+      const { error: updateError } = await supabase
+
+        .from("profiles")
+
+        .update({ map_emoji: selectedEmoji })
+
+        .eq("id", user.id);
+
+      if (updateError) {
+
+        console.error("Could not save map emoji:", updateError);
+
+      }
+
+    });
 
   });
 
-});
-
-const savedEmoji = localStorage.getItem("npp-map-emoji");
-
-if (savedEmoji) {
-
-  mapIdentityButton.textContent = savedEmoji;
-
-}
+loadMapEmoji();
