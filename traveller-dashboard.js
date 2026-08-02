@@ -122,7 +122,7 @@ const travellerMapVisibleToggle =
 
 /* =========================================================
 
-   AUTH HELPER
+   AUTH
 
 ========================================================= */
 
@@ -206,19 +206,13 @@ function initMapFilters() {
 
     button.setAttribute("aria-pressed", "true");
 
-    const filter =
+    const filter = button.dataset.filter || "pads";
 
-      button.dataset.filter || "pads";
-
-    const count =
-
-      FILTER_COUNTS[filter] ?? 0;
+    const count = FILTER_COUNTS[filter] ?? 0;
 
     const label =
 
-      FILTER_LABELS[filter] ||
-
-      "locations nearby";
+      FILTER_LABELS[filter] || "locations nearby";
 
     countDisplay.textContent =
 
@@ -262,7 +256,7 @@ function initMapFilters() {
 
 /* =========================================================
 
-   EMOJI MAP MARKER
+   EMOJI MARKER
 
 ========================================================= */
 
@@ -428,17 +422,9 @@ function updateTravellerIdentityMarker(
 
 /* =========================================================
 
-   LOCATION PRIVACY
+   LOCATION AND PRIVACY
 
 ========================================================= */
-
-/*
-
-  Two decimal places gives an approximate
-
-  area rather than driveway-level precision.
-
-*/
 
 function makeLocationApproximate(value) {
 
@@ -494,155 +480,145 @@ async function saveTravellerMapLocation() {
 
   if (!user) {
 
+    alert("Your account could not be loaded.");
+
     return false;
 
   }
 
-  try {
+  let location = currentTravellerLocation;
 
-    const position =
+  if (!location) {
 
-      await getCurrentPosition();
+    try {
 
-    const exactLocation = {
+      const position =
 
-      lat: position.coords.latitude,
+        await getCurrentPosition();
 
-      lng: position.coords.longitude
+      location = {
 
-    };
+        lat: position.coords.latitude,
 
-    /*
+        lng: position.coords.longitude
 
-      The exact location remains in the
+      };
 
-      current browser for centring their own
+      currentTravellerLocation = location;
 
-      map. Only rounded coordinates are saved.
-
-    */
-
-    currentTravellerLocation =
-
-      exactLocation;
-
-    if (travellerMapInstance) {
-
-      travellerMapInstance.setCenter(
-
-        exactLocation
-
-      );
-
-      travellerMapInstance.setZoom(11);
-
-      updateTravellerIdentityMarker(
-
-        exactLocation
-
-      );
-
-    }
-
-    const approximateLatitude =
-
-      makeLocationApproximate(
-
-        exactLocation.lat
-
-      );
-
-    const approximateLongitude =
-
-      makeLocationApproximate(
-
-        exactLocation.lng
-
-      );
-
-    const { error } = await supabase
-
-      .from("profiles")
-
-      .update({
-
-        traveller_map_visible: true,
-
-        traveller_latitude:
-
-          approximateLatitude,
-
-        traveller_longitude:
-
-          approximateLongitude,
-
-        traveller_location_updated_at:
-
-          new Date().toISOString(),
-
-        traveller_status: "available"
-
-      })
-
-      .eq("id", user.id);
-
-    if (error) {
+    } catch (error) {
 
       console.error(
 
-        "Could not publish traveller location:",
+        "Traveller location error:",
 
         error
 
       );
 
+      if (error.code === 1) {
+
+        alert("Location permission was denied.");
+
+      } else if (error.code === 2) {
+
+        alert(
+
+          "Your current location is unavailable."
+
+        );
+
+      } else if (error.code === 3) {
+
+        alert(
+
+          "The location request timed out. Please try again."
+
+        );
+
+      } else {
+
+        alert(
+
+          "Your current location could not be loaded."
+
+        );
+
+      }
+
       return false;
 
     }
 
-    travellerMapIsVisible = true;
+  }
 
-    localStorage.setItem(
+  const approximateLatitude =
 
-      "npp-traveller-map-visible",
+    makeLocationApproximate(location.lat);
 
-      "true"
+  const approximateLongitude =
+
+    makeLocationApproximate(location.lng);
+
+  const { error } = await supabase
+
+    .from("profiles")
+
+    .update({
+
+      traveller_map_visible: true,
+
+      traveller_latitude:
+
+        approximateLatitude,
+
+      traveller_longitude:
+
+        approximateLongitude,
+
+      traveller_location_updated_at:
+
+        new Date().toISOString(),
+
+      traveller_status: "available"
+
+    })
+
+    .eq("id", user.id);
+
+  if (error) {
+
+    console.error(
+
+      "Supabase visibility update failed:",
+
+      error
 
     );
-
-    return true;
-
-} catch (error) {
-
-  console.error("Traveller location error:", error);
-
-  if (error.code === 1) {
-
-    alert("Location permission was denied.");
-
-  } else if (error.code === 2) {
-
-    alert("Your location is currently unavailable.");
-
-  } else if (error.code === 3) {
-
-    alert("Location request timed out. Please try again.");
-
-  } else {
 
     alert(
 
-      "Location error: " +
+      "Your traveller-map setting could not be saved: " +
 
-      (error.message || "Unknown error")
+      error.message
 
     );
 
+    return false;
+
   }
 
-  return false;
+  travellerMapIsVisible = true;
 
-}
+  localStorage.setItem(
+
+    "npp-traveller-map-visible",
+
+    "true"
+
+  );
+
+  return true;
 
 }
 
@@ -683,6 +659,14 @@ async function hideTravellerFromMap() {
       "Could not hide traveller from map:",
 
       error
+
+    );
+
+    alert(
+
+      "Your traveller-map setting could not be changed: " +
+
+      error.message
 
     );
 
@@ -818,52 +802,55 @@ function initTravellerVisibilityToggle() {
 
         true;
 
-      if (wantsToBeVisible) {
+      try {
 
-        const saved =
+        if (wantsToBeVisible) {
 
-          await saveTravellerMapLocation();
-console.log("Traveller visibility save result:", saved);
-        if (!saved) {
+          const saved =
 
-  console.error("Traveller visibility could not be saved.");
+            await saveTravellerMapLocation();
 
-  travellerMapVisibleToggle.checked = false;
+          if (!saved) {
 
-  travellerMapIsVisible = false;
+            travellerMapVisibleToggle.checked =
 
-  localStorage.setItem(
+              false;
 
-    "npp-traveller-map-visible",
+            travellerMapIsVisible = false;
 
-    "false"
+            localStorage.setItem(
 
-  );
+              "npp-traveller-map-visible",
 
-  return;
+              "false"
 
-}
+            );
 
+          }
 
-      } else {
+        } else {
 
-        const hidden =
+          const hidden =
 
-          await hideTravellerFromMap();
+            await hideTravellerFromMap();
 
-        if (!hidden) {
+          if (!hidden) {
 
-          travellerMapVisibleToggle.checked =
+            travellerMapVisibleToggle.checked =
 
-            true;
+              true;
+
+          }
 
         }
 
+      } finally {
+
+        travellerMapVisibleToggle.disabled =
+
+          false;
+
       }
-
-      travellerMapVisibleToggle.disabled =
-
-        false;
 
     }
 
@@ -1209,9 +1196,7 @@ async function loadDashboardListings() {
 
       new google.maps.Marker({
 
-        map:
-
-          travellerMapInstance,
+        map: travellerMapInstance,
 
         position: {
 
@@ -1649,7 +1634,7 @@ function initLocalWeather() {
 
 /* =========================================================
 
-   LOAD SAVED MAP EMOJI
+   SAVED EMOJI
 
 ========================================================= */
 
@@ -1665,9 +1650,7 @@ async function loadMapEmoji() {
 
   if (localEmoji) {
 
-    currentEmoji =
-
-      localEmoji;
+    currentEmoji = localEmoji;
 
     if (mapIdentityButton) {
 
@@ -1697,17 +1680,15 @@ async function loadMapEmoji() {
 
     error
 
-  } =
+  } = await supabase
 
-    await supabase
+    .from("profiles")
 
-      .from("profiles")
+    .select("map_emoji")
 
-      .select("map_emoji")
+    .eq("id", user.id)
 
-      .eq("id", user.id)
-
-      .maybeSingle();
+    .maybeSingle();
 
   if (error) {
 
@@ -1869,7 +1850,7 @@ document
 
 /* =========================================================
 
-   DASHBOARD STARTUP
+   STARTUP
 
 ========================================================= */
 
