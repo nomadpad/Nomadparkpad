@@ -570,3 +570,36 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 });
+const mapIdentityButton = document.getElementById("mapIdentityButton");
+
+const emojiPicker = document.getElementById("emojiPicker");
+
+mapIdentityButton?.addEventListener("click", () => {
+
+  emojiPicker.hidden = !emojiPicker.hidden;
+
+});
+
+document.querySelectorAll("#emojiPicker .emoji-grid button").forEach(button => {
+
+  button.addEventListener("click", () => {
+
+    mapIdentityButton.textContent = button.textContent;
+
+    emojiPicker.hidden = true;
+
+    // Temporary local save
+
+    localStorage.setItem("npp-map-emoji", button.textContent);
+
+  });
+
+});
+
+const savedEmoji = localStorage.getItem("npp-map-emoji");
+
+if (savedEmoji) {
+
+  mapIdentityButton.textContent = savedEmoji;
+
+}
