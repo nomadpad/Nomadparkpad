@@ -128,7 +128,63 @@ async function loadListings() {
   return data || [];
 
 }
+function createEmojiMarkerIcon(emoji, size = 42) {
 
+  const svg = `
+
+    <svg xmlns="http://www.w3.org/2000/svg"
+
+         width="${size}"
+
+         height="${size}"
+
+         viewBox="0 0 ${size} ${size}">
+
+      <circle
+
+        cx="${size / 2}"
+
+        cy="${size / 2}"
+
+        r="${size / 2 - 2}"
+
+        fill="#fffaf2"
+
+        stroke="#0d3b2f"
+
+        stroke-width="3"
+
+      />
+
+      <text
+
+        x="50%"
+
+        y="54%"
+
+        text-anchor="middle"
+
+        dominant-baseline="middle"
+
+        font-size="${size * 0.52}"
+
+      >${emoji}</text>
+
+    </svg>
+
+  `;
+
+  return {
+
+    url: `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svg)}`,
+
+    scaledSize: new google.maps.Size(size, size),
+
+    anchor: new google.maps.Point(size / 2, size / 2),
+
+  };
+
+}
 async function buildMap() {
 
   if (mapLoaded) {
@@ -179,6 +235,59 @@ async function buildMap() {
 
     });
 window.NPP_GOOGLE_MAP = googleMap;
+const mapCenter = googleMap.getCenter();
+
+new google.maps.Marker({
+
+  map: googleMap,
+
+  position: mapCenter,
+
+  icon: createEmojiMarkerIcon("🧭", 50),
+
+  title: "You",
+
+  zIndex: 999
+
+});
+
+const nearbyTravellers = [
+
+  {
+
+    lat: mapCenter.lat() + 0.045,
+
+    lng: mapCenter.lng() - 0.035
+
+  },
+
+  {
+
+    lat: mapCenter.lat() - 0.035,
+
+    lng: mapCenter.lng() + 0.045
+
+  }
+
+];
+
+nearbyTravellers.forEach((position) => {
+
+  new google.maps.Marker({
+
+    map: googleMap,
+
+    position,
+
+    icon: createEmojiMarkerIcon("🚐", 38),
+
+    title: "Nearby traveller",
+
+    zIndex: 500
+
+  });
+
+});
     const bounds = new google.maps.LatLngBounds();
 const markers = [];
 
@@ -195,13 +304,15 @@ const markers = [];
 
       const marker = new google.maps.Marker({
 
-      map: null,
+  map: null,
 
-        position,
+  position,
 
-        title: listing.title || "Nomad Park Pad"
+  title: listing.title || "Nomad Park Pad",
 
-      });
+  icon: createEmojiMarkerIcon("🏠", 38)
+
+});
       markers.push(marker);
       hostMarkerRecords.push({
 
