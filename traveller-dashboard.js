@@ -614,13 +614,21 @@ async function loadMapEmoji() {
 
   currentEmoji = profile?.map_emoji || "😎";
 
+  if (mapIdentityButton) {
+
   mapIdentityButton.textContent = currentEmoji;
+
+}
 
 }
 
 mapIdentityButton?.addEventListener("click", () => {
 
-  emojiPicker.hidden = !emojiPicker.hidden;
+  if (emojiPicker) {
+
+    emojiPicker.hidden = !emojiPicker.hidden;
+
+  }
 
 });
 
@@ -636,9 +644,17 @@ document
 
   currentEmoji = selectedEmoji;
 
-  mapIdentityButton.textContent = selectedEmoji;
+  if (mapIdentityButton) {
+
+  mapIdentityButton.textContent = currentEmoji;
+
+}
+
+  if (emojiPicker) {
 
   emojiPicker.hidden = true;
+
+}
 
   localStorage.setItem("npp-map-emoji", selectedEmoji);
 
@@ -688,4 +704,8 @@ document
 
 });
 
-loadMapEmoji();
+document.addEventListener("DOMContentLoaded", () => {
+
+  loadMapEmoji();
+
+});
