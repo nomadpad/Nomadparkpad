@@ -1373,130 +1373,245 @@ main {
   }
 
 }
-<section class="dashboard-showcase">
+/* =========================================================
 
-  <div class="section-header">
+   HOMEPAGE COMMAND CENTRES
 
-    <p class="kicker">POWERFUL TOOLS</p>
+========================================================= */
+.dashboard-showcase {
 
-    <h2>
+  padding: 86px 5vw;
 
-      Built for Hosts &amp; Travellers
+  background:
 
-    </h2>
+    linear-gradient(
 
-    <p>
+      180deg,
 
-      Nomad Park Pad gives hosts and travellers their own powerful
+      rgba(255, 255, 255, 0.98),
 
-      command centre to manage every part of the journey.
+      rgba(247, 234, 213, 0.42)
 
-    </p>
+    );
 
-  </div>
+}
 
-  <div class="dashboard-grid">
+.dashboard-showcase .section-header {
 
-    <article class="dashboard-card">
+  max-width: 760px;
 
-      <img
+  margin: 0 auto 42px;
 
-        src="image copy 3.jpeg"
+  padding: 0 16px;
 
-        alt="Nomad Park Pad Host Command Centre"
+  text-align: center;
 
-      >
+}
 
-      <div class="dashboard-card-content">
+.dashboard-showcase .section-header h2 {
 
-        <p class="kicker">
+  margin: 8px 0 14px;
 
-          FOR HOMEOWNERS
+  color: var(--forest);
 
-        </p>
+  font-family: Georgia, "Times New Roman", serif;
 
-        <h3>
+  font-size: clamp(40px, 5vw, 68px);
 
-          Host Command Centre
+  line-height: 1;
 
-        </h3>
+}
 
-        <p>
+.dashboard-showcase .section-header > p:last-child {
 
-          Manage pads, booking requests, calendars, messages,
+  max-width: 660px;
 
-          earnings, payouts, reviews, demand and performance
+  margin: 0 auto;
 
-          from one private workspace.
+  color: #59645f;
 
-        </p>
+  font-size: 18px;
 
-        <a
+  line-height: 1.65;
 
-          href="become-a-host.html"
+}
 
-          class="btn btn-accent"
+.dashboard-grid {
 
-        >
+  display: grid;
 
-          Become a Host
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 
-        </a>
+  gap: 28px;
 
-      </div>
+  width: 100%;
 
-    </article>
+  max-width: 1240px;
 
-    <article class="dashboard-card">
+  margin: 0 auto;
 
-      <img
+}
 
-        src="image copy 4.jpeg"
+.dashboard-card {
 
-        alt="Nomad Park Pad Traveller Command Centre"
+  min-width: 0;
 
-      >
+  overflow: hidden;
 
-      <div class="dashboard-card-content">
+  display: flex;
 
-        <p class="kicker">
+  flex-direction: column;
 
-          FOR ROAD TRAVELLERS
+  border: 1px solid rgba(13, 59, 47, 0.12);
 
-        </p>
+  border-radius: 26px;
 
-        <h3>
+  background: rgba(255, 255, 255, 0.96);
 
-          Traveller Command Centre
+  box-shadow: 0 20px 46px rgba(13, 59, 47, 0.11);
 
-        </h3>
+}
 
-        <p>
+.dashboard-card img {
 
-          Explore nearby pads, EV charging, package pickup,
+  display: block;
 
-          event parking, messages, weather and road-trip tools
+  width: 100%;
 
-          from one travel dashboard.
+  max-width: 100%;
 
-        </p>
+  height: 520px;
 
-        <a
+  object-fit: contain;
 
-          href="traveller.html"
+  object-position: top center;
 
-          class="btn btn-primary"
+  background: #eef1eb;
 
-        >
+}
 
-          Explore as a Traveller
+.dashboard-card-content {
 
-        </a>
+  display: flex;
 
-      </div>
+  flex: 1;
 
-    </article>
+  flex-direction: column;
 
-  </div>
+  align-items: flex-start;
 
-</section>
+  padding: 30px;
+
+}
+
+.dashboard-card-content .kicker {
+
+  margin: 0 0 8px;
+
+  color: var(--orange);
+
+  font-size: 12px;
+
+  font-weight: 900;
+
+  letter-spacing: 0.16em;
+
+}
+
+.dashboard-card-content h3 {
+
+  margin: 0 0 15px;
+
+  color: var(--forest);
+
+  font-family: Georgia, "Times New Roman", serif;
+
+  font-size: clamp(30px, 3vw, 44px);
+
+  line-height: 1;
+
+}
+
+.dashboard-card-content > p:not(.kicker) {
+
+  margin: 0 0 24px;
+
+  color: #53605a;
+
+  font-size: 16px;
+
+  line-height: 1.65;
+
+}
+
+.dashboard-card-content .btn {
+
+  margin-top: auto;
+
+}
+
+@media (max-width: 850px) {
+
+  .dashboard-showcase {
+
+    overflow-x: hidden;
+
+    padding: 56px 16px;
+
+  }
+
+  .dashboard-showcase .section-header {
+
+    margin-bottom: 28px;
+
+    padding: 0 6px;
+
+  }
+
+  .dashboard-showcase .section-header h2 {
+
+    font-size: clamp(38px, 11vw, 54px);
+
+  }
+
+  .dashboard-grid {
+
+    grid-template-columns: minmax(0, 1fr);
+
+    gap: 24px;
+
+  }
+
+  .dashboard-card {
+
+    width: 100%;
+
+    max-width: 100%;
+
+    border-radius: 22px;
+
+  }
+
+  .dashboard-card img {
+
+    width: 100%;
+
+    height: auto;
+
+    max-height: none;
+
+    object-fit: contain;
+
+  }
+
+  .dashboard-card-content {
+
+    align-items: center;
+
+    padding: 24px 20px 28px;
+
+    text-align: center;
+
+  }
+
+}
