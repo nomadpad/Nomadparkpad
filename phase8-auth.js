@@ -87,19 +87,53 @@ document.querySelector("#login-form")?.addEventListener("submit", async (event) 
     setMessage(form, error.message, true);
     return;
   }
-  const role = data.user?.user_metadata?.role;
+const {
 
-window.location.href =
+  data: profile,
 
-  role === "host"
+  error: profileError
 
-    ? "host-dashboard.html"
+} = await supabase
 
-    : role === "traveler"
+  .from("profiles")
 
-      ? "traveller-dashboard.html"
+  .select("is_admin, is_host, role")
 
-      : "account.html";
+  .eq("id", data.user.id)
+
+  .maybeSingle();
+
+if (profileError) {
+
+  console.error(
+
+    "Could not load login destination:",
+
+    profileError
+
+  );
+
+}
+
+if (profile?.is_admin) {
+
+  window.location.href = "admin-command.html";
+
+} else if (
+
+  profile?.is_host ||
+
+  profile?.role === "host"
+
+) {
+
+  window.location.href = "host-command.html";
+
+} else {
+
+  window.location.href = "traveller.html";
+
+}
 
   
 });
