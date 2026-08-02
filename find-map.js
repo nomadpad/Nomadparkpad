@@ -6,6 +6,14 @@ import {
 
 } from "./supabase-client.js";
 
+/* =========================================================
+
+   NOMAD PARK PAD
+
+   NORTH AMERICA EXPLORER MAP
+
+========================================================= */
+
 const listButton =
 
   document.querySelector("#list-view-button");
@@ -24,16 +32,127 @@ const mapMessage =
 
 const resultsSection =
 
-  document.querySelector(".example-results-section");
+  document.querySelector(
+
+    ".example-results-section"
+
+  );
+
+const mapSearchButton =
+
+  document.querySelector(
+
+    "#map-search-button"
+
+  );
+
+const mapSearchPanel =
+
+  document.querySelector(
+
+    "#mapSearchPanel"
+
+  );
+
+const tripPlannerButton =
+
+  document.querySelector(
+
+    "#trip-planner-button"
+
+  );
+
+const tripPlannerPanel =
+
+  document.querySelector(
+
+    "#tripPlannerPanel"
+
+  );
+
+const tripStartInput =
+
+  document.querySelector(
+
+    "#tripStartInput"
+
+  );
+
+const tripDestinationInput =
+
+  document.querySelector(
+
+    "#tripDestinationInput"
+
+  );
+
+const tripPlannerSubmit =
+
+  document.querySelector(
+
+    "#tripPlannerSubmit"
+
+  );
+
+const mapSearchInput =
+
+  document.querySelector(
+
+    "#mapSearchInput"
+
+  );
+
+const mapSearchSubmit =
+
+  document.querySelector(
+
+    "#mapSearchSubmit"
+
+  );
+
+/* =========================================================
+
+   STATE
+
+========================================================= */
 
 let mapLoaded = false;
 
 let googleMap = null;
+
 let directionsRenderer = null;
+
+let userMarker = null;
+
+let hostMarkerClusterer = null;
+
+let travellerMarkerClusterer = null;
+
+let travellerInfoWindow = null;
+
+let currentUser = null;
+
+let currentUserEmoji = "🧭";
+
+let currentUserLocation = null;
+
+let hostMarkerRecords = [];
+
+let travellerMarkerRecords = [];
+
+/* =========================================================
+
+   HELPERS
+
+========================================================= */
 
 function showMessage(text = "") {
 
-  if (!mapMessage) return;
+  if (!mapMessage) {
+
+    return;
+
+  }
 
   mapMessage.textContent = text;
 
@@ -43,11 +162,25 @@ function showMessage(text = "") {
 
 function setActiveView(view) {
 
-  const showingMap = view === "map";
+  const showingMap =
 
-  listButton?.classList.toggle("active", !showingMap);
+    view === "map";
 
-  mapButton?.classList.toggle("active", showingMap);
+  listButton?.classList.toggle(
+
+    "active",
+
+    !showingMap
+
+  );
+
+  mapButton?.classList.toggle(
+
+    "active",
+
+    showingMap
+
+  );
 
   listButton?.setAttribute(
 
@@ -67,13 +200,17 @@ function setActiveView(view) {
 
   if (resultsSection) {
 
-    resultsSection.hidden = showingMap;
+    resultsSection.hidden =
+
+      showingMap;
 
   }
 
   if (mapElement) {
 
-    mapElement.hidden = !showingMap;
+    mapElement.hidden =
+
+      !showingMap;
 
   }
 
@@ -95,29 +232,275 @@ function escapeHtml(value = "") {
 
 }
 
-async function loadListings() {
+function formatTravellerStatus(status) {
 
-  if (!supabaseConfigured || !supabase) {
+  const labels = {
 
-    throw new Error("Supabase is not configured.");
+    available:
+
+      "Available",
+
+    looking_for_pad:
+
+      "Looking for a pad",
+
+    staying_with_host:
+
+      "Staying with a host",
+
+    offline:
+
+      "Offline"
+
+  };
+
+  return (
+
+    labels[status] ||
+
+    "Travelling"
+
+  );
+
+}
+
+/* =========================================================
+
+   DATA
+
+========================================================= */
+
+async function getSignedInUser() {
+
+  if (
+
+    !supabaseConfigured ||
+
+    !supabase
+
+  ) {
+
+    return null;
 
   }
 
-  const { data, error } = await supabase
+  const {
 
-    .from("listings")
+    data,
 
-    .select(
+    error
 
-      "id, title, city, province, nightly_price, latitude, longitude"
+  } =
 
-    )
+    await supabase.auth.getSession();
 
-    .eq("status", "published")
+  if (error) {
 
-    .not("latitude", "is", null)
+    console.error(
 
-    .not("longitude", "is", null);
+      "Could not load user session:",
+
+      error
+
+    );
+
+    return null;
+
+  }
+
+  return (
+
+    data?.session?.user ||
+
+    null
+
+  );
+
+}
+
+async function loadCurrentUserProfile() {
+
+  currentUser =
+
+    await getSignedInUser();
+
+  if (!currentUser) {
+
+    return;
+
+  }
+
+  const {
+
+    data: profile,
+
+    error
+
+  } =
+
+    await supabase
+
+      .from("profiles")
+
+      .select(
+
+        `
+
+          map_emoji,
+
+          traveller_latitude,
+
+          traveller_longitude
+
+        `
+
+      )
+
+      .eq(
+
+        "id",
+
+        currentUser.id
+
+      )
+
+      .maybeSingle();
+
+  if (error) {
+
+    console.error(
+
+      "Could not load current traveller profile:",
+
+      error
+
+    );
+
+    return;
+
+  }
+
+  currentUserEmoji =
+
+    profile?.map_emoji ||
+
+    "🧭";
+
+  const latitude =
+
+    Number(
+
+      profile?.traveller_latitude
+
+    );
+
+  const longitude =
+
+    Number(
+
+      profile?.traveller_longitude
+
+    );
+
+  if (
+
+    Number.isFinite(latitude) &&
+
+    Number.isFinite(longitude)
+
+  ) {
+
+    currentUserLocation = {
+
+      lat: latitude,
+
+      lng: longitude
+
+    };
+
+  }
+
+}
+
+async function loadListings() {
+
+  if (
+
+    !supabaseConfigured ||
+
+    !supabase
+
+  ) {
+
+    throw new Error(
+
+      "Supabase is not configured."
+
+    );
+
+  }
+
+  const {
+
+    data,
+
+    error
+
+  } =
+
+    await supabase
+
+      .from("listings")
+
+      .select(
+
+        `
+
+          id,
+
+          title,
+
+          city,
+
+          province,
+
+          nightly_price,
+
+          latitude,
+
+          longitude
+
+        `
+
+      )
+
+      .eq(
+
+        "status",
+
+        "published"
+
+      )
+
+      .not(
+
+        "latitude",
+
+        "is",
+
+        null
+
+      )
+
+      .not(
+
+        "longitude",
+
+        "is",
+
+        null
+
+      );
 
   if (error) {
 
@@ -128,17 +511,94 @@ async function loadListings() {
   return data || [];
 
 }
-function createEmojiMarkerIcon(emoji, size = 42) {
+
+async function loadVisibleTravellers() {
+
+  if (
+
+    !supabaseConfigured ||
+
+    !supabase
+
+  ) {
+
+    return [];
+
+  }
+
+  const {
+
+    data,
+
+    error
+
+  } =
+
+    await supabase.rpc(
+
+      "get_visible_travellers"
+
+    );
+
+  if (error) {
+
+    console.error(
+
+      "Could not load visible travellers:",
+
+      error
+
+    );
+
+    return [];
+
+  }
+
+  return (data || []).filter(
+
+    (traveller) =>
+
+      traveller.traveller_id !==
+
+      currentUser?.id
+
+  );
+
+}
+
+/* =========================================================
+
+   MARKER ICONS
+
+========================================================= */
+
+function createEmojiMarkerIcon(
+
+  emoji,
+
+  size = 42,
+
+  ringColor = "#0d3b2f"
+
+) {
+
+  const safeEmoji =
+
+    emoji || "🚐";
 
   const svg = `
 
-    <svg xmlns="http://www.w3.org/2000/svg"
+    <svg
 
-         width="${size}"
+      xmlns="http://www.w3.org/2000/svg"
 
-         height="${size}"
+      width="${size}"
 
-         viewBox="0 0 ${size} ${size}">
+      height="${size}"
+
+      viewBox="0 0 ${size} ${size}"
+
+    >
 
       <circle
 
@@ -150,7 +610,7 @@ function createEmojiMarkerIcon(emoji, size = 42) {
 
         fill="#fffaf2"
 
-        stroke="#0d3b2f"
+        stroke="${ringColor}"
 
         stroke-width="3"
 
@@ -168,7 +628,7 @@ function createEmojiMarkerIcon(emoji, size = 42) {
 
         font-size="${size * 0.52}"
 
-      >${emoji}</text>
+      >${safeEmoji}</text>
 
     </svg>
 
@@ -176,219 +636,367 @@ function createEmojiMarkerIcon(emoji, size = 42) {
 
   return {
 
-    url: `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svg)}`,
+    url:
 
-    scaledSize: new google.maps.Size(size, size),
+      "data:image/svg+xml;charset=UTF-8," +
 
-    anchor: new google.maps.Point(size / 2, size / 2),
+      encodeURIComponent(svg),
+
+    scaledSize:
+
+      new google.maps.Size(
+
+        size,
+
+        size
+
+      ),
+
+    anchor:
+
+      new google.maps.Point(
+
+        size / 2,
+
+        size / 2
+
+      )
 
   };
 
 }
-async function buildMap() {
 
-  if (mapLoaded) {
+/* =========================================================
 
-    window.google?.maps?.event?.trigger(
+   YOUR MARKER
 
-      googleMap,
+========================================================= */
 
-      "resize"
+function placeCurrentUserMarker() {
+
+  if (
+
+    !googleMap ||
+
+    !window.google?.maps
+
+  ) {
+
+    return;
+
+  }
+
+  const fallbackLocation = {
+
+    lat: 53.5461,
+
+    lng: -113.4938
+
+  };
+
+  const position =
+
+    currentUserLocation ||
+
+    fallbackLocation;
+
+  if (!userMarker) {
+
+    userMarker =
+
+      new google.maps.Marker({
+
+        map: googleMap,
+
+        position,
+
+        icon:
+
+          createEmojiMarkerIcon(
+
+            currentUserEmoji,
+
+            52,
+
+            "#f36b16"
+
+          ),
+
+        title: "You",
+
+        zIndex: 999
+
+      });
+
+  } else {
+
+    userMarker.setPosition(
+
+      position
 
     );
 
+    userMarker.setIcon(
+
+      createEmojiMarkerIcon(
+
+        currentUserEmoji,
+
+        52,
+
+        "#f36b16"
+
+      )
+
+    );
+
+  }
+
+}
+
+function centreOnCurrentLocation() {
+
+  if (
+
+    !navigator.geolocation ||
+
+    !googleMap
+
+  ) {
+
+    placeCurrentUserMarker();
+
     return;
 
   }
 
-  if (!window.google?.maps) {
+  navigator.geolocation.getCurrentPosition(
 
-    showMessage("Google Maps has not loaded yet.");
+    (position) => {
 
-    return;
+      currentUserLocation = {
 
-  }
+        lat:
 
-  showMessage("Loading host areas...");
+          position.coords.latitude,
 
-  try {
+        lng:
 
-    const listings = await loadListings();
-
-    googleMap = new google.maps.Map(mapElement, {
-
-      center: {
-
-        lat: 53.5461,
-
-        lng: -113.4938
-
-      },
-
-      zoom: 8,
-
-      mapTypeControl: false,
-
-      streetViewControl: false,
-
-      fullscreenControl: true
-
-    });
-window.NPP_GOOGLE_MAP = googleMap;
-const mapCenter = googleMap.getCenter();
-
-new google.maps.Marker({
-
-  map: googleMap,
-
-  position: mapCenter,
-
-  icon: createEmojiMarkerIcon("🧭", 50),
-
-  title: "You",
-
-  zIndex: 999
-
-});
-
-const nearbyTravellers = [
-
-  {
-
-    lat: mapCenter.lat() + 0.045,
-
-    lng: mapCenter.lng() - 0.035
-
-  },
-
-  {
-
-    lat: mapCenter.lat() - 0.035,
-
-    lng: mapCenter.lng() + 0.045
-
-  }
-
-];
-
-nearbyTravellers.forEach((position) => {
-
-  new google.maps.Marker({
-
-    map: googleMap,
-
-    position,
-
-    icon: createEmojiMarkerIcon("🚐", 38),
-
-    title: "Nearby traveller",
-
-    zIndex: 500
-
-  });
-
-});
-    const bounds = new google.maps.LatLngBounds();
-const markers = [];
-
-  const hostMarkerRecords = []; 
-   listings.forEach(listing => {
-
-      const position = {
-
-        lat: Number(listing.latitude),
-
-        lng: Number(listing.longitude)
+          position.coords.longitude
 
       };
 
-      const marker = new google.maps.Marker({
+      placeCurrentUserMarker();
 
-  map: null,
+    },
 
-  position,
+    () => {
 
-  title: listing.title || "Nomad Park Pad",
+      placeCurrentUserMarker();
 
-  icon: createEmojiMarkerIcon("🏠", 38)
+    },
 
-});
-      markers.push(marker);
-      hostMarkerRecords.push({
+    {
 
-  marker,
+      enableHighAccuracy: false,
 
-  listing,
+      timeout: 8000,
 
-  position
+      maximumAge: 600000
 
-});
+    }
 
-      const location = [
+  );
 
-        listing.city,
+}
 
-        listing.province
+/* =========================================================
 
-      ]
+   HOST MARKERS
 
-        .filter(Boolean)
+========================================================= */
 
-        .join(", ");
+function clearHostMarkers() {
 
-      const price =
+  if (hostMarkerClusterer) {
 
-        Number(listing.nightly_price || 0);
+    hostMarkerClusterer.clearMarkers();
 
-      const infoWindow =
+    hostMarkerClusterer = null;
 
-        new google.maps.InfoWindow({
+  }
 
-          content: `
+  hostMarkerRecords.forEach(
 
-            <div class="map-popup">
+    ({ marker }) => {
 
-              <strong>
+      marker.setMap(null);
 
-                ${escapeHtml(
+    }
 
-                  listing.title || "Nomad Park Pad"
+  );
 
-                )}
+  hostMarkerRecords = [];
 
-              </strong>
+}
 
-              <p>
+function addHostMarkers(
 
-                ${escapeHtml(location)}
+  listings,
 
-              </p>
+  bounds
 
-              <p>
+) {
 
-                $${price.toFixed(0)} CAD per night
+  clearHostMarkers();
 
-              </p>
+  const markers = [];
 
-              <a
+  listings.forEach((listing) => {
 
-                href="pad-listing.html?listing=${encodeURIComponent(
+    const latitude =
 
-                  listing.id
+      Number(
 
-                )}">
+        listing.latitude
 
-                View Pad
+      );
 
-              </a>
+    const longitude =
 
-            </div>
+      Number(
 
-          `
+        listing.longitude
 
-        });
+      );
 
-      marker.addListener("click", () => {
+    if (
+
+      !Number.isFinite(latitude) ||
+
+      !Number.isFinite(longitude)
+
+    ) {
+
+      return;
+
+    }
+
+    const position = {
+
+      lat: latitude,
+
+      lng: longitude
+
+    };
+
+    const marker =
+
+      new google.maps.Marker({
+
+        map: null,
+
+        position,
+
+        title:
+
+          listing.title ||
+
+          "Nomad Park Pad",
+
+        icon:
+
+          createEmojiMarkerIcon(
+
+            "🏠",
+
+            38,
+
+            "#0d3b2f"
+
+          )
+
+      });
+
+    const location = [
+
+      listing.city,
+
+      listing.province
+
+    ]
+
+      .filter(Boolean)
+
+      .join(", ");
+
+    const price =
+
+      Number(
+
+        listing.nightly_price || 0
+
+      );
+
+    const infoWindow =
+
+      new google.maps.InfoWindow({
+
+        content: `
+
+          <div class="map-popup">
+
+            <strong>
+
+              ${escapeHtml(
+
+                listing.title ||
+
+                "Nomad Park Pad"
+
+              )}
+
+            </strong>
+
+            <p>
+
+              ${escapeHtml(location)}
+
+            </p>
+
+            <p>
+
+              $${price.toFixed(0)}
+
+              CAD per night
+
+            </p>
+
+            <a
+
+              href="pad-listing.html?listing=${encodeURIComponent(
+
+                listing.id
+
+              )}"
+
+            >
+
+              View Pad
+
+            </a>
+
+          </div>
+
+        `
+
+      });
+
+    marker.addListener(
+
+      "click",
+
+      () => {
 
         infoWindow.open({
 
@@ -398,45 +1006,653 @@ const markers = [];
 
         });
 
+      }
+
+    );
+
+    markers.push(marker);
+
+    hostMarkerRecords.push({
+
+      marker,
+
+      listing,
+
+      position
+
+    });
+
+    bounds.extend(position);
+
+  });
+
+  window.NPP_HOST_MARKERS =
+
+    hostMarkerRecords;
+
+  if (
+
+    markers.length &&
+
+    window.markerClusterer
+
+      ?.MarkerClusterer
+
+  ) {
+
+    hostMarkerClusterer =
+
+      new window.markerClusterer
+
+        .MarkerClusterer({
+
+          map: googleMap,
+
+          markers
+
+        });
+
+    window.NPP_HOST_MARKER_CLUSTERER =
+
+      hostMarkerClusterer;
+
+  } else {
+
+    markers.forEach(
+
+      (marker) =>
+
+        marker.setMap(
+
+          googleMap
+
+        )
+
+    );
+
+  }
+
+}
+
+/* =========================================================
+
+   TRAVELLER CARDS
+
+========================================================= */
+
+function buildTravellerCard(
+
+  traveller
+
+) {
+
+  const emoji =
+
+    escapeHtml(
+
+      traveller.map_emoji ||
+
+      "🚐"
+
+    );
+
+  const status =
+
+    escapeHtml(
+
+      formatTravellerStatus(
+
+        traveller.traveller_status
+
+      )
+
+    );
+
+  const destination =
+
+    traveller.destination
+
+      ? `
+
+        <p style="margin:8px 0 0;">
+
+          <strong>
+
+            Heading toward:
+
+          </strong>
+
+          ${escapeHtml(
+
+            traveller.destination
+
+          )}
+
+        </p>
+
+      `
+
+      : "";
+
+  const intro =
+
+    traveller.intro
+
+      ? `
+
+        <p style="margin:8px 0 0;">
+
+          ${escapeHtml(
+
+            traveller.intro
+
+          )}
+
+        </p>
+
+      `
+
+      : "";
+
+  return `
+
+    <div
+
+      style="
+
+        max-width:260px;
+
+        padding:4px 2px;
+
+        color:#173c31;
+
+        font-family:Arial,sans-serif;
+
+      "
+
+    >
+
+      <div
+
+        style="
+
+          display:flex;
+
+          align-items:center;
+
+          gap:10px;
+
+        "
+
+      >
+
+        <span style="font-size:32px;">
+
+          ${emoji}
+
+        </span>
+
+        <div>
+
+          <strong style="font-size:17px;">
+
+            Nomad Traveller
+
+          </strong>
+
+          <div
+
+            style="
+
+              margin-top:2px;
+
+              color:#66746e;
+
+              font-size:13px;
+
+            "
+
+          >
+
+            Active on the road
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <p style="margin:10px 0 0;">
+
+        <strong>Status:</strong>
+
+        ${status}
+
+      </p>
+
+      ${destination}
+
+      ${intro}
+
+      <p
+
+        style="
+
+          margin:10px 0 0;
+
+          color:#7b857f;
+
+          font-size:12px;
+
+        "
+
+      >
+
+        Approximate location only
+
+      </p>
+
+    </div>
+
+  `;
+
+}
+
+/* =========================================================
+
+   TRAVELLER MARKERS
+
+========================================================= */
+
+function clearTravellerMarkers() {
+
+  if (
+
+    travellerMarkerClusterer
+
+  ) {
+
+    travellerMarkerClusterer
+
+      .clearMarkers();
+
+    travellerMarkerClusterer =
+
+      null;
+
+  }
+
+  travellerMarkerRecords.forEach(
+
+    ({ marker }) => {
+
+      marker.setMap(null);
+
+    }
+
+  );
+
+  travellerMarkerRecords = [];
+
+}
+
+function addTravellerMarkers(
+
+  travellers,
+
+  bounds
+
+) {
+
+  clearTravellerMarkers();
+
+  const markers = [];
+
+  travellers.forEach(
+
+    (traveller) => {
+
+      const latitude =
+
+        Number(
+
+          traveller.latitude
+
+        );
+
+      const longitude =
+
+        Number(
+
+          traveller.longitude
+
+        );
+
+      if (
+
+        !Number.isFinite(latitude) ||
+
+        !Number.isFinite(longitude)
+
+      ) {
+
+        return;
+
+      }
+
+      const position = {
+
+        lat: latitude,
+
+        lng: longitude
+
+      };
+
+      const marker =
+
+        new google.maps.Marker({
+
+          map: null,
+
+          position,
+
+          title:
+
+            "Nomad Traveller",
+
+          icon:
+
+            createEmojiMarkerIcon(
+
+              traveller.map_emoji ||
+
+              "🚐",
+
+              42,
+
+              "#f36b16"
+
+            ),
+
+          zIndex: 600
+
+        });
+
+      marker.addListener(
+
+        "click",
+
+        () => {
+
+          if (!travellerInfoWindow) {
+
+            travellerInfoWindow =
+
+              new google.maps
+
+                .InfoWindow();
+
+          }
+
+          travellerInfoWindow
+
+            .setContent(
+
+              buildTravellerCard(
+
+                traveller
+
+              )
+
+            );
+
+          travellerInfoWindow.open({
+
+            map: googleMap,
+
+            anchor: marker
+
+          });
+
+        }
+
+      );
+
+      markers.push(marker);
+
+      travellerMarkerRecords.push({
+
+        marker,
+
+        traveller,
+
+        position
+
       });
 
       bounds.extend(position);
 
-    });
-    window.NPP_HOST_MARKERS = hostMarkerRecords;
-    if (markers.length && window.markerClusterer?.MarkerClusterer) {
+    }
 
-  const hostMarkerClusterer =
+  );
 
-    new window.markerClusterer.MarkerClusterer({
+  window.NPP_TRAVELLER_MARKERS =
 
-      map: googleMap,
+    travellerMarkerRecords;
 
-      markers
+  if (
 
-    });
+    markers.length &&
 
-  window.NPP_HOST_MARKER_CLUSTERER =
+    window.markerClusterer
 
-    hostMarkerClusterer;
+      ?.MarkerClusterer
+
+  ) {
+
+    travellerMarkerClusterer =
+
+      new window.markerClusterer
+
+        .MarkerClusterer({
+
+          map: googleMap,
+
+          markers
+
+        });
+
+    window.NPP_TRAVELLER_MARKER_CLUSTERER =
+
+      travellerMarkerClusterer;
+
+  } else {
+
+    markers.forEach(
+
+      (marker) =>
+
+        marker.setMap(
+
+          googleMap
+
+        )
+
+    );
+
+  }
 
 }
 
-    if (listings.length === 1) {
+/* =========================================================
 
-      googleMap.setCenter(bounds.getCenter());
+   BUILD MAP
 
-      googleMap.setZoom(11);
+========================================================= */
 
-    } else if (listings.length > 1) {
+async function buildMap() {
 
-      googleMap.fitBounds(bounds);
+  if (mapLoaded) {
+
+    window.google?.maps?.event
+
+      ?.trigger(
+
+        googleMap,
+
+        "resize"
+
+      );
+
+    return;
+
+  }
+
+  if (!window.google?.maps) {
+
+    showMessage(
+
+      "Google Maps has not loaded yet."
+
+    );
+
+    return;
+
+  }
+
+  showMessage(
+
+    "Loading hosts and travellers..."
+
+  );
+
+  try {
+
+    await loadCurrentUserProfile();
+
+    const [
+
+      listings,
+
+      travellers
+
+    ] =
+
+      await Promise.all([
+
+        loadListings(),
+
+        loadVisibleTravellers()
+
+      ]);
+
+    googleMap =
+
+      new google.maps.Map(
+
+        mapElement,
+
+        {
+
+          center: {
+
+            lat: 49.5,
+
+            lng: -104.5
+
+          },
+
+          zoom: 4,
+
+          mapTypeControl:
+
+            false,
+
+          streetViewControl:
+
+            false,
+
+          fullscreenControl:
+
+            true
+
+        }
+
+      );
+
+    window.NPP_GOOGLE_MAP =
+
+      googleMap;
+
+    const bounds =
+
+      new google.maps
+
+        .LatLngBounds();
+
+    addHostMarkers(
+
+      listings,
+
+      bounds
+
+    );
+
+    addTravellerMarkers(
+
+      travellers,
+
+      bounds
+
+    );
+
+    centreOnCurrentLocation();
+
+    const totalMarkers =
+
+      listings.length +
+
+      travellers.length;
+
+    if (totalMarkers > 1) {
+
+      googleMap.fitBounds(
+
+        bounds,
+
+        70
+
+      );
+
+    } else if (
+
+      totalMarkers === 1
+
+    ) {
+
+      googleMap.setCenter(
+
+        bounds.getCenter()
+
+      );
+
+      googleMap.setZoom(8);
 
     } else {
 
+      googleMap.setCenter({
+
+        lat: 49.5,
+
+        lng: -104.5
+
+      });
+
+      googleMap.setZoom(4);
+
       showMessage(
 
-        "No published pads with map locations are available yet."
+        "No published pads or visible travellers are available yet."
 
       );
 
@@ -444,7 +1660,7 @@ const markers = [];
 
     mapLoaded = true;
 
-    if (listings.length) {
+    if (totalMarkers) {
 
       showMessage("");
 
@@ -452,7 +1668,13 @@ const markers = [];
 
   } catch (error) {
 
-    console.error("Unable to load map listings:", error);
+    console.error(
+
+      "Unable to load explorer map:",
+
+      error
+
+    );
 
     showMessage(
 
@@ -466,164 +1688,519 @@ const markers = [];
 
 }
 
-listButton?.addEventListener("click", () => {
+/* =========================================================
 
-setActiveView("list");
+   LIST AND MAP VIEWS
 
+========================================================= */
 
-});
+listButton?.addEventListener(
 
-mapButton?.addEventListener("click", async () => {
+  "click",
 
-  setActiveView("map");
+  () => {
 
-  await buildMap();
-
-  if (window.google?.maps && googleMap) {
-
-    window.google.maps.event.trigger(googleMap, "resize");
+    setActiveView("list");
 
   }
 
-});
+);
+
+mapButton?.addEventListener(
+
+  "click",
+
+  async () => {
+
+    setActiveView("map");
+
+    await buildMap();
+
+    if (
+
+      window.google?.maps &&
+
+      googleMap
+
+    ) {
+
+      window.google.maps.event
+
+        .trigger(
+
+          googleMap,
+
+          "resize"
+
+        );
+
+    }
+
+  }
+
+);
+
 setActiveView("map");
 
 buildMap();
-document.querySelectorAll(".explorer-chip").forEach((chip) => {
 
-  chip.addEventListener("click", () => {
+/* =========================================================
 
-    chip.classList.toggle("active");
+   EXPLORER FILTER CHIPS
+
+========================================================= */
+
+document
+
+  .querySelectorAll(
+
+    ".explorer-chip"
+
+  )
+
+  .forEach((chip) => {
+
+    chip.addEventListener(
+
+      "click",
+
+      () => {
+
+        chip.classList.toggle(
+
+          "active"
+
+        );
+
+      }
+
+    );
 
   });
 
-});
+/* =========================================================
+
+   URL PARAMETERS
+
+========================================================= */
+
+const routeParams =
+
+  new URLSearchParams(
+
+    window.location.search
+
+  );
+
 const mapOnly =
 
-  new URLSearchParams(window.location.search).get("mapOnly") === "true";
-  const routeParams = new URLSearchParams(window.location.search);
+  routeParams.get("mapOnly") ===
 
-const routeStart = routeParams.get("start");
+  "true";
 
-const routeDestination = routeParams.get("destination");
+const routeStart =
+
+  routeParams.get("start");
+
+const routeDestination =
+
+  routeParams.get(
+
+    "destination"
+
+  );
 
 if (mapOnly) {
 
-  document.querySelectorAll(".hide-on-map-only").forEach((element) => {
+  document
 
-    element.hidden = true;
+    .querySelectorAll(
 
-  });
+      ".hide-on-map-only"
 
-}
-const mapSearchButton =
+    )
 
-  document.querySelector("#map-search-button");
+    .forEach((element) => {
 
-const mapSearchPanel =
+      element.hidden = true;
 
-  document.querySelector("#mapSearchPanel");
-  const tripPlannerButton =
-
-  document.querySelector("#trip-planner-button");
-  const tripPlannerPanel =
-
-  document.querySelector("#tripPlannerPanel");
-  const tripStartInput =
-
-  document.querySelector("#tripStartInput");
-
-const tripDestinationInput =
-
-  document.querySelector("#tripDestinationInput");
-
-if (routeStart && tripStartInput) {
-
-  tripStartInput.value = routeStart;
+    });
 
 }
 
-if (routeDestination && tripDestinationInput) {
+if (
 
-  tripDestinationInput.value = routeDestination;
+  routeStart &&
+
+  tripStartInput
+
+) {
+
+  tripStartInput.value =
+
+    routeStart;
 
 }
-const tripPlannerSubmit =
 
-  document.querySelector("#tripPlannerSubmit");
+if (
 
-mapSearchButton?.addEventListener("click", () => {
+  routeDestination &&
 
-  mapSearchPanel.hidden = false
-tripPlannerPanel.hidden = true;
-  mapSearchButton.hidden = true;
+  tripDestinationInput
 
-  tripPlannerButton.hidden = false;
+) {
 
-});
+  tripDestinationInput.value =
 
-tripPlannerButton?.addEventListener("click", () => {
+    routeDestination;
 
-  window.location.href = "trip-planner.html";
+}
 
-});
-const mapSearchInput =
+/* =========================================================
 
-  document.querySelector("#mapSearchInput");
+   MAP SEARCH PANEL
 
-const mapSearchSubmit =
+========================================================= */
 
-  document.querySelector("#mapSearchSubmit");
+mapSearchButton?.addEventListener(
 
-mapSearchSubmit?.addEventListener("click", () => {
+  "click",
 
-  const query = mapSearchInput?.value.trim();
+  () => {
 
-  if (!query || !googleMap || !window.google?.maps) return;
+    if (mapSearchPanel) {
 
-  const geocoder = new window.google.maps.Geocoder();
+      mapSearchPanel.hidden =
 
-  geocoder.geocode({ address: query }, (results, status) => {
+        false;
 
-    if (status !== "OK" || !results?.[0]) {
+    }
 
-      showMessage("Location not found.");
+    if (tripPlannerPanel) {
+
+      tripPlannerPanel.hidden =
+
+        true;
+
+    }
+
+    mapSearchButton.hidden =
+
+      true;
+
+    if (tripPlannerButton) {
+
+      tripPlannerButton.hidden =
+
+        false;
+
+    }
+
+  }
+
+);
+
+tripPlannerButton?.addEventListener(
+
+  "click",
+
+  () => {
+
+    window.location.href =
+
+      "trip-planner.html";
+
+  }
+
+);
+
+/* =========================================================
+
+   MAP SEARCH
+
+========================================================= */
+
+mapSearchSubmit?.addEventListener(
+
+  "click",
+
+  () => {
+
+    const query =
+
+      mapSearchInput?.value
+
+        .trim();
+
+    if (
+
+      !query ||
+
+      !googleMap ||
+
+      !window.google?.maps
+
+    ) {
 
       return;
 
     }
 
-    googleMap.setCenter(results[0].geometry.location);
+    const geocoder =
 
-    googleMap.setZoom(14);
-    if (navigator.geolocation) {
+      new window.google.maps
 
-  navigator.geolocation.getCurrentPosition((position) => {
-const origin = routeStart || {
+        .Geocoder();
 
-  lat: position.coords.latitude,
+    geocoder.geocode(
 
-  lng: position.coords.longitude
+      {
 
-};
+        address: query
 
-const destination =
+      },
 
-  routeDestination || results[0].geometry.location;
+      (
+
+        results,
+
+        status
+
+      ) => {
+
+        if (
+
+          status !== "OK" ||
+
+          !results?.[0]
+
+        ) {
+
+          showMessage(
+
+            "Location not found."
+
+          );
+
+          return;
+
+        }
+
+        const destinationLocation =
+
+          results[0]
+
+            .geometry
+
+            .location;
+
+        googleMap.setCenter(
+
+          destinationLocation
+
+        );
+
+        googleMap.setZoom(14);
+
+        if (
+
+          navigator.geolocation
+
+        ) {
+
+          navigator.geolocation
+
+            .getCurrentPosition(
+
+              (position) => {
+
+                const origin =
+
+                  routeStart || {
+
+                    lat:
+
+                      position.coords
+
+                        .latitude,
+
+                    lng:
+
+                      position.coords
+
+                        .longitude
+
+                  };
+
+                const destination =
+
+                  routeDestination ||
+
+                  destinationLocation;
+
+                const directionsService =
+
+                  new google.maps
+
+                    .DirectionsService();
+
+                directionsRenderer
+
+                  ?.setMap(null);
+
+                directionsRenderer =
+
+                  new google.maps
+
+                    .DirectionsRenderer({
+
+                      map:
+
+                        googleMap
+
+                    });
+
+                directionsService.route(
+
+                  {
+
+                    origin,
+
+                    destination,
+
+                    travelMode:
+
+                      google.maps
+
+                        .TravelMode
+
+                        .DRIVING
+
+                  },
+
+                  (
+
+                    routeResult,
+
+                    routeStatus
+
+                  ) => {
+
+                    if (
+
+                      routeStatus ===
+
+                      "OK"
+
+                    ) {
+
+                      directionsRenderer
+
+                        .setDirections(
+
+                          routeResult
+
+                        );
+
+                    }
+
+                  }
+
+                );
+
+              }
+
+            );
+
+        }
+
+        sessionStorage.setItem(
+
+          "routeDestination",
+
+          results[0]
+
+            .formatted_address
+
+        );
+
+        showMessage("");
+
+      }
+
+    );
+
+  }
+
+);
+
+/* =========================================================
+
+   TRIP PLANNER
+
+========================================================= */
+
+tripPlannerSubmit?.addEventListener(
+
+  "click",
+
+  () => {
+
+    const origin =
+
+      tripStartInput?.value
+
+        .trim();
+
+    const destination =
+
+      tripDestinationInput
+
+        ?.value
+
+        .trim();
+
+    if (
+
+      !origin ||
+
+      !destination ||
+
+      !googleMap ||
+
+      !window.google?.maps
+
+    ) {
+
+      showMessage(
+
+        "Enter a starting point and destination."
+
+      );
+
+      return;
+
+    }
 
     const directionsService =
 
-      new google.maps.DirectionsService();
+      new google.maps
 
-    directionsRenderer?.setMap(null);
+        .DirectionsService();
 
-directionsRenderer =
+    directionsRenderer
 
-      new google.maps.DirectionsRenderer({
+      ?.setMap(null);
 
-        map: googleMap
+    directionsRenderer =
 
-      });
+      new google.maps
+
+        .DirectionsRenderer({
+
+          map: googleMap
+
+        });
 
     directionsService.route(
 
@@ -633,92 +2210,54 @@ directionsRenderer =
 
         destination,
 
-        travelMode: google.maps.TravelMode.DRIVING
+        travelMode:
+
+          google.maps
+
+            .TravelMode
+
+            .DRIVING
 
       },
 
-      (routeResult, routeStatus) => {
+      (
 
-        if (routeStatus === "OK") {
+        routeResult,
 
-          directionsRenderer.setDirections(routeResult);
+        routeStatus
+
+      ) => {
+
+        if (
+
+          routeStatus !== "OK"
+
+        ) {
+
+          alert(
+
+            `Route error: ${routeStatus}`
+
+          );
+
+          return;
 
         }
+
+        directionsRenderer
+
+          .setDirections(
+
+            routeResult
+
+          );
+
+        showMessage("");
 
       }
 
     );
 
-  });
-
-}
-sessionStorage.setItem(
-
-  "routeDestination",
-
-  results[0].formatted_address
-
-);
-    showMessage("");
-
-});
-});
-tripPlannerSubmit?.addEventListener("click", () => {
-
-  const origin = tripStartInput?.value.trim();
-
-  const destination = tripDestinationInput?.value.trim();
-
-  if (!origin || !destination || !googleMap || !window.google?.maps) {
-
-    showMessage("Enter a starting point and destination.");
-
-    return;
-
   }
 
-  const directionsService =
-
-    new google.maps.DirectionsService();
-
-  directionsRenderer?.setMap(null);
-
-  directionsRenderer =
-
-    new google.maps.DirectionsRenderer({
-
-      map: googleMap
-
-    });
-
-  directionsService.route(
-
-    {
-
-      origin,
-
-      destination,
-
-      travelMode: google.maps.TravelMode.DRIVING
-
-    },
-
-    (routeResult, routeStatus) => {
-
-      if (routeStatus !== "OK") {
-
-        alert(`Route error: ${routeStatus}`);
-
-        return;
-
-      }
-
-      directionsRenderer.setDirections(routeResult);
-
-      showMessage("");
-
-    }
-
-  );
-
-});
+);
