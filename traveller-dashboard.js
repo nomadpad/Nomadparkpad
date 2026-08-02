@@ -128,39 +128,79 @@ const travellerMapVisibleToggle =
 
 async function getSignedInUser() {
 
-  if (typeof supabase === "undefined" || !supabase?.auth) {
+  try {
 
-    console.error("Supabase client is not ready.");
+    if (typeof supabase === "undefined") {
+
+      alert("Supabase client is undefined on this page.");
+
+      return null;
+
+    }
+
+    if (!supabase?.auth) {
+
+      alert("Supabase authentication is not available on this page.");
+
+      return null;
+
+    }
+
+    const {
+
+      data,
+
+      error
+
+    } = await supabase.auth.getSession();
+
+    if (error) {
+
+      console.error("Session lookup failed:", error);
+
+      alert(
+
+        "Session error: " +
+
+        (error.message || "Unknown error")
+
+      );
+
+      return null;
+
+    }
+
+    const user = data?.session?.user;
+
+    if (!user) {
+
+      alert(
+
+        "No active login session was found. Please log out and log back in."
+
+      );
+
+      return null;
+
+    }
+
+    return user;
+
+  } catch (error) {
+
+    console.error("Account lookup crashed:", error);
+
+    alert(
+
+      "Account lookup error: " +
+
+      (error.message || "Unknown error")
+
+    );
 
     return null;
 
   }
-
-  const {
-
-    data: { user },
-
-    error
-
-  } = await supabase.auth.getUser();
-
-  if (error) {
-
-    console.error("Could not load signed-in user:", error);
-
-    return null;
-
-  }
-
-  if (!user) {
-
-    console.error("No signed-in user session was found.");
-
-    return null;
-
-  }
-
-  return user;
 
 }
 
