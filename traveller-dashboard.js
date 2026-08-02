@@ -840,12 +840,6 @@ function initTravellerVisibilityToggle() {
 
           );
 
-          alert(
-
-            "Location permission is needed before you can appear on the traveller map."
-
-          );
-
         }
 
       } else {
