@@ -1,21 +1,101 @@
 <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Account Confirmation | Nomad Park Pad</title>
-  <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="phase8.css">
+
+  <meta charset="UTF-8">
+
+  <meta
+
+    name="viewport"
+
+    content="width=device-width, initial-scale=1.0"
+
+  >
+
+  <title>
+
+    Confirming Account | Nomad Park Pad
+
+  </title>
+
+  <link
+
+    rel="stylesheet"
+
+    href="styles.css"
+
+  >
+
+  <link
+
+    rel="stylesheet"
+
+    href="phase8.css"
+
+  >
+
 </head>
+
 <body>
-<main class="auth-shell">
-  <section class="auth-card centered">
-    <div class="spinner"></div>
-    <h1>Confirming your account...</h1>
-    <p class="form-message">Please keep this page open.</p>
-  </section>
-</main>
-<script src="supabase-config.js"></script>
-<script type="module" src="phase8-auth.js"></script>
+
+  <main class="auth-shell">
+
+    <section class="auth-card">
+
+      <div
+
+        class="spinner"
+
+        id="confirmationSpinner"
+
+      ></div>
+
+      <h1 id="confirmationTitle">
+
+        Confirming your account…
+
+      </h1>
+
+      <p
+
+        class="form-message"
+
+        id="confirmationMessage"
+
+      >
+
+        Please wait while Nomad Park Pad verifies your email.
+
+      </p>
+
+      <a
+
+        href="login.html"
+
+        id="confirmationLoginLink"
+
+        hidden
+
+      >
+
+        Continue to login
+
+      </a>
+
+    </section>
+
+  </main>
+
+  <script
+
+    type="module"
+
+    src="auth-callback.js"
+
+  ></script>
+
 </body>
+
 </html>
