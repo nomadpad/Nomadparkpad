@@ -43,7 +43,23 @@
     </div>
 
     <form class="message-composer" id="real-message-form">
-      <textarea id="real-message-input" rows="3" required maxlength="4000" placeholder="Write a message..."></textarea>
+      <input
+
+  id="real-message-input"
+
+  type="text"
+
+  required
+
+  maxlength="4000"
+
+  placeholder="Write a message..."
+
+  autocomplete="off"
+
+  enterkeyhint="send"
+
+>
       <button class="btn btn-accent" id="send-real-message" type="submit">Send</button>
     </form>
     <p class="form-message" id="message-form-message" aria-live="polite"></p>
