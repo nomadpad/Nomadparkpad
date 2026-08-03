@@ -789,4 +789,60 @@ button#send-real-message.btn-accent {
 
   }
 
+}/* =========================================================
+
+   ORANGE BORDER POLISH
+
+========================================================= */
+
+.conversation-header {
+
+  border: 2px solid var(--message-orange);
+
+}
+
+.conversation-card {
+
+  border: 2px solid var(--message-orange);
+
+}
+
+#message-stream {
+
+  border: 1.5px solid rgba(243, 107, 22, 0.85);
+
+}
+
+#real-message-input {
+
+  border: 1.5px solid rgba(243, 107, 22, 0.9) !important;
+
+}
+
+#real-message-input:focus {
+
+  border-color: var(--message-orange) !important;
+
+  box-shadow:
+
+    0 0 0 4px rgba(243, 107, 22, 0.14) !important;
+
+}
+
+.message-composer {
+
+  border: 1px solid rgba(243, 107, 22, 0.28);
+
+}
+
+@media (max-width: 640px) {
+
+  .conversation-header,
+
+  .conversation-card {
+
+    border-width: 1.5px;
+
+  }
+
 }
