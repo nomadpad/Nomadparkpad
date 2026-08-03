@@ -1210,3 +1210,44 @@ select,
   text-size-adjust: 100%;
 
 }
+/* FINAL iPHONE INPUT ZOOM FIX */
+
+html {
+
+  -webkit-text-size-adjust: 100% !important;
+
+}
+
+.conversation-card,
+
+.message-composer,
+
+#real-message-form {
+
+  transform: none !important;
+
+  scale: none !important;
+
+  zoom: 1 !important;
+
+}
+
+textarea#real-message-input,
+
+#real-message-form textarea#real-message-input {
+
+  font-size: 18px !important;
+
+  line-height: 1.4 !important;
+
+  transform: none !important;
+
+  scale: none !important;
+
+  zoom: 1 !important;
+
+  -webkit-appearance: none;
+
+  appearance: none;
+
+}
