@@ -1525,7 +1525,65 @@ function addTravellerMarkers(
             anchor: marker
 
           });
+google.maps.event.addListenerOnce(
 
+  travellerInfoWindow,
+
+  "domready",
+
+  () => {
+
+    const messageButton =
+
+      document.querySelector(
+
+        ".traveller-card-message-button"
+
+      );
+
+    if (!messageButton) {
+
+      return;
+
+    }
+
+    messageButton.addEventListener(
+
+      "click",
+
+      () => {
+
+        const travellerId =
+
+          messageButton.dataset.travellerId;
+
+        if (!travellerId) {
+
+          alert(
+
+            "This traveller could not be opened."
+
+          );
+
+          return;
+
+        }
+
+        window.location.href =
+
+          `messages.html?traveller=${encodeURIComponent(
+
+            travellerId
+
+          )}`;
+
+      }
+
+    );
+
+  }
+
+);
         }
 
       );
