@@ -1140,13 +1140,13 @@ body {
 
   .conversation-header {
 
-    width: calc(100vw - 20px) !important;
+    
 
   }
 
   .conversation-card {
 
-    width: calc(100vw - 20px) !important;
+    
 
   }
 
@@ -1249,5 +1249,78 @@ textarea#real-message-input,
   -webkit-appearance: none;
 
   appearance: none;
+
+}
+/* =========================================================
+
+   FINAL MOBILE WIDTH FIX
+
+========================================================= */
+
+html,
+
+body {
+
+  width: 100%;
+
+  max-width: 100%;
+
+  margin: 0;
+
+  overflow-x: hidden;
+
+}
+
+main.conversation-shell {
+
+  width: 100% !important;
+
+  max-width: 760px !important;
+
+  margin: 0 auto !important;
+
+  padding: 12px 10px 34px !important;
+
+  box-sizing: border-box !important;
+
+}
+
+.conversation-header,
+
+.conversation-card,
+
+#message-stream,
+
+#real-message-form,
+
+.message-composer {
+
+  width: 100% !important;
+
+  max-width: 100% !important;
+
+  min-width: 0 !important;
+
+  box-sizing: border-box !important;
+
+}
+
+#real-message-form {
+
+  grid-template-columns: minmax(0, 1fr) 52px !important;
+
+}
+
+#real-message-input {
+
+  width: 100% !important;
+
+  min-width: 0 !important;
+
+  max-width: 100% !important;
+
+  font-size: 18px !important;
+
+  box-sizing: border-box !important;
 
 }
