@@ -251,3 +251,238 @@ body {
     );
 
 }
+/* =========================================================
+
+   MODERN MESSAGE COMPOSER
+
+========================================================= */
+
+.message-composer {
+
+  position: sticky;
+
+  bottom: 12px;
+
+  z-index: 10;
+
+  display: grid;
+
+  grid-template-columns: minmax(0, 1fr) 58px;
+
+  gap: 10px;
+
+  align-items: center;
+
+  margin-top: 14px;
+
+  padding: 10px;
+
+  border: 1px solid var(--message-border);
+
+  border-radius: 24px;
+
+  background: rgba(255, 255, 255, 0.96);
+
+  box-shadow:
+
+    0 14px 34px rgba(13, 59, 47, 0.15);
+
+  backdrop-filter: blur(16px);
+
+  -webkit-backdrop-filter: blur(16px);
+
+}
+
+#real-message-input {
+
+  width: 100%;
+
+  min-width: 0;
+
+  height: 54px;
+
+  min-height: 54px;
+
+  max-height: 120px;
+
+  margin: 0;
+
+  padding: 15px 18px;
+
+  resize: none;
+
+  overflow-y: auto;
+
+  border: 1px solid rgba(13, 59, 47, 0.12);
+
+  border-radius: 18px;
+
+  background: #fffdf9;
+
+  color: var(--message-text);
+
+  font: inherit;
+
+  font-size: 16px;
+
+  line-height: 1.4;
+
+  box-sizing: border-box;
+
+  outline: none;
+
+}
+
+#real-message-input:focus {
+
+  border-color: var(--message-orange);
+
+  box-shadow:
+
+    0 0 0 4px rgba(243, 107, 22, 0.12);
+
+}
+
+#real-message-input::placeholder {
+
+  color: #8b9691;
+
+}
+
+#send-real-message {
+
+  width: 58px;
+
+  height: 58px;
+
+  display: grid;
+
+  place-items: center;
+
+  margin: 0;
+
+  padding: 0;
+
+  border: 0;
+
+  border-radius: 50%;
+
+  background:
+
+    linear-gradient(
+
+      145deg,
+
+      #ff7a21,
+
+      #df5410
+
+    );
+
+  color: white;
+
+  font-size: 0;
+
+  box-shadow:
+
+    0 10px 24px rgba(243, 107, 22, 0.3);
+
+  cursor: pointer;
+
+}
+
+#send-real-message::before {
+
+  content: "➤";
+
+  display: block;
+
+  font-size: 25px;
+
+  line-height: 1;
+
+  transform: rotate(-25deg);
+
+}
+
+#send-real-message:active {
+
+  transform: scale(0.95);
+
+}
+
+#send-real-message:disabled {
+
+  opacity: 0.55;
+
+  cursor: wait;
+
+}
+
+#message-form-message {
+
+  grid-column: 1 / -1;
+
+  margin: 0 8px;
+
+  color: #b34219;
+
+  font-size: 13px;
+
+}
+
+/* Keep the composer usable when the iPhone keyboard opens */
+
+@media (max-width: 640px) {
+
+  .conversation-shell {
+
+    padding-inline: 10px;
+
+  }
+
+  .conversation-card {
+
+    padding: 10px;
+
+    border-radius: 24px;
+
+  }
+
+  #message-stream {
+
+    min-height: 300px;
+
+    max-height: 52vh;
+
+  }
+
+  .message-composer {
+
+    bottom: 6px;
+
+    grid-template-columns: minmax(0, 1fr) 54px;
+
+    border-radius: 22px;
+
+  }
+
+  #real-message-input {
+
+    height: 52px;
+
+    min-height: 52px;
+
+    padding: 14px 16px;
+
+  }
+
+  #send-real-message {
+
+    width: 54px;
+
+    height: 54px;
+
+  }
+
+}
