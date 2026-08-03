@@ -538,11 +538,11 @@ function updateHostIdentity(user) {
 
   const welcomeHeading =
 
-    document.querySelector(
+  document.getElementById(
 
-      ".welcome-row h1"
+    "hostGreetingHeading"
 
-    );
+  );
 
   safeText(
 
