@@ -1887,7 +1887,7 @@ travellerMapInstance.setOptions({
   );
 
   loadDashboardListings();
-loadNearbyTravellers();
+
   const satelliteButton =
 
     document.querySelector(
