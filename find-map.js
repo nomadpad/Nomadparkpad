@@ -555,7 +555,6 @@ function addTravellerMarkers(
         marker.setMap(
 
           googleMap
-
         );
 
       }
@@ -565,3 +564,4 @@ function addTravellerMarkers(
   }
 
 }
+);
