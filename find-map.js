@@ -1251,7 +1251,135 @@ function buildTravellerCard(
         Approximate location only
 
       </p>
+<div
 
+  style="
+
+    display:grid;
+
+    gap:8px;
+
+    margin-top:14px;
+
+  "
+
+>
+
+  <button
+
+    type="button"
+
+    class="traveller-card-message-button"
+
+    data-traveller-id="${escapeHtml(
+
+      traveller.traveller_id || ""
+
+    )}"
+
+    style="
+
+      width:100%;
+
+      border:0;
+
+      border-radius:10px;
+
+      padding:11px 14px;
+
+      background:#0d3b2f;
+
+      color:#ffffff;
+
+      font-weight:700;
+
+      cursor:pointer;
+
+    "
+
+  >
+
+    💬 Message Traveller
+
+  </button>
+
+  <button
+
+    type="button"
+
+    class="traveller-card-block-button"
+
+    data-traveller-id="${escapeHtml(
+
+      traveller.traveller_id || ""
+
+    )}"
+
+    style="
+
+      width:100%;
+
+      border:1px solid #b42318;
+
+      border-radius:10px;
+
+      padding:10px 14px;
+
+      background:#ffffff;
+
+      color:#b42318;
+
+      font-weight:700;
+
+      cursor:pointer;
+
+    "
+
+  >
+
+    🚫 Block Traveller
+
+  </button>
+
+  <button
+
+    type="button"
+
+    class="traveller-card-report-button"
+
+    data-traveller-id="${escapeHtml(
+
+      traveller.traveller_id || ""
+
+    )}"
+
+    style="
+
+      width:100%;
+
+      border:0;
+
+      padding:6px;
+
+      background:transparent;
+
+      color:#6b7280;
+
+      font-size:12px;
+
+      text-decoration:underline;
+
+      cursor:pointer;
+
+    "
+
+  >
+
+    Report Traveller
+
+  </button>
+
+</div>
     </div>
 
   `;
