@@ -969,3 +969,96 @@ body {
   }
 
 }
+/* Final hard override */
+
+main.conversation-shell {
+
+  display: block !important;
+
+  width: 100% !important;
+
+  max-width: 760px !important;
+
+  margin: 0 auto !important;
+
+  padding: 12px 10px 34px !important;
+
+  box-sizing: border-box !important;
+
+}
+
+main.conversation-shell > .conversation-header,
+
+main.conversation-shell > .conversation-card {
+
+  width: 100% !important;
+
+  max-width: none !important;
+
+  margin-left: 0 !important;
+
+  margin-right: 0 !important;
+
+  box-sizing: border-box !important;
+
+}
+
+main.conversation-shell > .conversation-card {
+
+  display: block !important;
+
+  padding: 10px !important;
+
+}
+
+#message-stream {
+
+  display: flex !important;
+
+  width: 100% !important;
+
+  max-width: none !important;
+
+  min-height: 360px !important;
+
+  box-sizing: border-box !important;
+
+}
+
+#real-message-form {
+
+  display: grid !important;
+
+  grid-template-columns: minmax(0, 1fr) 52px !important;
+
+  width: 100% !important;
+
+  max-width: none !important;
+
+  box-sizing: border-box !important;
+
+}
+
+#real-message-input {
+
+  width: 100% !important;
+
+  max-width: none !important;
+
+  min-width: 0 !important;
+
+  font-size: 16px !important;
+
+  box-sizing: border-box !important;
+
+}
+
+@media (max-width: 640px) {
+
+  main.conversation-shell {
+
+    max-width: none !important;
+
+  }
+
+}
