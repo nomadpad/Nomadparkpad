@@ -803,7 +803,59 @@ mapButton?.addEventListener(
 
 setActiveView("map");
 
-buildMap();
+async function startExplorerMap() {
+
+  let attempts = 0;
+
+  const maximumAttempts = 40;
+
+  while (
+
+    !window.google?.maps &&
+
+    attempts < maximumAttempts
+
+  ) {
+
+    await new Promise((resolve) => {
+
+      window.setTimeout(
+
+        resolve,
+
+        250
+
+      );
+
+    });
+
+    attempts += 1;
+
+  }
+
+  if (!window.google?.maps) {
+
+    showMessage(
+
+      "Google Maps could not be loaded. Please refresh the page."
+
+    );
+
+    console.error(
+
+      "Google Maps was unavailable after waiting 10 seconds."
+
+    );
+
+    return;
+
+  }
+
+  await buildMap();
+
+}
+
+startExplorerMap();
 
 /* =========================================================
 
