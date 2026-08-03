@@ -1151,3 +1151,28 @@ body {
   }
 
 }
+/* Make the conversation window taller */
+
+#message-stream {
+
+  min-height: 520px !important;
+
+  height: 62vh !important;
+
+  max-height: 680px !important;
+
+}
+
+@media (max-width: 640px) {
+
+  #message-stream {
+
+    min-height: 500px !important;
+
+    height: 58vh !important;
+
+    max-height: 620px !important;
+
+  }
+
+}
