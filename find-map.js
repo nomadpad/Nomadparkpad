@@ -1733,7 +1733,7 @@ async function buildMap() {
           },
 
           zoom: 4,
-
+gestureHandling: "greedy",
           mapTypeControl:
 
             false,
