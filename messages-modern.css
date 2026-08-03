@@ -1176,3 +1176,37 @@ body {
   }
 
 }
+/* Stop iPhone Safari zooming when typing */
+
+input,
+
+textarea,
+
+select,
+
+#real-message-input {
+
+  font-size: 16px !important;
+
+  -webkit-text-size-adjust: 100%;
+
+  text-size-adjust: 100%;
+
+}
+
+#real-message-input {
+
+  transform: none !important;
+
+  zoom: 1 !important;
+
+}
+#real-message-input {
+
+  font-size: 16px !important;
+
+  -webkit-text-size-adjust: 100%;
+
+  text-size-adjust: 100%;
+
+}
