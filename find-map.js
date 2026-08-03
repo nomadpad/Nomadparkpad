@@ -1,27 +1,1098 @@
-alert("find-map.js loaded");
+import {
+
+  supabase,
+
+  supabaseConfigured
+
+} from "./supabase-client.js";
+
+/* =========================================================
+
+   NOMAD PARK PAD
+
+   NORTH AMERICA EXPLORER MAP
+
+========================================================= */
+
+const listButton =
+
+  document.querySelector("#list-view-button");
+
+const mapButton =
+
+  document.querySelector("#map-view-button");
+
+const mapElement =
+
+  document.querySelector("#traveller-map");
+
+const mapMessage =
+
+  document.querySelector("#map-message");
+
+const resultsSection =
+
+  document.querySelector(
+
+    ".example-results-section"
+
+  );
+
+const mapSearchButton =
+
+  document.querySelector(
+
+    "#map-search-button"
+
+  );
+
+const mapSearchPanel =
+
+  document.querySelector(
+
+    "#mapSearchPanel"
+
+  );
+
+const tripPlannerButton =
+
+  document.querySelector(
+
+    "#trip-planner-button"
+
+  );
+
+const tripPlannerPanel =
+
+  document.querySelector(
+
+    "#tripPlannerPanel"
+
+  );
+
+const tripStartInput =
+
+  document.querySelector(
+
+    "#tripStartInput"
+
+  );
+
+const tripDestinationInput =
+
+  document.querySelector(
+
+    "#tripDestinationInput"
+
+  );
+
+const tripPlannerSubmit =
+
+  document.querySelector(
+
+    "#tripPlannerSubmit"
+
+  );
+
+const mapSearchInput =
+
+  document.querySelector(
+
+    "#mapSearchInput"
+
+  );
+
+const mapSearchSubmit =
+
+  document.querySelector(
+
+    "#mapSearchSubmit"
+
+  );
+
+/* =========================================================
+
+   STATE
+
+========================================================= */
+
+let mapLoaded = false;
+
+let googleMap = null;
+
+let directionsRenderer = null;
+
+let userMarker = null;
+
+let hostMarkerClusterer = null;
+
+let travellerMarkerClusterer = null;
+
+let travellerInfoWindow = null;
+
+let currentUser = null;
+
+let currentUserEmoji = "🧭";
+
+let currentUserLocation = null;
+
+let hostMarkerRecords = [];
+
+let travellerMarkerRecords = [];
+
+/* =========================================================
+
+   HELPERS
+
+========================================================= */
+
+function showMessage(text = "") {
+
+  if (!mapMessage) {
+
+    return;
+
+  }
+
+  mapMessage.textContent = text;
+
+  mapMessage.hidden = !text;
+
+}
+
+function setActiveView(view) {
+
+  const showingMap =
+
+    view === "map";
+
+  listButton?.classList.toggle(
+
+    "active",
+
+    !showingMap
+
+  );
+
+  mapButton?.classList.toggle(
+
+    "active",
+
+    showingMap
+
+  );
+
+  listButton?.setAttribute(
+
+    "aria-pressed",
+
+    String(!showingMap)
+
+  );
+
+  mapButton?.setAttribute(
+
+    "aria-pressed",
+
+    String(showingMap)
+
+  );
+
+  if (resultsSection) {
+
+    resultsSection.hidden =
+
+      showingMap;
+
+  }
+
+  if (mapElement) {
+
+    mapElement.hidden =
+
+      !showingMap;
+
+  }
+
+}
+
+function escapeHtml(value = "") {
+
+  return String(value)
+
+    .replaceAll("&", "&amp;")
+
+    .replaceAll("<", "&lt;")
+
+    .replaceAll(">", "&gt;")
+
+    .replaceAll('"', "&quot;")
+
+    .replaceAll("'", "&#039;");
+
+}
+
+function formatTravellerStatus(status) {
+
+  const labels = {
+
+    available:
+
+      "Available",
+
+    looking_for_pad:
+
+      "Looking for a pad",
+
+    staying_with_host:
+
+      "Staying with a host",
+
+    offline:
+
+      "Offline"
+
+  };
+
+  return (
+
+    labels[status] ||
+
+    "Travelling"
+
+  );
+
+}
+
+/* =========================================================
+
+   DATA
+
+========================================================= */
+
+async function getSignedInUser() {
+
+  if (
+
+    !supabaseConfigured ||
+
+    !supabase
+
+  ) {
+
+    return null;
+
+  }
+
+  const {
+
+    data,
+
+    error
+
+  } =
+
+    await supabase.auth.getSession();
+
+  if (error) {
+
+    console.error(
+
+      "Could not load user session:",
+
+      error
+
+    );
+
+    return null;
+
+  }
+
+  return (
+
+    data?.session?.user ||
+
+    null
+
+  );
+
+}
+
+async function loadCurrentUserProfile() {
+
+  currentUser =
+
+    await getSignedInUser();
+
+  if (!currentUser) {
+
+    return;
+
+  }
+
+  const {
+
+    data: profile,
+
+    error
+
+  } =
+
+    await supabase
+
+      .from("profiles")
+
+      .select(
+
+        `
+
+          map_emoji,
+
+          traveller_latitude,
+
+          traveller_longitude
+
+        `
+
+      )
+
+      .eq(
+
+        "id",
+
+        currentUser.id
+
+      )
+
+      .maybeSingle();
+
+  if (error) {
+
+    console.error(
+
+      "Could not load current traveller profile:",
+
+      error
+
+    );
+
+    return;
+
+  }
+
+  currentUserEmoji =
+
+    profile?.map_emoji ||
+
+    "🧭";
+
+  const latitude =
+
+    Number(
+
+      profile?.traveller_latitude
+
+    );
+
+  const longitude =
+
+    Number(
+
+      profile?.traveller_longitude
+
+    );
+
+  if (
+
+    Number.isFinite(latitude) &&
+
+    Number.isFinite(longitude)
+
+  ) {
+
+    currentUserLocation = {
+
+      lat: latitude,
+
+      lng: longitude
+
+    };
+
+  }
+
+}
+
+async function loadListings() {
+
+  if (
+
+    !supabaseConfigured ||
+
+    !supabase
+
+  ) {
+
+    throw new Error(
+
+      "Supabase is not configured."
+
+    );
+
+  }
+
+  const {
+
+    data,
+
+    error
+
+  } =
+
+    await supabase
+
+      .from("listings")
+
+      .select(
+
+        `
+
+          id,
+
+          title,
+
+          city,
+
+          province,
+
+          nightly_price,
+
+          latitude,
+
+          longitude
+
+        `
+
+      )
+
+      .eq(
+
+        "status",
+
+        "published"
+
+      )
+
+      .not(
+
+        "latitude",
+
+        "is",
+
+        null
+
+      )
+
+      .not(
+
+        "longitude",
+
+        "is",
+
+        null
+
+      );
+
+  if (error) {
+
+    throw error;
+
+  }
+
+  return data || [];
+
+}
+
+async function loadVisibleTravellers() {
+
+  if (
+
+    !supabaseConfigured ||
+
+    !supabase
+
+  ) {
+
+    return [];
+
+  }
+
+  const {
+
+    data,
+
+    error
+
+  } =
+
+    await supabase.rpc(
+
+      "get_visible_travellers"
+
+    );
+
+  if (error) {
+
+    console.error(
+
+      "Could not load visible travellers:",
+
+      error
+
+    );
+
+    return [];
+
+  }
+
+  return (data || []).filter(
+
+    (traveller) =>
+
+      traveller.traveller_id !==
+
+      currentUser?.id
+
+  );
+
+}
+
+/* =========================================================
+
+   MARKER ICONS
+
+========================================================= */
+
+function createEmojiMarkerIcon(
+
+  emoji,
+
+  size = 42,
+
+  ringColor = "#0d3b2f"
+
+) {
+
+  const safeEmoji =
+
+    emoji || "🚐";
+
+  const svg = `
+
+    <svg
+
+      xmlns="http://www.w3.org/2000/svg"
+
+      width="${size}"
+
+      height="${size}"
+
+      viewBox="0 0 ${size} ${size}"
+
+    >
+
+      <circle
+
+        cx="${size / 2}"
+
+        cy="${size / 2}"
+
+        r="${size / 2 - 2}"
+
+        fill="#fffaf2"
+
+        stroke="${ringColor}"
+
+        stroke-width="3"
+
+      />
+
+      <text
+
+        x="50%"
+
+        y="54%"
+
+        text-anchor="middle"
+
+        dominant-baseline="middle"
+
+        font-size="${size * 0.52}"
+
+      >${safeEmoji}</text>
+
+    </svg>
+
+  `;
+
+  return {
+
+    url:
+
+      "data:image/svg+xml;charset=UTF-8," +
+
+      encodeURIComponent(svg),
+
+    scaledSize:
+
+      new google.maps.Size(
+
+        size,
+
+        size
+
+      ),
+
+    anchor:
+
+      new google.maps.Point(
+
+        size / 2,
+
+        size / 2
+
+      )
+
+  };
+
+}
+
+/* =========================================================
+
+   YOUR MARKER
+
+========================================================= */
+
+function placeCurrentUserMarker() {
+
+  if (
+
+    !googleMap ||
+
+    !window.google?.maps
+
+  ) {
+
+    return;
+
+  }
+
+  const fallbackLocation = {
+
+    lat: 53.5461,
+
+    lng: -113.4938
+
+  };
+
+  const position =
+
+    currentUserLocation ||
+
+    fallbackLocation;
+
+  if (!userMarker) {
+
+    userMarker =
+
+      new google.maps.Marker({
+
+        map: googleMap,
+
+        position,
+
+        icon:
+
+          createEmojiMarkerIcon(
+
+            currentUserEmoji,
+
+            52,
+
+            "#f36b16"
+
+          ),
+
+        title: "You",
+
+        zIndex: 999
+
+      });
+
+  } else {
+
+    userMarker.setPosition(
+
+      position
+
+    );
+
+    userMarker.setIcon(
+
+      createEmojiMarkerIcon(
+
+        currentUserEmoji,
+
+        52,
+
+        "#f36b16"
+
+      )
+
+    );
+
+  }
+
+}
+
+function centreOnCurrentLocation() {
+
+  if (
+
+    !navigator.geolocation ||
+
+    !googleMap
+
+  ) {
+
+    placeCurrentUserMarker();
+
+    return;
+
+  }
+
+  navigator.geolocation.getCurrentPosition(
+
+    (position) => {
+
+      currentUserLocation = {
+
+        lat:
+
+          position.coords.latitude,
+
+        lng:
+
+          position.coords.longitude
+
+      };
+
+      placeCurrentUserMarker();
+
+    },
+
+    () => {
+
+      placeCurrentUserMarker();
+
+    },
+
+    {
+
+      enableHighAccuracy: false,
+
+      timeout: 8000,
+
+      maximumAge: 600000
+
+    }
+
+  );
+
+}
+
+/* =========================================================
+
+   HOST MARKERS
+
+========================================================= */
+
+function clearHostMarkers() {
+
+  if (hostMarkerClusterer) {
+
+    hostMarkerClusterer.clearMarkers();
+
+    hostMarkerClusterer = null;
+
+  }
+
+  hostMarkerRecords.forEach(
+
+    ({ marker }) => {
+
+      marker.setMap(null);
+
+    }
+
+  );
+
+  hostMarkerRecords = [];
+
+}
+
+function addHostMarkers(
+
+  listings,
+
+  bounds
+
+) {
+
+  clearHostMarkers();
+
+  const markers = [];
+
+  listings.forEach((listing) => {
+
+    const latitude =
+
+      Number(
+
+        listing.latitude
+
+      );
+
+    const longitude =
+
+      Number(
+
+        listing.longitude
+
+      );
+
+    if (
+
+      !Number.isFinite(latitude) ||
+
+      !Number.isFinite(longitude)
+
+    ) {
+
+      return;
+
+    }
+
+    const position = {
+
+      lat: latitude,
+
+      lng: longitude
+
+    };
+
+    const marker =
+
+      new google.maps.Marker({
+
+        map: null,
+
+        position,
+
+        title:
+
+          listing.title ||
+
+          "Nomad Park Pad",
+
+        icon:
+
+          createEmojiMarkerIcon(
+
+            "🏠",
+
+            38,
+
+            "#0d3b2f"
+
+          )
+
+      });
+
+    const location = [
+
+      listing.city,
+
+      listing.province
+
+    ]
+
+      .filter(Boolean)
+
+      .join(", ");
+
+    const price =
+
+      Number(
+
+        listing.nightly_price || 0
+
+      );
+
+    const infoWindow =
+
+      new google.maps.InfoWindow({
+
+        content: `
+
+          <div class="map-popup">
+
+            <strong>
+
+              ${escapeHtml(
+
+                listing.title ||
+
+                "Nomad Park Pad"
+
+              )}
+
+            </strong>
+
+            <p>
+
+              ${escapeHtml(location)}
+
+            </p>
+
+            <p>
+
+              $${price.toFixed(0)}
+
+              CAD per night
+
+            </p>
+
+            <a
+
+              href="pad-listing.html?listing=${encodeURIComponent(
+
+                listing.id
+
+              )}"
+
+            >
+
+              View Pad
+
+            </a>
+
+          </div>
+
+        `
+
+      });
+
+    marker.addListener(
+
+      "click",
+
+      () => {
+
+        infoWindow.open({
+
+          anchor: marker,
+
+          map: googleMap
+
+        });
+
+      }
+
+    );
+
+    markers.push(marker);
+
+    hostMarkerRecords.push({
+
+      marker,
+
+      listing,
+
+      position
+
+    });
+
+    bounds.extend(position);
+
+  });
+
+  window.NPP_HOST_MARKERS =
+
+    hostMarkerRecords;
+
+  if (
+
+    markers.length &&
+
+    window.markerClusterer
+
+      ?.MarkerClusterer
+
+  ) {
+
+    hostMarkerClusterer =
+
+      new window.markerClusterer
+
+        .MarkerClusterer({
+
+          map: googleMap,
+
+          markers
+
+        });
+
+    window.NPP_HOST_MARKER_CLUSTERER =
+
+      hostMarkerClusterer;
+
+  } else {
+
+    markers.forEach(
+
+      (marker) =>
+
+        marker.setMap(
+
+          googleMap
+
+        )
+
+    );
+
+  }
+
+}
+
 /* =========================================================
 
    TRAVELLER CARDS
 
 ========================================================= */
 
-function buildTravellerCard(traveller) {
+function buildTravellerCard(
+
+  traveller
+
+) {
 
   const emoji =
 
     escapeHtml(
 
-      traveller.map_emoji || "🚐"
+      traveller.map_emoji ||
 
-    );
-
-  const publicName =
-
-    escapeHtml(
-
-      traveller.public_name ||
-
-      "Nomad Traveller"
+      "🚐"
 
     );
 
@@ -37,50 +1108,6 @@ function buildTravellerCard(traveller) {
 
     );
 
-  const homeRegion =
-
-    traveller.home_region
-
-      ? `
-
-        <p style="margin:8px 0 0;">
-
-          <strong>From:</strong>
-
-          ${escapeHtml(
-
-            traveller.home_region
-
-          )}
-
-        </p>
-
-      `
-
-      : "";
-
-  const vehicleType =
-
-    traveller.vehicle_type
-
-      ? `
-
-        <p style="margin:8px 0 0;">
-
-          <strong>Travelling in:</strong>
-
-          ${escapeHtml(
-
-            traveller.vehicle_type
-
-          )}
-
-        </p>
-
-      `
-
-      : "";
-
   const destination =
 
     traveller.destination
@@ -89,7 +1116,11 @@ function buildTravellerCard(traveller) {
 
         <p style="margin:8px 0 0;">
 
-          <strong>Heading toward:</strong>
+          <strong>
+
+            Heading toward:
+
+          </strong>
 
           ${escapeHtml(
 
@@ -109,23 +1140,7 @@ function buildTravellerCard(traveller) {
 
       ? `
 
-        <div
-
-          style="
-
-            margin-top:12px;
-
-            padding:11px 12px;
-
-            border-radius:12px;
-
-            background:#f5f1e6;
-
-            line-height:1.45;
-
-          "
-
-        >
+        <p style="margin:8px 0 0;">
 
           ${escapeHtml(
 
@@ -133,67 +1148,11 @@ function buildTravellerCard(traveller) {
 
           )}
 
-        </div>
+        </p>
 
       `
 
       : "";
-
-  const chatStatus =
-
-    traveller.open_to_chat
-
-      ? `
-
-        <div
-
-          style="
-
-            margin-top:12px;
-
-            padding:9px 11px;
-
-            border-radius:12px;
-
-            background:#e8f4ed;
-
-            color:#247248;
-
-            font-weight:700;
-
-            font-size:13px;
-
-          "
-
-        >
-
-          💬 Open to friendly messages
-
-        </div>
-
-      `
-
-      : `
-
-        <div
-
-          style="
-
-            margin-top:12px;
-
-            color:#7b857f;
-
-            font-size:12px;
-
-          "
-
-        >
-
-          Not currently open to messages
-
-        </div>
-
-      `;
 
   return `
 
@@ -201,11 +1160,9 @@ function buildTravellerCard(traveller) {
 
       style="
 
-        width:270px;
+        max-width:260px;
 
-        max-width:100%;
-
-        padding:6px 3px;
+        padding:4px 2px;
 
         color:#173c31;
 
@@ -223,39 +1180,13 @@ function buildTravellerCard(traveller) {
 
           align-items:center;
 
-          gap:12px;
+          gap:10px;
 
         "
 
       >
 
-        <span
-
-          style="
-
-            width:48px;
-
-            height:48px;
-
-            display:flex;
-
-            align-items:center;
-
-            justify-content:center;
-
-            flex:0 0 auto;
-
-            border:3px solid #f36b16;
-
-            border-radius:50%;
-
-            background:#fffaf2;
-
-            font-size:27px;
-
-          "
-
-        >
+        <span style="font-size:32px;">
 
           ${emoji}
 
@@ -263,21 +1194,9 @@ function buildTravellerCard(traveller) {
 
         <div>
 
-          <strong
+          <strong style="font-size:17px;">
 
-            style="
-
-              display:block;
-
-              font-size:18px;
-
-              line-height:1.2;
-
-            "
-
-          >
-
-            ${publicName}
+            Nomad Traveller
 
           </strong>
 
@@ -285,7 +1204,7 @@ function buildTravellerCard(traveller) {
 
             style="
 
-              margin-top:4px;
+              margin-top:2px;
 
               color:#66746e;
 
@@ -295,7 +1214,7 @@ function buildTravellerCard(traveller) {
 
           >
 
-            ${status}
+            Active on the road
 
           </div>
 
@@ -303,37 +1222,33 @@ function buildTravellerCard(traveller) {
 
       </div>
 
-      ${homeRegion}
+      <p style="margin:10px 0 0;">
 
-      ${vehicleType}
+        <strong>Status:</strong>
+
+        ${status}
+
+      </p>
 
       ${destination}
 
       ${intro}
 
-      ${chatStatus}
-
       <p
 
         style="
 
-          margin:12px 0 0;
-
-          padding-top:10px;
-
-          border-top:1px solid #e1e5df;
+          margin:10px 0 0;
 
           color:#7b857f;
 
-          font-size:11px;
-
-          line-height:1.4;
+          font-size:12px;
 
         "
 
       >
 
-        📍 Location is approximate for traveller privacy.
+        Approximate location only
 
       </p>
 
@@ -351,7 +1266,11 @@ function buildTravellerCard(traveller) {
 
 function clearTravellerMarkers() {
 
-  if (travellerMarkerClusterer) {
+  if (
+
+    travellerMarkerClusterer
+
+  ) {
 
     travellerMarkerClusterer
 
@@ -429,12 +1348,6 @@ function addTravellerMarkers(
 
       };
 
-      const publicName =
-
-        traveller.public_name ||
-
-        "Nomad Traveller";
-
       const marker =
 
         new google.maps.Marker({
@@ -443,7 +1356,9 @@ function addTravellerMarkers(
 
           position,
 
-          title: publicName,
+          title:
+
+            "Nomad Traveller",
 
           icon:
 
@@ -453,7 +1368,7 @@ function addTravellerMarkers(
 
               "🚐",
 
-              44,
+              42,
 
               "#f36b16"
 
@@ -473,19 +1388,23 @@ function addTravellerMarkers(
 
             travellerInfoWindow =
 
-              new google.maps.InfoWindow();
+              new google.maps
+
+                .InfoWindow();
 
           }
 
-          travellerInfoWindow.setContent(
+          travellerInfoWindow
 
-            buildTravellerCard(
+            .setContent(
 
-              traveller
+              buildTravellerCard(
 
-            )
+                traveller
 
-          );
+              )
+
+            );
 
           travellerInfoWindow.open({
 
@@ -551,21 +1470,20 @@ function addTravellerMarkers(
 
     markers.forEach(
 
-      (marker) => {
+      (marker) =>
 
         marker.setMap(
 
           googleMap
-        );
 
-      }
+        )
 
     );
 
   }
 
 }
-);
+
 /* =========================================================
 
    BUILD MAP
@@ -576,13 +1494,15 @@ async function buildMap() {
 
   if (mapLoaded) {
 
-    window.google?.maps?.event?.trigger(
+    window.google?.maps?.event
 
-      googleMap,
+      ?.trigger(
 
-      "resize"
+        googleMap,
 
-    );
+        "resize"
+
+      );
 
     return;
 
@@ -616,39 +1536,49 @@ async function buildMap() {
 
       travellers
 
-    ] = await Promise.all([
+    ] =
 
-      loadListings(),
+      await Promise.all([
 
-      loadVisibleTravellers()
+        loadListings(),
 
-    ]);
+        loadVisibleTravellers()
 
-    googleMap = new google.maps.Map(
+      ]);
 
-      mapElement,
+    googleMap =
 
-      {
+      new google.maps.Map(
 
-        center: {
+        mapElement,
 
-          lat: 49.5,
+        {
 
-          lng: -104.5
+          center: {
 
-        },
+            lat: 49.5,
 
-        zoom: 4,
+            lng: -104.5
 
-        mapTypeControl: false,
+          },
 
-        streetViewControl: false,
+          zoom: 4,
 
-        fullscreenControl: true
+          mapTypeControl:
 
-      }
+            false,
 
-    );
+          streetViewControl:
+
+            false,
+
+          fullscreenControl:
+
+            true
+
+        }
+
+      );
 
     window.NPP_GOOGLE_MAP =
 
@@ -656,7 +1586,9 @@ async function buildMap() {
 
     const bounds =
 
-      new google.maps.LatLngBounds();
+      new google.maps
+
+        .LatLngBounds();
 
     addHostMarkers(
 
@@ -692,7 +1624,11 @@ async function buildMap() {
 
       );
 
-    } else if (totalMarkers === 1) {
+    } else if (
+
+      totalMarkers === 1
+
+    ) {
 
       googleMap.setCenter(
 
@@ -788,13 +1724,15 @@ mapButton?.addEventListener(
 
     ) {
 
-      window.google.maps.event.trigger(
+      window.google.maps.event
 
-        googleMap,
+        .trigger(
 
-        "resize"
+          googleMap,
 
-      );
+          "resize"
+
+        );
 
     }
 
@@ -804,59 +1742,7 @@ mapButton?.addEventListener(
 
 setActiveView("map");
 
-async function startExplorerMap() {
-
-  let attempts = 0;
-
-  const maximumAttempts = 40;
-
-  while (
-
-    !window.google?.maps &&
-
-    attempts < maximumAttempts
-
-  ) {
-
-    await new Promise((resolve) => {
-
-      window.setTimeout(
-
-        resolve,
-
-        250
-
-      );
-
-    });
-
-    attempts += 1;
-
-  }
-
-  if (!window.google?.maps) {
-
-    showMessage(
-
-      "Google Maps could not be loaded. Please refresh the page."
-
-    );
-
-    console.error(
-
-      "Google Maps was unavailable after waiting 10 seconds."
-
-    );
-
-    return;
-
-  }
-
-  await buildMap();
-
-}
-
-startExplorerMap();
+buildMap();
 
 /* =========================================================
 
@@ -1042,7 +1928,9 @@ mapSearchSubmit?.addEventListener(
 
     const query =
 
-      mapSearchInput?.value.trim();
+      mapSearchInput?.value
+
+        .trim();
 
     if (
 
@@ -1060,7 +1948,9 @@ mapSearchSubmit?.addEventListener(
 
     const geocoder =
 
-      new google.maps.Geocoder();
+      new window.google.maps
+
+        .Geocoder();
 
     geocoder.geocode(
 
@@ -1070,7 +1960,13 @@ mapSearchSubmit?.addEventListener(
 
       },
 
-      (results, status) => {
+      (
+
+        results,
+
+        status
+
+      ) => {
 
         if (
 
@@ -1092,7 +1988,11 @@ mapSearchSubmit?.addEventListener(
 
         const destinationLocation =
 
-          results[0].geometry.location;
+          results[0]
+
+            .geometry
+
+            .location;
 
         googleMap.setCenter(
 
@@ -1102,11 +2002,125 @@ mapSearchSubmit?.addEventListener(
 
         googleMap.setZoom(14);
 
+        if (
+
+          navigator.geolocation
+
+        ) {
+
+          navigator.geolocation
+
+            .getCurrentPosition(
+
+              (position) => {
+
+                const origin =
+
+                  routeStart || {
+
+                    lat:
+
+                      position.coords
+
+                        .latitude,
+
+                    lng:
+
+                      position.coords
+
+                        .longitude
+
+                  };
+
+                const destination =
+
+                  routeDestination ||
+
+                  destinationLocation;
+
+                const directionsService =
+
+                  new google.maps
+
+                    .DirectionsService();
+
+                directionsRenderer
+
+                  ?.setMap(null);
+
+                directionsRenderer =
+
+                  new google.maps
+
+                    .DirectionsRenderer({
+
+                      map:
+
+                        googleMap
+
+                    });
+
+                directionsService.route(
+
+                  {
+
+                    origin,
+
+                    destination,
+
+                    travelMode:
+
+                      google.maps
+
+                        .TravelMode
+
+                        .DRIVING
+
+                  },
+
+                  (
+
+                    routeResult,
+
+                    routeStatus
+
+                  ) => {
+
+                    if (
+
+                      routeStatus ===
+
+                      "OK"
+
+                    ) {
+
+                      directionsRenderer
+
+                        .setDirections(
+
+                          routeResult
+
+                        );
+
+                    }
+
+                  }
+
+                );
+
+              }
+
+            );
+
+        }
+
         sessionStorage.setItem(
 
           "routeDestination",
 
-          results[0].formatted_address
+          results[0]
+
+            .formatted_address
 
         );
 
@@ -1134,11 +2148,17 @@ tripPlannerSubmit?.addEventListener(
 
     const origin =
 
-      tripStartInput?.value.trim();
+      tripStartInput?.value
+
+        .trim();
 
     const destination =
 
-      tripDestinationInput?.value.trim();
+      tripDestinationInput
+
+        ?.value
+
+        .trim();
 
     if (
 
@@ -1164,17 +2184,23 @@ tripPlannerSubmit?.addEventListener(
 
     const directionsService =
 
-      new google.maps.DirectionsService();
+      new google.maps
 
-    directionsRenderer?.setMap(null);
+        .DirectionsService();
+
+    directionsRenderer
+
+      ?.setMap(null);
 
     directionsRenderer =
 
-      new google.maps.DirectionsRenderer({
+      new google.maps
 
-        map: googleMap
+        .DirectionsRenderer({
 
-      });
+          map: googleMap
+
+        });
 
     directionsService.route(
 
@@ -1186,7 +2212,11 @@ tripPlannerSubmit?.addEventListener(
 
         travelMode:
 
-          google.maps.TravelMode.DRIVING
+          google.maps
+
+            .TravelMode
+
+            .DRIVING
 
       },
 
@@ -1198,7 +2228,11 @@ tripPlannerSubmit?.addEventListener(
 
       ) => {
 
-        if (routeStatus !== "OK") {
+        if (
+
+          routeStatus !== "OK"
+
+        ) {
 
           alert(
 
@@ -1210,11 +2244,13 @@ tripPlannerSubmit?.addEventListener(
 
         }
 
-        directionsRenderer.setDirections(
+        directionsRenderer
 
-          routeResult
+          .setDirections(
 
-        );
+            routeResult
+
+          );
 
         showMessage("");
 
