@@ -1749,7 +1749,15 @@ gestureHandling: "greedy",
         }
 
       );
+googleMap.setOptions({
 
+  gestureHandling: "greedy",
+
+  draggable: true,
+
+  scrollwheel: true
+
+});
     window.NPP_GOOGLE_MAP =
 
       googleMap;
