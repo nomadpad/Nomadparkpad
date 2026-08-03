@@ -75,5 +75,104 @@
 <script src="supabase-config.js"></script>
 <script type="module" src="auth-guard.js"></script>
 <script type="module" src="phase10-messages.js"></script>
+<script>
+
+  window.addEventListener("load", () => {
+
+    const input = document.querySelector("#real-message-input");
+
+    const overflowers = [...document.querySelectorAll("*")]
+
+      .filter(
+
+        (element) =>
+
+          element.scrollWidth >
+
+          document.documentElement.clientWidth + 2
+
+      )
+
+      .slice(0, 8)
+
+      .map(
+
+        (element) =>
+
+          `${element.tagName.toLowerCase()}${element.id ? `#${element.id}` : ""}${element.className ? `.${String(element.className).replace(/\s+/g, ".")}` : ""} (${element.scrollWidth}px)`
+
+      );
+
+    const computed = input
+
+      ? getComputedStyle(input)
+
+      : null;
+
+    const box = document.createElement("pre");
+
+    box.style.cssText = `
+
+      position:fixed;
+
+      left:8px;
+
+      right:8px;
+
+      bottom:8px;
+
+      z-index:999999;
+
+      max-height:42vh;
+
+      overflow:auto;
+
+      margin:0;
+
+      padding:12px;
+
+      border:2px solid #f36b16;
+
+      border-radius:14px;
+
+      background:#102f27;
+
+      color:white;
+
+      font:12px/1.45 monospace;
+
+      white-space:pre-wrap;
+
+    `;
+
+    box.textContent = [
+
+      `viewport: ${window.innerWidth}px`,
+
+      `document: ${document.documentElement.scrollWidth}px`,
+
+      `body: ${document.body.scrollWidth}px`,
+
+      `input font: ${computed?.fontSize || "missing"}`,
+
+      `input width: ${computed?.width || "missing"}`,
+
+      `input transform: ${computed?.transform || "missing"}`,
+
+      `input zoom: ${computed?.zoom || "missing"}`,
+
+      "",
+
+      "Overflowing elements:",
+
+      overflowers.length ? overflowers.join("\n") : "None found"
+
+    ].join("\n");
+
+    document.body.appendChild(box);
+
+  });
+
+</script>
 </body>
 </html>
