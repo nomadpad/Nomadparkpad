@@ -1255,91 +1255,77 @@ function buildTravellerCard(
 
   style="
 
-    display:grid;
+    display:flex;
 
-    gap:8px;
+    justify-content:space-between;
+
+    align-items:center;
 
     margin-top:14px;
+
+    padding-top:10px;
+
+    border-top:1px solid #e5e7eb;
 
   "
 
 >
 
-  <button
+  ${
 
-    type="button"
+    traveller.open_to_chat
 
-    class="traveller-card-message-button"
+      ? `
 
-    data-traveller-id="${escapeHtml(
+        <button
 
-      traveller.traveller_id || ""
+          type="button"
 
-    )}"
+          class="traveller-card-message-button"
 
-    style="
+          data-traveller-id="${escapeHtml(
 
-      width:100%;
+            traveller.traveller_id || ""
 
-      border:0;
+          )}"
 
-      border-radius:10px;
+          aria-label="Message traveller"
 
-      padding:11px 14px;
+          title="Message traveller"
 
-      background:#0d3b2f;
+          style="
 
-      color:#ffffff;
+            width:42px;
 
-      font-weight:700;
+            height:42px;
 
-      cursor:pointer;
+            border:0;
 
-    "
+            border-radius:50%;
 
-  >
+            background:#0d3b2f;
 
-    💬 Message Traveller
+            font-size:20px;
 
-  </button>
+            cursor:pointer;
 
-  <button
+          "
 
-    type="button"
+        >
 
-    class="traveller-card-block-button"
+          💬
 
-    data-traveller-id="${escapeHtml(
+        </button>
 
-      traveller.traveller_id || ""
+      `
 
-    )}"
+      : `
 
-    style="
+        <span></span>
 
-      width:100%;
+      `
 
-      border:1px solid #b42318;
-
-      border-radius:10px;
-
-      padding:10px 14px;
-
-      background:#ffffff;
-
-      color:#b42318;
-
-      font-weight:700;
-
-      cursor:pointer;
-
-    "
-
-  >
-
-    🚫 Block Traveller
-
-  </button>
+  }
 
   <button
 
@@ -1353,13 +1339,13 @@ function buildTravellerCard(
 
     )}"
 
+    aria-label="Report traveller"
+
+    title="Report traveller"
+
     style="
 
-      width:100%;
-
       border:0;
-
-      padding:6px;
 
       background:transparent;
 
@@ -1375,13 +1361,11 @@ function buildTravellerCard(
 
   >
 
-    Report Traveller
+    Report
 
   </button>
 
 </div>
-    </div>
-
   `;
 
 }
