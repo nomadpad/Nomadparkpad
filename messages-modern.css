@@ -1324,3 +1324,28 @@ main.conversation-shell {
   box-sizing: border-box !important;
 
 }
+/* Shorter conversation window */
+
+#message-stream {
+
+  min-height: 360px !important;
+
+  height: 46vh !important;
+
+  max-height: 500px !important;
+
+}
+
+@media (max-width: 640px) {
+
+  #message-stream {
+
+    min-height: 340px !important;
+
+    height: 42vh !important;
+
+    max-height: 460px !important;
+
+  }
+
+}
