@@ -1,8 +1,46 @@
 import { supabase } from "./supabase-client.js";
 
-const bookingId = new URLSearchParams(window.location.search).get("booking");
+const conversationParams =
+
+  new URLSearchParams(
+
+    window.location.search
+
+  );
+
+const bookingId =
+
+  conversationParams.get(
+
+    "booking"
+
+  );
+
+const travellerId =
+
+  conversationParams.get(
+
+    "traveller"
+
+  );
+
 let currentUser = null;
+
 let booking = null;
+
+let directTraveller = null;
+
+const conversationMode =
+
+  travellerId
+
+    ? "traveller"
+
+    : bookingId
+
+      ? "booking"
+
+      : null;
 
 function formatTime(value) {
   return new Intl.DateTimeFormat("en-CA", { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" })
@@ -27,13 +65,119 @@ function renderMessages(messages) {
 }
 
 async function loadConversation() {
-  if (!bookingId) {
-    document.querySelector("#conversation-title").textContent = "No booking selected";
-    document.querySelector("#conversation-subtitle").textContent = "Open a booking from your dashboard.";
-    document.querySelector("#real-message-form").hidden = true;
-    document.querySelector("#conversation-loading").hidden = true;
+if (!conversationMode) {
+
+  document.querySelector("#conversation-title").textContent =
+
+    "No conversation selected";
+
+  document.querySelector("#conversation-subtitle").textContent =
+
+    "Open a booking or choose a traveller from the map.";
+
+  document.querySelector("#real-message-form").hidden = true;
+
+  document.querySelector("#conversation-loading").hidden = true;
+
+  return;
+
+}
+
+if (conversationMode === "traveller") {
+
+  document.querySelector("#conversation-title").textContent =
+
+    "Traveller conversation";
+
+  document.querySelector("#conversation-subtitle").textContent =
+
+    "Loading traveller details...";
+
+  document.querySelector("#real-message-form").hidden = true;
+
+  const { data: auth } =
+
+    await supabase.auth.getUser();
+
+  currentUser = auth.user;
+
+  if (!currentUser) {
+
+    window.location.href = "login.html";
+
     return;
+
   }
+
+  const {
+
+    data: travellerProfile,
+
+    error: travellerError
+
+  } = await supabase
+
+    .from("profiles")
+
+    .select(`
+
+      id,
+
+      first_name,
+
+      map_emoji
+
+    `)
+
+    .eq("id", travellerId)
+
+    .maybeSingle();
+
+  if (
+
+    travellerError ||
+
+    !travellerProfile
+
+  ) {
+
+    document.querySelector("#conversation-title").textContent =
+
+      "Traveller unavailable";
+
+    document.querySelector("#conversation-subtitle").textContent =
+
+      "This traveller could not be loaded.";
+
+    document.querySelector("#conversation-loading").hidden = true;
+
+    return;
+
+  }
+
+  directTraveller =
+
+    travellerProfile;
+
+  document.querySelector("#conversation-title").textContent =
+
+    travellerProfile.first_name
+
+      ? `${travellerProfile.map_emoji || "🚐"} ${travellerProfile.first_name}`
+
+      : `${travellerProfile.map_emoji || "🚐"} Nomad Traveller`;
+
+  document.querySelector("#conversation-subtitle").textContent =
+
+    "Direct traveller conversation";
+
+  document.querySelector("#conversation-loading").hidden = true;
+
+  document.querySelector("#real-message-form").hidden = false;
+
+  return;
+
+}
 
   const { data: auth } = await supabase.auth.getUser();
   currentUser = auth.user;
