@@ -607,3 +607,186 @@ button#send-real-message.btn-accent {
   }
 
 }
+/* =========================================================
+
+   CHAT BUBBLES
+
+========================================================= */
+
+.message-stream {
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 16px;
+
+}
+
+.message-stream article {
+
+  width: fit-content;
+
+  max-width: min(78%, 520px);
+
+  padding: 14px 16px;
+
+  border-radius: 20px;
+
+  box-shadow:
+
+    0 10px 24px rgba(13, 59, 47, 0.08);
+
+}
+
+.message-stream article.is-current-user {
+
+  align-self: flex-end;
+
+  border-bottom-right-radius: 7px;
+
+  background:
+
+    linear-gradient(
+
+      145deg,
+
+      #174f40,
+
+      #0d3b2f
+
+    );
+
+  color: white;
+
+}
+
+.message-stream article:not(.is-current-user) {
+
+  align-self: flex-start;
+
+  border: 1px solid rgba(13, 59, 47, 0.09);
+
+  border-bottom-left-radius: 7px;
+
+  background: white;
+
+  color: var(--message-text);
+
+}
+
+.message-stream article strong {
+
+  display: block;
+
+  margin-bottom: 6px;
+
+  font-size: 13px;
+
+  opacity: 0.75;
+
+}
+
+.message-stream article p {
+
+  margin: 0;
+
+  font-size: 16px;
+
+  line-height: 1.5;
+
+  overflow-wrap: anywhere;
+
+}
+
+.conversation-empty {
+
+  min-height: 340px;
+
+  display: grid;
+
+  place-items: center;
+
+  padding: 30px;
+
+  text-align: center;
+
+  color: var(--message-muted);
+
+}
+
+.conversation-empty span {
+
+  display: block;
+
+  margin-bottom: 10px;
+
+  font-size: 42px;
+
+}
+
+.conversation-empty h3 {
+
+  margin: 0 0 8px;
+
+  color: var(--message-forest);
+
+  font-size: 24px;
+
+}
+
+.conversation-empty p {
+
+  margin: 0;
+
+  max-width: 340px;
+
+  line-height: 1.55;
+
+}
+
+.conversation-loading {
+
+  min-height: 340px;
+
+  display: grid;
+
+  place-items: center;
+
+  color: var(--message-muted);
+
+}
+
+/* =========================================================
+
+   MOBILE CHAT POLISH
+
+========================================================= */
+
+@media (max-width: 640px) {
+
+  .message-stream article {
+
+    max-width: 84%;
+
+    padding: 12px 14px;
+
+    border-radius: 18px;
+
+  }
+
+  .message-stream article p {
+
+    font-size: 15px;
+
+  }
+
+  .conversation-empty,
+
+  .conversation-loading {
+
+    min-height: 300px;
+
+  }
+
+}
