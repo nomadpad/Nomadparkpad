@@ -486,3 +486,124 @@ body {
   }
 
 }
+/* =========================================================
+
+   MOBILE WIDTH + BUTTON OVERRIDES
+
+========================================================= */
+
+.conversation-card {
+
+  width: 100%;
+
+  max-width: none;
+
+  box-sizing: border-box;
+
+}
+
+.message-composer {
+
+  width: 100%;
+
+  box-sizing: border-box;
+
+}
+
+#send-real-message,
+
+.message-composer #send-real-message,
+
+button#send-real-message.btn,
+
+button#send-real-message.btn-accent {
+
+  width: 54px !important;
+
+  min-width: 54px !important;
+
+  max-width: 54px !important;
+
+  height: 54px !important;
+
+  min-height: 54px !important;
+
+  max-height: 54px !important;
+
+  padding: 0 !important;
+
+  border-radius: 50% !important;
+
+  font-size: 0 !important;
+
+  line-height: 1 !important;
+
+}
+
+#send-real-message::before {
+
+  content: "➤";
+
+  display: block;
+
+  font-size: 24px;
+
+  color: white;
+
+  transform: rotate(-25deg);
+
+}
+
+@media (max-width: 640px) {
+
+  .conversation-shell {
+
+    width: 100%;
+
+    max-width: none;
+
+    padding: 12px 10px 34px;
+
+    box-sizing: border-box;
+
+  }
+
+  .conversation-header {
+
+    min-height: 215px;
+
+    padding: 22px;
+
+    border-radius: 26px;
+
+  }
+
+  .conversation-card {
+
+    margin-top: 12px;
+
+    padding: 12px;
+
+    border-radius: 26px;
+
+  }
+
+  #message-stream {
+
+    width: 100%;
+
+    min-height: 360px;
+
+    max-height: 55vh;
+
+    box-sizing: border-box;
+
+  }
+
+  .message-composer {
+
+    grid-template-columns: minmax(0, 1fr) 54px;
+
+  }
+
+}
