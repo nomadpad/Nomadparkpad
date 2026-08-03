@@ -224,13 +224,51 @@ document.querySelector("#real-message-form")?.addEventListener("submit", async e
   if (!body || !bookingId || !currentUser) return;
 
   button.disabled = true;
-  const { error } = await supabase
-    .from("messages")
-    .insert({ booking_id: bookingId, sender_id: currentUser.id, body });
+  let insertError = null;
 
-  if (error) {
+if (conversationMode === "traveller") {
+
+  const { error } = await supabase
+
+    .from("direct_messages")
+
+    .insert({
+
+      sender_id: currentUser.id,
+
+      recipient_id: travellerId,
+
+      body
+
+    });
+
+  insertError = error;
+
+} else {
+
+  const { error } = await supabase
+
+    .from("messages")
+
+    .insert({
+
+      booking_id: bookingId,
+
+      sender_id: currentUser.id,
+
+      body
+
+    });
+
+  insertError = error;
+
+}
+
+  if (insertError) {
     button.disabled = false;
-    message.textContent = error.message;
+  message.textContent =
+
+  insertError.message;
     return;
   }
 
