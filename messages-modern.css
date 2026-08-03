@@ -1062,3 +1062,92 @@ main.conversation-shell > .conversation-card {
   }
 
 }
+/* =========================================================
+
+   STOP MOBILE PAGE SHRINKING
+
+========================================================= */
+
+html {
+
+  width: 100%;
+
+  overflow-x: clip;
+
+  -webkit-text-size-adjust: 100%;
+
+}
+
+body {
+
+  width: 100%;
+
+  min-width: 0;
+
+  overflow-x: clip;
+
+}
+
+.site-header,
+
+.conversation-shell,
+
+.conversation-header,
+
+.conversation-header > div,
+
+.conversation-card,
+
+#message-stream,
+
+#real-message-form,
+
+#real-message-input {
+
+  min-width: 0 !important;
+
+  max-width: 100% !important;
+
+  box-sizing: border-box !important;
+
+}
+
+.conversation-header {
+
+  overflow: hidden !important;
+
+}
+
+#conversation-title {
+
+  max-width: 100% !important;
+
+  overflow-wrap: anywhere;
+
+  word-break: normal;
+
+}
+
+@media (max-width: 640px) {
+
+  #conversation-title {
+
+    font-size: clamp(36px, 11vw, 50px) !important;
+
+    line-height: 1 !important;
+
+  }
+
+  .conversation-header {
+
+    width: calc(100vw - 20px) !important;
+
+  }
+
+  .conversation-card {
+
+    width: calc(100vw - 20px) !important;
+
+  }
+
+}
