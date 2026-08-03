@@ -846,3 +846,126 @@ button#send-real-message.btn-accent {
   }
 
 }
+/* =========================================================
+
+   MOBILE FIT + PREVENT INPUT ZOOM
+
+========================================================= */
+
+html,
+
+body {
+
+  width: 100%;
+
+  max-width: 100%;
+
+  overflow-x: hidden;
+
+}
+
+.conversation-shell,
+
+.conversation-header,
+
+.conversation-card,
+
+#message-stream,
+
+.message-composer {
+
+  width: 100%;
+
+  max-width: 100%;
+
+  box-sizing: border-box;
+
+}
+
+#real-message-input {
+
+  width: 100%;
+
+  min-width: 0;
+
+  max-width: 100%;
+
+  font-size: 16px !important;
+
+  line-height: 1.35;
+
+  box-sizing: border-box;
+
+}
+
+@media (max-width: 640px) {
+
+  .conversation-shell {
+
+    padding-left: 10px;
+
+    padding-right: 10px;
+
+  }
+
+  .conversation-card {
+
+    padding: 10px;
+
+  }
+
+  #message-stream {
+
+    min-height: 360px;
+
+    padding: 14px;
+
+  }
+
+  .message-composer {
+
+    grid-template-columns: minmax(0, 1fr) 52px;
+
+    gap: 8px;
+
+    padding: 8px;
+
+  }
+
+  #real-message-input {
+
+    height: 52px;
+
+    min-height: 52px;
+
+    padding: 14px 16px;
+
+    border-radius: 18px;
+
+    font-size: 16px !important;
+
+  }
+
+  #send-real-message,
+
+  .message-composer #send-real-message,
+
+  button#send-real-message.btn,
+
+  button#send-real-message.btn-accent {
+
+    width: 52px !important;
+
+    min-width: 52px !important;
+
+    max-width: 52px !important;
+
+    height: 52px !important;
+
+    min-height: 52px !important;
+
+    max-height: 52px !important;
+
+  }
+
+}
