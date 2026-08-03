@@ -565,3 +565,610 @@ function addTravellerMarkers(
 
 }
 );
+/* =========================================================
+
+   BUILD MAP
+
+========================================================= */
+
+async function buildMap() {
+
+  if (mapLoaded) {
+
+    window.google?.maps?.event?.trigger(
+
+      googleMap,
+
+      "resize"
+
+    );
+
+    return;
+
+  }
+
+  if (!window.google?.maps) {
+
+    showMessage(
+
+      "Google Maps has not loaded yet."
+
+    );
+
+    return;
+
+  }
+
+  showMessage(
+
+    "Loading hosts and travellers..."
+
+  );
+
+  try {
+
+    await loadCurrentUserProfile();
+
+    const [
+
+      listings,
+
+      travellers
+
+    ] = await Promise.all([
+
+      loadListings(),
+
+      loadVisibleTravellers()
+
+    ]);
+
+    googleMap = new google.maps.Map(
+
+      mapElement,
+
+      {
+
+        center: {
+
+          lat: 49.5,
+
+          lng: -104.5
+
+        },
+
+        zoom: 4,
+
+        mapTypeControl: false,
+
+        streetViewControl: false,
+
+        fullscreenControl: true
+
+      }
+
+    );
+
+    window.NPP_GOOGLE_MAP =
+
+      googleMap;
+
+    const bounds =
+
+      new google.maps.LatLngBounds();
+
+    addHostMarkers(
+
+      listings,
+
+      bounds
+
+    );
+
+    addTravellerMarkers(
+
+      travellers,
+
+      bounds
+
+    );
+
+    centreOnCurrentLocation();
+
+    const totalMarkers =
+
+      listings.length +
+
+      travellers.length;
+
+    if (totalMarkers > 1) {
+
+      googleMap.fitBounds(
+
+        bounds,
+
+        70
+
+      );
+
+    } else if (totalMarkers === 1) {
+
+      googleMap.setCenter(
+
+        bounds.getCenter()
+
+      );
+
+      googleMap.setZoom(8);
+
+    } else {
+
+      googleMap.setCenter({
+
+        lat: 49.5,
+
+        lng: -104.5
+
+      });
+
+      googleMap.setZoom(4);
+
+      showMessage(
+
+        "No published pads or visible travellers are available yet."
+
+      );
+
+    }
+
+    mapLoaded = true;
+
+    if (totalMarkers) {
+
+      showMessage("");
+
+    }
+
+  } catch (error) {
+
+    console.error(
+
+      "Unable to load explorer map:",
+
+      error
+
+    );
+
+    showMessage(
+
+      error.message ||
+
+      "The map could not be loaded."
+
+    );
+
+  }
+
+}
+
+/* =========================================================
+
+   LIST AND MAP VIEWS
+
+========================================================= */
+
+listButton?.addEventListener(
+
+  "click",
+
+  () => {
+
+    setActiveView("list");
+
+  }
+
+);
+
+mapButton?.addEventListener(
+
+  "click",
+
+  async () => {
+
+    setActiveView("map");
+
+    await buildMap();
+
+    if (
+
+      window.google?.maps &&
+
+      googleMap
+
+    ) {
+
+      window.google.maps.event.trigger(
+
+        googleMap,
+
+        "resize"
+
+      );
+
+    }
+
+  }
+
+);
+
+setActiveView("map");
+
+buildMap();
+
+/* =========================================================
+
+   EXPLORER FILTER CHIPS
+
+========================================================= */
+
+document
+
+  .querySelectorAll(
+
+    ".explorer-chip"
+
+  )
+
+  .forEach((chip) => {
+
+    chip.addEventListener(
+
+      "click",
+
+      () => {
+
+        chip.classList.toggle(
+
+          "active"
+
+        );
+
+      }
+
+    );
+
+  });
+
+/* =========================================================
+
+   URL PARAMETERS
+
+========================================================= */
+
+const routeParams =
+
+  new URLSearchParams(
+
+    window.location.search
+
+  );
+
+const mapOnly =
+
+  routeParams.get("mapOnly") ===
+
+  "true";
+
+const routeStart =
+
+  routeParams.get("start");
+
+const routeDestination =
+
+  routeParams.get(
+
+    "destination"
+
+  );
+
+if (mapOnly) {
+
+  document
+
+    .querySelectorAll(
+
+      ".hide-on-map-only"
+
+    )
+
+    .forEach((element) => {
+
+      element.hidden = true;
+
+    });
+
+}
+
+if (
+
+  routeStart &&
+
+  tripStartInput
+
+) {
+
+  tripStartInput.value =
+
+    routeStart;
+
+}
+
+if (
+
+  routeDestination &&
+
+  tripDestinationInput
+
+) {
+
+  tripDestinationInput.value =
+
+    routeDestination;
+
+}
+
+/* =========================================================
+
+   MAP SEARCH PANEL
+
+========================================================= */
+
+mapSearchButton?.addEventListener(
+
+  "click",
+
+  () => {
+
+    if (mapSearchPanel) {
+
+      mapSearchPanel.hidden =
+
+        false;
+
+    }
+
+    if (tripPlannerPanel) {
+
+      tripPlannerPanel.hidden =
+
+        true;
+
+    }
+
+    mapSearchButton.hidden =
+
+      true;
+
+    if (tripPlannerButton) {
+
+      tripPlannerButton.hidden =
+
+        false;
+
+    }
+
+  }
+
+);
+
+tripPlannerButton?.addEventListener(
+
+  "click",
+
+  () => {
+
+    window.location.href =
+
+      "trip-planner.html";
+
+  }
+
+);
+
+/* =========================================================
+
+   MAP SEARCH
+
+========================================================= */
+
+mapSearchSubmit?.addEventListener(
+
+  "click",
+
+  () => {
+
+    const query =
+
+      mapSearchInput?.value.trim();
+
+    if (
+
+      !query ||
+
+      !googleMap ||
+
+      !window.google?.maps
+
+    ) {
+
+      return;
+
+    }
+
+    const geocoder =
+
+      new google.maps.Geocoder();
+
+    geocoder.geocode(
+
+      {
+
+        address: query
+
+      },
+
+      (results, status) => {
+
+        if (
+
+          status !== "OK" ||
+
+          !results?.[0]
+
+        ) {
+
+          showMessage(
+
+            "Location not found."
+
+          );
+
+          return;
+
+        }
+
+        const destinationLocation =
+
+          results[0].geometry.location;
+
+        googleMap.setCenter(
+
+          destinationLocation
+
+        );
+
+        googleMap.setZoom(14);
+
+        sessionStorage.setItem(
+
+          "routeDestination",
+
+          results[0].formatted_address
+
+        );
+
+        showMessage("");
+
+      }
+
+    );
+
+  }
+
+);
+
+/* =========================================================
+
+   TRIP PLANNER
+
+========================================================= */
+
+tripPlannerSubmit?.addEventListener(
+
+  "click",
+
+  () => {
+
+    const origin =
+
+      tripStartInput?.value.trim();
+
+    const destination =
+
+      tripDestinationInput?.value.trim();
+
+    if (
+
+      !origin ||
+
+      !destination ||
+
+      !googleMap ||
+
+      !window.google?.maps
+
+    ) {
+
+      showMessage(
+
+        "Enter a starting point and destination."
+
+      );
+
+      return;
+
+    }
+
+    const directionsService =
+
+      new google.maps.DirectionsService();
+
+    directionsRenderer?.setMap(null);
+
+    directionsRenderer =
+
+      new google.maps.DirectionsRenderer({
+
+        map: googleMap
+
+      });
+
+    directionsService.route(
+
+      {
+
+        origin,
+
+        destination,
+
+        travelMode:
+
+          google.maps.TravelMode.DRIVING
+
+      },
+
+      (
+
+        routeResult,
+
+        routeStatus
+
+      ) => {
+
+        if (routeStatus !== "OK") {
+
+          alert(
+
+            `Route error: ${routeStatus}`
+
+          );
+
+          return;
+
+        }
+
+        directionsRenderer.setDirections(
+
+          routeResult
+
+        );
+
+        showMessage("");
+
+      }
+
+    );
+
+  }
+
+);
