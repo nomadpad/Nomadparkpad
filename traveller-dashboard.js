@@ -1855,7 +1855,7 @@ function initTravellerMap() {
         center: fallbackLocation,
 
         zoom: 10,
-
+gestureHandling: "greedy",
         disableDefaultUI: false,
 
         mapTypeControl: false,
@@ -1867,7 +1867,15 @@ function initTravellerMap() {
       }
 
     );
+travellerMapInstance.setOptions({
 
+  gestureHandling: "greedy",
+
+  draggable: true,
+
+  scrollwheel: true
+
+});
   currentTravellerLocation =
 
     fallbackLocation;
