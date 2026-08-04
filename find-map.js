@@ -1196,7 +1196,7 @@ function buildTravellerCard(
 
           <strong style="font-size:17px;">
 
-            Nomad Traveller
+          ${escapeHtml(traveller.public_name || "Traveller")}
 
           </strong>
 
@@ -1229,8 +1229,6 @@ function buildTravellerCard(
         ${status}
 
       </p>
-
-      ${destination}
 
       ${intro}
 
@@ -1470,7 +1468,7 @@ function addTravellerMarkers(
 
           title:
 
-            "Nomad Traveller",
+  traveller.public_name || "Traveller",
 
           icon:
 
