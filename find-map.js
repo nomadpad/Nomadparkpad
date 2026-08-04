@@ -1231,8 +1231,41 @@ function buildTravellerCard(
       </p>
 
       ${intro}
+<p
 
-      <p
+  style="
+
+    margin:10px 0 0;
+
+    color:#66746e;
+
+    font-size:12px;
+
+  "
+
+>
+
+  Member since ${escapeHtml(
+
+    new Date(traveller.created_at).toLocaleDateString(
+
+      "en-CA",
+
+      {
+
+        month: "long",
+
+        year: "numeric"
+
+      }
+
+    )
+
+  )}
+
+</p>
+
+      <p>
 
         style="
 
