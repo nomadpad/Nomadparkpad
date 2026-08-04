@@ -1263,25 +1263,7 @@ function buildTravellerCard(
 
   )}
 
-</p>
-
-      <p>
-
-        style="
-
-          margin:10px 0 0;
-
-          color:#7b857f;
-
-          font-size:12px;
-
-        "
-
-      >
-
-        Approximate location only
-
-      </p>
+<p style="margin:10px 0 0;color:#7b857f;font-size:12px;">Approximate location only</p>
 <div
 
   style="
