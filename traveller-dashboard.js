@@ -217,6 +217,41 @@ async function getSignedInUser() {
   }
 
 }
+function updateTravellerMemberSince(user) {
+
+  const memberSinceElement =
+
+    document.getElementById("travellerMemberSince");
+
+  if (!memberSinceElement) {
+
+    return;
+
+  }
+
+  const createdAt = user?.created_at;
+
+  if (!createdAt) {
+
+    memberSinceElement.textContent = "Member";
+
+    return;
+
+  }
+
+  const createdDate = new Date(createdAt);
+
+  memberSinceElement.textContent =
+
+    createdDate.toLocaleDateString("en-CA", {
+
+      month: "long",
+
+      year: "numeric"
+
+    });
+
+}
 
 /* =========================================================
 
@@ -2826,7 +2861,10 @@ document.addEventListener(
 
   "DOMContentLoaded",
 
-  () => {
+  async () => {
+    const user = await getSignedInUser();
+
+updateTravellerMemberSince(user);
 
     initMapFilters();
 
