@@ -387,7 +387,117 @@
       document.getElementById("continuePhotos");
 
     let selectedPhotos = [];
+const PHOTO_DB_NAME = "nomadParkPadOnboarding";
 
+const PHOTO_STORE_NAME = "hostPhotos";
+
+function openPhotoDatabase() {
+
+  return new Promise((resolve, reject) => {
+
+    const request = indexedDB.open(PHOTO_DB_NAME, 1);
+
+    request.onupgradeneeded = () => {
+
+      const database = request.result;
+
+      if (!database.objectStoreNames.contains(PHOTO_STORE_NAME)) {
+
+        database.createObjectStore(PHOTO_STORE_NAME);
+
+      }
+
+    };
+
+    request.onsuccess = () => resolve(request.result);
+
+    request.onerror = () => reject(request.error);
+
+  });
+
+}
+async function saveSelectedPhotos() {
+
+  const database = await openPhotoDatabase();
+
+  return new Promise((resolve, reject) => {
+
+    const transaction = database.transaction(
+
+      PHOTO_STORE_NAME,
+
+      "readwrite"
+
+    );
+
+    transaction
+
+      .objectStore(PHOTO_STORE_NAME)
+
+      .put(selectedPhotos, "selectedPhotos");
+
+    transaction.oncomplete = () => {
+
+      database.close();
+
+      resolve();
+
+    };
+
+    transaction.onerror = () => {
+
+      database.close();
+
+      reject(transaction.error);
+
+    };
+
+  });
+
+}
+async function loadSelectedPhotos() {
+
+  const database = await openPhotoDatabase();
+
+  return new Promise((resolve, reject) => {
+
+    const transaction = database.transaction(
+
+      PHOTO_STORE_NAME,
+
+      "readonly"
+
+    );
+
+    const request = transaction
+
+      .objectStore(PHOTO_STORE_NAME)
+
+      .get("selectedPhotos");
+
+    request.onsuccess = () => {
+
+      selectedPhotos = request.result || [];
+
+      database.close();
+
+      renderPhotos();
+
+      resolve();
+
+    };
+
+    request.onerror = () => {
+
+      database.close();
+
+      reject(request.error);
+
+    };
+
+  });
+
+}
     function renderPhotos() {
 
       photoPreview.innerHTML = "";
@@ -447,7 +557,7 @@
         removeButton.addEventListener("click", () => {
 
           selectedPhotos.splice(index, 1);
-
+saveSelectedPhotos();
           renderPhotos();
 
         });
@@ -487,25 +597,25 @@
       ];
 
       renderPhotos();
-
+saveSelectedPhotos();
       photoInput.value = "";
 
     });
 
-    continueButton?.addEventListener("click", () => {
+    continueButton?.addEventListener("click", async () => {
 
       if (!selectedPhotos.length) {
 
         return;
 
       }
-
+await saveSelectedPhotos();
       window.location.href =
 
         "host-services.html";
 
     });
-
+loadSelectedPhotos();
   </script>
 
 </body>
