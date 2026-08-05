@@ -1688,23 +1688,7 @@ async function buildMap() {
         loadVisibleTravellers()
 
       ]);
-alert(
-
-  `Travellers received: ${travellers.length}\n\n` +
-
-  travellers
-
-    .map(
-
-      (traveller) =>
-
-        `${traveller.public_name} ${traveller.map_emoji}`
-
-    )
-
-    .join("\n")
-
-);
+      
     googleMap =
 
       new google.maps.Map(

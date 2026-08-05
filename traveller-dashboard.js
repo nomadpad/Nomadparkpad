@@ -764,7 +764,11 @@ async function loadTravellerVisibility() {
   travellerMapVisibleToggle.checked =
 
     travellerMapIsVisible;
+if (travellerMapIsVisible) {
 
+  await saveTravellerMapLocation();
+
+}
   localStorage.setItem(
 
     "npp-traveller-map-visible",
