@@ -221,7 +221,19 @@ document.querySelector("#real-message-form")?.addEventListener("submit", async e
   const button = document.querySelector("#send-real-message");
   const message = document.querySelector("#message-form-message");
   const body = input.value.trim();
-  if (!body || !bookingId || !currentUser) return;
+  if (
+
+  !body ||
+
+  !currentUser ||
+
+  (conversationMode !== "traveller" && !bookingId)
+
+) {
+
+  return;
+
+}
 
   button.disabled = true;
   let insertError = null;
