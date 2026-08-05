@@ -554,15 +554,7 @@ async function loadVisibleTravellers() {
 
   }
 
-  return (data || []).filter(
-
-    (traveller) =>
-
-      traveller.traveller_id !==
-
-      currentUser?.id
-
-  );
+  return data || [];
 
 }
 
