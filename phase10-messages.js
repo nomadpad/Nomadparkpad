@@ -127,13 +127,9 @@ first_name,
 
 map_emoji,
 
-profile_photo_url,
+profile_photo_url
 
-profile_photo_zoom,
 
-profile_photo_position_x,
-
-profile_photo_position_y
 
     `)
 
