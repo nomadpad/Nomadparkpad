@@ -349,5 +349,61 @@ if (conversationMode === "traveller") {
   message.textContent = "";
   await loadConversation();
 });
+const directMessagesChannel = supabase
 
+  .channel("direct-messages-live")
+
+  .on(
+
+    "postgres_changes",
+
+    {
+
+      event: "INSERT",
+
+      schema: "public",
+
+      table: "direct_messages"
+
+    },
+
+    async (payload) => {
+
+      if (
+
+        conversationMode !== "traveller" ||
+
+        !currentUser ||
+
+        !travellerId
+
+      ) {
+
+        return;
+
+      }
+
+      const newMessage = payload.new;
+
+      const belongsToConversation =
+
+        (newMessage.sender_id === currentUser.id &&
+
+          newMessage.recipient_id === travellerId) ||
+
+        (newMessage.sender_id === travellerId &&
+
+          newMessage.recipient_id === currentUser.id);
+
+      if (belongsToConversation) {
+
+        await loadConversation();
+
+      }
+
+    }
+
+  )
+
+  .subscribe();
 loadConversation();
