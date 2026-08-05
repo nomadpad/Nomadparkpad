@@ -125,7 +125,7 @@ if (conversationMode === "traveller") {
 
 first_name,
 
-map_emoji,
+map_emoji
 
 
 
