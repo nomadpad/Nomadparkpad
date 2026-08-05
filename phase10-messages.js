@@ -123,9 +123,17 @@ if (conversationMode === "traveller") {
 
       id,
 
-      first_name,
+first_name,
 
-      map_emoji
+map_emoji,
+
+profile_photo_url,
+
+profile_photo_zoom,
+
+profile_photo_position_x,
+
+profile_photo_position_y
 
     `)
 
@@ -158,7 +166,39 @@ if (conversationMode === "traveller") {
   directTraveller =
 
     travellerProfile;
+const conversationProfilePhoto =
 
+  document.querySelector("#conversation-profile-photo");
+
+if (travellerProfile.profile_photo_url) {
+
+  conversationProfilePhoto.src =
+
+    travellerProfile.profile_photo_url;
+conversationProfilePhoto.style.objectPosition =
+
+  `${travellerProfile.profile_photo_position_x ?? 50}% ${travellerProfile.profile_photo_position_y ?? 50}%`;
+
+conversationProfilePhoto.style.transform =
+
+  `scale(${travellerProfile.profile_photo_zoom ?? 1})`;
+  conversationProfilePhoto.alt =
+
+    `${travellerProfile.first_name || "Traveller"} profile photo`;
+
+  conversationProfilePhoto.hidden = false;
+
+} else {
+
+  conversationProfilePhoto.removeAttribute("src");
+conversationProfilePhoto.style.objectPosition = "50% 50%";
+
+conversationProfilePhoto.style.transform = "scale(1)";
+  conversationProfilePhoto.alt = "";
+
+  conversationProfilePhoto.hidden = true;
+
+}
   document.querySelector("#conversation-title").textContent =
 
     travellerProfile.first_name

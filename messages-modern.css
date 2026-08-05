@@ -1349,3 +1349,22 @@ main.conversation-shell {
   }
 
 }
+.conversation-profile-photo {
+
+  width: 88px;
+
+  height: 88px;
+
+  border-radius: 50%;
+
+  object-fit: cover;
+
+  object-position: center;
+
+  border: 4px solid rgba(255, 255, 255, 0.92);
+
+  box-shadow: 0 8px 24px rgba(12, 74, 56, 0.22);
+
+  margin: 10px 0 8px;
+
+}
