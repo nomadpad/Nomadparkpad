@@ -174,7 +174,33 @@ if (conversationMode === "traveller") {
   document.querySelector("#conversation-loading").hidden = true;
 
   document.querySelector("#real-message-form").hidden = false;
+const { data: directMessages, error: directMessagesError } =
 
+  await supabase
+
+    .from("direct_messages")
+
+    .select("id, sender_id, recipient_id, body, created_at")
+
+    .or(
+
+      `and(sender_id.eq.${currentUser.id},recipient_id.eq.${travellerId}),and(sender_id.eq.${travellerId},recipient_id.eq.${currentUser.id})`
+
+    )
+
+    .order("created_at", { ascending: true });
+
+if (directMessagesError) {
+
+  document.querySelector("#message-form-message").textContent =
+
+    directMessagesError.message;
+
+  return;
+
+}
+
+renderMessages(directMessages || []);
   return;
 
 }
