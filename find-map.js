@@ -1615,47 +1615,15 @@ google.maps.event.addListenerOnce(
 
     travellerMarkerRecords;
 
-  if (
+  markers.forEach((marker) => {
 
-    markers.length &&
+  marker.setMap(googleMap);
 
-    window.markerClusterer
+});
 
-      ?.MarkerClusterer
+travellerMarkerClusterer = null;
 
-  ) {
-
-    travellerMarkerClusterer =
-
-      new window.markerClusterer
-
-        .MarkerClusterer({
-
-          map: googleMap,
-
-          markers
-
-        });
-
-    window.NPP_TRAVELLER_MARKER_CLUSTERER =
-
-      travellerMarkerClusterer;
-
-  } else {
-
-    markers.forEach(
-
-      (marker) =>
-
-        marker.setMap(
-
-          googleMap
-
-        )
-
-    );
-
-  }
+window.NPP_TRAVELLER_MARKER_CLUSTERER = null;
 
 }
 
