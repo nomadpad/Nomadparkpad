@@ -127,8 +127,6 @@ first_name,
 
 map_emoji,
 
-profile_photo_url
-
 
 
     `)
