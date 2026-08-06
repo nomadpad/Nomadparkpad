@@ -63,24 +63,122 @@ function renderMessages(messages) {
 
   stream.scrollTop = stream.scrollHeight;
 }
+async function loadDirectConversationList() {
+  const list = document.querySelector("#conversation-list");
+  const loading = document.querySelector("#conversation-loading");
+  const stream = document.querySelector("#message-stream");
+  const empty = document.querySelector("#conversation-empty");
+  const form = document.querySelector("#real-message-form");
+  const title = document.querySelector("#conversation-title");
+  const subtitle = document.querySelector("#conversation-subtitle");
+  const status = document.querySelector("#conversation-status");
 
+  title.textContent = "Direct Messages";
+  subtitle.textContent = "Choose a conversation.";
+  status.textContent = "INBOX";
+
+  stream.hidden = true;
+  empty.hidden = true;
+  form.hidden = true;
+  list.hidden = true;
+  loading.hidden = false;
+
+  const { data: auth } = await supabase.auth.getUser();
+  currentUser = auth.user;
+
+  if (!currentUser) {
+    window.location.href = "login.html";
+    return;
+  }
+
+  const { data: messages, error: messagesError } = await supabase
+    .from("direct_messages")
+    .select("sender_id, recipient_id, body, created_at")
+    .or(
+      `sender_id.eq.${currentUser.id},recipient_id.eq.${currentUser.id}`
+    )
+    .order("created_at", { ascending: false });
+
+  if (messagesError) {
+    loading.hidden = true;
+    subtitle.textContent = messagesError.message;
+    return;
+  }
+
+  const latestByPerson = new Map();
+
+  (messages || []).forEach((message) => {
+    const otherUserId =
+      message.sender_id === currentUser.id
+        ? message.recipient_id
+        : message.sender_id;
+
+    if (!latestByPerson.has(otherUserId)) {
+      latestByPerson.set(otherUserId, message);
+    }
+  });
+
+  const otherUserIds = [...latestByPerson.keys()];
+
+  loading.hidden = true;
+  list.innerHTML = "";
+  list.hidden = false;
+
+  if (!otherUserIds.length) {
+    list.innerHTML = `
+      <div class="conversation-empty">
+        <span>💬</span>
+        <h3>No direct conversations yet</h3>
+        <p>Choose a traveller from the map to begin chatting.</p>
+      </div>
+    `;
+    return;
+  }
+
+  const { data: profiles, error: profilesError } = await supabase
+    .from("profiles")
+    .select("id, first_name, map_emoji")
+    .in("id", otherUserIds);
+
+  if (profilesError) {
+    subtitle.textContent = profilesError.message;
+    return;
+  }
+
+  const profileById = new Map(
+    (profiles || []).map((profile) => [profile.id, profile])
+  );
+
+  otherUserIds.forEach((otherUserId) => {
+    const profile = profileById.get(otherUserId);
+    const latestMessage = latestByPerson.get(otherUserId);
+
+    const link = document.createElement("a");
+    link.className = "direct-conversation-item";
+    link.href =
+      `messages.html?traveller=${encodeURIComponent(otherUserId)}`;
+
+    const heading = document.createElement("strong");
+    heading.textContent =
+      `${profile?.map_emoji || "🚐"} ` +
+      `${profile?.first_name || "Nomad Traveller"}`;
+
+    const preview = document.createElement("span");
+    preview.textContent = latestMessage?.body || "Open conversation";
+
+    const time = document.createElement("small");
+    time.textContent = latestMessage?.created_at
+      ? new Date(latestMessage.created_at).toLocaleString()
+      : "";
+
+    link.append(heading, preview, time);
+    list.appendChild(link);
+  });
+}
 async function loadConversation() {
 if (!conversationMode) {
-
-  document.querySelector("#conversation-title").textContent =
-
-    "No conversation selected";
-
-  document.querySelector("#conversation-subtitle").textContent =
-
-    "Open a booking or choose a traveller from the map.";
-
-  document.querySelector("#real-message-form").hidden = true;
-
-  document.querySelector("#conversation-loading").hidden = true;
-
+  await loadDirectConversationList();
   return;
-
 }
 
 if (conversationMode === "traveller") {

@@ -1368,3 +1368,35 @@ main.conversation-shell {
   margin: 10px 0 8px;
 
 }
+.conversation-list {
+  display: grid;
+  gap: 12px;
+}
+
+.direct-conversation-item {
+  display: grid;
+  gap: 4px;
+  padding: 16px;
+  border: 1px solid #f36b16;
+  border-radius: 18px;
+  background: #fffaf4;
+  color: #0f4b38;
+  text-decoration: none;
+  box-shadow: 0 8px 24px rgba(15, 75, 56, 0.08);
+}
+
+.direct-conversation-item strong {
+  font-size: 18px;
+}
+
+.direct-conversation-item span {
+  color: #4f665d;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.direct-conversation-item small {
+  color: #7b857f;
+  font-size: 12px;
+}
