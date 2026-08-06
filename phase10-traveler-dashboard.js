@@ -69,7 +69,37 @@ ${refundedNotice}
 async function loadDashboard() {
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) return;
+const hour = new Date().getHours();
 
+let greeting = "Good evening";
+
+if (hour < 12) {
+
+  greeting = "Good morning";
+
+} else if (hour < 18) {
+
+  greeting = "Good afternoon";
+
+}
+
+const { data: profile } = await supabase
+
+  .from("profiles")
+
+  .select("first_name")
+
+  .eq("id", user.id)
+
+  .maybeSingle();
+
+document.querySelector("#travellerGreeting").textContent =
+
+  `${greeting},`;
+
+document.querySelector("#travellerName").textContent =
+
+  `${profile?.first_name || "Traveller"}!`;
   const loading = document.querySelector("#traveler-request-loading");
   loading.hidden = false;
 
