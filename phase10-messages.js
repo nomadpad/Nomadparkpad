@@ -374,7 +374,7 @@ conversationProfilePhoto.style.transform = "scale(1)";
 
   document.querySelector("#conversation-subtitle").textContent =
 
-    "Direct traveller conversation";
+  "Map chats";
 
   document.querySelector("#conversation-loading").hidden = true;
 

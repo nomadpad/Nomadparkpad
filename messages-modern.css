@@ -1457,7 +1457,7 @@ main.conversation-shell {
 .map-chats-profile-frame {
   position: relative;
   z-index: 2;
-  width: min(100%, 370px);
+  width: min(100%, 460px);
   aspect-ratio: 0.68;
   justify-self: end;
   filter: drop-shadow(0 16px 18px rgba(0, 0, 0, 0.16));
@@ -1519,6 +1519,6 @@ main.conversation-shell {
 
   .map-chats-profile-frame {
     width: 100%;
-    max-width: 220px;
+    max-width: 280px;
   }
 }
