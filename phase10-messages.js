@@ -185,7 +185,7 @@ const mapChatsUser = mapChatsAuth?.user;
 if (mapChatsUser) {
   const { data: mapChatsProfile, error: mapChatsProfileError } =
     await supabase
-      .from("traveller_profiles")
+      .from("traveler_profiles")
 .select(`
   profile_photo_url,
   profile_photo_position_x,
@@ -312,7 +312,7 @@ map_emoji
     travellerProfile;
     const { data: travellerPhotoProfile } = await supabase
 
-  .from("traveller_profiles")
+  .from("traveler_profiles")
 
   .select(`
 
@@ -329,16 +329,7 @@ map_emoji
   .eq("user_id", travellerId)
 
   .maybeSingle();
-  console.log("TRAVELLER PHOTO PROFILE:", travellerPhotoProfile);
-  alert(
-
-  travellerPhotoProfile?.profile_photo_url
-
-    ? "PHOTO FOUND"
-
-    : "NO PHOTO FOUND"
-
-);
+  
 const conversationProfilePhoto =
 
   document.querySelector("#conversation-profile-photo");

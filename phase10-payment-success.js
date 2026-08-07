@@ -96,7 +96,7 @@ async function loadReceipt() {
 
     const { data: traveler } = await supabase
 
-      .from("traveller_profiles")
+      .from("traveler_profiles")
 
       .select("full_name")
 
