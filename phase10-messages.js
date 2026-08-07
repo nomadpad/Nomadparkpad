@@ -310,22 +310,42 @@ map_emoji
   directTraveller =
 
     travellerProfile;
+    const { data: travellerPhotoProfile } = await supabase
+
+  .from("traveller_profiles")
+
+  .select(`
+
+    profile_photo_url,
+
+    profile_photo_position_x,
+
+    profile_photo_position_y,
+
+    profile_photo_zoom
+
+  `)
+
+  .eq("user_id", travellerId)
+
+  .maybeSingle();
 const conversationProfilePhoto =
 
   document.querySelector("#conversation-profile-photo");
 
-if (travellerProfile.profile_photo_url) {
+if (travellerPhotoProfile?.profile_photo_url) {
 
   conversationProfilePhoto.src =
+travellerPhotoProfile.profile_photo_url;
 
-    travellerProfile.profile_photo_url;
 conversationProfilePhoto.style.objectPosition =
+`${travellerPhotoProfile?.profile_photo_position_x ?? 50}% ` +
 
-  `${travellerProfile.profile_photo_position_x ?? 50}% ${travellerProfile.profile_photo_position_y ?? 50}%`;
+`${travellerPhotoProfile?.profile_photo_position_y ?? 50}%`;
 
 conversationProfilePhoto.style.transform =
+`scale(${travellerPhotoProfile?.profile_photo_zoom ?? 1})`;
 
-  `scale(${travellerProfile.profile_photo_zoom ?? 1})`;
   conversationProfilePhoto.alt =
 
     `${travellerProfile.first_name || "Traveller"} profile photo`;
