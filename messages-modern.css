@@ -1463,38 +1463,6 @@ main.conversation-shell {
   filter: drop-shadow(0 16px 18px rgba(0, 0, 0, 0.16));
 }
 
-.map-chats-profile-frame::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: #064b38;
-  clip-path: polygon(
-    50% 0,
-    79% 8%,
-    96% 30%,
-    97% 55%,
-    87% 74%,
-    50% 100%,
-    13% 74%,
-    3% 55%,
-    4% 30%,
-    21% 8%
-  );
-}
-
-.map-chats-profile-frame::after {
-  content: "";
-  position: absolute;
-  top: 7%;
-  left: 10%;
-  width: 80%;
-  aspect-ratio: 1;
-  border: 12px solid #fffaf1;
-  border-radius: 50%;
-  box-sizing: border-box;
-  z-index: 2;
-}
-
 .map-chats-profile-frame .conversation-profile-photo {
   position: absolute;
   top: 9.5%;
@@ -1506,31 +1474,22 @@ main.conversation-shell {
   object-fit: cover;
   border-radius: 50%;
 }
+.nomad-profile-frame-image {
 
-.map-chats-profile-placeholder {
   position: absolute;
-  top: 9.5%;
-  left: 12.5%;
-  z-index: 3;
-  display: grid;
-  width: 75%;
-  aspect-ratio: 1;
-  place-items: center;
-  border-radius: 50%;
-  background: #e7e3d8;
-  font-size: 74px;
-}
 
-.map-chats-frame-road {
-  position: absolute;
-  right: 14%;
-  bottom: 8%;
-  z-index: 3;
-  color: #fffaf1;
-  font-family: Georgia, serif;
-  font-size: clamp(110px, 13vw, 190px);
-  line-height: 0.7;
-  transform: rotate(10deg);
+  inset: 0;
+
+  width: 100%;
+
+  height: 100%;
+
+  object-fit: contain;
+
+  z-index: 4;
+
+  pointer-events: none;
+
 }
 
 @media (max-width: 760px) {
@@ -1561,9 +1520,5 @@ main.conversation-shell {
   .map-chats-profile-frame {
     width: 100%;
     max-width: 220px;
-  }
-
-  .map-chats-profile-placeholder {
-    font-size: 42px;
   }
 }
