@@ -1412,7 +1412,7 @@ main.conversation-shell {
       rgba(255, 250, 241, 0.72) 42%,
       rgba(255, 250, 241, 0.18) 100%
     ),
-    url("map-chats-north-america.png") center / cover no-repeat;
+    url("map-chats-north-america-v2.png") center / cover no-repeat;
 }
 
 .map-chats-copy {
