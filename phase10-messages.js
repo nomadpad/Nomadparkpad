@@ -312,7 +312,7 @@ map_emoji
     travellerProfile;
     const { data: travellerPhotoProfile } = await supabase
 
-  .from("traveler_profiles")
+  .from("public_traveler_photos")
 
   .select(`
 
