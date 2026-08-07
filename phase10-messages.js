@@ -185,18 +185,16 @@ const mapChatsUser = mapChatsAuth?.user;
 if (mapChatsUser) {
   const { data: mapChatsProfile, error: mapChatsProfileError } =
     await supabase
-      .from("profiles")
-      .select(`
-        first_name,
-        profile_photo_url,
-        profile_photo_position_x,
-        profile_photo_position_y,
-        profile_photo_zoom
-      `)
-      .eq("user_id", mapChatsUser.id)
+      .from("traveller_profiles")
+.select(`
+  profile_photo_url,
+  profile_photo_position_x,
+  profile_photo_position_y,
+  profile_photo_zoom
+`)
+.eq("user_id", mapChatsUser.id)
       .maybeSingle();
-console.log("MAP CHATS PROFILE:", mapChatsProfile);
-console.log("MAP CHATS PROFILE ERROR:", mapChatsProfileError);
+
   if (mapChatsProfileError) {
     console.error(
       "Could not load Map Chats profile:",
@@ -221,8 +219,7 @@ console.log("MAP CHATS PROFILE ERROR:", mapChatsProfileError);
     mapChatsPhoto.style.transform =
       `scale(${mapChatsProfile.profile_photo_zoom ?? 1})`;
 
-    mapChatsPhoto.alt =
-      `${mapChatsProfile.first_name || "Traveller"} profile photo`;
+   mapChatsPhoto.alt = "Traveller profile photo";
 
     mapChatsPhoto.hidden = false;
 
