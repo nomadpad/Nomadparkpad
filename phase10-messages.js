@@ -195,7 +195,8 @@ if (mapChatsUser) {
       `)
       .eq("user_id", mapChatsUser.id)
       .maybeSingle();
-
+console.log("MAP CHATS PROFILE:", mapChatsProfile);
+console.log("MAP CHATS PROFILE ERROR:", mapChatsProfileError);
   if (mapChatsProfileError) {
     console.error(
       "Could not load Map Chats profile:",
