@@ -1494,31 +1494,49 @@ main.conversation-shell {
 
 @media (max-width: 760px) {
   .map-chats-header {
-    grid-template-columns: minmax(0, 1fr) 38%;
-    min-height: 390px;
-    gap: 8px;
-    padding: 28px 20px;
-    border-radius: 28px;
-    background-position: 58% center;
-  }
+
+  grid-template-columns: minmax(0, 1fr) 34%;
+
+  min-height: 290px;
+
+  gap: 10px;
+
+  padding: 20px 18px;
+
+  border-radius: 28px;
+
+  background-position: 58% center;
+
+}
 
   .map-chats-header #conversation-title {
-    font-size: clamp(62px, 17vw, 100px);
-  }
+
+  font-size: clamp(48px, 13vw, 74px);
+
+  line-height: 0.9;
+
+}
 
   .map-chats-header #conversation-subtitle {
-    max-width: 280px;
-    font-size: 22px;
-  }
+
+  max-width: 240px;
+
+  font-size: 20px;
+
+}
 
   .map-chats-header #conversation-subtitle::after {
-    width: 140px;
-    height: 6px;
-    margin-left: 90px;
-  }
+
+  width: 135px;
+
+  height: 5px;
+
+  margin-left: 40px;
+
+}
 
   .map-chats-profile-frame {
     width: 100%;
-    max-width: 280px;
+    max-width: 190px;
   }
 }
