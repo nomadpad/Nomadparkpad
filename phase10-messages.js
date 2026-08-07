@@ -329,6 +329,7 @@ map_emoji
   .eq("user_id", travellerId)
 
   .maybeSingle();
+  console.log("TRAVELLER PHOTO PROFILE:", travellerPhotoProfile);
 const conversationProfilePhoto =
 
   document.querySelector("#conversation-profile-photo");
