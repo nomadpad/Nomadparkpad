@@ -193,7 +193,7 @@ if (mapChatsUser) {
         profile_photo_position_y,
         profile_photo_zoom
       `)
-      .eq("id", mapChatsUser.id)
+      .eq("user_id", mapChatsUser.id)
       .maybeSingle();
 
   if (mapChatsProfileError) {
