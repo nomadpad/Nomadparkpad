@@ -330,6 +330,15 @@ map_emoji
 
   .maybeSingle();
   console.log("TRAVELLER PHOTO PROFILE:", travellerPhotoProfile);
+  alert(
+
+  travellerPhotoProfile?.profile_photo_url
+
+    ? "PHOTO FOUND"
+
+    : "NO PHOTO FOUND"
+
+);
 const conversationProfilePhoto =
 
   document.querySelector("#conversation-profile-photo");
