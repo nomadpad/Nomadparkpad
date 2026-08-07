@@ -73,9 +73,10 @@ async function loadDirectConversationList() {
   const subtitle = document.querySelector("#conversation-subtitle");
   const status = document.querySelector("#conversation-status");
 
-  title.textContent = "Direct Messages";
-  subtitle.textContent = "Choose a conversation.";
-  status.textContent = "INBOX";
+title.textContent = "Map Chats";
+subtitle.textContent = "Stay connected on the road.";
+status.textContent = "";
+status.hidden = true;
 
   stream.hidden = true;
   empty.hidden = true;
