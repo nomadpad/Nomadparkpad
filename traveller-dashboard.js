@@ -2855,6 +2855,60 @@ document
 
   });
 
+  async function loadTravellerGreeting(user) {
+
+  const greetingElement =
+
+    document.querySelector("#travellerGreeting");
+
+  const nameElement =
+
+    document.querySelector("#travellerName");
+
+  if (!greetingElement || !nameElement) {
+
+    return;
+
+  }
+
+  const hour = new Date().getHours();
+
+  let greeting = "Good evening";
+
+  if (hour < 12) {
+
+    greeting = "Good morning";
+
+  } else if (hour < 18) {
+
+    greeting = "Good afternoon";
+
+  }
+
+  const { data: profile, error } = await supabase
+
+    .from("profiles")
+
+    .select("first_name")
+
+    .eq("id", user.id)
+
+    .maybeSingle();
+
+  if (error) {
+
+    console.error("Could not load traveller name:", error);
+
+  }
+
+  greetingElement.textContent = `${greeting},`;
+
+  nameElement.textContent =
+
+    `${profile?.first_name || "Traveller"}!`;
+
+}
+
 /* =========================================================
 
    STARTUP
@@ -2867,7 +2921,13 @@ document.addEventListener(
 
   async () => {
     const user = await getSignedInUser();
+if (!user) {
 
+  return;
+
+}
+
+await loadTravellerGreeting(user);
 updateTravellerMemberSince(user);
 
     initMapFilters();
