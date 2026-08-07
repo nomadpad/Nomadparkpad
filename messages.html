@@ -26,25 +26,45 @@
 </header>
 
 <main class="conversation-shell">
-  <section class="conversation-header">
-    <div>
-      <span class="status-pill" id="conversation-status">Loading</span>
-      <p class="kicker">BOOKING CONVERSATION</p>
-      <img
+<section class="conversation-header map-chats-header">
+  <div class="map-chats-copy">
+    <h1 id="conversation-title">Map Chats</h1>
 
-  id="conversation-profile-photo"
+    <p id="conversation-subtitle">
+      Stay connected on the road.
+    </p>
 
-  class="conversation-profile-photo"
+    <span
+      class="status-pill"
+      id="conversation-status"
+      hidden
+    ></span>
+  </div>
 
-  alt=""
+  <div class="map-chats-profile-frame">
+    <img
+      id="conversation-profile-photo"
+      class="conversation-profile-photo"
+      alt="Traveller profile photo"
+      hidden
+    >
 
-  hidden
-
->
-      <h1 id="conversation-title">Loading conversation...</h1>
-      <p id="conversation-subtitle"></p>
+    <div
+      class="map-chats-profile-placeholder"
+      id="map-chats-profile-placeholder"
+      aria-hidden="true"
+    >
+      👤
     </div>
-  </section>
+
+    <div
+      class="map-chats-frame-road"
+      aria-hidden="true"
+    >
+      〽
+    </div>
+  </div>
+</section>
 
   <section class="conversation-card">
 

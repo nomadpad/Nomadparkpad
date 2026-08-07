@@ -176,6 +176,59 @@ async function loadDirectConversationList() {
   });
 }
 async function loadConversation() {
+  const { data: mapChatsAuth } =
+  await supabase.auth.getUser();
+
+const mapChatsUser = mapChatsAuth?.user;
+
+if (mapChatsUser) {
+  const { data: mapChatsProfile, error: mapChatsProfileError } =
+    await supabase
+      .from("profiles")
+      .select(`
+        first_name,
+        profile_photo_url,
+        profile_photo_position_x,
+        profile_photo_position_y,
+        profile_photo_zoom
+      `)
+      .eq("id", mapChatsUser.id)
+      .maybeSingle();
+
+  if (mapChatsProfileError) {
+    console.error(
+      "Could not load Map Chats profile:",
+      mapChatsProfileError
+    );
+  }
+
+  const mapChatsPhoto =
+    document.querySelector("#conversation-profile-photo");
+
+  const mapChatsPlaceholder =
+    document.querySelector("#map-chats-profile-placeholder");
+
+  if (mapChatsProfile?.profile_photo_url && mapChatsPhoto) {
+    mapChatsPhoto.src =
+      mapChatsProfile.profile_photo_url;
+
+    mapChatsPhoto.style.objectPosition =
+      `${mapChatsProfile.profile_photo_position_x ?? 50}% ` +
+      `${mapChatsProfile.profile_photo_position_y ?? 50}%`;
+
+    mapChatsPhoto.style.transform =
+      `scale(${mapChatsProfile.profile_photo_zoom ?? 1})`;
+
+    mapChatsPhoto.alt =
+      `${mapChatsProfile.first_name || "Traveller"} profile photo`;
+
+    mapChatsPhoto.hidden = false;
+
+    if (mapChatsPlaceholder) {
+      mapChatsPlaceholder.hidden = true;
+    }
+  }
+}
 if (!conversationMode) {
   await loadDirectConversationList();
   return;
