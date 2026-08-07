@@ -1465,7 +1465,7 @@ main.conversation-shell {
 
 .map-chats-profile-frame .conversation-profile-photo {
   position: absolute;
-  top: 6%;
+  top: 5%;
   left: 12.5%;
   z-index: 3;
   width: 75%;
