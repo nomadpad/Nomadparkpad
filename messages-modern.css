@@ -1566,3 +1566,616 @@ background-position: 50% 48%;
     max-width: 190px;
   }
 }
+/* =========================================================
+
+   MAP CHATS - PREMIUM HEADER
+
+   ========================================================= */
+
+.map-chats-header {
+
+  position: relative;
+
+  overflow: hidden;
+
+  display: grid;
+
+  grid-template-columns: minmax(0, 1fr) 38%;
+
+  align-items: center;
+
+  min-height: 300px;
+
+  padding: 28px 34px;
+
+  border: 3px solid #f36b21;
+
+  border-radius: 34px;
+
+  background-image:
+
+    linear-gradient(
+
+      90deg,
+
+      rgba(255, 250, 240, 0.92) 0%,
+
+      rgba(255, 250, 240, 0.68) 34%,
+
+      rgba(255, 255, 255, 0.18) 68%,
+
+      rgba(255, 255, 255, 0.05) 100%
+
+    ),
+
+    url("map-chats-north-america.jpg");
+
+  background-size: 100% auto;
+
+  background-position: center center;
+
+  background-repeat: no-repeat;
+
+  box-shadow:
+
+    0 14px 30px rgba(31, 59, 48, 0.09),
+
+    inset 0 0 50px rgba(255, 255, 255, 0.28);
+
+}
+
+/* ---------- LEFT CONTENT ---------- */
+
+.map-chats-copy {
+
+  position: relative;
+
+  z-index: 5;
+
+  align-self: start;
+
+  padding-top: 2px;
+
+  max-width: 520px;
+
+}
+
+.map-chats-header #conversation-title {
+
+  margin: 0;
+
+  color: #064b38;
+
+  font-family: Georgia, "Times New Roman", serif;
+
+  font-size: clamp(58px, 8vw, 104px);
+
+  font-weight: 700;
+
+  line-height: 0.92;
+
+  letter-spacing: -0.045em;
+
+  text-shadow:
+
+    0 2px 0 rgba(255,255,255,0.75),
+
+    0 7px 18px rgba(6, 75, 56, 0.08);
+
+}
+
+/* orange sweep underneath name */
+
+.map-chats-header #conversation-title::after {
+
+  content: "";
+
+  display: block;
+
+  width: 56%;
+
+  height: 5px;
+
+  margin-top: 12px;
+
+  margin-left: 96px;
+
+  border-radius: 999px;
+
+  background:
+
+    linear-gradient(
+
+      90deg,
+
+      #f45f16 0%,
+
+      #ff7a22 58%,
+
+      rgba(255, 122, 34, 0) 100%
+
+    );
+
+  transform: rotate(-1deg);
+
+  box-shadow:
+
+    0 2px 5px rgba(244, 95, 22, 0.16);
+
+}
+
+/* MAP CHATS */
+
+.map-chats-header #conversation-subtitle {
+
+  position: relative;
+
+  margin: 26px 0 0 48px;
+
+  color: #103f36;
+
+  font-size: clamp(27px, 3.5vw, 48px);
+
+  font-weight: 600;
+
+  line-height: 1;
+
+}
+
+/* chat bubble */
+
+.map-chats-header #conversation-subtitle::before {
+
+  content: "💬";
+
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  margin-right: 14px;
+
+  font-size: 0.9em;
+
+  filter:
+
+    drop-shadow(0 3px 4px rgba(0, 0, 0, 0.08));
+
+}
+
+/* remove old orange stripe */
+
+.map-chats-header #conversation-subtitle::after {
+
+  content: none;
+
+}
+
+/* tagline */
+
+.map-chats-copy::after {
+
+  content: "Connect, share, and explore\A life on the road.";
+
+  white-space: pre;
+
+  display: block;
+
+  margin-top: 28px;
+
+  margin-left: 102px;
+
+  padding-left: 18px;
+
+  border-left: 4px solid #f36b21;
+
+  color: #344c46;
+
+  font-size: clamp(17px, 2.1vw, 28px);
+
+  line-height: 1.3;
+
+  font-weight: 500;
+
+}
+
+/* =========================================================
+
+   ROUTE OVERLAY
+
+   ========================================================= */
+
+.map-route-decoration {
+
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 2;
+
+  pointer-events: none;
+
+}
+
+/* Edmonton location */
+
+.map-edmonton-pin {
+
+  position: absolute;
+
+  top: 8%;
+
+  left: 55%;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  color: #f36b21;
+
+  font-weight: 700;
+
+}
+
+.map-pin-icon {
+
+  position: relative;
+
+  width: 24px;
+
+  height: 32px;
+
+  font-size: 0;
+
+  border-radius: 50% 50% 50% 0;
+
+  background: #f36b21;
+
+  transform: rotate(-45deg);
+
+  box-shadow:
+
+    0 4px 8px rgba(143, 67, 18, 0.2);
+
+}
+
+.map-pin-icon::after {
+
+  content: "";
+
+  position: absolute;
+
+  width: 8px;
+
+  height: 8px;
+
+  left: 8px;
+
+  top: 8px;
+
+  border-radius: 50%;
+
+  background: #fff;
+
+}
+
+.map-pin-city {
+
+  margin-top: 5px;
+
+  color: #685e51;
+
+  font-size: 14px;
+
+  transform: translateX(0);
+
+}
+
+/* curved route */
+
+.map-route-line {
+
+  position: absolute;
+
+  left: 40%;
+
+  top: 29%;
+
+  width: 18%;
+
+  height: 47%;
+
+  border-right: 3px dashed #f36b21;
+
+  border-bottom: 3px dashed #f36b21;
+
+  border-radius: 0 0 95% 0;
+
+  transform: rotate(-8deg);
+
+  opacity: 0.9;
+
+}
+
+.map-route-start {
+
+  position: absolute;
+
+  left: 39.5%;
+
+  top: 72%;
+
+  width: 10px;
+
+  height: 10px;
+
+  border-radius: 50%;
+
+  background: #f36b21;
+
+  box-shadow:
+
+    0 0 0 3px rgba(255, 255, 255, 0.75);
+
+}
+
+/* =========================================================
+
+   RICH PROFILE PIN
+
+   ========================================================= */
+
+.map-chats-profile-frame {
+
+  position: relative;
+
+  z-index: 6;
+
+  width: min(100%, 330px);
+
+  aspect-ratio: 0.68;
+
+  justify-self: end;
+
+  filter:
+
+    drop-shadow(0 18px 18px rgba(0, 45, 31, 0.25))
+
+    drop-shadow(0 0 10px rgba(225, 180, 82, 0.22));
+
+}
+
+/* rich green + gold edge */
+
+.map-chats-profile-frame::before {
+
+  background:
+
+    linear-gradient(
+
+      145deg,
+
+      #0c513d 0%,
+
+      #063e31 38%,
+
+      #072f27 68%,
+
+      #0a4937 100%
+
+    );
+
+  box-shadow:
+
+    inset 0 0 0 2px rgba(255,255,255,0.12),
+
+    inset 0 0 0 5px rgba(224, 183, 90, 0.16),
+
+    0 0 12px rgba(220, 176, 76, 0.24);
+
+}
+
+/* photo itself */
+
+.map-chats-profile-frame .conversation-profile-photo {
+
+  z-index: 4;
+
+  top: 8.4%;
+
+  left: 12.5%;
+
+  width: 75%;
+
+  aspect-ratio: 1;
+
+  height: auto;
+
+  border-radius: 50%;
+
+  object-fit: cover;
+
+  border: 5px solid rgba(255,255,255,0.96);
+
+  box-shadow:
+
+    0 0 0 3px rgba(222, 181, 93, 0.32),
+
+    0 7px 18px rgba(0,0,0,0.16);
+
+}
+
+.nomad-profile-frame-image {
+
+  z-index: 5;
+
+  filter:
+
+    drop-shadow(0 4px 3px rgba(0,0,0,0.12))
+
+    drop-shadow(0 0 4px rgba(220,178,81,0.18));
+
+}
+
+/* =========================================================
+
+   PHONE
+
+   ========================================================= */
+
+@media (max-width: 760px) {
+
+  .map-chats-header {
+
+    grid-template-columns: minmax(0, 1fr) 36%;
+
+    min-height: 230px;
+
+    gap: 6px;
+
+    padding: 14px 14px;
+
+    border-radius: 27px;
+
+    background-size: 100% auto;
+
+    background-position: center center;
+
+  }
+
+  .map-chats-copy {
+
+    padding-top: 4px;
+
+  }
+
+  .map-chats-header #conversation-title {
+
+    font-size: clamp(44px, 12vw, 66px);
+
+    line-height: 0.9;
+
+  }
+
+  .map-chats-header #conversation-title::after {
+
+    width: 62%;
+
+    height: 4px;
+
+    margin-top: 7px;
+
+    margin-left: 52px;
+
+  }
+
+  .map-chats-header #conversation-subtitle {
+
+    margin-top: 17px;
+
+    margin-left: 14px;
+
+    font-size: 21px;
+
+  }
+
+  .map-chats-header #conversation-subtitle::before {
+
+    margin-right: 7px;
+
+    font-size: 21px;
+
+  }
+
+  .map-chats-copy::after {
+
+    margin-top: 17px;
+
+    margin-left: 38px;
+
+    padding-left: 10px;
+
+    border-left-width: 3px;
+
+    font-size: 13px;
+
+    line-height: 1.25;
+
+  }
+
+  .map-chats-profile-frame {
+
+    width: 100%;
+
+    max-width: 170px;
+
+  }
+
+  .map-edmonton-pin {
+
+    top: 7%;
+
+    left: 55%;
+
+  }
+
+  .map-pin-icon {
+
+    width: 17px;
+
+    height: 23px;
+
+  }
+
+  .map-pin-icon::after {
+
+    width: 6px;
+
+    height: 6px;
+
+    left: 5.5px;
+
+    top: 5.5px;
+
+  }
+
+  .map-pin-city {
+
+    font-size: 9px;
+
+  }
+
+  .map-route-line {
+
+    left: 42%;
+
+    top: 28%;
+
+    width: 16%;
+
+    height: 45%;
+
+    border-width: 0 2px 2px 0;
+
+    border-style: dashed;
+
+    border-color: #f36b21;
+
+  }
+
+  .map-route-start {
+
+    left: 41%;
+
+    top: 71%;
+
+    width: 7px;
+
+    height: 7px;
+
+  }
+
+}
