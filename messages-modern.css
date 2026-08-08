@@ -1416,38 +1416,63 @@ main.conversation-shell {
 }
 
 .map-chats-copy {
-  position: relative;
-  z-index: 2;
-  align-self: end;
-  padding-bottom: 28px;
+
+  align-self: start;
+
+  padding-top: 4px;
+
 }
 
 .map-chats-header #conversation-title {
+
   margin: 0;
-  max-width: 620px;
-  color: #064b38;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(72px, 10vw, 150px);
-  line-height: 0.84;
-  letter-spacing: -0.05em;
+
+  font-size: clamp(42px, 11vw, 66px);
+
+  line-height: 0.92;
+
 }
 
 .map-chats-header #conversation-subtitle {
-  margin: 26px 0 0;
-  color: #164f42;
-  font-size: clamp(26px, 3vw, 42px);
-  line-height: 1.15;
+
+  margin-top: 12px;
+
+  max-width: 220px;
+
+  font-size: 20px;
+
 }
 
 .map-chats-header #conversation-subtitle::after {
+
   content: "";
+
   display: block;
-  width: 230px;
-  height: 8px;
-  margin: 12px 0 0 180px;
+
+  width: 92px;
+
+  height: 6px;
+
+  margin-top: 10px;
+
+  margin-left: 0;
+
   border-radius: 999px;
-  background: #f36b21;
-  transform: rotate(-3deg);
+
+  background: linear-gradient(
+
+    90deg,
+
+    #ff6a1a 0%,
+
+    #ff8b3d 65%,
+
+    rgba(255, 139, 61, 0.15) 100%
+
+  );
+
+  transform: rotate(-2deg);
+
 }
 
 .map-chats-header .status-pill {
