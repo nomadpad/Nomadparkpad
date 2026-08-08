@@ -1094,13 +1094,7 @@ button#send-real-message.btn-accent {
 
 .map-pin-city {
 
-  margin-top: 3px;
-
-  color: #645b51;
-
-  font-size: clamp(8px, 1.6vw, 13px);
-
-  font-weight: 600;
+  display: none;
 
 }
 
@@ -1116,15 +1110,15 @@ button#send-real-message.btn-accent {
 
   left: 40%;
 
-  top: 22%;
+  top: 17%;
 
-  width: 16%;
+  width: 15%;
 
-  height: 43%;
+  height: 48%;
 
-  border-right: 2px dashed var(--message-orange);
+  border-right: 1.5px dashed var(--message-orange);
 
-  border-bottom: 2px dashed var(--message-orange);
+  border-bottom: 1.5px dashed var(--message-orange);
 
   border-radius: 0 0 100% 0;
 
@@ -1138,7 +1132,7 @@ button#send-real-message.btn-accent {
 
   position: absolute;
 
-  left: 39.5%;
+  left: 39.4%;
 
   top: 61%;
 
@@ -1340,9 +1334,11 @@ button#send-real-message.btn-accent {
 
   .map-edmonton-pin {
 
-    top: 6%;
+    top: 8%;
 
-    left: 55%;
+  left: 41%;
+
+  transform: translateX(-50%) scale(0.72);
 
   }
 
