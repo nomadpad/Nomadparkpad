@@ -1497,15 +1497,17 @@ main.conversation-shell {
 
   grid-template-columns: minmax(0, 1fr) 34%;
 
-  min-height: 290px;
+  min-height: 235px;
 
-  gap: 10px;
+  gap: 8px;
 
-  padding: 20px 18px;
+  padding: 14px 16px;
 
   border-radius: 28px;
 
-  background-position: 58% center;
+  background-size: 112% auto;
+
+  background-position: 50% center;
 
 }
 
