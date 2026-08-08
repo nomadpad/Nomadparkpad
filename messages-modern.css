@@ -2179,3 +2179,112 @@ background-position: 50% 48%;
   }
 
 }
+@media (max-width: 760px) {
+
+  .map-chats-header {
+
+    position: relative;
+
+    display: block;
+
+    min-height: 235px;
+
+    padding: 14px 16px;
+
+    overflow: hidden;
+
+    background-size: 100% auto;
+
+    background-position: 50% 48%;
+
+    background-repeat: no-repeat;
+
+  }
+
+  .map-chats-copy {
+
+    position: absolute;
+
+    top: 18px;
+
+    left: 20px;
+
+    z-index: 5;
+
+    width: 58%;
+
+    padding: 0;
+
+  }
+
+  .map-chats-profile-frame {
+
+    position: absolute;
+
+    top: 18px;
+
+    right: 12px;
+
+    z-index: 6;
+
+    width: 145px;
+
+    max-width: none;
+
+    margin: 0;
+
+  }
+
+  .map-edmonton-pin {
+
+    position: absolute;
+
+    top: 14px;
+
+    left: 55%;
+
+    z-index: 4;
+
+    transform: translateX(-50%);
+
+  }
+
+  .map-route-decoration {
+
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 3;
+
+    pointer-events: none;
+
+  }
+
+  .map-chats-header #conversation-title {
+
+    margin: 0;
+
+    font-size: clamp(42px, 11vw, 62px);
+
+    line-height: 0.9;
+
+  }
+
+  .map-chats-header #conversation-subtitle {
+
+    margin: 18px 0 0 12px;
+
+    font-size: 21px;
+
+  }
+
+  .map-chats-copy::after {
+
+    margin: 16px 0 0 40px;
+
+    font-size: 12px;
+
+  }
+
+}
