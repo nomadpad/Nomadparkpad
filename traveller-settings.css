@@ -1,0 +1,573 @@
+/* =========================================================
+
+   NOMAD PARK PAD
+
+   TRAVELLER SETTINGS
+
+========================================================= */
+
+:root {
+
+  --settings-forest: #0d3b2f;
+
+  --settings-forest-deep: #062f26;
+
+  --settings-forest-soft: #174f40;
+
+  --settings-cream: #fffaf2;
+
+  --settings-cream-soft: #f8f1e6;
+
+  --settings-orange: #f36b16;
+
+  --settings-gold: #d7ad4d;
+
+  --settings-text: #173c31;
+
+  --settings-muted: #66776f;
+
+  --settings-shadow:
+
+    0 18px 45px rgba(4, 40, 29, 0.18);
+
+}
+
+/* =========================================================
+
+   PAGE
+
+========================================================= */
+
+html,
+
+body {
+
+  width: 100%;
+
+  min-height: 100%;
+
+  margin: 0;
+
+}
+
+body {
+
+  background:
+
+    radial-gradient(
+
+      circle at top right,
+
+      rgba(215, 173, 77, 0.12),
+
+      transparent 28%
+
+    ),
+
+    linear-gradient(
+
+      180deg,
+
+      #0f4a39 0%,
+
+      #082f27 100%
+
+    );
+
+  color: var(--settings-cream);
+
+  font-family:
+
+    -apple-system,
+
+    BlinkMacSystemFont,
+
+    "Segoe UI",
+
+    sans-serif;
+
+}
+
+/* =========================================================
+
+   PAGE SHELL
+
+========================================================= */
+
+.traveller-settings-page {
+
+  width: 100%;
+
+  max-width: 760px;
+
+  margin: 0 auto;
+
+  padding: 34px 20px 60px;
+
+  box-sizing: border-box;
+
+}
+
+/* =========================================================
+
+   MAIN CARD
+
+========================================================= */
+
+.traveller-settings-card {
+
+  position: relative;
+
+  padding: 30px 24px 26px;
+
+  border:
+
+    1px solid rgba(215, 173, 77, 0.46);
+
+  border-radius: 34px;
+
+  background:
+
+    linear-gradient(
+
+      180deg,
+
+      rgba(255, 250, 242, 0.99),
+
+      rgba(248, 241, 230, 0.98)
+
+    );
+
+  color: var(--settings-text);
+
+  box-shadow:
+
+    var(--settings-shadow);
+
+}
+
+/* =========================================================
+
+   HEADER COPY
+
+========================================================= */
+
+.settings-kicker {
+
+  margin:
+
+    0 0 8px;
+
+  color:
+
+    var(--settings-orange);
+
+  font-size: 13px;
+
+  font-weight: 900;
+
+  letter-spacing: 0.14em;
+
+}
+
+.traveller-settings-card h1 {
+
+  margin: 0;
+
+  color:
+
+    var(--settings-forest);
+
+  font-family:
+
+    Georgia,
+
+    "Times New Roman",
+
+    serif;
+
+  font-size:
+
+    clamp(42px, 11vw, 68px);
+
+  line-height: 0.95;
+
+}
+
+.settings-intro {
+
+  margin:
+
+    16px 0 26px;
+
+  color:
+
+    var(--settings-muted);
+
+  font-size:
+
+    17px;
+
+  line-height: 1.5;
+
+}
+
+/* =========================================================
+
+   SETTINGS GRID
+
+========================================================= */
+
+.settings-choice-grid {
+
+  display: grid;
+
+  gap: 16px;
+
+}
+
+/* =========================================================
+
+   RICH SETTING CARDS
+
+========================================================= */
+
+.settings-choice-card {
+
+  position: relative;
+
+  display: grid;
+
+  grid-template-columns:
+
+    74px minmax(0, 1fr);
+
+  gap: 16px;
+
+  align-items: center;
+
+  padding: 18px;
+
+  overflow: hidden;
+
+  border:
+
+    1.5px solid rgba(243, 107, 22, 0.72);
+
+  border-radius: 24px;
+
+  background:
+
+    linear-gradient(
+
+      145deg,
+
+      #fffdf8 0%,
+
+      #f8efe2 100%
+
+    );
+
+  color:
+
+    var(--settings-text);
+
+  text-decoration: none;
+
+  box-shadow:
+
+    0 10px 24px rgba(13, 59, 47, 0.08);
+
+  transition:
+
+    transform 0.18s ease,
+
+    box-shadow 0.18s ease,
+
+    border-color 0.18s ease;
+
+}
+
+.settings-choice-card::after {
+
+  content: "›";
+
+  position: absolute;
+
+  top: 50%;
+
+  right: 18px;
+
+  transform:
+
+    translateY(-50%);
+
+  color:
+
+    rgba(13, 59, 47, 0.46);
+
+  font-size: 32px;
+
+  font-weight: 300;
+
+}
+
+.settings-choice-card:active {
+
+  transform:
+
+    scale(0.985);
+
+}
+
+/* =========================================================
+
+   ICON MEDALLION
+
+========================================================= */
+
+.settings-choice-icon {
+
+  width: 64px;
+
+  height: 64px;
+
+  display: grid;
+
+  place-items: center;
+
+  border:
+
+    2px solid rgba(215, 173, 77, 0.78);
+
+  border-radius: 50%;
+
+  background:
+
+    radial-gradient(
+
+      circle at 35% 28%,
+
+      #ffffff 0%,
+
+      #fff8eb 55%,
+
+      #eadab8 100%
+
+    );
+
+  font-size: 30px;
+
+  box-shadow:
+
+    0 0 0 4px rgba(13, 59, 47, 0.06),
+
+    0 8px 18px rgba(13, 59, 47, 0.12);
+
+}
+
+/* =========================================================
+
+   CARD TEXT
+
+========================================================= */
+
+.settings-choice-card strong {
+
+  display: block;
+
+  margin-bottom: 5px;
+
+  color:
+
+    var(--settings-forest);
+
+  font-size: 22px;
+
+  font-weight: 800;
+
+}
+
+.settings-choice-card p {
+
+  max-width: 88%;
+
+  margin: 0;
+
+  color:
+
+    var(--settings-muted);
+
+  font-size: 14px;
+
+  line-height: 1.4;
+
+}
+
+/* =========================================================
+
+   PROFILE CARD ACCENT
+
+========================================================= */
+
+.settings-choice-card:nth-child(1) {
+
+  border-color:
+
+    rgba(13, 59, 47, 0.34);
+
+}
+
+/* =========================================================
+
+   DASHBOARD CARD ACCENT
+
+========================================================= */
+
+.settings-choice-card:nth-child(2) {
+
+  background:
+
+    linear-gradient(
+
+      145deg,
+
+      #fffaf2 0%,
+
+      #f7ead6 100%
+
+    );
+
+}
+
+/* =========================================================
+
+   MAP CARD ACCENT
+
+========================================================= */
+
+.settings-choice-card:nth-child(3) {
+
+  background:
+
+    linear-gradient(
+
+      145deg,
+
+      #fffdf8 0%,
+
+      #eef4ef 100%
+
+    );
+
+}
+
+/* =========================================================
+
+   BACK BUTTON
+
+========================================================= */
+
+.settings-back-button {
+
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  margin-top: 24px;
+
+  padding: 13px 17px;
+
+  border:
+
+    1px solid rgba(13, 59, 47, 0.18);
+
+  border-radius: 999px;
+
+  background:
+
+    rgba(255, 255, 255, 0.72);
+
+  color:
+
+    var(--settings-forest);
+
+  font-size: 15px;
+
+  font-weight: 700;
+
+  text-decoration: none;
+
+  box-shadow:
+
+    0 8px 18px rgba(13, 59, 47, 0.08);
+
+}
+
+/* =========================================================
+
+   PHONE
+
+========================================================= */
+
+@media (max-width: 640px) {
+
+  .traveller-settings-page {
+
+    padding:
+
+      22px 14px 50px;
+
+  }
+
+  .traveller-settings-card {
+
+    padding:
+
+      26px 18px 22px;
+
+    border-radius: 28px;
+
+  }
+
+  .settings-choice-card {
+
+    grid-template-columns:
+
+      62px minmax(0, 1fr);
+
+    gap: 13px;
+
+    padding: 16px;
+
+    border-radius: 22px;
+
+  }
+
+  .settings-choice-icon {
+
+    width: 54px;
+
+    height: 54px;
+
+    font-size: 25px;
+
+  }
+
+  .settings-choice-card strong {
+
+    font-size: 20px;
+
+  }
+
+  .settings-choice-card p {
+
+    max-width: 90%;
+
+    font-size: 13px;
+
+  }
+
+}
