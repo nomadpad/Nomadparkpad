@@ -1831,7 +1831,19 @@ left: 6.5%;
 
 .map-chats-profile-frame .nomad-profile-frame-image {
 
-  opacity: 0.32 !important;
+  opacity: 0.36 !important;
+
+  filter:
+
+    brightness(0.82)
+
+    contrast(1.22)
+
+    saturate(1.18)
+
+    drop-shadow(0 1px 1px rgba(255, 255, 255, 0.12))
+
+    drop-shadow(0 3px 5px rgba(0, 31, 22, 0.24)) !important;
 
 }
 
