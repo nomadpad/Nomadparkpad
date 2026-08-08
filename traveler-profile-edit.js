@@ -473,3 +473,79 @@ profileMapEmojiButton?.addEventListener("click", () => {
   }
 
 });
+/* =========================================================
+
+   SAVE PROFILE MAP EMOJI
+
+========================================================= */
+
+document.addEventListener("click", async (event) => {
+
+  const emojiButton =
+
+    event.target.closest("#profileEmojiPicker button");
+
+  if (!emojiButton) return;
+
+  const selectedEmoji =
+
+    emojiButton.textContent.trim();
+
+  localStorage.setItem(
+
+    "npp-map-emoji",
+
+    selectedEmoji
+
+  );
+  const user = await getSignedInUser();
+
+if (user) {
+
+  const { error } = await supabase
+
+    .from("profiles")
+
+    .update({
+
+      map_emoji: selectedEmoji
+
+    })
+
+    .eq("id", user.id);
+
+  if (error) {
+
+    console.error(
+
+      "Could not save map emoji:",
+
+      error
+
+    );
+
+  }
+
+}
+
+  const emojiDisplay =
+
+    document.querySelector(
+
+      "#profileMapEmojiButton span"
+
+    );
+
+  if (emojiDisplay) {
+
+    emojiDisplay.textContent = selectedEmoji;
+
+  }
+
+  if (profileEmojiPicker) {
+
+    profileEmojiPicker.hidden = true;
+
+  }
+
+});
