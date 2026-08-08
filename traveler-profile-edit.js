@@ -490,6 +490,17 @@ document.addEventListener("click", async (event) => {
   const selectedEmoji =
 
     emojiButton.textContent.trim();
+    document
+
+  .querySelectorAll("#profileEmojiPicker button")
+
+  .forEach((button) => {
+
+    button.classList.remove("selected");
+
+  });
+
+emojiButton.classList.add("selected");
 
   localStorage.setItem(
 

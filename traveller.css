@@ -969,3 +969,32 @@ height: 184px;
   transform: scale(0.94);
 
 }
+.profile-emoji-picker button.selected {
+
+  border-color: #0d3b2f;
+
+  box-shadow:
+
+    0 0 0 3px rgba(13, 59, 47, 0.18),
+
+    0 0 0 6px rgba(215, 173, 77, 0.22),
+
+    0 10px 22px rgba(13, 59, 47, 0.16);
+
+  background:
+
+    radial-gradient(
+
+      circle at 35% 28%,
+
+      #ffffff 0%,
+
+      #fff7df 52%,
+
+      #e6d09c 100%
+
+    );
+
+  transform: scale(1.05);
+
+}
