@@ -498,7 +498,11 @@ document.addEventListener("click", async (event) => {
     selectedEmoji
 
   );
-  const user = await getSignedInUser();
+  const {
+
+  data: { user }
+
+} = await supabase.auth.getUser();
 
 if (user) {
 
