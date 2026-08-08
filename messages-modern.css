@@ -1180,6 +1180,22 @@ button#send-real-message.btn-accent {
 
   background:
 
+  /* sculpted lower Nomad highlight */
+
+radial-gradient(
+
+  ellipse at 57% 68%,
+
+  rgba(205, 225, 207, 0.72) 0%,
+
+  rgba(121, 164, 133, 0.42) 12%,
+
+  rgba(28, 92, 66, 0.16) 25%,
+
+  transparent 39%
+
+),
+
     /* tiny warm highlight */
 
     radial-gradient(
