@@ -450,3 +450,26 @@ vehicle_photo_url: vehiclePhotoUrl
   showMessage("Traveller profile saved successfully.");
 
 });
+/* =========================================================
+
+   PROFILE MAP EMOJI PICKER
+
+========================================================= */
+
+const profileMapEmojiButton =
+
+  document.getElementById("profileMapEmojiButton");
+
+const profileEmojiPicker =
+
+  document.getElementById("profileEmojiPicker");
+
+profileMapEmojiButton?.addEventListener("click", () => {
+
+  if (profileEmojiPicker) {
+
+    profileEmojiPicker.hidden = !profileEmojiPicker.hidden;
+
+  }
+
+});
