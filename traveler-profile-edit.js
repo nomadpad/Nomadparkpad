@@ -564,3 +564,52 @@ if (user) {
   }
 
 });
+/* =========================================================
+
+   RESTORE SAVED PROFILE MAP EMOJI
+
+========================================================= */
+
+function loadSavedProfileEmoji() {
+
+  const savedEmoji =
+
+    localStorage.getItem("npp-map-emoji") || "😎";
+
+  const emojiDisplay =
+
+    document.querySelector(
+
+      "#profileMapEmojiButton span"
+
+    );
+
+  if (emojiDisplay) {
+
+    emojiDisplay.textContent = savedEmoji;
+
+  }
+
+  document
+
+    .querySelectorAll("#profileEmojiPicker button")
+
+    .forEach((button) => {
+
+      const isSelected =
+
+        button.textContent.trim() === savedEmoji;
+
+      button.classList.toggle(
+
+        "selected",
+
+        isSelected
+
+      );
+
+    });
+
+}
+
+loadSavedProfileEmoji();
