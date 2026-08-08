@@ -881,6 +881,11 @@ button#send-real-message.btn-accent {
 .map-chats-header #conversation-title {
 
   margin: 0;
+  position: absolute;
+
+top: 15%;
+
+left: 6.5%;
 
   color: #073e31;
 
