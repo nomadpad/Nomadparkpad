@@ -1861,7 +1861,7 @@ left: 6.5%;
 
   left: 13% !important;
 
-  z-index: 7 !important;
+  z-index: 4 !important;
 
   width: 74% !important;
 
@@ -2055,8 +2055,8 @@ left: 6.5%;
 /* keep original detail green, not silver */
 
 .map-chats-profile-frame .nomad-profile-frame-image {
-
-  opacity: 0.30 !important;
+z-index: 7 !important;
+  opacity: 1 !important;
 
   filter:
 
