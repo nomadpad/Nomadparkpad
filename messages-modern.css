@@ -1030,23 +1030,7 @@ button#send-real-message.btn-accent {
 
 .map-edmonton-pin {
 
-  position: absolute;
-
-  top: 7%;
-
-  left: 55%;
-
-  display: flex;
-
-  flex-direction: column;
-
-  align-items: center;
-
-  transform: translateX(-50%);
-
-  color: var(--message-orange);
-
-  font-weight: 700;
+  display: none;
 
 }
 
