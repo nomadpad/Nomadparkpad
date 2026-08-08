@@ -434,3 +434,132 @@ height: 184px;
   pointer-events: none;
 
 }
+/* =========================================================
+
+   PROFILE SETTINGS MENU
+
+========================================================= */
+
+.profile-settings-menu {
+
+  display: grid;
+
+  gap: 14px;
+
+  margin: 26px 0 30px;
+
+}
+
+.profile-settings-item {
+
+  width: 100%;
+
+  display: grid;
+
+  grid-template-columns: 54px minmax(0, 1fr);
+
+  gap: 14px;
+
+  align-items: center;
+
+  padding: 16px;
+
+  border: 1.5px solid rgba(243, 107, 22, 0.62);
+
+  border-radius: 20px;
+
+  background:
+
+    linear-gradient(
+
+      145deg,
+
+      #fffdf8 0%,
+
+      #f8efe3 100%
+
+    );
+
+  color: #173c31;
+
+  text-align: left;
+
+  text-decoration: none;
+
+  box-shadow:
+
+    0 10px 24px rgba(13, 59, 47, 0.08);
+
+  font: inherit;
+
+  cursor: pointer;
+
+}
+
+.profile-settings-item > span {
+
+  width: 46px;
+
+  height: 46px;
+
+  display: grid;
+
+  place-items: center;
+
+  border: 2px solid rgba(215, 173, 77, 0.72);
+
+  border-radius: 50%;
+
+  background: #fffaf2;
+
+  font-size: 23px;
+
+  box-shadow:
+
+    0 4px 12px rgba(13, 59, 47, 0.08);
+
+}
+
+.profile-settings-item strong {
+
+  display: block;
+
+  margin-bottom: 3px;
+
+  color: #0d3b2f;
+
+  font-size: 17px;
+
+  font-weight: 800;
+
+}
+
+.profile-settings-item small {
+
+  display: block;
+
+  color: #718079;
+
+  font-size: 13px;
+
+  line-height: 1.35;
+
+}
+
+.profile-settings-logout {
+
+  border-color: rgba(180, 63, 38, 0.36);
+
+  background:
+
+    linear-gradient(
+
+      145deg,
+
+      #fffaf7 0%,
+
+      #f8e8e3 100%
+
+    );
+
+}
