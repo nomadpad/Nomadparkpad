@@ -2150,13 +2150,13 @@ background-position: 50% 48%;
 
   .map-route-line {
 
-    left: 42%;
+    left: 40%;
 
-    top: 28%;
+    top: 38%;
 
-    width: 16%;
+    width: 9%;
 
-    height: 45%;
+    height: 88%;
 
     border-width: 0 2px 2px 0;
 
@@ -2168,9 +2168,9 @@ background-position: 50% 48%;
 
   .map-route-start {
 
-    left: 41%;
+    left: 42%;
 
-    top: 71%;
+    top: 152%;
 
     width: 7px;
 
@@ -2205,13 +2205,13 @@ background-position: 50% 48%;
 
     position: absolute;
 
-    top: 18px;
+    top: 16px;
 
-    left: 20px;
+    left: 18px;
 
     z-index: 5;
 
-    width: 58%;
+    width: 54%;
 
     padding: 0;
 
@@ -2239,9 +2239,9 @@ background-position: 50% 48%;
 
     position: absolute;
 
-    top: 14px;
+    top: 8px;
 
-    left: 55%;
+    left: 40%;
 
     z-index: 4;
 
