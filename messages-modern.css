@@ -1504,10 +1504,9 @@ main.conversation-shell {
   padding: 14px 16px;
 
   border-radius: 28px;
+background-size: 100% auto;
 
-  background-size: 112% auto;
-
-  background-position: 50% center;
+background-position: 50% 48%;
 
 }
 
