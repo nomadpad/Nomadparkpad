@@ -2288,3 +2288,32 @@ background-position: 50% 48%;
   }
 
 }
+@media (max-width: 760px) {
+
+  .map-chats-header .map-chats-profile-frame {
+
+    position: absolute !important;
+
+    top: 18px !important;
+
+    right: 12px !important;
+
+    left: auto !important;
+
+    width: 145px !important;
+
+    max-width: 145px !important;
+
+    min-width: 0 !important;
+
+    height: auto !important;
+
+    margin: 0 !important;
+
+    transform: none !important;
+
+    z-index: 6 !important;
+
+  }
+
+}
