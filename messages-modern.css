@@ -1184,15 +1184,17 @@ button#send-real-message.btn-accent {
 
     radial-gradient(
 
-      ellipse at 20% 10%,
+  ellipse at 22% 8%,
 
-      rgba(251, 226, 157, 0.40) 0%,
+  rgba(255, 242, 190, 0.78) 0%,
 
-      rgba(240, 210, 126, 0.12) 13%,
+  rgba(226, 188, 94, 0.38) 7%,
 
-      transparent 27%
+  rgba(255, 255, 255, 0.14) 13%,
 
-    ),
+  transparent 25%
+
+),
 
     /* cool glossy green reflection */
 
