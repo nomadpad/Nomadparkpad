@@ -190,43 +190,45 @@
 
           <div class="nearby-radius-options">
 
-            <span>Alert radius</span>
+  <div class="nearby-radius-header">
 
-            <label>
+    <span>Alert Radius</span>
 
-              <input
+    <strong id="nearbyRadiusValue">
 
-                type="radio"
+      5 km
 
-                name="nearbyRadius"
+    </strong>
 
-                value="1"
+  </div>
 
-              >
+  <input
 
-              1 km
+    id="nearbyRadiusSlider"
 
-            </label>
+    class="nearby-radius-slider"
 
-            <label>
+    type="range"
 
-              <input
+    min="1"
 
-                type="radio"
+    max="100"
 
-                name="nearbyRadius"
+    step="1"
 
-                value="5"
+    value="5"
 
-                checked
+  >
 
-              >
+  <div class="nearby-radius-scale">
 
-              5 km
+    <span>1 km</span>
 
-            </label>
+    <span>100 km</span>
 
-          </div>
+  </div>
+
+</div>
 
         </div>
 

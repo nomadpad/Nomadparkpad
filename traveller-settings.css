@@ -841,3 +841,72 @@ body {
   cursor: not-allowed;
 
 }
+/* =========================================================
+
+   NOMADS NEARBY RADIUS SLIDER
+
+========================================================= */
+
+.nearby-radius-header {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 12px;
+
+  width: 100%;
+
+}
+
+.nearby-radius-header span {
+
+  color: #0d3b2f;
+
+  font-size: 13px;
+
+  font-weight: 800;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.06em;
+
+}
+
+.nearby-radius-header strong {
+
+  color: #f36b16;
+
+  font-size: 17px;
+
+  font-weight: 900;
+
+}
+
+.nearby-radius-slider {
+
+  width: 100%;
+
+  margin: 8px 0 2px;
+
+  accent-color: #f36b16;
+
+}
+
+.nearby-radius-scale {
+
+  display: flex;
+
+  justify-content: space-between;
+
+  width: 100%;
+
+  color: #7a8781;
+
+  font-size: 12px;
+
+  font-weight: 700;
+
+}
