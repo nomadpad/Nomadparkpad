@@ -348,7 +348,47 @@ roadSafetyToggle?.addEventListener(
 
   "change",
 
-  updateNotificationOptionStates
+  async () => {
+
+    updateNotificationOptionStates();
+
+    const {
+
+      data: { user }
+
+    } = await supabase.auth.getUser();
+
+    if (!user) return;
+
+    const { error } =
+
+      await supabase
+
+        .from("profiles")
+
+        .update({
+
+          notify_road_safety:
+
+            roadSafetyToggle.checked
+
+        })
+
+        .eq("id", user.id);
+
+    if (error) {
+
+      console.error(
+
+        "Could not save Road & Safety setting:",
+
+        error
+
+      );
+
+    }
+
+  }
 
 );
 
