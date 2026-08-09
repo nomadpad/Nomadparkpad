@@ -637,3 +637,69 @@ roadAlertRadios.forEach((radio) => {
 });
 
 loadNotificationPreferences();
+
+/* =========================================================
+
+   PHONE NOTIFICATION PERMISSION
+
+========================================================= */
+
+const enablePhoneNotificationsButton =
+
+  document.getElementById("enablePhoneNotifications");
+
+const phoneNotificationStatus =
+
+  document.getElementById("phoneNotificationStatus");
+
+enablePhoneNotificationsButton?.addEventListener(
+
+  "click",
+
+  async () => {
+
+    if (!("Notification" in window)) {
+
+      phoneNotificationStatus.textContent =
+
+        "Notifications are not supported on this device.";
+
+      return;
+
+    }
+
+    const permission =
+
+      await Notification.requestPermission();
+
+    if (permission === "granted") {
+
+      phoneNotificationStatus.textContent =
+
+        "Phone notifications enabled ✅";
+
+      enablePhoneNotificationsButton.textContent =
+
+        "Enabled";
+
+      enablePhoneNotificationsButton.disabled =
+
+        true;
+
+    } else if (permission === "denied") {
+
+      phoneNotificationStatus.textContent =
+
+        "Notifications were blocked.";
+
+    } else {
+
+      phoneNotificationStatus.textContent =
+
+        "Notification permission was not enabled.";
+
+    }
+
+  }
+
+);
