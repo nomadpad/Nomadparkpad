@@ -1,3 +1,8 @@
+import {
+
+  supabase
+
+} from "./supabase-client.js";
 const nearbyToggle =
 
   document.getElementById("notifyNearbyNomads");
