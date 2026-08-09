@@ -670,8 +670,6 @@ if (isIncomingMessage && !conversationMode) {
 
     status === "TIMED_OUT" ||
 
-    status === "CLOSED"
-
   ) {
 
     console.error(
