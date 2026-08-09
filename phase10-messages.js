@@ -540,51 +540,55 @@ const directMessagesChannel = supabase
 
     async (payload) => {
 
-      if (
+  const newMessage = payload.new;
 
-        conversationMode !== "traveller" ||
+  if (!currentUser) {
 
-        !currentUser ||
+    return;
 
-        !travellerId
+  }
 
-      ) {
+  const isIncomingMessage =
 
-        return;
+    newMessage.recipient_id === currentUser.id;
 
-      }
+  if (isIncomingMessage) {
 
-      const newMessage = payload.new;
-      
-      const isIncomingMessage =
+    const { data: profile } =
 
-  newMessage.recipient_id === currentUser.id;
+      await supabase
 
-if (isIncomingMessage) {
+        .from("profiles")
 
-  const { data: profile } =
+        .select("notify_direct_messages")
 
-    await supabase
+        .eq("id", currentUser.id)
 
-      .from("profiles")
+        .maybeSingle();
 
-      .select("notify_direct_messages")
+    const directNotificationsOn =
 
-      .eq("id", currentUser.id)
+      profile?.notify_direct_messages ?? true;
 
-      .maybeSingle();
+    if (directNotificationsOn) {
 
-  const directNotificationsOn =
+      alert("💬 New Map Chat message!");
 
-    profile?.notify_direct_messages ?? true;
+    }
 
-  if (directNotificationsOn) {
+  }
 
-  alert("💬 New Map Chat message!");
+  if (
 
-}
+    conversationMode !== "traveller" ||
 
-}
+    !travellerId
+
+  ) {
+
+    return;
+
+  }
 
       const belongsToConversation =
 
