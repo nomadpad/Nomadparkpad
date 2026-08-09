@@ -736,7 +736,17 @@ async function checkPhoneNotificationStatus() {
     return;
 
   }
+phoneNotificationStatus.textContent =
 
+  "Phone notifications enabled ✅";
+
+enablePhoneNotificationsButton.textContent =
+
+  "Enabled";
+
+enablePhoneNotificationsButton.disabled =
+
+  true;
   const registration =
 
     await navigator.serviceWorker.ready;
