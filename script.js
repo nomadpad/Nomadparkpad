@@ -44,3 +44,42 @@ document.querySelector('.early-form')?.addEventListener('submit', (event) => {
     button.disabled = false;
   }, 2200);
 });
+/* =========================================================
+
+   NOMAD PARK PAD SERVICE WORKER
+
+========================================================= */
+
+if ("serviceWorker" in navigator) {
+
+  window.addEventListener("load", async () => {
+
+    try {
+
+      const registration =
+
+        await navigator.serviceWorker.register("/sw.js");
+
+      console.log(
+
+        "Nomad service worker registered:",
+
+        registration.scope
+
+      );
+
+    } catch (error) {
+
+      console.error(
+
+        "Nomad service worker registration failed:",
+
+        error
+
+      );
+
+    }
+
+  });
+
+}
