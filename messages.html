@@ -127,7 +127,29 @@
   alert("messages.html is current");
 
 </script>
-<script type="module" src="phase10-messages.js?v=20260809-1"></script>
+<script type="module">
+
+  import("./phase10-messages.js?v=20260809-2")
+
+    .then(() => {
+
+      alert("phase10-messages.js imported successfully");
+
+    })
+
+    .catch((error) => {
+
+      alert(
+
+        `MODULE ERROR:
+
+${error.message}`
+
+      );
+
+    });
+
+</script>
 
 </body>
 </html>
