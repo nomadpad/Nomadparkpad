@@ -43,6 +43,14 @@ const nearbyRadiusValue =
 
   document.getElementById("notifyStayReminders");
 
+  const roadAlertRadios =
+
+  document.querySelectorAll(
+
+    'input[name="roadAlertArea"]'
+
+  );
+
 function updateNotificationOptionStates() {
 
   if (nearbyOptions && nearbyToggle) {
@@ -575,5 +583,57 @@ stayRemindersToggle?.addEventListener(
   }
 
 );
+
+roadAlertRadios.forEach((radio) => {
+
+  radio.addEventListener(
+
+    "change",
+
+    async () => {
+
+      if (!radio.checked) return;
+
+      const {
+
+        data: { user }
+
+      } = await supabase.auth.getUser();
+
+      if (!user) return;
+
+      const { error } =
+
+        await supabase
+
+          .from("profiles")
+
+          .update({
+
+            road_alert_area:
+
+              radio.value
+
+          })
+
+          .eq("id", user.id);
+
+      if (error) {
+
+        console.error(
+
+          "Could not save Road Alert Area:",
+
+          error
+
+        );
+
+      }
+
+    }
+
+  );
+
+});
 
 loadNotificationPreferences();
