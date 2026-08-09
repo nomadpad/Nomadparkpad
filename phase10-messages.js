@@ -225,6 +225,8 @@ status.hidden = true;
   });
 }
 async function loadConversation() {
+alert("loadConversation started");
+alert("before first Supabase query");
   const { data: mapChatsAuth } =
   await supabase.auth.getUser();
 
