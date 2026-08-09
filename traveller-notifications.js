@@ -27,6 +27,10 @@ const nearbyRadiusValue =
 
   document.getElementById("nearbyRadiusValue");
 
+  const directMessagesToggle =
+
+  document.getElementById("notifyDirectMessages");
+
 function updateNotificationOptionStates() {
 
   if (nearbyOptions && nearbyToggle) {
@@ -333,6 +337,52 @@ roadSafetyToggle?.addEventListener(
   "change",
 
   updateNotificationOptionStates
+
+);
+
+directMessagesToggle?.addEventListener(
+
+  "change",
+
+  async () => {
+
+    const {
+
+      data: { user }
+
+    } = await supabase.auth.getUser();
+
+    if (!user) return;
+
+    const { error } =
+
+      await supabase
+
+        .from("profiles")
+
+        .update({
+
+          notify_direct_messages:
+
+            directMessagesToggle.checked
+
+        })
+
+        .eq("id", user.id);
+
+    if (error) {
+
+      console.error(
+
+        "Could not save Direct Messages setting:",
+
+        error
+
+      );
+
+    }
+
+  }
 
 );
 
