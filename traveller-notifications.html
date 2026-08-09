@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+
+    name="viewport"
+
+    content="width=device-width, initial-scale=1"
+
+  >
+
+  <title>
+
+    Traveller Notifications | Nomad Park Pad
+
+  </title>
+
+  <link
+
+    rel="stylesheet"
+
+    href="traveller-dashboard.css"
+
+  >
+
+  <link
+
+    rel="stylesheet"
+
+    href="traveller-settings.css"
+
+  >
+
+</head>
+
+<body>
+
+  <main class="traveller-settings-page">
+
+    <section class="traveller-settings-card">
+
+      <p class="settings-kicker">
+
+        TRAVELLER SETTINGS
+
+      </p>
+
+      <h1>Notifications</h1>
+
+      <p class="settings-intro">
+
+        Choose what you want Nomad Park Pad
+
+        to alert you about.
+
+      </p>
+
+      <div class="notification-settings-list">
+
+        <label class="notification-setting">
+
+          <div>
+
+            <strong>💬 Direct Messages</strong>
+
+            <small>
+
+              New Map Chat messages from other travellers.
+
+            </small>
+
+          </div>
+
+          <input
+
+            id="notifyDirectMessages"
+
+            type="checkbox"
+
+          >
+
+        </label>
+
+        <label class="notification-setting">
+
+          <div>
+
+            <strong>🏡 Host Messages</strong>
+
+            <small>
+
+              Messages from hosts about bookings,
+
+              requests, or your stay.
+
+            </small>
+
+          </div>
+
+          <input
+
+            id="notifyHostMessages"
+
+            type="checkbox"
+
+          >
+
+        </label>
+
+        <label class="notification-setting">
+
+          <div>
+
+            <strong>📅 Booking Updates</strong>
+
+            <small>
+
+              Confirmations, changes,
+
+              cancellations, and booking decisions.
+
+            </small>
+
+          </div>
+
+          <input
+
+            id="notifyBookingUpdates"
+
+            type="checkbox"
+
+          >
+
+        </label>
+
+        <label class="notification-setting">
+
+          <div>
+
+            <strong>🚐 Arrival & Stay</strong>
+
+            <small>
+
+              Check-in reminders, host instructions,
+
+              and checkout notices.
+
+            </small>
+
+          </div>
+
+          <input
+
+            id="notifyStayReminders"
+
+            type="checkbox"
+
+          >
+
+        </label>
+
+        <div class="notification-setting">
+
+          <div>
+
+            <strong>📍 Nomads Nearby</strong>
+
+            <small>
+
+              Alert me when another visible traveller
+
+              is nearby.
+
+            </small>
+
+          </div>
+
+          <input
+
+            id="notifyNearbyNomads"
+
+            type="checkbox"
+
+          >
+
+          <div class="nearby-radius-options">
+
+            <span>Alert radius</span>
+
+            <label>
+
+              <input
+
+                type="radio"
+
+                name="nearbyRadius"
+
+                value="1"
+
+              >
+
+              1 km
+
+            </label>
+
+            <label>
+
+              <input
+
+                type="radio"
+
+                name="nearbyRadius"
+
+                value="5"
+
+                checked
+
+              >
+
+              5 km
+
+            </label>
+
+          </div>
+
+        </div>
+
+        <div class="notification-setting">
+
+          <div>
+
+            <strong>⚠️ Road & Safety Alerts</strong>
+
+            <small>
+
+              Road closures, serious traffic incidents,
+
+              wildfires, avalanche warnings,
+
+              flooding, and major travel hazards.
+
+            </small>
+
+          </div>
+
+          <input
+
+            id="notifyRoadSafety"
+
+            type="checkbox"
+
+            checked
+
+          >
+
+          <div class="road-alert-options">
+
+            <span>Alert me</span>
+
+            <label>
+
+              <input
+
+                type="radio"
+
+                name="roadAlertArea"
+
+                value="nearby"
+
+              >
+
+              Near me
+
+            </label>
+
+            <label>
+
+              <input
+
+                type="radio"
+
+                name="roadAlertArea"
+
+                value="route"
+
+              >
+
+              Along my route
+
+            </label>
+
+            <label>
+
+              <input
+
+                type="radio"
+
+                name="roadAlertArea"
+
+                value="both"
+
+                checked
+
+              >
+
+              Both
+
+            </label>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <a
+
+        href="traveler-profile-edit.html"
+
+        class="settings-back-button"
+
+      >
+
+        ← Back to Profile
+
+      </a>
+
+    </section>
+
+  </main>
+
+</body>
+
+</html>
