@@ -812,3 +812,32 @@ body {
     );
 
 }
+.nearby-radius-options,
+
+.road-alert-options {
+
+  transition:
+
+    opacity 0.2s ease,
+
+    filter 0.2s ease;
+
+}
+
+.nearby-radius-options.disabled,
+
+.road-alert-options.disabled {
+
+  opacity: 0.35;
+
+  filter: grayscale(0.4);
+
+}
+
+.nearby-radius-options.disabled label,
+
+.road-alert-options.disabled label {
+
+  cursor: not-allowed;
+
+}
