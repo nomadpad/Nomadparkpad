@@ -671,25 +671,31 @@ if (isIncomingMessage && !conversationMode) {
 
   .subscribe((status, err) => {
 
-  if (status === "CHANNEL_ERROR") {
+  if (
 
-    alert(
+    status === "CHANNEL_ERROR" ||
 
-      `Realtime error:
+    status === "TIMED_OUT" ||
 
-${err?.message || JSON.stringify(err) || "Unknown error"}`
+    status === "CLOSED"
 
-    );
+  ) {
 
-  } else {
-
-    console.log(
+    console.error(
 
       "Direct messages realtime:",
 
-      status
+      status,
+
+      err
 
     );
+
+    setTimeout(() => {
+
+      window.location.reload();
+
+    }, 1500);
 
   }
 
