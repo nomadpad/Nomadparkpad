@@ -782,19 +782,35 @@ enablePhoneNotificationsButton.disabled =
 
     await navigator.serviceWorker.ready;
 
-  const subscription =
+  let subscription =
 
-    await registration.pushManager.getSubscription();
+  await registration.pushManager.getSubscription();
 
-  alert(
+if (!subscription) {
 
-    subscription
+  subscription =
 
-      ? "Push subscription exists"
+    await registration.pushManager.subscribe({
 
-      : "No push subscription yet"
+      userVisibleOnly: true,
 
-  );
+      applicationServerKey:
+
+        urlBase64ToUint8Array(VAPID_PUBLIC_KEY)
+
+    });
+
+}
+
+alert(
+
+  subscription
+
+    ? "Push subscription created ✅"
+
+    : "Push subscription failed"
+
+);
 
 }
 
