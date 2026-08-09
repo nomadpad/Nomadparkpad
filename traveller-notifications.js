@@ -35,6 +35,10 @@ const nearbyRadiusValue =
 
   document.getElementById("notifyHostMessages");
 
+  const bookingUpdatesToggle =
+
+  document.getElementById("notifyBookingUpdates");
+
 function updateNotificationOptionStates() {
 
   if (nearbyOptions && nearbyToggle) {
@@ -425,6 +429,52 @@ hostMessagesToggle?.addEventListener(
       console.error(
 
         "Could not save Host Messages setting:",
+
+        error
+
+      );
+
+    }
+
+  }
+
+);
+
+bookingUpdatesToggle?.addEventListener(
+
+  "change",
+
+  async () => {
+
+    const {
+
+      data: { user }
+
+    } = await supabase.auth.getUser();
+
+    if (!user) return;
+
+    const { error } =
+
+      await supabase
+
+        .from("profiles")
+
+        .update({
+
+          notify_booking_updates:
+
+            bookingUpdatesToggle.checked
+
+        })
+
+        .eq("id", user.id);
+
+    if (error) {
+
+      console.error(
+
+        "Could not save Booking Updates setting:",
 
         error
 
