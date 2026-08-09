@@ -284,7 +284,47 @@ nearbyToggle?.addEventListener(
 
   "change",
 
-  updateNotificationOptionStates
+  async () => {
+
+    updateNotificationOptionStates();
+
+    const {
+
+      data: { user }
+
+    } = await supabase.auth.getUser();
+
+    if (!user) return;
+
+    const { error } =
+
+      await supabase
+
+        .from("profiles")
+
+        .update({
+
+          notify_nearby_nomads:
+
+            nearbyToggle.checked
+
+        })
+
+        .eq("id", user.id);
+
+    if (error) {
+
+      console.error(
+
+        "Could not save Nomads Nearby setting:",
+
+        error
+
+      );
+
+    }
+
+  }
 
 );
 
