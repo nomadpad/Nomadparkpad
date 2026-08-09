@@ -800,8 +800,66 @@ if (!subscription) {
 
     });
 
+    
+
+}
+const {
+
+  data: { user }
+
+} = await supabase.auth.getUser();
+
+if (!user) {
+
+  return;
+
 }
 
+const subscriptionJson =
+
+  subscription.toJSON();
+
+const { error: pushSaveError } =
+
+  await supabase
+
+    .from("push_subscriptions")
+
+    .upsert(
+
+      {
+
+        user_id: user.id,
+
+        endpoint: subscription.endpoint,
+
+        p256dh: subscriptionJson.keys.p256dh,
+
+        auth_key: subscriptionJson.keys.auth,
+
+        updated_at: new Date().toISOString()
+
+      },
+
+      {
+
+        onConflict: "endpoint"
+
+      }
+
+    );
+
+if (pushSaveError) {
+
+  console.error(
+
+    "Could not save push subscription:",
+
+    pushSaveError
+
+  );
+
+}
 alert(
 
   subscription
