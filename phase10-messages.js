@@ -539,7 +539,7 @@ const directMessagesChannel = supabase
     },
 
     async (payload) => {
-alert("Realtime event fired");
+
       if (
 
         conversationMode !== "traveller" ||
@@ -555,7 +555,7 @@ alert("Realtime event fired");
       }
 
       const newMessage = payload.new;
-      alert("Realtime direct message received");
+      
       const isIncomingMessage =
 
   newMessage.recipient_id === currentUser.id;
