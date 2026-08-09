@@ -178,21 +178,21 @@ async function loadNotificationPreferences() {
 
   const nearbyRadius =
 
-    profile.nearby_radius_km ?? 5;
+  profile.nearby_radius_km ?? 5;
 
-  const nearbyRadio =
+if (nearbyRadiusSlider) {
 
-    document.querySelector(
+  nearbyRadiusSlider.value = nearbyRadius;
 
-      `input[name="nearbyRadius"][value="${nearbyRadius}"]`
+}
 
-    );
+if (nearbyRadiusValue) {
 
-  if (nearbyRadio) {
+  nearbyRadiusValue.textContent =
 
-    nearbyRadio.checked = true;
+    `${nearbyRadius} km`;
 
-  }
+}
 
   const roadArea =
 
