@@ -555,6 +555,35 @@ const directMessagesChannel = supabase
       }
 
       const newMessage = payload.new;
+      const isIncomingMessage =
+
+  newMessage.recipient_id === currentUser.id;
+
+if (isIncomingMessage) {
+
+  const { data: profile } =
+
+    await supabase
+
+      .from("profiles")
+
+      .select("notify_direct_messages")
+
+      .eq("id", currentUser.id)
+
+      .maybeSingle();
+
+  const directNotificationsOn =
+
+    profile?.notify_direct_messages ?? true;
+
+  if (directNotificationsOn) {
+
+  alert("💬 New Map Chat message!");
+
+}
+
+}
 
       const belongsToConversation =
 
