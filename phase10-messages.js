@@ -577,7 +577,11 @@ const directMessagesChannel = supabase
     }
 
   }
+if (isIncomingMessage && !conversationMode) {
 
+  await loadDirectConversationList();
+
+}
   if (
 
     conversationMode !== "traveller" ||
