@@ -589,13 +589,6 @@ const directMessagesChannel = supabase
     async (payload) => {
 
   const newMessage = payload.new;
-  alert(
-
-  `Recipient: ${newMessage.recipient_id}
-
-Current user: ${currentUser?.id}`
-
-);
 
   if (!currentUser) {
 
