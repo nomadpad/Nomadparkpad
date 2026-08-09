@@ -46,7 +46,55 @@ function formatTime(value) {
   return new Intl.DateTimeFormat("en-CA", { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" })
     .format(new Date(value));
 }
+function showMapChatNotification() {
 
+  const existing =
+
+    document.getElementById("mapChatNotification");
+
+  if (existing) {
+
+    existing.remove();
+
+  }
+
+  const notice =
+
+    document.createElement("div");
+
+  notice.id = "mapChatNotification";
+
+  notice.className = "map-chat-notification";
+
+  notice.innerHTML = `
+
+    <strong>💬 New Map Chat</strong>
+
+    <span>You have a new traveller message.</span>
+
+  `;
+
+  document.body.appendChild(notice);
+
+  requestAnimationFrame(() => {
+
+    notice.classList.add("show");
+
+  });
+
+  setTimeout(() => {
+
+    notice.classList.remove("show");
+
+    setTimeout(() => {
+
+      notice.remove();
+
+    }, 300);
+
+  }, 4500);
+
+}
 function renderMessages(messages) {
   const stream = document.querySelector("#message-stream");
   stream.innerHTML = "";
@@ -572,7 +620,7 @@ const directMessagesChannel = supabase
 
     if (directNotificationsOn) {
 
-      alert("💬 New Map Chat message!");
+      showMapChatNotification();
 
     }
 
