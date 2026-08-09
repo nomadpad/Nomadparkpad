@@ -686,6 +686,23 @@ enablePhoneNotificationsButton?.addEventListener(
 
         true;
 
+
+const registration =
+
+  await navigator.serviceWorker.ready;
+
+const subscription =
+
+  await registration.pushManager.getSubscription();
+
+console.log(
+
+  "Existing push subscription:",
+
+  subscription
+
+);
+
     } else if (permission === "denied") {
 
       phoneNotificationStatus.textContent =
@@ -703,3 +720,41 @@ enablePhoneNotificationsButton?.addEventListener(
   }
 
 );
+
+/* CHECK EXISTING PHONE NOTIFICATION PERMISSION */
+
+async function checkPhoneNotificationStatus() {
+
+  if (!("Notification" in window)) {
+
+    return;
+
+  }
+
+  if (Notification.permission !== "granted") {
+
+    return;
+
+  }
+
+  const registration =
+
+    await navigator.serviceWorker.ready;
+
+  const subscription =
+
+    await registration.pushManager.getSubscription();
+
+  alert(
+
+    subscription
+
+      ? "Push subscription exists"
+
+      : "No push subscription yet"
+
+  );
+
+}
+
+checkPhoneNotificationStatus();
