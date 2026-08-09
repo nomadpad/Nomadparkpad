@@ -539,7 +539,7 @@ const directMessagesChannel = supabase
     },
 
     async (payload) => {
-
+alert("Realtime event fired");
       if (
 
         conversationMode !== "traveller" ||
