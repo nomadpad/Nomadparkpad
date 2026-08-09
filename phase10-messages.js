@@ -670,7 +670,7 @@ if (isIncomingMessage && !conversationMode) {
 
     status === "CHANNEL_ERROR" ||
 
-    status === "TIMED_OUT" ||
+    status === "TIMED_OUT"
 
   ) {
 
