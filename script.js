@@ -67,7 +67,6 @@ if ("serviceWorker" in navigator) {
         registration.scope
 
       );
-alert("Nomad background notifications are ready");
     } catch (error) {
 
       console.error(
