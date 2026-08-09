@@ -669,9 +669,29 @@ if (isIncomingMessage && !conversationMode) {
 
   )
 
-  .subscribe((status) => {
+  .subscribe((status, err) => {
 
-  alert(`Direct messages realtime: ${status}`);
+  if (status === "CHANNEL_ERROR") {
+
+    alert(
+
+      `Realtime error:
+
+${err?.message || JSON.stringify(err) || "Unknown error"}`
+
+    );
+
+  } else {
+
+    console.log(
+
+      "Direct messages realtime:",
+
+      status
+
+    );
+
+  }
 
 });
 loadConversation();
