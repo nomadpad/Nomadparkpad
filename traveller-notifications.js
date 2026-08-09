@@ -39,6 +39,10 @@ const nearbyRadiusValue =
 
   document.getElementById("notifyBookingUpdates");
 
+  const stayRemindersToggle =
+
+  document.getElementById("notifyStayReminders");
+
 function updateNotificationOptionStates() {
 
   if (nearbyOptions && nearbyToggle) {
@@ -475,6 +479,52 @@ bookingUpdatesToggle?.addEventListener(
       console.error(
 
         "Could not save Booking Updates setting:",
+
+        error
+
+      );
+
+    }
+
+  }
+
+);
+
+stayRemindersToggle?.addEventListener(
+
+  "change",
+
+  async () => {
+
+    const {
+
+      data: { user }
+
+    } = await supabase.auth.getUser();
+
+    if (!user) return;
+
+    const { error } =
+
+      await supabase
+
+        .from("profiles")
+
+        .update({
+
+          notify_stay_reminders:
+
+            stayRemindersToggle.checked
+
+        })
+
+        .eq("id", user.id);
+
+    if (error) {
+
+      console.error(
+
+        "Could not save Arrival & Stay setting:",
 
         error
 
