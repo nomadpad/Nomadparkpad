@@ -1,5 +1,5 @@
 import { supabase } from "./supabase-client.js";
-
+alert("phase10-messages.js loaded");
 const conversationParams =
 
   new URLSearchParams(
