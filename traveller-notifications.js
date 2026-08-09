@@ -19,6 +19,14 @@ const roadSafetyOptions =
 
   document.querySelector(".road-alert-options");
 
+  const nearbyRadiusSlider =
+
+  document.getElementById("nearbyRadiusSlider");
+
+const nearbyRadiusValue =
+
+  document.getElementById("nearbyRadiusValue");
+
 function updateNotificationOptionStates() {
 
   if (nearbyOptions && nearbyToggle) {
@@ -207,6 +215,24 @@ async function loadNotificationPreferences() {
   updateNotificationOptionStates();
 
 }
+
+nearbyRadiusSlider?.addEventListener(
+
+  "input",
+
+  () => {
+
+    if (nearbyRadiusValue) {
+
+      nearbyRadiusValue.textContent =
+
+        `${nearbyRadiusSlider.value} km`;
+
+    }
+
+  }
+
+);
 nearbyToggle?.addEventListener(
 
   "change",
