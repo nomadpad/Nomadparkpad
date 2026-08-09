@@ -606,9 +606,5 @@ if (isIncomingMessage) {
 
   )
 
-  .subscribe((status) => {
-
-  alert(`Direct messages realtime: ${status}`);
-
-});
+  .subscribe();
 loadConversation();
