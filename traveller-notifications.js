@@ -31,6 +31,10 @@ const nearbyRadiusValue =
 
   document.getElementById("notifyDirectMessages");
 
+  const hostMessagesToggle =
+
+  document.getElementById("notifyHostMessages");
+
 function updateNotificationOptionStates() {
 
   if (nearbyOptions && nearbyToggle) {
@@ -375,6 +379,52 @@ directMessagesToggle?.addEventListener(
       console.error(
 
         "Could not save Direct Messages setting:",
+
+        error
+
+      );
+
+    }
+
+  }
+
+);
+
+hostMessagesToggle?.addEventListener(
+
+  "change",
+
+  async () => {
+
+    const {
+
+      data: { user }
+
+    } = await supabase.auth.getUser();
+
+    if (!user) return;
+
+    const { error } =
+
+      await supabase
+
+        .from("profiles")
+
+        .update({
+
+          notify_host_messages:
+
+            hostMessagesToggle.checked
+
+        })
+
+        .eq("id", user.id);
+
+    if (error) {
+
+      console.error(
+
+        "Could not save Host Messages setting:",
 
         error
 
