@@ -1,5 +1,5 @@
 import { supabase } from "./supabase-client.js";
-alert("phase10-messages.js loaded");
+
 const conversationParams =
 
   new URLSearchParams(
@@ -225,8 +225,8 @@ status.hidden = true;
   });
 }
 async function loadConversation() {
-alert("loadConversation started");
-alert("before first Supabase query");
+
+
   const { data: mapChatsAuth } =
   await supabase.auth.getUser();
 
