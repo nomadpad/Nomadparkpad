@@ -910,3 +910,118 @@ body {
   font-weight: 700;
 
 }
+/* =========================================================
+
+   PHONE NOTIFICATIONS
+
+========================================================= */
+
+.phone-notification-card {
+
+  margin-top: 22px;
+
+  padding: 20px 18px;
+
+  border: 1px solid rgba(215, 173, 77, 0.34);
+
+  border-radius: 24px;
+
+  background:
+
+    linear-gradient(
+
+      145deg,
+
+      rgba(255, 253, 248, 0.98),
+
+      rgba(248, 241, 230, 0.98)
+
+    );
+
+  box-shadow:
+
+    0 14px 30px rgba(13, 59, 47, 0.08);
+
+  display: grid;
+
+  gap: 14px;
+
+}
+
+.phone-notification-card strong {
+
+  display: block;
+
+  color: #0d3b2f;
+
+  font-size: 20px;
+
+  font-weight: 900;
+
+}
+
+.phone-notification-card small {
+
+  display: block;
+
+  margin-top: 6px;
+
+  color: #687770;
+
+  font-size: 14px;
+
+  line-height: 1.45;
+
+}
+
+.phone-notification-button {
+
+  min-height: 52px;
+
+  border: 0;
+
+  border-radius: 17px;
+
+  background:
+
+    linear-gradient(
+
+      145deg,
+
+      #ff7a1f,
+
+      #e45a0f
+
+    );
+
+  color: white;
+
+  font-size: 16px;
+
+  font-weight: 900;
+
+  cursor: pointer;
+
+  box-shadow:
+
+    0 10px 22px rgba(243, 107, 22, 0.22);
+
+}
+
+.phone-notification-button:active {
+
+  transform: scale(0.98);
+
+}
+
+.phone-notification-status {
+
+  margin: 0;
+
+  color: #687770;
+
+  font-size: 13px;
+
+  text-align: center;
+
+}
