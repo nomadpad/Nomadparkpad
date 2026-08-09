@@ -233,6 +233,53 @@ nearbyRadiusSlider?.addEventListener(
   }
 
 );
+
+nearbyRadiusSlider?.addEventListener(
+
+  "change",
+
+  async () => {
+
+    const {
+
+      data: { user }
+
+    } = await supabase.auth.getUser();
+
+    if (!user) return;
+
+    const { error } =
+
+      await supabase
+
+        .from("profiles")
+
+        .update({
+
+          nearby_radius_km:
+
+            Number(nearbyRadiusSlider.value)
+
+        })
+
+        .eq("id", user.id);
+
+    if (error) {
+
+      console.error(
+
+        "Could not save nearby radius:",
+
+        error
+
+      );
+
+    }
+
+  }
+
+);
+
 nearbyToggle?.addEventListener(
 
   "change",
