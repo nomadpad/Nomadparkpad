@@ -555,6 +555,7 @@ const directMessagesChannel = supabase
       }
 
       const newMessage = payload.new;
+      alert("Realtime direct message received");
       const isIncomingMessage =
 
   newMessage.recipient_id === currentUser.id;
