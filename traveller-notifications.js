@@ -722,7 +722,9 @@ console.log(
 );
 
 /* CHECK EXISTING PHONE NOTIFICATION PERMISSION */
+const VAPID_PUBLIC_KEY =
 
+  "BDp59sSxGdXQiHRqZIuHM66xUwcmeFVqjwqvxd5yRIScNQ2OKoWDXT1M8XO1k2PndPJsJxaPpaMFDnij7T4eGcg";
 async function checkPhoneNotificationStatus() {
 
   if (!("Notification" in window)) {
