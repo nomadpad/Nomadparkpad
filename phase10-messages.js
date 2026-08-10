@@ -520,7 +520,15 @@ document.querySelector("#real-message-form")?.addEventListener("submit", async e
   let insertError = null;
 
 if (conversationMode === "traveller") {
+const { data: senderProfile } = await supabase
 
+  .from("profiles")
+
+  .select("first_name")
+
+  .eq("id", currentUser.id)
+
+  .maybeSingle();
   const { error } = await supabase
 
     .from("direct_messages")
@@ -549,8 +557,8 @@ if (conversationMode === "traveller") {
         body: {
 
           user_id: travellerId,
-
-          title: "New Map Chat 💬",
+title: `${senderProfile?.first_name || "Someone"} sent you a Map Chat 💬`,
+          
 
           body: body,
 
