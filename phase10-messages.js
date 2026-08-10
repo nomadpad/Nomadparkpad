@@ -536,6 +536,47 @@ if (conversationMode === "traveller") {
     });
 
   insertError = error;
+  if (!error) {
+
+  try {
+
+    await supabase.functions.invoke(
+
+      "send-push-notification",
+
+      {
+
+        body: {
+
+          user_id: travellerId,
+
+          title: "New Map Chat 💬",
+
+          body: body,
+
+          url:
+
+            `/messages.html?traveller=${currentUser.id}`
+
+        }
+
+      }
+
+    );
+
+  } catch (pushError) {
+
+    console.error(
+
+      "Could not send background push:",
+
+      pushError
+
+    );
+
+  }
+
+}
 
 } else {
 
