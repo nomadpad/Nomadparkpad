@@ -58,7 +58,7 @@ if ("serviceWorker" in navigator) {
 
       const registration =
 
-        await navigator.serviceWorker.register("/sw.js");
+        await navigator.serviceWorker.register("/sw.js?v=2");
 
       console.log(
 
