@@ -19,17 +19,7 @@
 </head>
 
 <body>
-<a
 
-  href="/traveller-dashboard.html"
-
-  class="map-back-button"
-
->
-
-  ← Dashboard
-
-</a>
   <main class="map-only-page">
 
     <section class="map-view-section">
@@ -39,69 +29,48 @@
       
 <div id="traveller-map" class="traveller-map"></div>
 
-<div class="map-action-bar">
+<div class="map-top-controls">
 
-  <button class="btn btn-primary" id="map-search-button" type="button">
+  <a
 
-  Search
+    href="/traveller-dashboard.html"
 
-</button>
-<button
+    class="map-top-button map-dashboard-button"
 
-  class="btn btn-route"
+  >
 
-  id="trip-planner-button"
+    ← Dashboard
 
-  type="button"
+  </a>
 
-  hidden
+  <button
 
->
+    class="map-top-button map-search-button"
 
-  Trip Planner
+    id="map-search-button"
 
-</button>
-<button
+    type="button"
 
-  class="btn btn-route"
+  >
 
-  id="startNavigationButton"
+    🔍 Search
 
-  type="button"
+  </button>
 
-  hidden
+  <button
 
-  onclick="
+    class="map-top-button map-trip-button"
 
-  const start = document.getElementById('tripStartInput')?.value.trim();
+    id="trip-planner-button"
 
-  const destination = document.getElementById('tripDestinationInput')?.value.trim();
+    type="button"
 
-  if (!start || !destination) {
+  >
 
-    alert('Please plan a route first.');
+    🧭 Trip Planner
 
-    return;
+  </button>
 
-  }
-
-  window.location.href =
-
-    'https://www.google.com/maps/dir/?api=1' +
-
-    '&origin=' + encodeURIComponent(start) +
-
-    '&destination=' + encodeURIComponent(destination) +
-
-    '&travelmode=driving&dir_action=navigate';
-
-"
-
->
-
-  🚐 Go
-
-</button>
 <div class="map-search-panel" id="mapSearchPanel" hidden>
 
   <input

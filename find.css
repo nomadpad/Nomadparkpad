@@ -1168,3 +1168,100 @@ filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.28));
   -webkit-backdrop-filter: blur(10px);
 
 }
+/* =========================================
+
+   MAP TOP CONTROLS
+
+   Dashboard | Search | Trip Planner
+
+========================================= */
+
+.map-top-controls {
+
+  position: fixed;
+
+  top: calc(env(safe-area-inset-top, 0px) + 10px);
+
+  left: 12px;
+
+  right: 12px;
+
+  z-index: 10000;
+
+  display: grid;
+
+  grid-template-columns: 1fr 1fr 1.25fr;
+
+  gap: 10px;
+
+}
+
+.map-top-button {
+
+  min-width: 0;
+
+  min-height: 54px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  padding: 10px 8px;
+
+  border: 1px solid rgba(215, 173, 77, 0.48);
+
+  border-radius: 18px;
+
+  background: rgba(255, 250, 240, 0.97);
+
+  color: #0d3b2f;
+
+  font-family: inherit;
+
+  font-size: 14px;
+
+  font-weight: 800;
+
+  line-height: 1.1;
+
+  text-align: center;
+
+  text-decoration: none;
+
+  box-shadow:
+
+    0 8px 20px rgba(13, 59, 47, 0.12);
+
+  backdrop-filter: blur(10px);
+
+  -webkit-backdrop-filter: blur(10px);
+
+  cursor: pointer;
+
+}
+
+.map-search-button {
+
+  background: #0d4a3a;
+
+  color: #ffffff;
+
+  border-color: #0d4a3a;
+
+}
+
+.map-dashboard-button,
+
+.map-trip-button {
+
+  color: #0d3b2f;
+
+}
+
+.map-top-button:active {
+
+  transform: scale(0.97);
+
+}
