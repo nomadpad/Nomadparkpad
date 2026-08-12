@@ -1686,13 +1686,11 @@ body {
 }
 .dashboard-map-trip-button {
 
-  grid-column: auto;
+  width: 220px;
 
-  width: 240px;
+  min-height: 58px;
 
-  min-height: 66px;
-
-  margin: 8px 0 18px auto;
+  margin: 10px auto 0;
 
   display: flex;
 
@@ -1702,11 +1700,11 @@ body {
 
   justify-content: center;
 
-  padding: 10px 16px;
+  padding: 8px 14px;
 
   border: 2px solid #f36b16;
 
-  border-radius: 20px;
+  border-radius: 18px;
 
   background: #0d4a3a;
 
@@ -1716,7 +1714,7 @@ body {
 
   box-shadow:
 
-    0 10px 24px rgba(243, 107, 22, 0.20);
+    0 8px 18px rgba(13, 59, 47, 0.18);
 
   cursor: pointer;
 
