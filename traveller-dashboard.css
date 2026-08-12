@@ -1684,3 +1684,86 @@ body {
   }
 
 }
+/* =========================================
+
+   ENLARGE MAP / TRIP PLANNER BUTTON
+
+========================================= */
+
+.dashboard-map-trip-button {
+
+  grid-column: 1 / -1;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  min-height: 92px;
+
+  padding: 16px 18px;
+
+  border: 2px solid #f36b16;
+
+  border-radius: 24px;
+
+  background:
+
+    linear-gradient(
+
+      145deg,
+
+      #ff9c3d 0%,
+
+      #f36b16 100%
+
+    );
+
+  color: #ffffff;
+
+  text-decoration: none;
+
+  box-shadow:
+
+    0 14px 30px rgba(243, 107, 22, 0.30),
+
+    inset 0 1px 0 rgba(255,255,255,0.22);
+
+  cursor: pointer;
+
+}
+
+.dashboard-map-trip-kicker {
+
+  margin-bottom: 3px;
+
+  font-size: 13px;
+
+  font-weight: 800;
+
+  letter-spacing: 0.12em;
+
+  text-transform: uppercase;
+
+  opacity: 0.9;
+
+}
+
+.dashboard-map-trip-title {
+
+  font-size: 22px;
+
+  font-weight: 900;
+
+  line-height: 1.1;
+
+}
+
+.dashboard-map-trip-button:active {
+
+  transform: scale(0.98);
+
+}
