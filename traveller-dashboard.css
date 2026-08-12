@@ -1684,15 +1684,15 @@ body {
   }
 
 }
-/* =========================================
-
-   ENLARGE MAP / TRIP PLANNER BUTTON
-
-========================================= */
-
 .dashboard-map-trip-button {
 
-  grid-column: 1 / -1;
+  grid-column: auto;
+
+  width: 240px;
+
+  min-height: 66px;
+
+  margin: 8px 0 18px auto;
 
   display: flex;
 
@@ -1702,25 +1702,13 @@ body {
 
   justify-content: center;
 
-  min-height: 92px;
-
-  padding: 16px 18px;
+  padding: 10px 16px;
 
   border: 2px solid #f36b16;
 
-  border-radius: 24px;
+  border-radius: 20px;
 
-  background:
-
-    linear-gradient(
-
-      145deg,
-
-      #ff9c3d 0%,
-
-      #f36b16 100%
-
-    );
+  background: #0d4a3a;
 
   color: #ffffff;
 
@@ -1728,42 +1716,8 @@ body {
 
   box-shadow:
 
-    0 14px 30px rgba(243, 107, 22, 0.30),
-
-    inset 0 1px 0 rgba(255,255,255,0.22);
+    0 10px 24px rgba(243, 107, 22, 0.20);
 
   cursor: pointer;
-
-}
-
-.dashboard-map-trip-kicker {
-
-  margin-bottom: 3px;
-
-  font-size: 13px;
-
-  font-weight: 800;
-
-  letter-spacing: 0.12em;
-
-  text-transform: uppercase;
-
-  opacity: 0.9;
-
-}
-
-.dashboard-map-trip-title {
-
-  font-size: 22px;
-
-  font-weight: 900;
-
-  line-height: 1.1;
-
-}
-
-.dashboard-map-trip-button:active {
-
-  transform: scale(0.98);
 
 }
