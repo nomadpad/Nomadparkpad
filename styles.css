@@ -2087,3 +2087,100 @@ main {
   margin: 6px auto 28px;
 
 }
+/* =========================================
+
+   EMOTIONAL HOMEPAGE MESSAGE
+
+========================================= */
+
+.emotional-home-message {
+
+  width: 100%;
+
+  max-width: 680px;
+
+  margin: 0 auto 34px;
+
+  text-align: center;
+
+}
+
+.emotional-home-message p {
+
+  margin: 0;
+
+  color: #103f32;
+
+  font-family: Georgia, "Times New Roman", serif;
+
+  font-size: clamp(21px, 5vw, 30px);
+
+  font-weight: 500;
+
+  line-height: 1.25;
+
+}
+
+.emotional-divider {
+
+  width: min(76%, 460px);
+
+  margin: 22px auto;
+
+  display: grid;
+
+  grid-template-columns: 1fr auto 1fr;
+
+  align-items: center;
+
+  gap: 14px;
+
+}
+
+.emotional-divider > span:not(.emotional-leaf) {
+
+  display: block;
+
+  height: 1px;
+
+  background: linear-gradient(
+
+    90deg,
+
+    transparent,
+
+    #b8892e
+
+  );
+
+}
+
+.emotional-divider > span:last-child {
+
+  background: linear-gradient(
+
+    90deg,
+
+    #b8892e,
+
+    transparent
+
+  );
+
+}
+
+.emotional-leaf {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  color: #103f32;
+
+  font-size: 25px;
+
+  line-height: 1;
+
+}
