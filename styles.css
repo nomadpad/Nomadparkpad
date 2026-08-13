@@ -2304,3 +2304,126 @@ main {
   object-position: center bottom;
 
 }
+/* =========================================
+
+   EMOTIONAL CARD BUTTONS + COMPACT HEIGHT
+
+========================================= */
+
+.emotional-card {
+
+  padding: 18px 12px 14px;
+
+}
+
+.emotional-card h2 {
+
+  margin: 10px 0 14px;
+
+}
+
+.emotional-login-button {
+
+  width: 100%;
+
+  min-height: 52px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  margin-bottom: 10px;
+
+  padding: 10px 12px;
+
+  border: 2px solid #b88d34;
+
+  border-radius: 16px;
+
+  background: linear-gradient(
+
+    180deg,
+
+    #0f4b3e 0%,
+
+    #082f26 100%
+
+  );
+
+  color: #f1d28f;
+
+  text-decoration: none;
+
+  font-size: 15px;
+
+  font-weight: 800;
+
+  letter-spacing: 0.08em;
+
+  box-shadow:
+
+    0 8px 16px rgba(8, 49, 38, 0.18),
+
+    inset 0 1px 0 rgba(255, 255, 255, 0.16);
+
+}
+
+.emotional-benefits-button {
+
+  width: 100%;
+
+  min-height: 46px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 8px;
+
+  padding: 8px 10px;
+
+  border: 2px solid #c9a962;
+
+  border-radius: 14px;
+
+  background: rgba(255, 251, 242, 0.92);
+
+  color: #153d31;
+
+  text-decoration: none;
+
+  font-size: 13px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.05em;
+
+}
+
+.emotional-benefits-button span {
+
+  width: 24px;
+
+  height: 24px;
+
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  border: 2px solid currentColor;
+
+  border-radius: 50%;
+
+  font-family: Georgia, "Times New Roman", serif;
+
+  font-size: 15px;
+
+  font-style: italic;
+
+}
