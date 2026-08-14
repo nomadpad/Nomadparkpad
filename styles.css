@@ -2934,3 +2934,30 @@ opacity: 0.72;
   }
 
 }
+@media (max-width: 650px) {
+
+  .emotional-card-art {
+
+    height: 126px;
+
+    align-items: flex-end;
+
+  }
+
+  .emotional-card-art img {
+
+    width: 108%;
+
+    height: 108%;
+
+    object-position: center bottom;
+
+  }
+
+  .emotional-card h2 {
+
+    margin-top: 4px;
+
+  }
+
+}
