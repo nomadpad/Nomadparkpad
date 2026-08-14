@@ -2370,3 +2370,114 @@ opacity: 0.72;
     min-height: 44px;
   }
 }
+/* =========================================
+
+   PIC 2 REFINEMENT
+
+   Smaller cards + richer mountain reveal
+
+========================================= */
+
+.emotional-home-inner::after {
+
+  height: 590px;
+
+  opacity: 0.82;
+
+  background-position: center bottom;
+
+}
+
+.emotional-home-cards {
+
+  width: 92%;
+
+  max-width: 650px;
+
+  gap: 18px;
+
+  margin-top: 6px;
+
+}
+
+.emotional-card {
+
+  padding: 15px 11px 13px;
+
+  border-radius: 22px;
+
+  box-shadow:
+
+    0 12px 24px rgba(63, 45, 15, 0.14),
+
+    inset 0 0 0 1px rgba(255, 255, 255, 0.78);
+
+}
+
+.emotional-card-art {
+
+  height: 128px;
+
+}
+
+.emotional-card h2 {
+
+  margin: 9px 0 12px;
+
+  font-size: clamp(27px, 6vw, 37px);
+
+}
+
+.emotional-login-button {
+
+  min-height: 47px;
+
+  margin-bottom: 9px;
+
+  padding: 8px 10px;
+
+  border-radius: 14px;
+
+  font-size: 14px;
+
+}
+
+.emotional-benefits-button {
+
+  min-height: 42px;
+
+  padding: 7px 8px;
+
+  border-radius: 13px;
+
+  font-size: 12px;
+
+}
+
+.emotional-benefits-button span {
+
+  width: 22px;
+
+  height: 22px;
+
+  font-size: 14px;
+
+}
+
+@media (max-width: 520px) {
+
+  .emotional-home-cards {
+
+    width: 94%;
+
+    gap: 14px;
+
+  }
+
+  .emotional-card-art {
+
+    height: 122px;
+
+  }
+
+}
