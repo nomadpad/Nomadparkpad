@@ -2888,3 +2888,12 @@ opacity: 0.72;
   }
 
 }
+@media (max-width: 650px) {
+
+  .emotional-home-cards {
+
+    margin-top: -18px;
+
+  }
+
+}
