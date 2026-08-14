@@ -497,9 +497,23 @@ footer p{
 }
 .home-page .site-header {
 
-  position: relative;
+  position: sticky;
 
-  padding: 18px 16px;
+  top: 0;
+
+  z-index: 50;
+
+  min-height: 72px;
+
+  padding: 8px 14px;
+
+  background: rgba(255, 255, 255, 0.96);
+
+  backdrop-filter: blur(10px);
+
+  -webkit-backdrop-filter: blur(10px);
+
+  border-bottom: 1px solid rgba(184, 137, 46, 0.18);
 
 }
 
@@ -507,9 +521,9 @@ footer p{
 
   display: block;
 
-  width: calc(100% - 64px);
+  width: auto;
 
-  max-width: none;
+  max-width: 210px;
 
 }
 
@@ -517,11 +531,13 @@ footer p{
 
   display: block;
 
-  width: 100%;
+  width: auto;
 
-  height: auto;
+  max-width: 210px;
 
-  max-height: none;
+  max-height: 54px;
+
+  object-fit: contain;
 
 }
 
@@ -534,16 +550,6 @@ footer p{
   top: 50%;
 
   transform: translateY(-50%);
-
-}
-
-@media (max-width: 700px) {
-
-  .home-page .site-header .brand {
-
-    width: calc(100% - 58px);
-
-  }
 
 }
 .btn-map,
