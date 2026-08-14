@@ -2775,3 +2775,22 @@ opacity: 0.72;
   opacity: 1;
 
 }
+/* =========================================
+
+   PIC 2 LOWER VALLEY SPACE
+
+========================================= */
+
+.emotional-home {
+
+  padding-bottom: 135px;
+
+}
+
+.emotional-home-inner::after {
+
+  height: 720px;
+
+  background-size: auto 720px;
+
+}
