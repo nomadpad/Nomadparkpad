@@ -3131,35 +3131,26 @@ opacity: 0.72;
     position: absolute;
     left: 0;
     right: 0;
-    top: 18px;
-    height: 190px;
+    top: 10px;
+    height: 205px;
 
     background:
       linear-gradient(
         to bottom,
-        rgba(255, 252, 244, 0.25) 0%,
-        rgba(255, 252, 244, 0.40) 45%,
-        rgba(255, 252, 244, 0.92) 100%
+        rgba(255, 252, 244, 0.10) 0%,
+        rgba(255, 252, 244, 0.22) 42%,
+        rgba(255, 252, 244, 0.88) 100%
       ),
       url("homepage-mountains.png");
 
     background-repeat: no-repeat;
-    background-position: center 58%;
-    background-size: 380px auto;
+    background-position: center 56%;
+    background-size: 420px auto;
 
-    opacity: 0.28;
+    opacity: 0.42;
 
     pointer-events: none;
     z-index: 0;
-  }
-
-  .emotional-card-art,
-  .emotional-card h2,
-  .emotional-card-divider,
-  .emotional-login-button,
-  .emotional-benefits-button {
-    position: relative;
-    z-index: 2;
   }
 
 }
