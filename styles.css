@@ -2789,8 +2789,12 @@ opacity: 0.72;
 
 .emotional-home-inner::after {
 
-  height: 720px;
+  height: 900px;
 
-  background-size: auto 720px;
+  bottom: 0;
+
+  background-size: auto 900px;
+
+  background-position: center bottom;
 
 }
