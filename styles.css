@@ -2072,6 +2072,8 @@ main {
   background-position: center bottom;
   background-size: cover;
 
+opacity: 0.72;
+
   pointer-events: none;
   z-index: -1;
 }
