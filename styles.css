@@ -3080,3 +3080,46 @@ opacity: 0.72;
   }
 
 }
+@media (max-width: 650px) {
+
+  .emotional-card {
+    box-shadow:
+      0 14px 28px rgba(57, 40, 16, 0.16),
+      0 0 18px rgba(184, 137, 46, 0.10),
+      inset 0 1px 0 rgba(255, 255, 255, 0.95),
+      inset 0 0 18px rgba(255, 255, 255, 0.30);
+  }
+
+  .emotional-card-art {
+    position: relative;
+  }
+
+  .emotional-card-art::before {
+    content: "";
+
+    position: absolute;
+    left: 50%;
+    top: 56%;
+    width: 78%;
+    height: 72%;
+
+    transform: translate(-50%, -50%);
+
+    background:
+      radial-gradient(
+        ellipse at center,
+        rgba(231, 207, 154, 0.18) 0%,
+        rgba(231, 207, 154, 0.08) 42%,
+        rgba(231, 207, 154, 0) 74%
+      );
+
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .emotional-card-art img {
+    position: relative;
+    z-index: 1;
+  }
+
+}
