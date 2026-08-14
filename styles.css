@@ -1995,399 +1995,295 @@ main {
 
 }
 /* =========================================
-
    NOMAD EMOTIONAL HOMEPAGE
-
-   Premium front door
-
 ========================================= */
 
 .emotional-home {
-
   position: relative;
-
   width: 100%;
-
   min-height: 100svh;
-
   overflow: hidden;
 
   padding:
-
     calc(env(safe-area-inset-top, 0px) + 28px)
-
     14px
-
     42px;
 
   background:
-
     linear-gradient(
-
       180deg,
-
       #fffaf0 0%,
-
       #fbf3e2 72%,
-
       #f4e5c6 100%
-
     );
 
   color: #103f32;
-
 }
 
 .emotional-home::before {
-
   content: "";
-
   position: absolute;
-
   inset: 6px;
 
-  pointer-events: none;
-
   border: 1px solid rgba(184, 137, 46, 0.75);
-
   border-radius: 28px;
 
   box-shadow:
-
     inset 0 0 0 1px rgba(255, 255, 255, 0.65);
 
+  pointer-events: none;
 }
 
 .emotional-home-inner {
-
   position: relative;
-
   z-index: 1;
 
   width: min(100%, 760px);
-
   margin: 0 auto;
 
   display: flex;
-
   flex-direction: column;
-
   align-items: center;
 
+  isolation: isolate;
+}
+
+.emotional-home-inner::after {
+  content: "";
+
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  height: 420px;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(245, 238, 225, 0) 0%,
+      rgba(245, 238, 225, 0.08) 15%,
+      rgba(245, 238, 225, 0.15) 30%,
+      rgba(245, 238, 225, 0) 100%
+    ),
+    url("homepage-mountains.png");
+
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  background-size: cover;
+
+  pointer-events: none;
+  z-index: -1;
 }
 
 .emotional-home-logo {
-
   display: block;
 
   width: min(92%, 520px);
-
   height: auto;
 
   margin: 0 auto 24px;
 
   mix-blend-mode: multiply;
-
 }
+
+
 /* =========================================
-
-   EMOTIONAL HOMEPAGE MESSAGE
-
+   MESSAGE
 ========================================= */
 
 .emotional-home-message {
-
   width: 100%;
-
   max-width: 680px;
 
   margin: 0 auto 34px;
 
   text-align: center;
-
 }
 
 .emotional-home-message p {
-
   margin: 0;
 
   color: #103f32;
 
   font-family: Georgia, "Times New Roman", serif;
-
   font-size: clamp(21px, 5vw, 30px);
-
   font-weight: 500;
-
   line-height: 1.25;
 
+  text-wrap: balance;
 }
 
 .emotional-divider {
-
   width: min(76%, 460px);
 
   margin: 22px auto;
 
   display: grid;
-
   grid-template-columns: 1fr auto 1fr;
-
   align-items: center;
 
   gap: 14px;
-
 }
 
 .emotional-divider > span:not(.emotional-leaf) {
-
   display: block;
-
   height: 1px;
 
-  background: linear-gradient(
-
-    90deg,
-
-    transparent,
-
-    #b8892e
-
-  );
-
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      #b8892e
+    );
 }
 
 .emotional-divider > span:last-child {
-
-  background: linear-gradient(
-
-    90deg,
-
-    #b8892e,
-
-    transparent
-
-  );
-
+  background:
+    linear-gradient(
+      90deg,
+      #b8892e,
+      transparent
+    );
 }
 
 .emotional-leaf {
-
   display: flex;
-
   align-items: center;
-
   justify-content: center;
 
   color: #103f32;
 
   font-size: 25px;
-
   line-height: 1;
-
 }
+
+
 /* =========================================
-
-   EMOTIONAL HOMEPAGE CARDS
-
+   CARDS
 ========================================= */
 
 .emotional-home-cards {
+  position: relative;
+  z-index: 2;
 
   width: 100%;
-
   max-width: 720px;
 
   display: grid;
-
   grid-template-columns: repeat(2, minmax(0, 1fr));
 
   gap: 14px;
-
   margin-top: 12px;
-
 }
 
 .emotional-card {
-
   min-width: 0;
 
-  padding: 22px 12px 18px;
+  padding: 18px 12px 14px;
 
   display: flex;
-
   flex-direction: column;
-
   align-items: center;
 
   border: 1px solid rgba(184, 137, 46, 0.55);
-
   border-radius: 24px;
 
   background:
-
     linear-gradient(
-
       180deg,
-
       rgba(255, 252, 244, 0.96),
-
       rgba(250, 241, 221, 0.94)
-
     );
 
   box-shadow:
-
     0 10px 22px rgba(63, 45, 15, 0.12),
-
     inset 0 0 0 1px rgba(255, 255, 255, 0.75);
+}
 
+.emotional-card-art {
+  width: 100%;
+  height: 150px;
+
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+
+  overflow: hidden;
+}
+
+.emotional-card-art img {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+  object-position: center bottom;
 }
 
 .emotional-card h2 {
-
-  margin: 12px 0 18px;
+  margin: 10px 0 14px;
 
   color: #103f32;
 
   font-family: Georgia, "Times New Roman", serif;
-
   font-size: clamp(28px, 7vw, 42px);
-
   font-weight: 500;
-
   line-height: 1;
-
 }
 
-.emotional-card-art {
 
-  width: 100%;
-
-  aspect-ratio: 1.15 / 1;
-
-}
 /* =========================================
-
-   EMOTIONAL CARD ART SIZING
-
+   BUTTONS
 ========================================= */
-
-.emotional-card-art {
-
-  width: 100%;
-
-  height: 150px;
-
-  aspect-ratio: auto;
-
-  display: flex;
-
-  align-items: flex-end;
-
-  justify-content: center;
-
-  overflow: hidden;
-
-}
-
-.emotional-card-art img {
-
-  display: block;
-
-  width: 100%;
-
-  height: 100%;
-
-  object-fit: contain;
-
-  object-position: center bottom;
-
-}
-/* =========================================
-
-   EMOTIONAL CARD BUTTONS + COMPACT HEIGHT
-
-========================================= */
-
-.emotional-card {
-
-  padding: 18px 12px 14px;
-
-}
-
-.emotional-card h2 {
-
-  margin: 10px 0 14px;
-
-}
 
 .emotional-login-button {
-
   width: 100%;
-
   min-height: 52px;
 
   display: flex;
-
   align-items: center;
-
   justify-content: center;
 
   margin-bottom: 10px;
-
   padding: 10px 12px;
 
   border: 2px solid #b88d34;
-
   border-radius: 16px;
 
-  background: linear-gradient(
-
-    180deg,
-
-    #0f4b3e 0%,
-
-    #082f26 100%
-
-  );
+  background:
+    linear-gradient(
+      180deg,
+      #0f4b3e 0%,
+      #082f26 100%
+    );
 
   color: #f1d28f;
 
   text-decoration: none;
 
   font-size: 15px;
-
   font-weight: 800;
-
   letter-spacing: 0.08em;
 
   box-shadow:
-
     0 8px 16px rgba(8, 49, 38, 0.18),
-
     inset 0 1px 0 rgba(255, 255, 255, 0.16);
-
 }
 
 .emotional-benefits-button {
-
   width: 100%;
-
   min-height: 46px;
 
   display: flex;
-
   align-items: center;
-
   justify-content: center;
 
   gap: 8px;
-
   padding: 8px 10px;
 
   border: 2px solid #c9a962;
-
   border-radius: 14px;
 
   background: rgba(255, 251, 242, 0.92);
@@ -2397,96 +2293,71 @@ main {
   text-decoration: none;
 
   font-size: 13px;
-
   font-weight: 700;
-
   letter-spacing: 0.05em;
-
 }
 
 .emotional-benefits-button span {
-
   width: 24px;
-
   height: 24px;
 
   display: inline-flex;
-
   align-items: center;
-
   justify-content: center;
 
   border: 2px solid currentColor;
-
   border-radius: 50%;
 
   font-family: Georgia, "Times New Roman", serif;
-
   font-size: 15px;
-
   font-style: italic;
-
+  line-height: 1;
 }
+
+
 /* =========================================
-
-   EMOTIONAL HOMEPAGE MOUNTAIN BACKDROP
-
+   MOBILE
 ========================================= */
 
-.emotional-home-inner {
+@media (max-width: 520px) {
 
-  isolation: isolate;
+  .emotional-home {
+    padding:
+      calc(env(safe-area-inset-top, 0px) + 22px)
+      10px
+      28px;
+  }
 
-}
+  .emotional-home-logo {
+    width: min(94%, 500px);
+    margin-bottom: 22px;
+  }
 
-.emotional-home-inner::after {
+  .emotional-home-message {
+    margin-bottom: 26px;
+  }
 
-  content: "";
+  .emotional-home-cards {
+    gap: 12px;
+  }
 
-  position: absolute;
+  .emotional-card {
+    padding: 16px 10px 12px;
+  }
 
-  left: 0;
+  .emotional-card-art {
+    height: 138px;
+  }
 
-  right: 0;
+  .emotional-card h2 {
+    margin: 10px 0 12px;
+  }
 
-  bottom: 0;
+  .emotional-login-button {
+    min-height: 50px;
+  }
 
-  height: 420px;
-
-  background:
-
-    linear-gradient(
-
-      180deg,
-
-      rgba(245, 238, 225, 0) 0%,
-
-      rgba(245, 238, 225, 0.08) 15%,
-
-      rgba(245, 238, 225, 0.15) 30%,
-
-      rgba(245, 238, 225, 0) 100%
-
-    ),
-
-    url("homepage-mountains.png");
-
-  background-repeat: no-repeat;
-
-  background-position: center bottom;
-
-  background-size: cover;
-
-  pointer-events: none;
-
-  z-index: -1;
-
-}
-
-.emotional-home-cards {
-
-  position: relative;
-
-  z-index: 2;
-
+  .emotional-benefits-button {
+    min-height: 44px;
+  }
 }
