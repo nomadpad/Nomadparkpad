@@ -2427,3 +2427,66 @@ main {
   font-style: italic;
 
 }
+/* =========================================
+
+   EMOTIONAL HOMEPAGE MOUNTAIN BACKDROP
+
+========================================= */
+
+.emotional-home-inner {
+
+  isolation: isolate;
+
+}
+
+.emotional-home-inner::after {
+
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+
+  right: 0;
+
+  bottom: 0;
+
+  height: 420px;
+
+  background:
+
+    linear-gradient(
+
+      180deg,
+
+      rgba(245, 238, 225, 0) 0%,
+
+      rgba(245, 238, 225, 0.08) 15%,
+
+      rgba(245, 238, 225, 0.15) 30%,
+
+      rgba(245, 238, 225, 0) 100%
+
+    ),
+
+    url("homepage-mountains.png");
+
+  background-repeat: no-repeat;
+
+  background-position: center bottom;
+
+  background-size: cover;
+
+  pointer-events: none;
+
+  z-index: -1;
+
+}
+
+.emotional-home-cards {
+
+  position: relative;
+
+  z-index: 2;
+
+}
