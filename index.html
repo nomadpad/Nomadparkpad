@@ -14,11 +14,7 @@
 
   >
 
-  <title>
-
-    Nomad Park Pad | Park Safe. Stay Your Way.
-
-  </title>
+  <title>Nomad Park Pad | Park Safe. Stay Your Way.</title>
 
   <meta
 
@@ -112,13 +108,19 @@
 
 <body class="home-page">
 
-  <!-- =====================================
+  <!-- =========================================
 
-       NEW EMOTIONAL HOMEPAGE FRONT DOOR
+       EMOTIONAL HOMEPAGE FRONT DOOR
 
-  ====================================== -->
+  ========================================== -->
 
-  <section class="emotional-home">
+  <section
+
+    class="emotional-home"
+
+    id="home"
+
+  >
 
     <div class="emotional-home-inner">
 
@@ -140,7 +142,13 @@
 
         </p>
 
-        <div class="emotional-divider">
+        <div
+
+          class="emotional-divider"
+
+          aria-hidden="true"
+
+        >
 
           <span></span>
 
@@ -166,7 +174,7 @@
 
         <!-- NOMADS -->
 
-        <article class="emotional-card">
+        <article class="emotional-card emotional-card-nomad">
 
           <div class="emotional-card-art">
 
@@ -174,7 +182,7 @@
 
               src="image copy 7.png"
 
-              alt="Nomad camper van"
+              alt="Nomad traveller van"
 
             >
 
@@ -206,7 +214,11 @@
 
           >
 
-            <span>i</span>
+            <span aria-hidden="true">
+
+              ⓘ
+
+            </span>
 
             BENEFITS
 
@@ -216,7 +228,7 @@
 
         <!-- HOSTS -->
 
-        <article class="emotional-card">
+        <article class="emotional-card emotional-card-host">
 
           <div class="emotional-card-art">
 
@@ -256,7 +268,11 @@
 
           >
 
-            <span>i</span>
+            <span aria-hidden="true">
+
+              ⓘ
+
+            </span>
 
             BENEFITS
 
@@ -270,11 +286,11 @@
 
   </section>
 
-  <!-- =====================================
+  <!-- =========================================
 
-       EXISTING HOMEPAGE HEADER
+       ORIGINAL HOMEPAGE HEADER
 
-  ====================================== -->
+  ========================================== -->
 
   <header class="site-header">
 
@@ -282,7 +298,7 @@
 
       class="brand"
 
-      href="#top"
+      href="#home"
 
       aria-label="Nomad Park Pad home"
 
@@ -301,6 +317,8 @@
     <button
 
       class="menu-button"
+
+      type="button"
 
       aria-label="Open menu"
 
@@ -450,11 +468,11 @@
 
   </header>
 
-  <!-- =====================================
+  <!-- =========================================
 
-       EXISTING HOMEPAGE CONTENT
+       EXISTING HOMEPAGE
 
-  ====================================== -->
+  ========================================== -->
 
   <main id="top">
 
@@ -596,11 +614,7 @@
 
         <p class="home-early-access-note">
 
-          <strong>
-
-            Please Note:
-
-          </strong>
+          <strong>Please Note:</strong>
 
           Nomad Park Pad is currently in Early Access.
 
@@ -736,17 +750,21 @@
 
     <!-- NOMAD BENEFITS -->
 
-    <div id="nomad-benefits"></div>
-
     <section
 
       class="section map-showcase"
 
-      id="journey"
+      id="nomad-benefits"
 
     >
 
-      <div class="section-heading reveal">
+      <div
+
+        class="section-heading reveal"
+
+        id="journey"
+
+      >
 
         <span class="eyebrow">
 
@@ -852,9 +870,9 @@
 
             Opt in to discover nearby travellers, share a coffee
 
-            or activity, and connect with people travelling a
+            or activity, and connect with people travelling
 
-            similar route.
+            a similar route.
 
           </p>
 
@@ -1006,13 +1024,11 @@
 
     <!-- HOST BENEFITS -->
 
-    <div id="host-benefits"></div>
-
     <section
 
       class="section earning-section"
 
-      id="ways-to-earn"
+      id="host-benefits"
 
     >
 
@@ -1162,7 +1178,7 @@
 
     </section>
 
-    <!-- DASHBOARDS -->
+    <!-- DASHBOARD SHOWCASE -->
 
     <section class="dashboard-showcase">
 
@@ -1664,11 +1680,11 @@
 
   </main>
 
-  <!-- =====================================
+  <!-- =========================================
 
        FOOTER
 
-  ====================================== -->
+  ========================================== -->
 
   <footer>
 
@@ -1730,11 +1746,11 @@
 
   </footer>
 
-  <!-- =====================================
+  <!-- =========================================
 
        SCRIPTS
 
-  ====================================== -->
+  ========================================== -->
 
   <script src="supabase-config.js"></script>
 
