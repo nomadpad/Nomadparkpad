@@ -2548,3 +2548,74 @@ opacity: 0.72;
   line-height: 1;
 
 }
+/* =========================================
+
+   PIC 2 CARD SIZE TUNING
+
+========================================= */
+
+.emotional-home-cards {
+
+  width: 90%;
+
+  max-width: 620px;
+
+  gap: 16px;
+
+}
+
+.emotional-card {
+
+  padding: 14px 10px 12px;
+
+}
+
+.emotional-card-art {
+
+  height: 116px;
+
+}
+
+.emotional-card h2 {
+
+  margin: 8px 0 8px;
+
+}
+
+.emotional-card-divider {
+
+  margin-bottom: 8px;
+
+}
+
+.emotional-login-button {
+
+  min-height: 44px;
+
+  margin-bottom: 8px;
+
+}
+
+.emotional-benefits-button {
+
+  min-height: 40px;
+
+}
+
+@media (max-width: 520px) {
+
+  .emotional-home-cards {
+
+    width: 92%;
+
+    gap: 12px;
+
+  }
+
+  .emotional-card-art {
+
+    height: 112px;
+
+  }
+
+}
