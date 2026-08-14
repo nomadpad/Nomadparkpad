@@ -2859,3 +2859,32 @@ opacity: 0.72;
   z-index: 1;
 
 }
+/* =========================================
+
+   PIC 2 CARD PROPORTIONS
+
+========================================= */
+
+@media (max-width: 650px) {
+
+  .emotional-home-cards {
+
+    width: 90%;
+
+    margin-left: auto;
+
+    margin-right: auto;
+
+    gap: 14px;
+
+  }
+
+  .emotional-card {
+
+    padding-left: 12px;
+
+    padding-right: 12px;
+
+  }
+
+}
