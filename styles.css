@@ -2481,3 +2481,70 @@ opacity: 0.72;
   }
 
 }
+/* =========================================
+
+   CARD TITLE DIVIDERS
+
+========================================= */
+
+.emotional-card-divider {
+
+  width: 72%;
+
+  margin: 0 auto 10px;
+
+  display: grid;
+
+  grid-template-columns: 1fr auto 1fr;
+
+  align-items: center;
+
+  gap: 8px;
+
+}
+
+.emotional-card-divider span:first-child,
+
+.emotional-card-divider span:last-child {
+
+  height: 1px;
+
+  background:
+
+    linear-gradient(
+
+      90deg,
+
+      transparent,
+
+      rgba(184, 137, 46, 0.82)
+
+    );
+
+}
+
+.emotional-card-divider span:last-child {
+
+  background:
+
+    linear-gradient(
+
+      90deg,
+
+      rgba(184, 137, 46, 0.82),
+
+      transparent
+
+    );
+
+}
+
+.emotional-card-leaf {
+
+  color: #b8892e;
+
+  font-size: 15px;
+
+  line-height: 1;
+
+}
