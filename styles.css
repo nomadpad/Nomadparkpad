@@ -2116,7 +2116,7 @@ opacity: 0.72;
   color: #103f32;
 
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(21px, 5vw, 30px);
+  font-size: clamp(20px, 4.4vw, 28px);
   font-weight: 500;
   line-height: 1.25;
 
