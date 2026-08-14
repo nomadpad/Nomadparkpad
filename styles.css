@@ -3123,3 +3123,43 @@ opacity: 0.72;
   }
 
 }
+@media (max-width: 650px) {
+
+  .emotional-card::before {
+    content: "";
+
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 18px;
+    height: 190px;
+
+    background:
+      linear-gradient(
+        to bottom,
+        rgba(255, 252, 244, 0.25) 0%,
+        rgba(255, 252, 244, 0.40) 45%,
+        rgba(255, 252, 244, 0.92) 100%
+      ),
+      url("homepage-mountains.png");
+
+    background-repeat: no-repeat;
+    background-position: center 58%;
+    background-size: 380px auto;
+
+    opacity: 0.28;
+
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .emotional-card-art,
+  .emotional-card h2,
+  .emotional-card-divider,
+  .emotional-login-button,
+  .emotional-benefits-button {
+    position: relative;
+    z-index: 2;
+  }
+
+}
