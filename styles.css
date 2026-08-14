@@ -2003,6 +2003,7 @@ main {
   width: 100%;
   min-height: 100svh;
   overflow: hidden;
+  margin-bottom: 18px;
 
   padding:
     calc(env(safe-area-inset-top, 0px) + 28px)
