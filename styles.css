@@ -3449,3 +3449,16 @@ opacity: 0.72;
   }
 
 }
+@media (max-width: 650px) {
+
+  .emotional-card-host .emotional-card-art img {
+
+    width: 102%;
+
+    height: 102%;
+
+    transform: translateY(7px);
+
+  }
+
+}
