@@ -2910,31 +2910,15 @@ opacity: 0.72;
 }
 @media (max-width: 650px) {
 
-  .emotional-card {
+ .emotional-card {
+  position: relative;
+  overflow: hidden;
 
-    position: relative;
+  background: rgba(255, 250, 238, 0.10);
 
-    overflow: hidden;
-
-    background:
-
-      linear-gradient(
-
-        to bottom,
-
-        rgba(255, 252, 244, 0.98) 0%,
-
-        rgba(255, 250, 238, 0.94) 38%,
-
-        rgba(255, 248, 232, 0.82) 58%,
-
-        rgba(255, 248, 232, 0.96) 72%
-
-      ),
-
-      url("homepage-mountains.png") center 38% / 520px auto no-repeat;
-
-  }
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+}
 
   .emotional-card > * {
 
