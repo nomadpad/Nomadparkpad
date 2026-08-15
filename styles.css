@@ -3422,3 +3422,98 @@ opacity: 0.72;
 }
 
 } 
+@media (max-width: 650px) {
+
+  .emotional-card-nomad .emotional-card-art img {
+
+    width: 96%;
+
+    height: 96%;
+
+    transform: translateY(4px);
+
+  }
+
+}
+@media (max-width: 650px) {
+
+  .emotional-card-host .emotional-card-art img {
+
+    width: 102%;
+
+    height: 102%;
+
+    transform: translate(6px, 10px);
+
+  }
+
+}
+@media (max-width: 650px) {
+
+  .emotional-card-nomad .emotional-card-art img {
+
+    width: 92%;
+
+    height: 92%;
+
+    transform: translateY(4px);
+
+  }
+
+  .emotional-card-host .emotional-card-art img {
+
+    width: 108%;
+
+    height: 108%;
+
+    transform: translate(6px, 10px);
+
+  }
+
+}
+@media (max-width: 650px) {
+
+  .emotional-card-nomad .emotional-card-art img {
+
+    width: 92%;
+
+    height: 92%;
+
+    transform: translateY(4px);
+
+  }
+
+  .emotional-card-host .emotional-card-art img {
+
+    width: 104%;
+
+    height: 104%;
+
+    transform: translate(6px, 10px);
+
+  }
+
+}
+@media (max-width: 650px) {
+
+  .emotional-card-nomad .emotional-card-art img {
+
+    width: 92%;
+
+    height: 92%;
+
+    transform: translateY(-2px);
+
+  }
+
+  .emotional-card-host .emotional-card-art img {
+
+    width: 108%;
+
+    height: 108%;
+
+    transform: translate(6px, 14px);
+
+  }
+
+}
