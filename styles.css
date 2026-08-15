@@ -3198,42 +3198,28 @@ opacity: 0.72;
   ----------------------------- */
 
   .emotional-card::before {
-    content: "";
+  content: "";
 
-    position: absolute;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
 
-    left: 0;
-    right: 0;
-    top: 0;
+  height: 225px;
 
-    height: 225px;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 253, 247, 0.18) 0%,
+      rgba(255, 252, 244, 0.14) 28%,
+      rgba(250, 242, 224, 0.32) 68%,
+      rgba(250, 241, 220, 0.92) 100%
+    );
 
-    background:
-      linear-gradient(
-        180deg,
-        rgba(255, 253, 247, 0.18) 0%,
-        rgba(255, 252, 244, 0.14) 28%,
-        rgba(250, 242, 224, 0.32) 62%,
-        rgba(250, 241, 220, 0.92) 100%
-      ),
-      url("homepage-mountains.png");
+  pointer-events: none;
 
-    background-repeat: no-repeat;
-
-    background-position:
-      center,
-      center 56%;
-
-    background-size:
-      100% 100%,
-      430px auto;
-
-    opacity: 0.50;
-
-    pointer-events: none;
-
-    z-index: 0;
-  }
+  z-index: 1;
+}
 
 
   /* -----------------------------
