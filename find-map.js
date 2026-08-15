@@ -1614,26 +1614,13 @@ google.maps.event.addListenerOnce(
  window.NPP_TRAVELLER_MARKERS =
   travellerMarkerRecords;
 
-if (
-  markers.length &&
-  window.markerClusterer?.MarkerClusterer
-) {
-  travellerMarkerClusterer =
-    new window.markerClusterer.MarkerClusterer({
-      map: googleMap,
-      markers
-    });
+markers.forEach((marker) => {
+  marker.setMap(googleMap);
+});
 
-  window.NPP_TRAVELLER_MARKER_CLUSTERER =
-    travellerMarkerClusterer;
-} else {
-  markers.forEach((marker) => {
-    marker.setMap(googleMap);
-  });
+travellerMarkerClusterer = null;
 
-  travellerMarkerClusterer = null;
-
-  window.NPP_TRAVELLER_MARKER_CLUSTERER = null;
+window.NPP_TRAVELLER_MARKER_CLUSTERER = null;
 } 
 
 /* =========================================================
