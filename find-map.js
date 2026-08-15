@@ -1611,7 +1611,7 @@ google.maps.event.addListenerOnce(
 
   );
 
-  window.NPP_TRAVELLER_MARKERS =
+ window.NPP_TRAVELLER_MARKERS =
   travellerMarkerRecords;
 
 if (
@@ -1634,7 +1634,7 @@ if (
   travellerMarkerClusterer = null;
 
   window.NPP_TRAVELLER_MARKER_CLUSTERER = null;
-}
+} 
 
 /* =========================================================
 
