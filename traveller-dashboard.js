@@ -8,7 +8,7 @@ import { supabase } from "./supabase-client.js";
 
 ========================================================= */
 
-const NEARBY_TRAVELLER_RADIUS_KM = 30;
+const NEARBY_TRAVELLER_RADIUS_KM = 800;
 
 const FILTER_COUNTS = {
 
