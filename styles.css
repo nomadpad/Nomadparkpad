@@ -3336,40 +3336,24 @@ opacity: 0.72;
 
  /* -----------------------------
    EVERGREEN SCENE
-   Behind van / house
+   Real forest directly on art area
 ----------------------------- */
 
 .emotional-card-art {
   position: relative;
+
+  background-image: url("image copy 10.png");
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  background-size: 118% auto;
+
   isolation: isolate;
-}
-
-.emotional-card-art::after {
-  content: "";
-
-  position: absolute;
-  left: -8%;
-  right: -8%;
-  bottom: -8px;
-
-  height: 130px;
-
-  background:
-    url("image copy 10.png")
-    center bottom / contain
-    no-repeat;
-
-  opacity: 0.72;
-
-  pointer-events: none;
-
-  z-index: 1;
 }
 
 
 /* -----------------------------
    VAN / HOUSE
-   Always in foreground
+   Always above forest
 ----------------------------- */
 
 .emotional-card-art img {
