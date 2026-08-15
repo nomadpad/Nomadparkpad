@@ -3198,3 +3198,324 @@ opacity: 0.72;
   z-index: 3;
 }
 }
+/* =========================================
+   NOMAD PREMIUM HOMEPAGE CARDS
+   FINAL CLEAN MOBILE VERSION
+========================================= */
+
+@media (max-width: 650px) {
+
+  /* -----------------------------
+     CARD GROUP
+  ----------------------------- */
+
+  .emotional-home-cards {
+    width: 90%;
+    margin: -18px auto 0;
+    gap: 14px;
+  }
+
+
+  /* -----------------------------
+     CARD SHELL
+  ----------------------------- */
+
+  .emotional-card {
+    position: relative;
+    overflow: hidden;
+
+    padding-left: 12px;
+    padding-right: 12px;
+
+    border:
+      1px solid
+      rgba(184, 137, 46, 0.90);
+
+    border-radius: 24px;
+
+    background:
+      linear-gradient(
+        180deg,
+        rgba(255, 253, 247, 0.99) 0%,
+        rgba(253, 247, 234, 0.98) 48%,
+        rgba(248, 236, 212, 0.97) 100%
+      );
+
+    box-shadow:
+      0 14px 28px rgba(57, 40, 16, 0.16),
+      0 4px 10px rgba(184, 137, 46, 0.10),
+      inset 0 1px 0 rgba(255, 255, 255, 0.96),
+      inset 0 0 18px rgba(255, 255, 255, 0.28);
+
+    isolation: isolate;
+  }
+
+
+  /* -----------------------------
+     SOFT MOUNTAIN SCENERY
+     INSIDE CARD
+  ----------------------------- */
+
+  .emotional-card::before {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    right: 0;
+    top: 0;
+
+    height: 225px;
+
+    background:
+      linear-gradient(
+        180deg,
+        rgba(255, 253, 247, 0.18) 0%,
+        rgba(255, 252, 244, 0.14) 28%,
+        rgba(250, 242, 224, 0.32) 62%,
+        rgba(250, 241, 220, 0.92) 100%
+      ),
+      url("homepage-mountains.png");
+
+    background-repeat: no-repeat;
+
+    background-position:
+      center,
+      center 56%;
+
+    background-size:
+      100% 100%,
+      430px auto;
+
+    opacity: 0.50;
+
+    pointer-events: none;
+
+    z-index: 0;
+  }
+
+
+  /* -----------------------------
+     INNER PREMIUM FRAME
+  ----------------------------- */
+
+  .emotional-card::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 5px;
+
+    border:
+      1px solid
+      rgba(255, 255, 255, 0.68);
+
+    border-radius: 19px;
+
+    box-shadow:
+      inset 0 0 12px
+      rgba(184, 137, 46, 0.04);
+
+    pointer-events: none;
+
+    z-index: 5;
+  }
+
+
+  /* -----------------------------
+     VAN / HOUSE ART AREA
+  ----------------------------- */
+
+  .emotional-card-art {
+    position: relative;
+
+    height: 126px;
+
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+
+    isolation: isolate;
+
+    z-index: 2;
+  }
+
+
+  /* -----------------------------
+     SOFT GROUND + MIST
+  ----------------------------- */
+
+  .emotional-card-art::before {
+    content: "";
+
+    position: absolute;
+
+    left: 5%;
+    right: 5%;
+    bottom: -3px;
+
+    height: 72px;
+
+    background:
+      linear-gradient(
+        180deg,
+        rgba(250, 245, 231, 0) 0%,
+        rgba(245, 234, 210, 0.14) 28%,
+        rgba(226, 209, 174, 0.30) 62%,
+        rgba(250, 242, 224, 0.76) 100%
+      ),
+      radial-gradient(
+        ellipse at center,
+        rgba(139, 112, 65, 0.18) 0%,
+        rgba(139, 112, 65, 0.06) 46%,
+        rgba(139, 112, 65, 0) 74%
+      );
+
+    pointer-events: none;
+
+    z-index: 1;
+  }
+
+
+  /* -----------------------------
+     EVERGREEN SCENE
+     Behind van / house
+  ----------------------------- */
+
+  .emotional-card-art::after {
+    content: "";
+
+    position: absolute;
+
+    left: -3%;
+    right: -3%;
+    bottom: 0;
+
+    height: 116px;
+
+    background-image:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 180'%3E%3Cg fill='%2355684d'%3E%3Cpath opacity='.36' d='M35 176h12v-25h27l-18-24h15L51 98h14L47 66 28 98h14l-21 29h16l-18 24h16z'/%3E%3Cpath opacity='.29' d='M91 176h10v-22h23l-15-20h12l-17-24h11l-16-29-16 29h11l-17 24h12l-15 20h23z'/%3E%3Cpath opacity='.20' d='M146 176h8v-18h18l-12-17h10l-14-20h9l-13-23-13 23h9l-14 20h10l-12 17h14z'/%3E%3Cpath opacity='.20' d='M346 176h8v-18h18l-12-17h10l-14-20h9l-13-23-13 23h9l-14 20h10l-12 17h14z'/%3E%3Cpath opacity='.29' d='M399 176h10v-22h23l-15-20h12l-17-24h11l-16-29-16 29h11l-17 24h12l-15 20h23z'/%3E%3Cpath opacity='.36' d='M453 176h12v-25h27l-18-24h15l-20-29h14l-19-32-19 32h14l-21 29h16l-18 24h17z'/%3E%3C/g%3E%3C/svg%3E");
+
+    background-repeat: no-repeat;
+
+    background-position:
+      center bottom;
+
+    background-size:
+      112% 100%;
+
+    opacity: 0.76;
+
+    filter:
+      blur(0.3px)
+      drop-shadow(
+        0 4px 5px
+        rgba(70, 54, 26, 0.07)
+      );
+
+    pointer-events: none;
+
+    z-index: 2;
+  }
+
+
+  /* -----------------------------
+     VAN / HOUSE
+     Always in foreground
+  ----------------------------- */
+
+  .emotional-card-art img {
+    position: relative;
+
+    width: 108%;
+    height: 108%;
+
+    object-fit: contain;
+    object-position: center bottom;
+
+    filter:
+      drop-shadow(
+        0 6px 5px
+        rgba(45, 38, 23, 0.14)
+      );
+
+    z-index: 3;
+  }
+
+
+  /* -----------------------------
+     CARD TITLE
+  ----------------------------- */
+
+  .emotional-card h2 {
+    position: relative;
+
+    margin-top: 4px;
+
+    text-shadow:
+      0 1px 0
+      rgba(255, 255, 255, 0.65);
+
+    z-index: 4;
+  }
+
+
+  /* -----------------------------
+     DIVIDER
+  ----------------------------- */
+
+  .emotional-card-divider {
+    position: relative;
+    z-index: 4;
+  }
+
+
+  /* -----------------------------
+     LOGIN BUTTON
+  ----------------------------- */
+
+  .emotional-login-button {
+    position: relative;
+
+    border-color:
+      rgba(184, 137, 46, 0.98);
+
+    box-shadow:
+      0 7px 15px
+      rgba(8, 49, 38, 0.22),
+
+      inset 0 1px 0
+      rgba(255, 255, 255, 0.20),
+
+      inset 0 -2px 5px
+      rgba(0, 0, 0, 0.08);
+
+    z-index: 4;
+  }
+
+
+  /* -----------------------------
+     BENEFITS BUTTON
+  ----------------------------- */
+
+  .emotional-benefits-button {
+    position: relative;
+
+    background:
+      linear-gradient(
+        180deg,
+        rgba(255, 253, 247, 0.98),
+        rgba(250, 241, 221, 0.96)
+      );
+
+    box-shadow:
+      inset 0 1px 0
+      rgba(255, 255, 255, 0.90),
+
+      0 2px 6px
+      rgba(91, 65, 21, 0.06);
+
+    z-index: 4;
+  }
+
+}
