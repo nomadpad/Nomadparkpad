@@ -3508,3 +3508,26 @@ opacity: 0.72;
   }
 
 }
+@media (max-width: 650px) {
+
+  .emotional-card-nomad .emotional-card-art img {
+
+    width: 92%;
+
+    height: 92%;
+
+    transform: translateY(-2px);
+
+  }
+
+  .emotional-card-host .emotional-card-art img {
+
+    width: 108%;
+
+    height: 108%;
+
+    transform: translate(6px, 14px);
+
+  }
+
+}
