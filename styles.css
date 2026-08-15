@@ -3154,3 +3154,111 @@ opacity: 0.72;
   }
 
 }
+@media (max-width: 650px) {
+
+  .emotional-card-art {
+    position: relative;
+    isolation: isolate;
+  }
+
+  /* TREE SCENE */
+  .emotional-card-art::after {
+    content: "";
+
+    position: absolute;
+
+    left: -4%;
+    right: -4%;
+    bottom: 0;
+
+    height: 105px;
+
+    background:
+
+      /* LEFT TALL TREE */
+      linear-gradient(
+        155deg,
+        transparent 0 41%,
+        rgba(44, 70, 48, 0.58) 42% 55%,
+        transparent 56%
+      )
+      3% 100% / 54px 96px no-repeat,
+
+      linear-gradient(
+        205deg,
+        transparent 0 41%,
+        rgba(44, 70, 48, 0.58) 42% 55%,
+        transparent 56%
+      )
+      3% 100% / 54px 96px no-repeat,
+
+      /* LEFT SMALL TREE */
+      linear-gradient(
+        155deg,
+        transparent 0 41%,
+        rgba(73, 91, 55, 0.42) 42% 55%,
+        transparent 56%
+      )
+      20% 100% / 42px 72px no-repeat,
+
+      linear-gradient(
+        205deg,
+        transparent 0 41%,
+        rgba(73, 91, 55, 0.42) 42% 55%,
+        transparent 56%
+      )
+      20% 100% / 42px 72px no-repeat,
+
+      /* RIGHT TALL TREE */
+      linear-gradient(
+        155deg,
+        transparent 0 41%,
+        rgba(44, 70, 48, 0.58) 42% 55%,
+        transparent 56%
+      )
+      97% 100% / 54px 96px no-repeat,
+
+      linear-gradient(
+        205deg,
+        transparent 0 41%,
+        rgba(44, 70, 48, 0.58) 42% 55%,
+        transparent 56%
+      )
+      97% 100% / 54px 96px no-repeat,
+
+      /* RIGHT SMALL TREE */
+      linear-gradient(
+        155deg,
+        transparent 0 41%,
+        rgba(73, 91, 55, 0.42) 42% 55%,
+        transparent 56%
+      )
+      80% 100% / 42px 72px no-repeat,
+
+      linear-gradient(
+        205deg,
+        transparent 0 41%,
+        rgba(73, 91, 55, 0.42) 42% 55%,
+        transparent 56%
+      )
+      80% 100% / 42px 72px no-repeat;
+
+    filter:
+      drop-shadow(
+        0 4px 4px
+        rgba(64, 49, 24, 0.12)
+      );
+
+    pointer-events: none;
+
+    z-index: 1;
+  }
+
+  /* KEEP VAN / HOUSE IN FRONT */
+  .emotional-card-art img {
+    position: relative;
+
+    z-index: 3;
+  }
+
+}
