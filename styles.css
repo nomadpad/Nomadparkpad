@@ -3310,14 +3310,13 @@ opacity: 0.72;
 ----------------------------- */
 
 .emotional-card-art {
+
   position: relative;
 
-  background-image: url("image copy 10.png");
-  background-repeat: no-repeat;
-  background-position: center bottom;
-  background-size: 118% auto;
+  background-image: none;
 
   isolation: isolate;
+
 }
 
 
