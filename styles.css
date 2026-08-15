@@ -3436,3 +3436,16 @@ opacity: 0.72;
 }
 
 } 
+@media (max-width: 650px) {
+
+  .emotional-card-nomad .emotional-card-art img {
+
+    width: 96%;
+
+    height: 96%;
+
+    transform: translateY(4px);
+
+  }
+
+}
