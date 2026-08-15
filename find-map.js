@@ -1612,19 +1612,28 @@ google.maps.event.addListenerOnce(
   );
 
   window.NPP_TRAVELLER_MARKERS =
+  travellerMarkerRecords;
 
-    travellerMarkerRecords;
+if (
+  markers.length &&
+  window.markerClusterer?.MarkerClusterer
+) {
+  travellerMarkerClusterer =
+    new window.markerClusterer.MarkerClusterer({
+      map: googleMap,
+      markers
+    });
 
+  window.NPP_TRAVELLER_MARKER_CLUSTERER =
+    travellerMarkerClusterer;
+} else {
   markers.forEach((marker) => {
+    marker.setMap(googleMap);
+  });
 
-  marker.setMap(googleMap);
+  travellerMarkerClusterer = null;
 
-});
-
-travellerMarkerClusterer = null;
-
-window.NPP_TRAVELLER_MARKER_CLUSTERER = null;
-
+  window.NPP_TRAVELLER_MARKER_CLUSTERER = null;
 }
 
 /* =========================================================
