@@ -3516,3 +3516,187 @@ opacity: 0.72;
   }
 
 }
+/* =========================================================
+   NOMAD BENEFITS PAGE
+   ========================================================= */
+
+.nomad-benefits-page {
+  margin: 0;
+  background:
+    linear-gradient(
+      rgba(255, 250, 240, 0.94),
+      rgba(255, 250, 240, 0.96)
+    ),
+    url("homepage-mountains.png") center bottom / cover fixed;
+  color: #0b4f3a;
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+.nomad-benefits {
+  width: min(100%, 760px);
+  margin: 0 auto;
+  padding: 18px 16px 48px;
+  box-sizing: border-box;
+}
+
+.nomad-benefits-hero {
+  text-align: center;
+  padding: 18px 8px 26px;
+}
+
+.nomad-benefits-back {
+  display: inline-block;
+  margin-bottom: 18px;
+  color: #0b4f3a;
+  text-decoration: none;
+  font-family: Arial, sans-serif;
+  font-weight: 700;
+}
+
+.nomad-benefits-logo {
+  display: block;
+  width: min(88%, 430px);
+  height: auto;
+  margin: 0 auto 24px;
+}
+
+.nomad-benefits-kicker {
+  margin: 0 0 10px;
+  font-family: Arial, sans-serif;
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  color: #b77b24;
+}
+
+.nomad-benefits-hero h1 {
+  margin: 0;
+  font-size: clamp(2.25rem, 9vw, 4rem);
+  line-height: 0.98;
+  color: #0b4f3a;
+}
+
+.nomad-benefits-intro {
+  max-width: 600px;
+  margin: 20px auto 0;
+  font-family: Arial, sans-serif;
+  font-size: 1.04rem;
+  line-height: 1.6;
+  color: #294c40;
+}
+
+.nomad-benefits-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+.nomad-benefit-card {
+  padding: 22px 20px;
+  border: 1px solid rgba(183, 123, 36, 0.42);
+  border-radius: 22px;
+  background: rgba(255, 253, 247, 0.88);
+  box-shadow:
+    0 10px 28px rgba(20, 63, 48, 0.08),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.nomad-benefit-icon {
+  margin-bottom: 8px;
+  font-size: 2rem;
+}
+
+.nomad-benefit-card h2 {
+  margin: 0 0 8px;
+  font-size: 1.55rem;
+  color: #0b4f3a;
+}
+
+.nomad-benefit-card p {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  font-size: 0.98rem;
+  line-height: 1.55;
+  color: #35584b;
+}
+
+.nomad-benefits-early,
+.nomad-benefits-story {
+  margin-top: 28px;
+  padding: 26px 22px;
+  text-align: center;
+  border-radius: 24px;
+  border: 1px solid rgba(183, 123, 36, 0.5);
+  background: rgba(255, 251, 241, 0.94);
+  box-shadow: 0 12px 32px rgba(14, 69, 49, 0.1);
+}
+
+.nomad-benefits-early h2,
+.nomad-benefits-story h2 {
+  margin: 6px 0 14px;
+  color: #0b4f3a;
+  font-size: clamp(1.8rem, 7vw, 2.6rem);
+}
+
+.nomad-benefits-early p,
+.nomad-benefits-story p {
+  font-family: Arial, sans-serif;
+  line-height: 1.55;
+  color: #35584b;
+}
+
+.nomad-benefits-primary,
+.nomad-benefits-secondary {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  margin-top: 14px;
+  padding: 15px 18px;
+  border-radius: 16px;
+  text-align: center;
+  text-decoration: none;
+  font-family: Arial, sans-serif;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+}
+
+.nomad-benefits-primary {
+  background: #0b4f3a;
+  color: #fff8e9;
+  border: 1px solid #b77b24;
+  box-shadow: 0 7px 18px rgba(11, 79, 58, 0.18);
+}
+
+.nomad-benefits-secondary {
+  background: rgba(255, 253, 247, 0.95);
+  color: #0b4f3a;
+  border: 1px solid #b77b24;
+}
+
+.nomad-benefits-story {
+  margin-bottom: 12px;
+}
+
+.nomad-benefits-story > p:first-child {
+  margin-top: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.2rem;
+  color: #0b4f3a;
+}
+
+@media (min-width: 680px) {
+  .nomad-benefits {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  .nomad-benefits-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .nomad-benefit-card {
+    min-height: 190px;
+  }
+}
