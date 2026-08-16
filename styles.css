@@ -4098,7 +4098,7 @@ opacity: 0.72;
 
   transform: translateX(-50%);
 
-  opacity: 0.22;
+  opacity: 0.10;
 
   background-image:
     repeating-radial-gradient(
@@ -4108,7 +4108,7 @@ opacity: 0.72;
       transparent 20px
     );
 
-  background-size: 180px 130px;
+  background-size: 240px 180px;
 
   pointer-events: none;
   z-index: -1;
