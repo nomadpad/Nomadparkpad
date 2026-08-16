@@ -4032,3 +4032,98 @@ opacity: 0.72;
 .home-page .site-header {
   display: none;
 }
+/* =========================================================
+   HOMEPAGE TRUST BACKGROUND ENHANCEMENT
+   ========================================================= */
+
+.home-page main {
+  position: relative;
+}
+
+.home-page #trust {
+  position: relative;
+  z-index: 1;
+}
+
+.home-page #trust::before {
+  content: "";
+  position: absolute;
+
+  top: -70px;
+  left: 50%;
+
+  width: 100vw;
+  height: calc(100% + 110px);
+
+  transform: translateX(-50%);
+
+  background:
+    radial-gradient(
+      circle at 20% 20%,
+      rgba(183, 123, 36, 0.05),
+      transparent 32%
+    ),
+    radial-gradient(
+      circle at 80% 70%,
+      rgba(11, 79, 58, 0.035),
+      transparent 36%
+    ),
+    #fff8ea;
+
+  clip-path: polygon(
+    0 8%,
+    14% 3%,
+    31% 6%,
+    50% 2%,
+    68% 6%,
+    84% 3%,
+    100% 8%,
+    100% 100%,
+    0 100%
+  );
+
+  pointer-events: none;
+  z-index: -2;
+}
+
+.home-page #trust::after {
+  content: "";
+  position: absolute;
+
+  top: -45px;
+  left: 50%;
+
+  width: 100vw;
+  height: calc(100% + 80px);
+
+  transform: translateX(-50%);
+
+  opacity: 0.22;
+
+  background-image:
+    repeating-radial-gradient(
+      ellipse at 50% 50%,
+      transparent 0 18px,
+      rgba(183, 123, 36, 0.16) 19px,
+      transparent 20px
+    );
+
+  background-size: 180px 130px;
+
+  pointer-events: none;
+  z-index: -1;
+}
+
+.home-trust-compact {
+  margin-top: 34px;
+
+  background:
+    linear-gradient(
+      rgba(255, 251, 241, 0.94),
+      rgba(255, 249, 237, 0.94)
+    );
+
+  box-shadow:
+    0 18px 38px rgba(20, 63, 48, 0.09),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.7);
+}
