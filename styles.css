@@ -3700,3 +3700,35 @@ opacity: 0.72;
     min-height: 190px;
   }
 }
+.nomad-benefits-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin: 18px auto 22px;
+  width: min(72%, 320px);
+}
+
+.nomad-benefits-divider-line {
+  height: 1px;
+  flex: 1;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(183, 123, 36, 0.75)
+  );
+}
+
+.nomad-benefits-divider-line:last-child {
+  background: linear-gradient(
+    to left,
+    transparent,
+    rgba(183, 123, 36, 0.75)
+  );
+}
+
+.nomad-benefits-divider-leaf {
+  color: #b77b24;
+  font-size: 1.15rem;
+  line-height: 1;
+}
