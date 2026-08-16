@@ -4049,7 +4049,7 @@ opacity: 0.72;
   content: "";
   position: absolute;
 
-  top: -70px;
+  top: -28px;
   left: 50%;
 
   width: 100vw;
@@ -4070,17 +4070,7 @@ opacity: 0.72;
     ),
     #fff8ea;
 
-  clip-path: polygon(
-  0 7%,
-  12% 4%,
-  30% 6%,
-  50% 3%,
-  70% 6%,
-  86% 4%,
-  100% 7%,
-  100% 100%,
-  0 100%
-);
+  border-radius: 50% 50% 0 0 / 18px 18px 0 0;
 
   pointer-events: none;
   z-index: -2;
@@ -4090,7 +4080,7 @@ opacity: 0.72;
   content: "";
   position: absolute;
 
-  top: -45px;
+  top: -28px;
   left: 50%;
 
   width: 100vw;
