@@ -4150,7 +4150,7 @@ opacity: 0.72;
 
   color: #fff8ea;
 
-  padding: 34px 22px 28px;
+  padding: 38px 22px 38px;
 
   border-top: 1px solid rgba(183, 123, 36, 0.35);
 }
@@ -4347,7 +4347,7 @@ opacity: 0.72;
 
 .premium-footer-nomad {
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(2.4rem, 10vw, 4rem);
+  font-size: clamp(2.2rem, 9vw, 3.6rem);
   font-weight: 700;
   line-height: 0.9;
   color: #fff8ea;
