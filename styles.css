@@ -4028,3 +4028,7 @@ opacity: 0.72;
     grid-template-columns: 1fr;
   }
 }
+/* Hide original navigation header on emotional homepage only */
+.home-page .site-header {
+  display: none;
+}
