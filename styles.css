@@ -3555,9 +3555,9 @@ opacity: 0.72;
 
 .nomad-benefits-logo {
   display: block;
-  width: min(88%, 430px);
+  width: min(78%, 360px);
   height: auto;
-  margin: 0 auto 24px;
+  margin: 0 auto 18px;
 }
 
 .nomad-benefits-kicker {
