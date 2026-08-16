@@ -4045,67 +4045,84 @@ opacity: 0.72;
   z-index: 1;
 }
 
+/* =========================================================
+   PREMIUM TRUST SECTION TRANSITION
+   ========================================================= */
+
+.home-page #trust {
+  position: relative;
+  z-index: 1;
+  padding-top: 92px;
+}
+
 .home-page #trust::before {
   content: "";
   position: absolute;
 
-  top: -28px;
+  top: -54px;
   left: 50%;
 
-  width: 100vw;
-  height: calc(100% + 110px);
+  width: 110vw;
+  height: 120px;
 
   transform: translateX(-50%);
 
-  background:
-    radial-gradient(
-      circle at 20% 20%,
-      rgba(183, 123, 36, 0.05),
-      transparent 32%
-    ),
-    radial-gradient(
-      circle at 80% 70%,
-      rgba(11, 79, 58, 0.035),
-      transparent 36%
-    ),
-    #fff8ea;
+  background: #fff8ea;
 
-  border-radius: 50% 50% 0 0 / 18px 18px 0 0;
+  border-radius: 50% 50% 0 0 / 34px 34px 0 0;
 
-  pointer-events: none;
+  box-shadow:
+    0 -3px 0 #d7a447,
+    0 -6px 18px rgba(183, 123, 36, 0.12);
+
   z-index: -2;
+  pointer-events: none;
 }
 
 .home-page #trust::after {
-  content: "";
+  content: "❦";
   position: absolute;
 
-  top: -28px;
+  top: -34px;
   left: 50%;
-
-  width: 100vw;
-  height: calc(100% + 80px);
 
   transform: translateX(-50%);
 
-  opacity: 0.10;
+  width: 230px;
 
-  background-image:
-    repeating-radial-gradient(
-      ellipse at 50% 50%,
-      transparent 0 18px,
-      rgba(183, 123, 36, 0.16) 19px,
-      transparent 20px
+  color: #d7a447;
+
+  font-size: 1.7rem;
+  line-height: 1;
+  text-align: center;
+
+  background:
+    linear-gradient(
+      to right,
+      transparent 0,
+      #d7a447 18%,
+      #d7a447 42%,
+      transparent 42%,
+      transparent 58%,
+      #d7a447 58%,
+      #d7a447 82%,
+      transparent 100%
     );
 
-  background-size: 240px 180px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 2px;
 
+  text-shadow:
+    0 1px 0 rgba(255,255,255,0.6),
+    0 2px 6px rgba(183,123,36,0.2);
+
+  z-index: 2;
   pointer-events: none;
-  z-index: -1;
 }
 
 .home-trust-compact {
-  margin-top: 34px;
+  margin-top: 0;
 
   background:
     linear-gradient(
