@@ -4333,3 +4333,62 @@ opacity: 0.72;
     text-align: center;
   }
 }
+/* =========================================================
+   PREMIUM FOOTER WORDMARK
+   ========================================================= */
+
+.premium-footer-wordmark {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  margin-bottom: 12px;
+}
+
+.premium-footer-nomad {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(2.4rem, 10vw, 4rem);
+  font-weight: 700;
+  line-height: 0.9;
+  color: #fff8ea;
+  letter-spacing: -0.03em;
+}
+
+.premium-footer-parkpad {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  font-family: Arial, sans-serif;
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.28em;
+
+  color: #d7a447;
+}
+
+.premium-footer-parkpad i {
+  display: block;
+  width: 28px;
+  height: 1px;
+
+  background: linear-gradient(
+    to right,
+    transparent,
+    #d7a447
+  );
+}
+
+.premium-footer-parkpad i:last-child {
+  background: linear-gradient(
+    to left,
+    transparent,
+    #d7a447
+  );
+}
+
+@media (min-width: 680px) {
+  .premium-footer-wordmark {
+    align-items: flex-start;
+  }
+}
