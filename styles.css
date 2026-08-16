@@ -3571,8 +3571,8 @@ opacity: 0.72;
 
 .nomad-benefits-hero h1 {
   margin: 0;
-  font-size: clamp(2.25rem, 9vw, 4rem);
-  line-height: 0.98;
+  font-size: clamp(2rem, 7.5vw, 3.4rem);
+  line-height: 1.02;
   color: #0b4f3a;
 }
 
