@@ -4934,3 +4934,16 @@ opacity: 0.72;
   border: 2px solid #b78934;
   border-radius: 3px;
 }
+/* =========================================================
+   ALIGN AUDIENCE DESCRIPTIONS WITH TOP OF EACH CARD
+========================================================= */
+
+.emotional-home-cards {
+  align-items: start;
+}
+
+@media (max-width: 699px) {
+  .emotional-home-cards {
+    align-items: start;
+  }
+}
