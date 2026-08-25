@@ -5036,3 +5036,37 @@ opacity: 0.72;
     margin-left: 18px;
   }
 }
+/* =========================================================
+   FIX MOBILE HORIZONTAL OVERFLOW
+========================================================= */
+
+@media (max-width: 699px) {
+
+  .emotional-home-cards {
+    width: 94%;
+    max-width: 100%;
+    box-sizing: border-box;
+
+    grid-template-columns:
+      minmax(0, 44%)
+      minmax(0, 1fr);
+
+    column-gap: 10px;
+  }
+
+  .emotional-card,
+  .emotional-audience-info {
+    min-width: 0;
+    box-sizing: border-box;
+  }
+
+  .emotional-audience-info {
+    padding-left: 24px;
+  }
+
+  .emotional-audience-info h3,
+  .emotional-audience-info p,
+  .emotional-audience-points {
+    max-width: 100%;
+  }
+}
