@@ -323,3 +323,201 @@ body.groups-page {
   }
 
 }
+/* =========================================================
+   CREATE GROUP PANEL
+   ========================================================= */
+
+.group-form-panel {
+  margin-top: 34px;
+  padding: 24px 22px 26px;
+  background: #fffaf0;
+  border: 1.5px solid #d9a33b;
+  border-radius: 22px;
+  box-shadow: 0 12px 30px rgba(0, 45, 34, 0.12);
+  color: #064c37;
+}
+
+.group-form-panel[hidden] {
+  display: none !important;
+}
+
+.group-form-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 8px;
+}
+
+.group-form-header h2 {
+  margin: 2px 0 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 31px;
+  line-height: 1.05;
+  color: #004b38;
+}
+
+.group-form-panel .groups-kicker {
+  margin: 0 0 5px;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: #b37a18;
+}
+
+.group-close-button {
+  flex: 0 0 auto;
+  width: 38px;
+  height: 38px;
+  border: 1px solid #d9a33b;
+  border-radius: 50%;
+  background: #fffdf7;
+  color: #064c37;
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.group-form-intro {
+  margin: 10px 0 22px;
+  font-size: 15px;
+  line-height: 1.45;
+  color: #315e51;
+}
+
+.group-field {
+  display: block;
+  margin-bottom: 20px;
+}
+
+.group-field > span,
+.group-icon-field legend {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: 800;
+  color: #064c37;
+}
+
+.group-field small {
+  margin-left: 5px;
+  font-weight: 500;
+  color: #71837d;
+}
+
+.group-field input,
+.group-field textarea {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 13px 14px;
+  border: 1px solid rgba(179, 122, 24, 0.55);
+  border-radius: 12px;
+  background: #ffffff;
+  color: #123f32;
+  font: inherit;
+  font-size: 16px;
+  outline: none;
+}
+
+.group-field textarea {
+  resize: vertical;
+  min-height: 90px;
+}
+
+.group-field input:focus,
+.group-field textarea:focus {
+  border-color: #d49a2a;
+  box-shadow: 0 0 0 3px rgba(212, 154, 42, 0.13);
+}
+
+
+/* MAP BADGES */
+
+.group-icon-field {
+  margin: 0 0 20px;
+  padding: 0;
+  border: 0;
+}
+
+.group-icon-options {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 9px;
+}
+
+.group-icon-choice {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  height: 52px;
+  padding: 0;
+  border: 1px solid rgba(179, 122, 24, 0.55);
+  border-radius: 12px;
+  background: #fffdf8;
+  font-size: 23px;
+  cursor: pointer;
+  transition:
+    transform 0.15s ease,
+    border-color 0.15s ease,
+    background 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.group-icon-choice:hover {
+  transform: translateY(-2px);
+  border-color: #d49a2a;
+}
+
+.group-icon-choice.selected {
+  border: 2px solid #d49a2a;
+  background: #f7ecd4;
+  box-shadow: 0 4px 12px rgba(179, 122, 24, 0.18);
+  transform: translateY(-2px);
+}
+
+
+/* CREATE BUTTON */
+
+.group-create-submit {
+  width: 100%;
+  min-height: 52px;
+  margin-top: 4px;
+  padding: 13px 18px;
+  border: 1.5px solid #d9a33b;
+  border-radius: 14px;
+  background: #00513c;
+  color: #fff4cf;
+  font-size: 15px;
+  font-weight: 900;
+  letter-spacing: 1.1px;
+  cursor: pointer;
+  box-shadow: 0 6px 14px rgba(0, 60, 44, 0.14);
+}
+
+.group-create-submit:hover {
+  background: #063f31;
+}
+
+
+/* SMALL PHONES */
+
+@media (max-width: 420px) {
+  .group-form-panel {
+    padding: 21px 17px 23px;
+  }
+
+  .group-form-header h2 {
+    font-size: 28px;
+  }
+
+  .group-icon-options {
+    grid-template-columns: repeat(5, 1fr);
+    gap: 7px;
+  }
+
+  .group-icon-choice {
+    height: 48px;
+    font-size: 21px;
+  }
+}
