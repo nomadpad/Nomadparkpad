@@ -162,7 +162,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           .insert({
             name: groupName,
             description: groupDescription || null,
-            icon: selectedIcon,
+            badge: selectedIcon,
             join_code: joinCode,
             created_by: user.id
           })
@@ -253,7 +253,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           id,
           name,
           description,
-          icon,
+          badge,
           join_code,
           created_by
         )
@@ -286,7 +286,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
       const icon = document.createElement("div");
       icon.className = "group-card-icon";
-      icon.textContent = group.icon || "👥";
+      icon.textContent = group.badge || "👥";
 
       const content = document.createElement("div");
       content.className = "group-card-content";
