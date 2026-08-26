@@ -1,0 +1,325 @@
+/* =========================================================
+   NOMAD PARK PAD
+   TRAVELLER MAP GROUPS
+   ========================================================= */
+
+:root {
+  --group-green: #064c37;
+  --group-green-dark: #043c2c;
+  --group-cream: #fff9ec;
+  --group-cream-soft: #f7efdd;
+  --group-gold: #c99435;
+  --group-text: #173f34;
+  --group-muted: #64736c;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body.groups-page {
+  margin: 0;
+  min-height: 100vh;
+
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  color: var(--group-text);
+
+  background:
+    linear-gradient(
+      180deg,
+      #064c37 0%,
+      #0b5942 100%
+    );
+}
+
+
+/* =========================================================
+   PAGE
+   ========================================================= */
+
+.groups-shell {
+  width: min(100% - 28px, 720px);
+  margin: 0 auto;
+  padding:
+    max(24px, env(safe-area-inset-top))
+    0
+    50px;
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.groups-header {
+  margin-bottom: 24px;
+}
+
+.groups-back {
+  display: inline-flex;
+  align-items: center;
+
+  margin-bottom: 26px;
+
+  color: #f4d994;
+
+  font-size: 14px;
+  font-weight: 700;
+
+  text-decoration: none;
+}
+
+.groups-kicker {
+  margin: 0 0 7px;
+
+  color: #f0c86d;
+
+  font-size: 12px;
+  font-weight: 800;
+
+  letter-spacing: 0.16em;
+}
+
+.groups-header h1 {
+  margin: 0 0 10px;
+
+  color: #ffffff;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size: clamp(38px, 9vw, 58px);
+  line-height: 1;
+}
+
+.groups-intro {
+  max-width: 570px;
+
+  margin: 0;
+
+  color: #e4eee8;
+
+  font-size: 16px;
+  line-height: 1.55;
+}
+
+
+/* =========================================================
+   CREATE / JOIN
+   ========================================================= */
+
+.groups-actions {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+
+  margin: 26px 0 34px;
+}
+
+.groups-action-card {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+  padding: 18px;
+
+  text-align: left;
+
+  color: var(--group-text);
+  background:
+    linear-gradient(
+      145deg,
+      #fffdf6,
+      #f6ecd7
+    );
+
+  border: 1px solid var(--group-gold);
+  border-radius: 20px;
+
+  box-shadow:
+    0 12px 28px rgba(0, 0, 0, 0.16);
+
+  cursor: pointer;
+}
+
+.groups-action-card:active {
+  transform: scale(0.985);
+}
+
+.groups-action-icon {
+  width: 54px;
+  height: 54px;
+
+  flex: 0 0 54px;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 50%;
+
+  color: var(--group-green);
+  background: #fffaf0;
+
+  border: 1px solid rgba(201, 148, 53, 0.65);
+
+  font-size: 25px;
+  font-weight: 700;
+}
+
+.groups-action-card strong,
+.groups-action-card small {
+  display: block;
+}
+
+.groups-action-card strong {
+  margin-bottom: 5px;
+
+  color: var(--group-green);
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size: 21px;
+}
+
+.groups-action-card small {
+  color: #53655e;
+
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+
+/* =========================================================
+   YOUR GROUPS
+   ========================================================= */
+
+.groups-list-section {
+  padding: 22px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 253, 246, 0.98),
+      rgba(247, 239, 221, 0.98)
+    );
+
+  border: 1px solid var(--group-gold);
+  border-radius: 24px;
+
+  box-shadow:
+    0 14px 32px rgba(0, 0, 0, 0.17);
+}
+
+.groups-section-heading h2 {
+  margin: 0 0 5px;
+
+  color: var(--group-green);
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size: 28px;
+}
+
+.groups-section-heading p {
+  margin: 0;
+
+  color: var(--group-muted);
+
+  font-size: 14px;
+}
+
+
+/* =========================================================
+   EMPTY STATE
+   ========================================================= */
+
+.groups-empty-state {
+  margin-top: 22px;
+  padding: 30px 18px;
+
+  text-align: center;
+
+  border:
+    1px dashed
+    rgba(201, 148, 53, 0.65);
+
+  border-radius: 18px;
+
+  background:
+    rgba(255, 255, 255, 0.42);
+}
+
+.groups-empty-state > span {
+  display: block;
+
+  margin-bottom: 10px;
+
+  font-size: 38px;
+}
+
+.groups-empty-state h3 {
+  margin: 0 0 7px;
+
+  color: var(--group-green);
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size: 22px;
+}
+
+.groups-empty-state p {
+  max-width: 360px;
+
+  margin: 0 auto;
+
+  color: var(--group-muted);
+
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+
+/* =========================================================
+   FUTURE GROUP LIST
+   ========================================================= */
+
+.groups-list {
+  display: grid;
+  gap: 12px;
+
+  margin-top: 18px;
+}
+
+
+/* =========================================================
+   DESKTOP
+   ========================================================= */
+
+@media (min-width: 650px) {
+
+  .groups-shell {
+    padding-top: 42px;
+  }
+
+  .groups-actions {
+    grid-template-columns: 1fr 1fr;
+  }
+
+}
