@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1"
+  >
+
+  <title>Groups | Nomad Park Pad</title>
+
+  <link rel="stylesheet" href="traveller-dashboard.css">
+  <link rel="stylesheet" href="groups.css">
+</head>
+
+<body class="groups-page">
+
+  <main class="groups-shell">
+
+    <header class="groups-header">
+
+      <a
+        class="groups-back"
+        href="traveller-dashboard.html"
+      >
+        ← Dashboard
+      </a>
+
+      <div>
+        <p class="groups-kicker">
+          TRAVEL TOGETHER
+        </p>
+
+        <h1>Groups</h1>
+
+        <p class="groups-intro">
+          Create a private map group or join one with a code.
+          Group members can recognize each other on the traveller map.
+        </p>
+      </div>
+
+    </header>
+
+
+    <section class="groups-actions">
+
+      <button
+        type="button"
+        class="groups-action-card groups-create-button"
+        id="createGroupButton"
+      >
+        <span class="groups-action-icon">＋</span>
+
+        <span>
+          <strong>Create a Group</strong>
+          <small>
+            Choose a name, icon and private join code.
+          </small>
+        </span>
+      </button>
+
+
+      <button
+        type="button"
+        class="groups-action-card groups-join-button"
+        id="joinGroupButton"
+      >
+        <span class="groups-action-icon">🔑</span>
+
+        <span>
+          <strong>Join with Code</strong>
+          <small>
+            Enter a code shared by a group organizer.
+          </small>
+        </span>
+      </button>
+
+    </section>
+
+
+    <section class="groups-list-section">
+
+      <div class="groups-section-heading">
+        <h2>Your Groups</h2>
+
+        <p>
+          Groups you create or join will appear here.
+        </p>
+      </div>
+
+      <div
+        class="groups-empty-state"
+        id="groupsEmptyState"
+      >
+        <span>👥</span>
+
+        <h3>No groups yet</h3>
+
+        <p>
+          Create your first group or join one with a private code.
+        </p>
+      </div>
+
+      <div
+        class="groups-list"
+        id="groupsList"
+      ></div>
+
+    </section>
+
+  </main>
+
+
+  <script src="supabase-config.js"></script>
+  <script type="module" src="groups.js"></script>
+
+</body>
+
+</html>
