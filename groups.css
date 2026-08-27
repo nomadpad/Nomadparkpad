@@ -521,3 +521,37 @@ body.groups-page {
     font-size: 21px;
   }
 }
+/* =========================================
+   VIEW GROUP BUTTON
+========================================= */
+
+.group-view-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-top: 14px;
+  padding: 11px 20px;
+
+  background: #00563f;
+  color: #fffaf0;
+
+  border: 1px solid #d5a94e;
+  border-radius: 12px;
+
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+
+  text-decoration: none;
+
+  box-shadow: 0 4px 10px rgba(0, 50, 38, 0.12);
+}
+
+.group-view-button:hover {
+  background: #004632;
+}
+
+.group-view-button:active {
+  transform: translateY(1px);
+}
