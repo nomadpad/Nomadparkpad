@@ -164,24 +164,101 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 
   // =========================================
-  // MEMBER AREA - TEMPORARY
-  // =========================================
+// LOAD GROUP MEMBERS
+// =========================================
+
+const groupMembersList =
+  document.getElementById("groupMembersList");
+
+const {
+  data: members,
+  error: membersError
+} = await supabase
+  .from("traveller_group_members")
+  .select(`
+    user_id,
+    role,
+    joined_at
+  `)
+  .eq("group_id", groupId)
+  .order("joined_at", {
+    ascending: true
+  });
+
+if (membersError) {
+  console.error(
+    "Group room: unable to load members.",
+    membersError
+  );
 
   if (groupMembersLoading) {
     groupMembersLoading.innerHTML = `
-      <span>${group.badge || "👥"}</span>
-
-      <h3>
-        ${
-          membership?.role === "owner"
-            ? "You are the organizer"
-            : "You are a member"
-        }
-      </h3>
-
-      <p>
-        Member list coming next.
-      </p>
+      <span>⚠️</span>
+      <h3>Could not load members</h3>
     `;
   }
-});
+
+  return;
+}
+
+if (groupMembersLoading) {
+  groupMembersLoading.hidden = true;
+}
+
+if (!groupMembersList) {
+  return;
+}
+
+groupMembersList.innerHTML = "";
+
+for (const member of members) {
+
+  const {
+    data: profile,
+    error: profileError
+  } = await supabase
+    .from("profiles")
+    .select(`
+      first_name,
+      last_name
+    `)
+    .eq("id", member.user_id)
+    .maybeSingle();
+
+  if (profileError) {
+    console.warn(
+      "Group room: profile lookup failed.",
+      profileError
+    );
+  }
+
+  const memberCard =
+    document.createElement("article");
+
+  memberCard.className =
+    "group-member-card";
+
+  const displayName =
+    profile?.first_name ||
+    "Traveller";
+
+  memberCard.innerHTML = `
+    <div class="group-member-avatar">
+      ${group.badge || "👥"}
+    </div>
+
+    <div class="group-member-info">
+      <h3>${displayName}</h3>
+
+      <p>
+        ${
+          member.role === "owner"
+            ? "Organizer"
+            : "Member"
+        }
+      </p>
+    </div>
+  `;
+
+  groupMembersList.appendChild(memberCard);
+}
