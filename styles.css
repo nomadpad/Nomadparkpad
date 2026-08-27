@@ -5249,40 +5249,20 @@ opacity: 0.72;
 }
 /* =========================================================
    HOMEPAGE SCENIC BACKGROUND
-   Keep all existing homepage layout unchanged
+   BACKGROUND ONLY - NO LAYOUT CHANGES
 ========================================================= */
 
 body.home-page {
-  position: relative;
-  background: #f8f2e7;
-}
+  background-color: #f8f2e7 !important;
 
-body.home-page::before {
-  content: "";
+  background-image:
+    linear-gradient(
+      rgba(255, 249, 238, 0.38),
+      rgba(255, 249, 238, 0.38)
+    ),
+    url("image copy 14.png") !important;
 
-  position: fixed;
-  inset: 0;
-
-  background-image: url("IMG_1924.jpeg");
-  background-repeat: no-repeat;
-  background-position: center top;
-  background-size: cover;
-
-  opacity: 0.34;
-
-  pointer-events: none;
-  z-index: -2;
-}
-
-body.home-page::after {
-  content: "";
-
-  position: fixed;
-  inset: 0;
-
-  background:
-    rgba(255, 249, 238, 0.38);
-
-  pointer-events: none;
-  z-index: -1;
+  background-size: cover !important;
+  background-position: center top !important;
+  background-repeat: no-repeat !important;
 }
