@@ -2833,7 +2833,7 @@ opacity: 0.72;
 
   bottom: 0;
 
-  height: 900px;
+  height: 100%;
 
   background-image:
 
@@ -2855,7 +2855,7 @@ opacity: 0.72;
 
   background-position: center bottom;
 
-  background-size: auto 900px;
+  background-size: cover;
 
   pointer-events: none;
 
