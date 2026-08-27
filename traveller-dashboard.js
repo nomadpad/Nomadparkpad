@@ -10,6 +10,8 @@ import { supabase } from "./supabase-client.js";
 
 const NEARBY_TRAVELLER_RADIUS_KM = 800;
 
+const sharedGroupBadgesByTravellerId = new Map();
+
 const FILTER_COUNTS = {
 
   pads: 37,
@@ -369,11 +371,17 @@ function createEmojiMarkerIcon(
 
   size = 52,
 
-  ringColor = "#f36b16"
+  ringColor = "#f36b16",
+
+  groupBadge = ""
 
 ) {
 
   const safeEmoji = emoji || "🚐";
+
+  const safeGroupBadge = groupBadge || "";
+
+  const badgeSize = Math.round(size * 0.34);
 
   const svg = `
 
@@ -435,6 +443,30 @@ function createEmojiMarkerIcon(
 
       >${safeEmoji}</text>
 
+
+      ${
+        safeGroupBadge
+          ? `
+            <circle
+              cx="${size - badgeSize / 2 - 2}"
+              cy="${badgeSize / 2 + 2}"
+              r="${badgeSize / 2}"
+              fill="#fffaf2"
+              stroke="#d6a437"
+              stroke-width="2"
+            />
+
+            <text
+              x="${size - badgeSize / 2 - 2}"
+              y="${badgeSize / 2 + 3}"
+              text-anchor="middle"
+              dominant-baseline="middle"
+              font-size="${badgeSize * 0.72}"
+            >${safeGroupBadge}</text>
+          `
+          : ""
+      }
+
     </svg>
 
   `;
@@ -442,23 +474,16 @@ function createEmojiMarkerIcon(
   return {
 
     url:
-
       "data:image/svg+xml;charset=UTF-8," +
-
       encodeURIComponent(svg),
 
     scaledSize:
-
       new google.maps.Size(size, size),
 
     anchor:
-
       new google.maps.Point(
-
         size / 2,
-
         size / 2
-
       )
 
   };
