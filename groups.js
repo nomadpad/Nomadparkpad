@@ -316,6 +316,18 @@ document.addEventListener("DOMContentLoaded", async () => {
         content.appendChild(code);
       }
 
+// Open this group's private room.
+const viewGroupButton = document.createElement("a");
+
+viewGroupButton.className = "group-view-button";
+
+viewGroupButton.href =
+  `group.html?id=${encodeURIComponent(group.id)}`;
+
+viewGroupButton.textContent = "VIEW GROUP";
+
+content.appendChild(viewGroupButton);
+
       card.appendChild(icon);
       card.appendChild(content);
 
