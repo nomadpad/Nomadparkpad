@@ -17,11 +17,32 @@ document.addEventListener("DOMContentLoaded", async () => {
   const iconChoices =
     document.querySelectorAll(".group-icon-choice");
 
+    const joinGroupButton =
+  document.getElementById("joinGroupButton");
+
   let selectedIcon = "";
 
   // =========================================
   // OPEN CREATE GROUP PANEL
   // =========================================
+
+// =========================================
+// OPEN JOIN GROUP
+// =========================================
+
+if (joinGroupButton) {
+  joinGroupButton.addEventListener("click", () => {
+    const code = prompt(
+      "Enter the private group join code:"
+    );
+
+    if (!code) {
+      return;
+    }
+
+    joinGroupByCode(code.trim());
+  });
+}
 
   if (createGroupButton && createGroupPanel) {
     createGroupButton.addEventListener("click", () => {
@@ -81,6 +102,108 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     return code;
   }
+
+// =========================================
+// JOIN GROUP BY PRIVATE CODE
+// =========================================
+
+async function joinGroupByCode(rawCode) {
+  const joinCode = rawCode
+    .trim()
+    .toUpperCase();
+
+  if (!joinCode) {
+    return;
+  }
+
+  const user = await getCurrentUser();
+
+  if (!user) {
+    alert("Please log in before joining a group.");
+    return;
+  }
+
+  try {
+    // Find the group using the private join code.
+    const {
+      data: group,
+      error: groupError
+    } = await supabase
+      .from("traveller_groups")
+      .select(`
+        id,
+        name,
+        join_code
+      `)
+      .eq("join_code", joinCode)
+      .maybeSingle();
+
+    if (groupError) {
+      throw groupError;
+    }
+
+    if (!group) {
+      alert("That group code was not found.");
+      return;
+    }
+
+    // Check whether this traveller is already a member.
+    const {
+      data: existingMembership,
+      error: membershipCheckError
+    } = await supabase
+      .from("traveller_group_members")
+      .select(`
+        id,
+        role
+      `)
+      .eq("group_id", group.id)
+      .eq("user_id", user.id)
+      .maybeSingle();
+
+    if (membershipCheckError) {
+      throw membershipCheckError;
+    }
+
+    if (existingMembership) {
+      window.location.href =
+        `group.html?id=${encodeURIComponent(group.id)}`;
+
+      return;
+    }
+
+    // Add this traveller to the group.
+    const {
+      error: joinError
+    } = await supabase
+      .from("traveller_group_members")
+      .insert({
+        group_id: group.id,
+        user_id: user.id,
+        role: "member"
+      });
+
+    if (joinError) {
+      throw joinError;
+    }
+
+    alert(`You joined ${group.name}!`);
+
+    window.location.href =
+      `group.html?id=${encodeURIComponent(group.id)}`;
+
+  } catch (error) {
+    console.error(
+      "Groups: unable to join group.",
+      error
+    );
+
+    alert(
+      error?.message ||
+      "We couldn't join that group. Please try again."
+    );
+  }
+}
 
   // =========================================
   // GET CURRENT USER
