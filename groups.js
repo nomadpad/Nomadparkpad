@@ -126,17 +126,19 @@ async function joinGroupByCode(rawCode) {
   try {
     // Find the group using the private join code.
     const {
-      data: group,
-      error: groupError
-    } = await supabase
-      .from("traveller_groups")
-      .select(`
-        id,
-        name,
-        join_code
-      `)
-      .eq("join_code", joinCode)
-      .maybeSingle();
+  data: groups,
+  error: groupError
+} = await supabase.rpc(
+  "find_traveller_group_by_join_code",
+  {
+    lookup_code: joinCode
+  }
+);
+
+const group =
+  Array.isArray(groups) && groups.length > 0
+    ? groups[0]
+    : null;
 
     if (groupError) {
       throw groupError;
