@@ -262,3 +262,5 @@ for (const member of members) {
 
   groupMembersList.appendChild(memberCard);
 }
+
+});
