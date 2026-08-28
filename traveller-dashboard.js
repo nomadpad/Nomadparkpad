@@ -1765,8 +1765,26 @@ if (myGroupIds.length > 0) {
         }
       }
     );
+    console.log(
+  "MY GROUP IDS:",
+  myGroupIds
+);
+
+console.log(
+  "SHARED MEMBERSHIPS:",
+  sharedMemberships
+);
+
+console.log(
+  "GROUP BADGE LOOKUP:",
+  Array.from(
+    sharedGroupBadgesByTravellerId.entries()
+  )
+);
 }
 }
+
+
 
   const {
 
