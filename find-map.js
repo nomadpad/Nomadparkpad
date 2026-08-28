@@ -140,6 +140,8 @@ let hostMarkerRecords = [];
 
 let travellerMarkerRecords = [];
 
+const sharedGroupBadgesByTravellerId = new Map();
+
 /* =========================================================
 
    HELPERS
@@ -1496,6 +1498,11 @@ function addTravellerMarkers(
 
       };
 
+      const sharedGroupBadge =
+  sharedGroupBadgesByTravellerId.get(
+    traveller.traveller_id
+  ) || "";
+
       const marker =
 
         new google.maps.Marker({
@@ -1509,18 +1516,12 @@ function addTravellerMarkers(
   traveller.public_name || "Traveller",
 
           icon:
-
-            createEmojiMarkerIcon(
-
-              traveller.map_emoji ||
-
-              "🚐",
-
-              42,
-
-              "#f36b16"
-
-            ),
+  createEmojiMarkerIcon(
+    traveller.map_emoji || "🚐",
+    42,
+    "#f36b16",
+    sharedGroupBadge
+  ),
 
           zIndex: 600
 
@@ -1715,6 +1716,82 @@ async function buildMap() {
         loadVisibleTravellers()
 
       ]);
+
+      // =========================================
+// SHARED GROUP BADGES
+// =========================================
+
+sharedGroupBadgesByTravellerId.clear();
+
+if (currentUser?.id) {
+
+  const {
+    data: myGroupMemberships,
+    error: myGroupsError
+  } = await supabase
+    .from("traveller_group_members")
+    .select("group_id")
+    .eq("user_id", currentUser.id);
+
+  if (myGroupsError) {
+    console.error(
+      "Full map: could not load traveller groups:",
+      myGroupsError
+    );
+  } else {
+
+    const myGroupIds =
+      (myGroupMemberships || [])
+        .map((membership) => membership.group_id)
+        .filter(Boolean);
+
+    if (myGroupIds.length > 0) {
+
+      const {
+        data: sharedMemberships,
+        error: sharedMembershipsError
+      } = await supabase
+        .from("traveller_group_members")
+        .select(`
+          user_id,
+          group_id,
+          traveller_groups (
+            badge
+          )
+        `)
+        .in("group_id", myGroupIds);
+
+      if (sharedMembershipsError) {
+        console.error(
+          "Full map: could not load shared group members:",
+          sharedMembershipsError
+        );
+      } else {
+
+        (sharedMemberships || []).forEach(
+          (membership) => {
+
+            if (
+              membership.user_id &&
+              membership.user_id !== currentUser.id &&
+              membership.traveller_groups?.badge
+            ) {
+              sharedGroupBadgesByTravellerId.set(
+                membership.user_id,
+                membership.traveller_groups.badge
+              );
+            }
+
+          }
+        );
+
+      }
+
+    }
+
+  }
+
+}
       
     googleMap =
 
