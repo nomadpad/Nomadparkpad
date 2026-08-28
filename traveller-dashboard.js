@@ -1860,6 +1860,13 @@ console.log(
   sharedGroupBadgesByTravellerId.get(
     traveller.traveller_id
   ) || "";
+  
+  console.log(
+  "MARKER GROUP CHECK:",
+  traveller.public_name,
+  traveller.traveller_id,
+  sharedGroupBadge
+);
 
 const marker =
   new google.maps.Marker({
