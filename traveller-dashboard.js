@@ -1765,26 +1765,8 @@ if (myGroupIds.length > 0) {
         }
       }
     );
-    console.log(
-  "MY GROUP IDS:",
-  myGroupIds
-);
-
-console.log(
-  "SHARED MEMBERSHIPS:",
-  sharedMemberships
-);
-
-console.log(
-  "GROUP BADGE LOOKUP:",
-  Array.from(
-    sharedGroupBadgesByTravellerId.entries()
-  )
-);
 }
 }
-
-
 
   const {
 
@@ -1860,13 +1842,6 @@ console.log(
   sharedGroupBadgesByTravellerId.get(
     traveller.traveller_id
   ) || "";
-
-  console.log(
-  "MARKER GROUP CHECK:",
-  traveller.public_name,
-  traveller.traveller_id,
-  sharedGroupBadge
-);
 
 const marker =
   new google.maps.Marker({
