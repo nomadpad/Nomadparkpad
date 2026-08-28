@@ -381,7 +381,7 @@ function createEmojiMarkerIcon(
 
   const safeGroupBadge = groupBadge || "";
 
-  const badgeSize = Math.round(size * 0.34);
+  const badgeSize = Math.round(size * 0.48);
 
   const svg = `
 
@@ -453,7 +453,7 @@ function createEmojiMarkerIcon(
               r="${badgeSize / 2}"
               fill="#fffaf2"
               stroke="#d6a437"
-              stroke-width="2"
+              stroke-width="3"
             />
 
             <text
@@ -461,7 +461,7 @@ function createEmojiMarkerIcon(
               y="${badgeSize / 2 + 3}"
               text-anchor="middle"
               dominant-baseline="middle"
-              font-size="${badgeSize * 0.72}"
+              font-size="${badgeSize * 0.82}"
             >${safeGroupBadge}</text>
           `
           : ""
@@ -1860,7 +1860,7 @@ console.log(
   sharedGroupBadgesByTravellerId.get(
     traveller.traveller_id
   ) || "";
-  
+
   console.log(
   "MARKER GROUP CHECK:",
   traveller.public_name,
