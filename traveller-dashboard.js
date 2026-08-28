@@ -1706,6 +1706,68 @@ async function loadNearbyTravellers() {
 
   }
 
+// Load the signed-in traveller's group memberships.
+const {
+  data: myGroupMemberships,
+  error: myGroupsError
+} = await supabase
+  .from("traveller_group_members")
+  .select("group_id")
+  .eq("user_id", user.id);
+
+if (myGroupsError) {
+  console.error(
+    "Could not load traveller groups:",
+    myGroupsError
+  );
+}
+
+// Reset shared group badge cache for this map load.
+sharedGroupBadgesByTravellerId.clear();
+
+const myGroupIds =
+  (myGroupMemberships || [])
+    .map((membership) => membership.group_id)
+    .filter(Boolean);
+
+if (myGroupIds.length > 0) {
+  const {
+    data: sharedMemberships,
+    error: sharedMembershipsError
+  } = await supabase
+    .from("traveller_group_members")
+    .select(`
+      user_id,
+      group_id,
+      traveller_groups (
+        badge
+      )
+    `)
+    .in("group_id", myGroupIds);
+
+  if (sharedMembershipsError) {
+    console.error(
+      "Could not load shared group members:",
+      sharedMembershipsError
+    );
+  } else {
+    (sharedMemberships || []).forEach(
+      (membership) => {
+        if (
+          membership.user_id &&
+          membership.user_id !== user.id &&
+          membership.traveller_groups?.badge
+        ) {
+          sharedGroupBadgesByTravellerId.set(
+            membership.user_id,
+            membership.traveller_groups.badge
+          );
+        }
+      }
+    );
+}
+}
+
   const {
 
     data,
@@ -1776,39 +1838,35 @@ async function loadNearbyTravellers() {
 
       }
 
-      const marker =
+      const sharedGroupBadge =
+  sharedGroupBadgesByTravellerId.get(
+    traveller.traveller_id
+  ) || "";
 
-        new google.maps.Marker({
+const marker =
+  new google.maps.Marker({
 
-          map: travellerMapInstance,
+    map: travellerMapInstance,
 
-          position: {
+    position: {
+      lat: latitude,
+      lng: longitude
+    },
 
-            lat: latitude,
+    icon: createEmojiMarkerIcon(
+      traveller.map_emoji || "🚐",
+      46,
+      "#0d3b2f",
+      sharedGroupBadge
+    ),
 
-            lng: longitude
+    title:
+      traveller.public_name ||
+      "Nearby traveller",
 
-          },
+    zIndex: 600
 
-          icon: createEmojiMarkerIcon(
-
-            traveller.map_emoji || "🚐",
-
-            46,
-
-            "#0d3b2f"
-
-          ),
-
-          title:
-
-            traveller.public_name ||
-
-            "Nearby traveller",
-
-          zIndex: 600
-
-        });
+  });
 
       marker.addListener(
 
