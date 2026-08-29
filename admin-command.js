@@ -1467,6 +1467,36 @@ console.log(
   adminTravellers
 );
 
+(adminTravellers || []).forEach(
+  (traveller) => {
+    const latitude =
+      Number(traveller.latitude);
+
+    const longitude =
+      Number(traveller.longitude);
+
+    if (
+      !Number.isFinite(latitude) ||
+      !Number.isFinite(longitude)
+    ) {
+      return;
+    }
+
+    new google.maps.Marker({
+      map: adminMap,
+
+      position: {
+        lat: latitude,
+        lng: longitude
+      },
+
+      title:
+        traveller.public_name ||
+        "Traveller"
+    });
+  }
+);
+
 }
 
 async function startAdminCommandCentre() {
