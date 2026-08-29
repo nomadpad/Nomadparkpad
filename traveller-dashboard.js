@@ -8,7 +8,7 @@ import { supabase } from "./supabase-client.js";
 
 ========================================================= */
 
-const NEARBY_TRAVELLER_RADIUS_KM = 800;
+const NEARBY_TRAVELLER_RADIUS_KM = 3000;
 
 const sharedGroupBadgesByTravellerId = new Map();
 
