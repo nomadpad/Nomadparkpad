@@ -1415,7 +1415,7 @@ async function loadAdminRoom() {
    START
 
 ========================================================= */
-async function loadAdminTravellerMap() {
+function loadAdminTravellerMap() {
   const mapElement =
     document.getElementById("adminTravellerMap");
 
@@ -1430,92 +1430,70 @@ async function loadAdminTravellerMap() {
     return;
   }
 
-  const adminMap =
-    new google.maps.Map(
-      mapElement,
-      {
-        center: {
-          lat: 45.5,
-          lng: -100
-        },
+  new google.maps.Map(
+    mapElement,
+    {
+      center: {
+        lat: 45.5,
+        lng: -100
+      },
 
-        zoom: 3,
+      zoom: 3,
 
-        mapTypeControl: false,
-        streetViewControl: false,
-        fullscreenControl: true
-      }
-    );
-
-  const {
-    data,
-    error
-  } =
-    await supabase.rpc(
-      "get_visible_travellers"
-    );
-
-  if (error) {
-    console.error(
-      "Could not load travellers for admin map:",
-      error
-    );
-
-    return;
-  }
-
-  const bounds =
-    new google.maps.LatLngBounds();
-
-  (data || []).forEach(
-    (traveller) => {
-      const latitude =
-        Number(
-          traveller.latitude
-        );
-
-      const longitude =
-        Number(
-          traveller.longitude
-        );
-
-      if (
-        !Number.isFinite(latitude) ||
-        !Number.isFinite(longitude)
-      ) {
-        return;
-      }
-
-      const position = {
-        lat: latitude,
-        lng: longitude
-      };
-
-      new google.maps.Marker({
-        map: adminMap,
-        position,
-
-        title:
-          traveller.public_name ||
-          "Traveller",
-
-        label: {
-          text:
-            traveller.map_emoji ||
-            "🚐",
-
-          fontSize: "22px"
-        }
-      });
-
-      bounds.extend(position);
+      mapTypeControl: false,
+      streetViewControl: false,
+      fullscreenControl: true
     }
   );
-
-  if (
-    data &&
-    data.length > 0
-  ) {
-    adminMap.fitBounds(bounds);
-  }
 }
+
+async function startAdminCommandCentre() {
+
+  const administrator =
+
+    await requireAdministrator();
+
+  if (!administrator) {
+
+    return;
+
+  }
+
+  await loadAdminRoom();
+
+  loadAdminTravellerMap();
+}
+
+refreshAdminButton?.addEventListener(
+
+  "click",
+
+  async () => {
+
+    const originalText =
+
+      refreshAdminButton.textContent;
+
+    refreshAdminButton.disabled =
+
+      true;
+
+    refreshAdminButton.textContent =
+
+      "Refreshing...";
+
+    await loadAdminRoom();
+
+    refreshAdminButton.disabled =
+
+      false;
+
+    refreshAdminButton.textContent =
+
+      originalText || "Refresh";
+
+  }
+
+);
+
+startAdminCommandCentre();
