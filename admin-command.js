@@ -1430,7 +1430,7 @@ async function loadAdminTravellerMap() {
     return;
   }
 
-  new google.maps.Map(
+  const adminMap = new google.maps.Map(
     mapElement,
     {
       center: {
