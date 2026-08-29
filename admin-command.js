@@ -1608,24 +1608,54 @@ console.log(
       return;
     }
 
-    new google.maps.Marker({
+  const marker =
+  new google.maps.Marker({
+    map: adminMap,
+
+    position: {
+      lat: latitude,
+      lng: longitude
+    },
+
+    icon: createEmojiMarkerIcon(
+      traveller.map_emoji || "🚐",
+      42,
+      "#f36b16"
+    ),
+
+    title:
+      traveller.public_name ||
+      "Traveller"
+  });
+
+const infoWindow =
+  new google.maps.InfoWindow({
+    content: `
+      <div style="min-width:180px;padding:4px 2px;">
+        <strong style="font-size:16px;">
+          ${traveller.public_name || "Traveller"}
+        </strong>
+
+        <div style="margin-top:6px;font-size:13px;">
+          Traveller
+        </div>
+
+        <div style="margin-top:4px;font-size:12px;color:#666;">
+          Approximate visible location
+        </div>
+      </div>
+    `
+  });
+
+marker.addListener(
+  "click",
+  () => {
+    infoWindow.open({
       map: adminMap,
-
-      position: {
-        lat: latitude,
-        lng: longitude
-      },
-
-      icon: createEmojiMarkerIcon(
-  traveller.map_emoji || "🚐",
-  42,
-  "#f36b16"
-),
-
-      title:
-        traveller.public_name ||
-        "Traveller"
+      anchor: marker
     });
+  }
+);
   }
 );
 
