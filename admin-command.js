@@ -1415,6 +1415,132 @@ async function loadAdminRoom() {
    START
 
 ========================================================= */
+function createEmojiMarkerIcon(
+
+  emoji,
+
+  size = 42,
+
+  ringColor = "#0d3b2f",
+
+  groupBadge = ""
+
+) {
+
+  const safeEmoji = emoji || "🚐";
+
+  const safeGroupBadge = groupBadge || "";
+
+  const badgeSize = Math.round(size * 0.48);
+
+  const svg = `
+
+    <svg
+
+      xmlns="http://www.w3.org/2000/svg"
+
+      width="${size}"
+
+      height="${size}"
+
+      viewBox="0 0 ${size} ${size}"
+
+    >
+
+      <circle
+
+        cx="${size / 2}"
+
+        cy="${size / 2}"
+
+        r="${size / 2 - 3}"
+
+        fill="#fffaf2"
+
+        stroke="${ringColor}"
+
+        stroke-width="4"
+
+      />
+
+      <circle
+
+        cx="${size / 2}"
+
+        cy="${size / 2}"
+
+        r="${size / 2 - 8}"
+
+        fill="#ffffff"
+
+        stroke="#0d3b2f"
+
+        stroke-width="1.5"
+
+      />
+
+      <text
+
+        x="50%"
+
+        y="53%"
+
+        text-anchor="middle"
+
+        dominant-baseline="middle"
+
+        font-size="${size * 0.5}"
+
+      >${safeEmoji}</text>
+
+
+      ${
+        safeGroupBadge
+          ? `
+            <circle
+              cx="${size - badgeSize / 2 - 2}"
+              cy="${badgeSize / 2 + 2}"
+              r="${badgeSize / 2}"
+              fill="#fffaf2"
+              stroke="#d6a437"
+              stroke-width="3"
+            />
+
+            <text
+              x="${size - badgeSize / 2 - 2}"
+              y="${badgeSize / 2 + 3}"
+              text-anchor="middle"
+              dominant-baseline="middle"
+              font-size="${badgeSize * 0.82}"
+            >${safeGroupBadge}</text>
+          `
+          : ""
+      }
+
+    </svg>
+
+  `;
+
+  return {
+
+    url:
+      "data:image/svg+xml;charset=UTF-8," +
+      encodeURIComponent(svg),
+
+    scaledSize:
+      new google.maps.Size(size, size),
+
+    anchor:
+      new google.maps.Point(
+        size / 2,
+        size / 2
+      )
+
+  };
+
+}
+
+
 async function loadAdminTravellerMap() {
   const mapElement =
     document.getElementById("adminTravellerMap");
@@ -1489,6 +1615,12 @@ console.log(
         lat: latitude,
         lng: longitude
       },
+
+      icon: createEmojiMarkerIcon(
+  traveller.map_emoji || "🚐",
+  42,
+  "#f36b16"
+),
 
       title:
         traveller.public_name ||
