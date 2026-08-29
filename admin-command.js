@@ -1415,7 +1415,7 @@ async function loadAdminRoom() {
    START
 
 ========================================================= */
-function loadAdminTravellerMap() {
+async function loadAdminTravellerMap() {
   const mapElement =
     document.getElementById("adminTravellerMap");
 
@@ -1445,6 +1445,28 @@ function loadAdminTravellerMap() {
       fullscreenControl: true
     }
   );
+
+const {
+  data: adminTravellers,
+  error: adminTravellersError
+} = await supabase.rpc(
+  "get_visible_travellers"
+);
+
+if (adminTravellersError) {
+  console.error(
+    "Could not load admin travellers:",
+    adminTravellersError
+  );
+
+  return;
+}
+
+console.log(
+  "ADMIN TRAVELLERS:",
+  adminTravellers
+);
+
 }
 
 async function startAdminCommandCentre() {
