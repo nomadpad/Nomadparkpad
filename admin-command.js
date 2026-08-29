@@ -1415,6 +1415,37 @@ async function loadAdminRoom() {
    START
 
 ========================================================= */
+function loadAdminTravellerMap() {
+  const mapElement =
+    document.getElementById("adminTravellerMap");
+
+  if (!mapElement) {
+    return;
+  }
+
+  if (!window.google?.maps) {
+    console.error(
+      "Google Maps is not available in the Admin Room."
+    );
+    return;
+  }
+
+  new google.maps.Map(
+    mapElement,
+    {
+      center: {
+        lat: 45.5,
+        lng: -100
+      },
+
+      zoom: 3,
+
+      mapTypeControl: false,
+      streetViewControl: false,
+      fullscreenControl: true
+    }
+  );
+}
 
 async function startAdminCommandCentre() {
 
@@ -1430,6 +1461,7 @@ async function startAdminCommandCentre() {
 
   await loadAdminRoom();
 
+  loadAdminTravellerMap();
 }
 
 refreshAdminButton?.addEventListener(
