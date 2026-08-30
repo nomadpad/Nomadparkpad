@@ -99,6 +99,7 @@ setText(
   }
 
   const photos = [...(listing.listing_photos || [])].sort((a,b) => a.sort_order - b.sort_order);
+  console.log("LISTING PHOTOS:", photos);
   const gallery = document.querySelector("#real-gallery");
   if (gallery && photos.length) {
     gallery.innerHTML = "";
