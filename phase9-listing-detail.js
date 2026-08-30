@@ -106,6 +106,12 @@ setText(
     photos.slice(0, 5).forEach((photo, index) => {
       const div = document.createElement("div");
       div.className = index === 0 ? "gallery-photo gallery-main" : "gallery-photo";
+      
+console.log(
+  "PHOTO URL:",
+  publicPhoto(photo.storage_path)
+);
+
       div.style.backgroundImage = `url("${publicPhoto(photo.storage_path)}")`;
       gallery.appendChild(div);
     });
