@@ -20,6 +20,7 @@ function collectDraft() {
   return {
     title: document.querySelector("#listing-title")?.value.trim() || "",
     city: document.querySelector("#listing-city")?.value.trim() || "",
+    country: document.querySelector("#listing-country")?.value || "Canada",
     province: document.querySelector("#listing-province")?.value || "Alberta",
     exact_address: document.querySelector("#listing-exact-address")?.value.trim() || "",
     description: document.querySelector("#listing-description")?.value.trim() || "",
@@ -55,6 +56,7 @@ function restoreDraft() {
     };
     setValue("#listing-title", draft.title);
     setValue("#listing-city", draft.city);
+    setValue("#listing-country", draft.country || "Canada");
     setValue("#listing-province", draft.province);
     setValue("#listing-description", draft.description);
     setValue("#arrival-note", draft.arrivalNote);
