@@ -33,6 +33,18 @@ async function loadListing() {
     return;
   }
 
+  const {
+  data: { user }
+} = await supabase.auth.getUser();
+
+const isListingOwner =
+  user?.id === listing.host_id;
+
+console.log(
+  "LISTING OWNER:",
+  isListingOwner
+);
+
   document.title = `${listing.title} | Nomad Park Pad`;
   setText("#listing-title", listing.title);
   setText("#listing-location", `${listing.city}, ${listing.province}`);
