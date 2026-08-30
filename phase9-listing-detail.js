@@ -18,7 +18,7 @@ async function loadListing() {
   const { data: listing, error } = await supabase
     .from("listings")
     .select(`
-      id,title,description,city,province,nightly_price,host_style,max_guests,
+      id,host_id,title,description,city,province,nightly_price,host_style,max_guests,
       max_vehicle_length,max_vehicle_height,max_vehicle_width,driveway_surface,driveway_slope,parking_orientation,amenities,host_id,
       listing_photos(storage_path,sort_order),
       profiles!listings_host_id_fkey(first_name,city)
