@@ -163,6 +163,7 @@ function restoreDraft() {
     setValue("#listing-city", draft.city);
     setValue("#listing-country", draft.country || "Canada");
     setValue("#listing-province", draft.province);
+    setValue("#listing-exact-address", draft.exact_address);
     setValue("#listing-description", draft.description);
     setValue("#arrival-note", draft.arrivalNote);
     setValue("#max-length", draft.length);
