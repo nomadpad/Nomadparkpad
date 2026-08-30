@@ -45,6 +45,21 @@ console.log(
   isListingOwner
 );
 
+if (isListingOwner) {
+  const travellerOnlyElements = [
+    document.querySelector(".detail-heart"),
+    document.querySelector(".host-detail-block"),
+    document.querySelector(".safety-block"),
+    document.querySelector(".real-booking-card")
+  ];
+
+  travellerOnlyElements.forEach((element) => {
+    if (element) {
+      element.hidden = true;
+    }
+  });
+}
+
   document.title = `${listing.title} | Nomad Park Pad`;
   setText("#listing-title", listing.title);
   setText("#listing-location", `${listing.city}, ${listing.province}`);
