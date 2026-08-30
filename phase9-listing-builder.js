@@ -332,7 +332,8 @@ document.querySelector("#listing-builder")?.addEventListener("submit", async (ev
         title: draft.title,
         description: draft.description,
         city: draft.city,
-        province: draft.province,
+country: draft.country || "Canada",
+province: draft.province,
         
         nightly_price: draft.price,
         host_style: draft.style,
