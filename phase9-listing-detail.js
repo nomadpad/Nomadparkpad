@@ -123,15 +123,43 @@ setText(
   const requestLink = document.querySelector("#real-booking-link");
   if (requestLink) requestLink.href = `booking-request.html?listing=${encodeURIComponent(listing.id)}`;
 
-  const amenities = document.querySelector("#listing-amenities");
-  if (amenities) {
-    amenities.innerHTML = "";
-    (listing.amenities || []).filter(x => !x.startsWith("Vehicle:")).forEach(item => {
+  const amenityLabels = {
+  power: "⚡ Power",
+  ev_charging: "🔌 EV Charging",
+  pet_friendly: "🐾 Pet Friendly",
+  wifi: "📶 Wi-Fi",
+  washroom: "🚻 Washroom",
+  shower: "🚿 Shower",
+  water: "💧 Water",
+  potable_water: "🚰 Potable Water",
+  garbage: "🗑️ Garbage",
+  recycling: "♻️ Recycling",
+  fire_pit: "🔥 Fire Pit",
+  lighting: "💡 Lighting",
+  laundry: "🧺 Laundry",
+  outdoor_sitting: "🪑 Outdoor Sitting Area",
+  package_pickup: "📦 Package Pickup",
+  basic_tools: "🔧 Tools / Minor Repairs",
+  winter_accessible: "❄️ Winter Accessible"
+};
+
+const amenities = document.querySelector("#listing-amenities");
+
+if (amenities) {
+  amenities.innerHTML = "";
+
+  (listing.amenities || [])
+    .filter(item => !item.startsWith("Vehicle:"))
+    .forEach(item => {
       const span = document.createElement("span");
-      span.textContent = `✓ ${item}`;
+
+      span.textContent =
+        amenityLabels[item] ||
+        item.replaceAll("_", " ");
+
       amenities.appendChild(span);
     });
-  }
+}
 
   const vehicleList = document.querySelector("#listing-vehicles");
   if (vehicleList) {
