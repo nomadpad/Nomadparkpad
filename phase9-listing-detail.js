@@ -55,7 +55,7 @@ if (isListingOwner) {
 
   travellerOnlyElements.forEach((element) => {
     if (element) {
-      element.hidden = true;
+      element.style.display = "none";
     }
   });
 }
