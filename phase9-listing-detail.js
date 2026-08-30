@@ -46,6 +46,20 @@ console.log(
 );
 
 if (isListingOwner) {
+  const hostPreviewBlock =
+  document.querySelector("#hostPreviewBlock");
+
+if (hostPreviewBlock) {
+  hostPreviewBlock.hidden = false;
+}
+
+const hostPreviewEdit =
+  document.querySelector("#hostPreviewEdit");
+
+if (hostPreviewEdit) {
+  hostPreviewEdit.href =
+    `edit-listing.html?listing=${encodeURIComponent(listing.id)}`;
+}
   const travellerOnlyElements = [
     document.querySelector(".detail-heart"),
     document.querySelector(".host-detail-block"),
