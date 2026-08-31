@@ -99,7 +99,7 @@
   outline: 2px solid rgba(15, 75, 56, 0.16);
   border-color: #0f4b38;
 }
-.listing-form select {
+.builder-card select {
   width: 100%;
   min-height: 52px;
   padding: 0 16px;
