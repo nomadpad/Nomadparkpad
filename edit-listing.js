@@ -9,7 +9,13 @@ import {
 const params = new URLSearchParams(window.location.search);
 
 const listingId = params.get("listing");
+const cancelLink =
+  document.querySelector(".btn-secondary");
 
+if (cancelLink && listingId) {
+  cancelLink.href =
+    `pad-listing.html?listing=${encodeURIComponent(listingId)}`;
+}
 const loading = document.querySelector("#edit-loading");
 
 const form = document.querySelector("#edit-listing-form");
