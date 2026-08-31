@@ -30,6 +30,9 @@ const descriptionInput = document.querySelector("#edit-description");
 
 const cityInput = document.querySelector("#edit-city");
 
+const countryInput =
+  document.querySelector("#edit-country");
+
 const provinceInput = document.querySelector("#edit-province");
 
 const priceInput = document.querySelector("#edit-price");
@@ -175,6 +178,9 @@ async function loadListing() {
   descriptionInput.value = listing.description || "";
 
   cityInput.value = listing.city || "";
+
+countryInput.value =
+  listing.country || "Canada";
 
   provinceInput.value = listing.province || "";
 
