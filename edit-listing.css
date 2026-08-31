@@ -99,3 +99,19 @@
   outline: 2px solid rgba(15, 75, 56, 0.16);
   border-color: #0f4b38;
 }
+.listing-form select {
+  width: 100%;
+  min-height: 52px;
+  padding: 0 16px;
+
+  border: 1px solid #dfd2bf;
+  border-radius: 12px;
+
+  background: #fff;
+  color: #063f32;
+
+  font: inherit;
+  font-weight: 600;
+
+  box-sizing: border-box;
+}
