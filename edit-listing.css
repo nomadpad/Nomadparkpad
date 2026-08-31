@@ -64,3 +64,37 @@
     border-radius: 18px;
   }
 }
+.builder-card {
+  display: grid;
+  gap: 20px;
+}
+
+.builder-card label {
+  display: grid;
+  gap: 8px;
+  color: #0f4b38;
+  font-weight: 700;
+}
+
+.builder-card input,
+.builder-card textarea {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid #ddd3c4;
+  border-radius: 12px;
+  background: #fff;
+  color: #173d32;
+  font: inherit;
+  line-height: 1.4;
+}
+
+.builder-card textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.builder-card input:focus,
+.builder-card textarea:focus {
+  outline: 2px solid rgba(15, 75, 56, 0.16);
+  border-color: #0f4b38;
+}
