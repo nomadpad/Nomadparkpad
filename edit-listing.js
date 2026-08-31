@@ -6,6 +6,104 @@ import {
 
 } from "./supabase-client.js";
 
+const canadianRegions = [
+  "Alberta",
+  "British Columbia",
+  "Manitoba",
+  "New Brunswick",
+  "Newfoundland and Labrador",
+  "Northwest Territories",
+  "Nova Scotia",
+  "Nunavut",
+  "Ontario",
+  "Prince Edward Island",
+  "Quebec",
+  "Saskatchewan",
+  "Yukon"
+];
+
+const usStates = [
+  "Alabama",
+  "Alaska",
+  "Arizona",
+  "Arkansas",
+  "California",
+  "Colorado",
+  "Connecticut",
+  "Delaware",
+  "Florida",
+  "Georgia",
+  "Hawaii",
+  "Idaho",
+  "Illinois",
+  "Indiana",
+  "Iowa",
+  "Kansas",
+  "Kentucky",
+  "Louisiana",
+  "Maine",
+  "Maryland",
+  "Massachusetts",
+  "Michigan",
+  "Minnesota",
+  "Mississippi",
+  "Missouri",
+  "Montana",
+  "Nebraska",
+  "Nevada",
+  "New Hampshire",
+  "New Jersey",
+  "New Mexico",
+  "New York",
+  "North Carolina",
+  "North Dakota",
+  "Ohio",
+  "Oklahoma",
+  "Oregon",
+  "Pennsylvania",
+  "Rhode Island",
+  "South Carolina",
+  "South Dakota",
+  "Tennessee",
+  "Texas",
+  "Utah",
+  "Vermont",
+  "Virginia",
+  "Washington",
+  "West Virginia",
+  "Wisconsin",
+  "Wyoming",
+  "District of Columbia"
+];
+
+function updateEditProvinceStateOptions() {
+  if (!countryInput || !provinceInput) {
+    return;
+  }
+
+  const regions =
+    countryInput.value === "United States"
+      ? usStates
+      : canadianRegions;
+
+  const currentValue = provinceInput.value;
+
+  provinceInput.innerHTML = "";
+
+  regions.forEach((region) => {
+    const option = document.createElement("option");
+
+    option.value = region;
+    option.textContent = region;
+
+    provinceInput.appendChild(option);
+  });
+
+  if (regions.includes(currentValue)) {
+    provinceInput.value = currentValue;
+  }
+}
+
 const params = new URLSearchParams(window.location.search);
 
 const listingId = params.get("listing");
@@ -182,7 +280,10 @@ async function loadListing() {
 countryInput.value =
   listing.country || "Canada";
 
-  provinceInput.value = listing.province || "";
+updateEditProvinceStateOptions();
+
+provinceInput.value =
+  listing.province || "";
 
   priceInput.value = listing.nightly_price ?? "";
 
