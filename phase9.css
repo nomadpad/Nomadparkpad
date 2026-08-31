@@ -75,3 +75,14 @@
     padding:22px 5% 50px
   }
 }
+#edit-country {
+  width: 100%;
+  min-height: 52px;
+  padding: 0 16px;
+  border: 1px solid #ddd2c1;
+  border-radius: 12px;
+  background: #fff;
+  color: #073f32;
+  font: inherit;
+  font-size: 16px;
+}

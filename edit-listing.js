@@ -218,6 +218,8 @@ form?.addEventListener("submit", async event => {
 
     city: cityInput.value.trim(),
 
+country: countryInput.value,
+
     province: provinceInput.value.trim(),
 
     nightly_price: Number(priceInput.value),
