@@ -133,6 +133,12 @@ const countryInput =
 
 const provinceInput = document.querySelector("#edit-province");
 
+if (countryInput) {
+  countryInput.addEventListener("change", () => {
+    updateEditProvinceStateOptions();
+  });
+}
+
 const priceInput = document.querySelector("#edit-price");
 
 const guestsInput = document.querySelector("#edit-guests");
