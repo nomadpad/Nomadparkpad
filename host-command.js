@@ -1397,13 +1397,15 @@ updateHostIdentity(
 
   } catch (error) {
 
-    console.error(
-
-      "Host command data error:",
-
-      error
-
-    );
+   console.error(
+  "Host command data error:",
+  {
+    code: error?.code,
+    message: error?.message,
+    details: error?.details,
+    hint: error?.hint
+  }
+);
 
     const welcomeText =
 
