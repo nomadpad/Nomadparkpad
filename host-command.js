@@ -1399,12 +1399,12 @@ updateHostIdentity(
 
    console.error(
   "Host command data error:",
-  {
+  JSON.stringify({
     code: error?.code,
     message: error?.message,
     details: error?.details,
     hint: error?.hint
-  }
+  })
 );
 
     const welcomeText =
