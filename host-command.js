@@ -1273,20 +1273,39 @@ async function loadHostDashboard() {
   try {
 
     currentUser =
+  await getCurrentUser();
 
-      await getCurrentUser();
+if (!currentUser) {
+  return;
+}
 
-    if (!currentUser) {
+const {
+  data: hostProfile,
+  error: hostProfileError
+} =
+  await supabase
+    .from("profiles")
+    .select("first_name")
+    .eq("id", currentUser.id)
+    .maybeSingle();
 
-      return;
+if (hostProfileError) {
+  console.warn(
+    "Could not load host profile name:",
+    hostProfileError
+  );
+}
 
-    }
+if (hostProfile?.first_name) {
+  currentUser.user_metadata = {
+    ...(currentUser.user_metadata || {}),
+    first_name: hostProfile.first_name
+  };
+}
 
-    updateHostIdentity(
-
-      currentUser
-
-    );
+updateHostIdentity(
+  currentUser
+);
 
     const [
 
