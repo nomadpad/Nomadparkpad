@@ -1348,26 +1348,14 @@ updateHostIdentity(
           ),
 
         supabase
-
-          .from("booking_requests")
-
-          .select(
-
-            .select(
-
-  "id,arrival,departure,travellers,vehicle_type,vehicle_length,pets,message,status,created_at,listings!inner(host_id)"
-
-)
-
-          )
-
-          .eq(
-
-            "listings.host_id",
-
-            currentUser.id
-
-          )
+  .from("booking_requests")
+  .select(
+    "id,arrival,departure,travellers,vehicle_type,vehicle_length,pets,message,status,created_at,listings!inner(host_id)"
+  )
+  .eq(
+    "listings.host_id",
+    currentUser.id
+  )
 
           .order(
 
