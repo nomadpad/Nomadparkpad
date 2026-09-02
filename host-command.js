@@ -1415,13 +1415,14 @@ updateHostIdentity(
 
       );
 
-    safeText(
+    if (welcomeText) {
+  welcomeText.hidden = false;
+}
 
-      welcomeText,
-
-      "We could not load all live host information. Please refresh and try again."
-
-    );
+safeText(
+  welcomeText,
+  "We could not load all live host information. Please refresh and try again."
+);
 
   }
 
