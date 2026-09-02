@@ -551,9 +551,9 @@ function updateHostIdentity(user) {
     `${greeting}, ${name}! 🌲`
 
   );
-  
+
 if (welcomeHeading) {
-  welcomeHeading.hidden = false;
+  welcomeHeading.style.visibility = "visible";
 }
   const profileName =
 
