@@ -551,7 +551,10 @@ function updateHostIdentity(user) {
     `${greeting}, ${name}! 🌲`
 
   );
-
+  
+if (welcomeHeading) {
+  welcomeHeading.hidden = false;
+}
   const profileName =
 
     document.querySelector(
